@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GCDAsyncUdpSocket.h"
+#import "FillingIPInforList.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate,GCDAsyncUdpSocketDelegate>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
