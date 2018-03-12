@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Toast.h"
+#import "RebootDialog.h"
+#import "MyConnector.h"
 @interface computerSettingViewController : UIViewController
 - (IBAction)press_return_button:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *rebootview;

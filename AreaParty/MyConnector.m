@@ -304,4 +304,5 @@ static MyConnector *instance = nil;
     }
 
 }
+
 @end

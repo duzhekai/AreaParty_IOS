@@ -7,7 +7,8 @@
 //
 
 #import "computerSettingViewController.h"
-
+#import "RegisterOperatorVC.h"
+#import "exeContentVC.h"
 @interface computerSettingViewController (){
     UITapGestureRecognizer* tap_reboot;
     UITapGestureRecognizer* tap_scanexe;
@@ -30,13 +31,26 @@
 }
 - (void) onTaped:(UITapGestureRecognizer*)rec{
     if(rec == tap_reboot){
-        
+        BOOL state = [MyConnector sharedInstance].connetedState;
+        if(state) {
+            RebootDialog * reboot = [[RebootDialog alloc] initWithFrame:self.view.frame];
+            [reboot showDialogInView:self.view];
+        } else {
+            [Toast ShowToast:@"主机端未打开服务程序\n请先打开服务程序" Animated:YES time:1 context:self.view];
+        }
     }
     else if(rec == tap_scanexe){
-        
+        if([MyConnector sharedInstance].connetedState) {
+            exeContentVC *  vc = (exeContentVC*)[self.storyboard instantiateViewControllerWithIdentifier:@"exeContentVC"];
+            [self presentViewController:vc animated:YES completion:nil];
+        } else {
+            [Toast ShowToast:@"主机端未打开服务程序\n请先打开服务程序" Animated:YES time:1 context:self.view];
+        }
     }
     else if(rec == tap_registeroperator){
-        
+         RegisterOperatorVC *  vc = (RegisterOperatorVC*)[self.storyboard instantiateViewControllerWithIdentifier:@"RegisterOperatorDialog"];
+        vc.pushview = self;
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 - (void)didReceiveMemoryWarning {

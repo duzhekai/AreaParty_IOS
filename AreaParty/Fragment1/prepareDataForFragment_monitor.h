@@ -26,4 +26,5 @@
 + (void) getMonitoringData;
 + (NSMutableArray<ProcessFormat*>*)getcurrentProcesses;
 + (ReceivedActionMessageFormat*) getActionStateData:(NSString*) name Command:(NSString*) command Param:(NSString*) param;
++ (NSObject*) getExeActionStateData:(NSString*)name command:(NSString*) command Param:(NSString*) param;
 @end

@@ -29,6 +29,9 @@
 		720158EE2000A2EA00913961 /* Send2TVThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 720158ED2000A2EA00913961 /* Send2TVThread.m */; };
 		720158F12000CD1D00913961 /* tvpcAppHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 720158F02000CD1D00913961 /* tvpcAppHelper.m */; };
 		720158F62001F39A00913961 /* AppItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 720158F52001F39A00913961 /* AppItem.m */; };
+		72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CAC20563AF200A4DA97 /* RebootDialog.m */; };
+		72058CB520566AAB00A4DA97 /* RegisterOperatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */; };
+		72058CBE2056816900A4DA97 /* exeContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CBD2056816900A4DA97 /* exeContentVC.m */; };
 		7210AFB1204F9199000C80F0 /* SettingAddressHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */; };
 		721891071FB55659002E270E /* activity_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 72188EE31FB55657002E270E /* activity_background.png */; };
 		721891081FB55659002E270E /* addfolder_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72188EE41FB55657002E270E /* addfolder_normal.png */; };
@@ -645,7 +648,6 @@
 		7245BFAE2051006B00626852 /* prepareDataForFragment_monitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245BFAD2051006B00626852 /* prepareDataForFragment_monitor.m */; };
 		7245BFB12051087F00626852 /* ReceivedMonitorMessageFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245BFB02051087F00626852 /* ReceivedMonitorMessageFormat.m */; };
 		7245BFB4205108D700626852 /* MonitorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245BFB3205108D700626852 /* MonitorData.m */; };
-		7245BFB72051124400626852 /* ReceivedExeListFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245BFB62051124400626852 /* ReceivedExeListFormat.m */; };
 		7245BFBA2051127F00626852 /* ExeInformat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245BFB92051127F00626852 /* ExeInformat.m */; };
 		72494C9A1FAEB1EA002B1101 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72494C991FAEB1EA002B1101 /* AppDelegate.m */; };
 		72494CA01FAEB1EA002B1101 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72494C9E1FAEB1EA002B1101 /* Main.storyboard */; };
@@ -686,6 +688,9 @@
 		728E91581FE7D010007E969F /* passwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 728E91571FE7D00F007E969F /* passwd.png */; };
 		72945D86204BECAD0042E643 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72945D85204BECAD0042E643 /* SettingMainViewController.m */; };
 		72945D89204BF0D70042E643 /* SettingNavigationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72945D88204BF0D70042E643 /* SettingNavigationVC.m */; };
+		7298BDFD2056BD400018FC8C /* exe_item_cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7298BDFB2056BD400018FC8C /* exe_item_cell.m */; };
+		7298BDFE2056BD400018FC8C /* exe_item_cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7298BDFC2056BD400018FC8C /* exe_item_cell.xib */; };
+		7298BE012056BFE80018FC8C /* ReceivedExeListFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7298BE002056BFE80018FC8C /* ReceivedExeListFormat.m */; };
 		72A09FBC1FD65DDA000214B6 /* RegisterUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A09FBB1FD65DDA000214B6 /* RegisterUserInfo.m */; };
 		72A09FC01FD6819F000214B6 /* checkbox-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A09FBD1FD6819B000214B6 /* checkbox-pressed.png */; };
 		72A09FC21FD6819F000214B6 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A09FBF1FD6819E000214B6 /* checkbox-checked.png */; };
@@ -825,6 +830,12 @@
 		720158F02000CD1D00913961 /* tvpcAppHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvpcAppHelper.m; sourceTree = "<group>"; };
 		720158F42001F39A00913961 /* AppItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppItem.h; sourceTree = "<group>"; };
 		720158F52001F39A00913961 /* AppItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppItem.m; sourceTree = "<group>"; };
+		72058CAB20563AF200A4DA97 /* RebootDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RebootDialog.h; sourceTree = "<group>"; };
+		72058CAC20563AF200A4DA97 /* RebootDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RebootDialog.m; sourceTree = "<group>"; };
+		72058CB320566AAB00A4DA97 /* RegisterOperatorVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterOperatorVC.h; sourceTree = "<group>"; };
+		72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterOperatorVC.m; sourceTree = "<group>"; };
+		72058CBC2056816900A4DA97 /* exeContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exeContentVC.h; sourceTree = "<group>"; };
+		72058CBD2056816900A4DA97 /* exeContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exeContentVC.m; sourceTree = "<group>"; };
 		7210AFAF204F9199000C80F0 /* SettingAddressHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingAddressHandler.h; sourceTree = "<group>"; };
 		7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingAddressHandler.m; sourceTree = "<group>"; };
 		72188EE31FB55657002E270E /* activity_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_background.png; sourceTree = "<group>"; };
@@ -1506,8 +1517,6 @@
 		7245BFB02051087F00626852 /* ReceivedMonitorMessageFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivedMonitorMessageFormat.m; sourceTree = "<group>"; };
 		7245BFB2205108D700626852 /* MonitorData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MonitorData.h; sourceTree = "<group>"; };
 		7245BFB3205108D700626852 /* MonitorData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonitorData.m; sourceTree = "<group>"; };
-		7245BFB52051124400626852 /* ReceivedExeListFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivedExeListFormat.h; sourceTree = "<group>"; };
-		7245BFB62051124400626852 /* ReceivedExeListFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivedExeListFormat.m; sourceTree = "<group>"; };
 		7245BFB82051127F00626852 /* ExeInformat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExeInformat.h; sourceTree = "<group>"; };
 		7245BFB92051127F00626852 /* ExeInformat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExeInformat.m; sourceTree = "<group>"; };
 		72494C951FAEB1EA002B1101 /* AreaParty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AreaParty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1583,6 +1592,11 @@
 		72945D85204BECAD0042E643 /* SettingMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingMainViewController.m; sourceTree = "<group>"; };
 		72945D87204BF0D70042E643 /* SettingNavigationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingNavigationVC.h; sourceTree = "<group>"; };
 		72945D88204BF0D70042E643 /* SettingNavigationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNavigationVC.m; sourceTree = "<group>"; };
+		7298BDFA2056BD400018FC8C /* exe_item_cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exe_item_cell.h; sourceTree = "<group>"; };
+		7298BDFB2056BD400018FC8C /* exe_item_cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exe_item_cell.m; sourceTree = "<group>"; };
+		7298BDFC2056BD400018FC8C /* exe_item_cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = exe_item_cell.xib; sourceTree = "<group>"; };
+		7298BDFF2056BFE80018FC8C /* ReceivedExeListFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivedExeListFormat.h; sourceTree = "<group>"; };
+		7298BE002056BFE80018FC8C /* ReceivedExeListFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivedExeListFormat.m; sourceTree = "<group>"; };
 		72A09FBA1FD65DDA000214B6 /* RegisterUserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfo.h; sourceTree = "<group>"; };
 		72A09FBB1FD65DDA000214B6 /* RegisterUserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfo.m; sourceTree = "<group>"; };
 		72A09FBD1FD6819B000214B6 /* checkbox-pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-pressed.png"; sourceTree = "<group>"; };
@@ -1835,6 +1849,21 @@
 				7220C620200B912C00ECC879 /* TVInforBean.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		72058CAA205637FC00A4DA97 /* Dialog */ = {
+			isa = PBXGroup;
+			children = (
+				72FDF9952053A37600232F4D /* Process_detail_dialog.h */,
+				72FDF9962053A37600232F4D /* Process_detail_dialog.m */,
+				72FDF99B2053AE5F00232F4D /* Process_close_dialog.h */,
+				72FDF99C2053AE5F00232F4D /* Process_close_dialog.m */,
+				72058CAB20563AF200A4DA97 /* RebootDialog.h */,
+				72058CAC20563AF200A4DA97 /* RebootDialog.m */,
+				72058CB320566AAB00A4DA97 /* RegisterOperatorVC.h */,
+				72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */,
+			);
+			path = Dialog;
 			sourceTree = "<group>";
 		};
 		72188EE21FB55657002E270E /* drawable */ = {
@@ -2771,10 +2800,10 @@
 				7245BFB02051087F00626852 /* ReceivedMonitorMessageFormat.m */,
 				7245BFB2205108D700626852 /* MonitorData.h */,
 				7245BFB3205108D700626852 /* MonitorData.m */,
-				7245BFB52051124400626852 /* ReceivedExeListFormat.h */,
-				7245BFB62051124400626852 /* ReceivedExeListFormat.m */,
 				7245BFB82051127F00626852 /* ExeInformat.h */,
 				7245BFB92051127F00626852 /* ExeInformat.m */,
+				7298BDFF2056BFE80018FC8C /* ReceivedExeListFormat.h */,
+				7298BE002056BFE80018FC8C /* ReceivedExeListFormat.m */,
 			);
 			path = jsonFormat;
 			sourceTree = "<group>";
@@ -2782,6 +2811,7 @@
 		727D11C01FF5DB9100383B40 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				72058CAA205637FC00A4DA97 /* Dialog */,
 				72D1E8EE20186864004262B1 /* loadingIndicatorView */,
 				7220C6132006FDCF00ECC879 /* cellView.h */,
 				7220C6122006FDCF00ECC879 /* cellView.m */,
@@ -2801,13 +2831,12 @@
 				722C473C20524E2400C7E369 /* Process_item.h */,
 				722C473D20524E2400C7E369 /* Process_item.m */,
 				722C473E20524E2400C7E369 /* Process_item.xib */,
-				72FDF9952053A37600232F4D /* Process_detail_dialog.h */,
-				72FDF9962053A37600232F4D /* Process_detail_dialog.m */,
-				72FDF99B2053AE5F00232F4D /* Process_close_dialog.h */,
-				72FDF99C2053AE5F00232F4D /* Process_close_dialog.m */,
 				72F07ED02055780D00F02C92 /* PCTVTableCell.h */,
 				72F07ED12055780D00F02C92 /* PCTVTableCell.m */,
 				72F07ED22055780D00F02C92 /* PCTVTableCell.xib */,
+				7298BDFA2056BD400018FC8C /* exe_item_cell.h */,
+				7298BDFB2056BD400018FC8C /* exe_item_cell.m */,
+				7298BDFC2056BD400018FC8C /* exe_item_cell.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -2907,6 +2936,8 @@
 				7245BFAD2051006B00626852 /* prepareDataForFragment_monitor.m */,
 				72FDF99E205426D500232F4D /* computerSettingViewController.h */,
 				72FDF99F205426D500232F4D /* computerSettingViewController.m */,
+				72058CBC2056816900A4DA97 /* exeContentVC.h */,
+				72058CBD2056816900A4DA97 /* exeContentVC.m */,
 			);
 			path = Fragment1;
 			sourceTree = "<group>";
@@ -3296,6 +3327,7 @@
 				7218925D1FB5565A002E270E /* restore.png in Resources */,
 				721891F41FB5565A002E270E /* monitor_selected.png in Resources */,
 				7218926B1FB5565A002E270E /* selectedall_pressed.png in Resources */,
+				7298BDFE2056BD400018FC8C /* exe_item_cell.xib in Resources */,
 				721891E21FB5565A002E270E /* logo_playback_play_normal.png in Resources */,
 				721892461FB5565A002E270E /* playmusictop.png in Resources */,
 				721891351FB55659002E270E /* chapcharloading.gif in Resources */,
@@ -3804,9 +3836,11 @@
 				7266EA2F1FE8001700CFD247 /* IPInforMessageBean.m in Sources */,
 				72A95A542019A18600CDE28C /* FileInforFormat.m in Sources */,
 				7220C6152006FDD000ECC879 /* cellView.m in Sources */,
+				7298BE012056BFE80018FC8C /* ReceivedExeListFormat.m in Sources */,
 				72287ABE1FCFE83D00BC2765 /* GetDownloadFileInfo.pbobjc.m in Sources */,
 				72D1E8F120186902004262B1 /* PCFileSysViewController.m in Sources */,
 				72287ABF1FCFE83D00BC2765 /* GetGroupInfoMsg.pbobjc.m in Sources */,
+				72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */,
 				72D171E3204D7DE50069992A /* Update_ReceiveMsgBean.m in Sources */,
 				720158D61FFF451000913961 /* SelectedDeviceChangedEvent.m in Sources */,
 				7266EA2C1FE7F0AB00CFD247 /* IPInforBean.m in Sources */,
@@ -3831,7 +3865,6 @@
 				72287AB01FCFE83D00BC2765 /* UserData.pbobjc.m in Sources */,
 				720158D31FFF446300913961 /* changeSelectedDeviceNameEvent.m in Sources */,
 				72648A06204FD6EB003B173B /* computerMonitorViewController.m in Sources */,
-				7245BFB72051124400626852 /* ReceivedExeListFormat.m in Sources */,
 				722C944D1FFA4AA8009973FE /* NoWifiNoticeView.m in Sources */,
 				727D11A81FF1DEF600383B40 /* AllStatisticsMsgBean.m in Sources */,
 				720158EE2000A2EA00913961 /* Send2TVThread.m in Sources */,
@@ -3861,6 +3894,7 @@
 				720158F12000CD1D00913961 /* tvpcAppHelper.m in Sources */,
 				727D11B11FF23F5A00383B40 /* FriendRequestDBManager.m in Sources */,
 				720158B51FFB5CAF00913961 /* IdentityVerify.m in Sources */,
+				72058CBE2056816900A4DA97 /* exeContentVC.m in Sources */,
 				72A09FBC1FD65DDA000214B6 /* RegisterUserInfo.m in Sources */,
 				720158E41FFF518600913961 /* RemoteDownloadActivityViewController.m in Sources */,
 				720158D91FFF469C00913961 /* TVPCNetStateChangeEvent.m in Sources */,
@@ -3872,6 +3906,7 @@
 				72F90BF81FB95D8E0058DC10 /* Fragment2ViewController.m in Sources */,
 				72D1E8E7201864C1004262B1 /* AVLoadingIndicatorView.m in Sources */,
 				723F64F31FF9DC49005A692C /* nowifiView.m in Sources */,
+				72058CB520566AAB00A4DA97 /* RegisterOperatorVC.m in Sources */,
 				727D11AE1FF23F4100383B40 /* ChatDBManager.m in Sources */,
 				720158CC1FFCB16600913961 /* MyConnector.m in Sources */,
 				72287AAE1FCFE83D00BC2765 /* SendChatMsg.pbobjc.m in Sources */,
@@ -3924,6 +3959,7 @@
 				72A95A5D2019B3A900CDE28C /* FileTypeConst.m in Sources */,
 				72FDF99D2053AE5F00232F4D /* Process_close_dialog.m in Sources */,
 				72FDF9A0205426D500232F4D /* computerSettingViewController.m in Sources */,
+				7298BDFD2056BD400018FC8C /* exe_item_cell.m in Sources */,
 				7200567D1FD510560019788E /* SharedflieBean.m in Sources */,
 				720158DF1FFF4AAC00913961 /* RequestFormat.m in Sources */,
 				723F64F71FF9F6EA005A692C /* NetUtil.m in Sources */,

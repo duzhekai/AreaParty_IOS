@@ -19,6 +19,14 @@
 */
 - (void) showDialogInView:(UIView*) outview Title:(NSString*) title Path:(NSString*) path CPU:(NSString*) cpu Memory:(NSString*) memory{
     float width = outview.frame.size.width-50;
+    CGFloat fontSize;
+    NSString  *testString = @"当前CPU使用率(%)";
+    UIFont *font = [UIFont systemFontOfSize:100];
+    [testString sizeWithFont:font
+                 minFontSize:7.0f
+              actualFontSize:&fontSize
+                    forWidth:width/2.0-10
+               lineBreakMode:NSLineBreakByCharWrapping];
     _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 300)];
     _contentView.backgroundColor = [UIColor whiteColor];
     UIView* titleView = [[UIView alloc] initWithFrame:CGRectMake(0,0,width, 50)];
@@ -29,6 +37,7 @@
     title_label.text = title;
     title_label.textColor = [UIColor whiteColor];
     path_title_label.text = @"路径名称";
+    [path_title_label setFont:[UIFont systemFontOfSize:fontSize]];
     path_text_label.numberOfLines = 5;
     path_text_label.textColor = [UIColor colorWithRed:168/255.0 green:168/255.0 blue:168/255.0 alpha:1];
     path_text_label.text = path;
@@ -36,12 +45,14 @@
     UILabel* CPU_text_label = [[UILabel alloc] initWithFrame:CGRectMake(width/2.0,path_text_label.frame.origin.y+path_text_label.frame.size.height+25, width/2.0,20)];
     UILabel* CPU_title_label = [[UILabel alloc] initWithFrame:CGRectMake(10,CPU_text_label.frame.origin.y,width/2.0-10,20)];
     CPU_title_label.text = @"当前CPU使用率(%)";
+    [CPU_title_label setFont:[UIFont systemFontOfSize:fontSize]];
     CPU_text_label.textColor =  [UIColor colorWithRed:168/255.0 green:168/255.0 blue:168/255.0 alpha:1];
     CPU_text_label.text = cpu;
     
     UILabel* Memory_text_label = [[UILabel alloc] initWithFrame:CGRectMake(width/2.0, CPU_text_label.frame.origin.y+45, width/2.0,20)];
     UILabel* Memory_title_label = [[UILabel alloc] initWithFrame:CGRectMake(10,Memory_text_label.frame.origin.y,width/2.0-10,20)];
     Memory_title_label.text = @"当前内存大小(KB)";
+    [Memory_title_label setFont:[UIFont systemFontOfSize:fontSize]];
     Memory_text_label.textColor =  [UIColor colorWithRed:168/255.0 green:168/255.0 blue:168/255.0 alpha:1];
     Memory_text_label.text = memory;
     
