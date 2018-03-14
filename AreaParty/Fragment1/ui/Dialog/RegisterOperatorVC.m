@@ -62,4 +62,8 @@
 - (void) changeReg:(NSString*) pathname Value: value{
     
 }
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_register_key_et resignFirstResponder];
+    [_register_value_et resignFirstResponder];
+}
 @end

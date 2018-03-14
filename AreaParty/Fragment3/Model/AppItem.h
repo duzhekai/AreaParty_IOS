@@ -12,5 +12,5 @@
 @property(strong,nonatomic) NSString* appName;
 @property(strong,nonatomic) NSString* packageName;
 @property(strong,nonatomic) NSString* iconURL;
-@property(assign,nonatomic) BOOL isRunning;
+//@property(assign,nonatomic) BOOL isRunning;
 @end

@@ -14,7 +14,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo: view animated:ani];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
-    hud.center = CGPointMake(view.frame.size.width/2,view.frame.size.height-60);
+    hud.center = CGPointMake(view.frame.size.width/2,view.frame.size.height-80);
     [hud hideAnimated:ani afterDelay:time];
 }
 @end

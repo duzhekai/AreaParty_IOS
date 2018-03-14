@@ -119,7 +119,7 @@
         [_isLastUsedPCExistTV setText:@"首次使用" ];
     }
     if(tempTV != nil && ![tempTV.ip isEqualToString:@""]) {
-        [_lastTVInforNameTV setText:tempPC.nickName];
+        [_lastTVInforNameTV setText:tempTV.nickName];
         [_isLastUsedTVExistTV setText:@"上次使用"];
         if([MyUIApplication getselectedTVVerified] && [MyUIApplication getselectedTVOnline]) {
             [_lastTVInforNameTV setTextColor:[UIColor colorWithRed:93/255.0 green:141/255.0 blue:227/255.0 alpha:1]];

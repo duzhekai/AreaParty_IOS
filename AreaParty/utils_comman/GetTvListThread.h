@@ -13,6 +13,7 @@
 #import "onHandler.h"
 #import "OrderConst.h"
 #import "CommandUtil.h"
+#import "AppItem.h"
 @interface GetTvListThread : NSThread{
     const NSString* tag;
     NSString* type;   // "GET_TV_INSTALLEDAPPS, GET_TV_SYSAPPS, GET_TV_MOUSES, GET_TV_INFOR"

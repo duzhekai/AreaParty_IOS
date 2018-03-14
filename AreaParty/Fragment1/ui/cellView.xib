@@ -43,7 +43,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="tzd-aG-wsd"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>

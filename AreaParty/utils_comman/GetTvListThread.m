@@ -47,11 +47,17 @@
             [outputStream open];
             NSData* senddata =[cmdStr dataUsingEncoding:NSUTF8StringEncoding];
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
-            Byte receivedbuf[1000];
-            NSInteger len = [inputStream read:receivedbuf maxLength:sizeof(receivedbuf)];
-            dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:len] encoding:NSUTF8StringEncoding];
+            Byte receivedbuf[40000];
+            int readCount = 0;
+            int len = 0;
+            while ((len = [inputStream read:receivedbuf+readCount maxLength:sizeof(receivedbuf)])) {
+                readCount+=len;
+            }
+            //NSInteger len = [inputStream read:receivedbuf maxLength:sizeof(receivedbuf)];
+            
+            dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:readCount] encoding:NSUTF8StringEncoding];
             NSLog(@"GetTvListThread:指令: %@",cmdStr);
-            NSLog(@"GetTvListThread:回复: %@",dataReceived);
+            NSLog(@"GetTvListThread:回复: %@ len:%ld",dataReceived,(long)len);
             if([dataReceived length]>0){
                 [self parseMesgReceived:dataReceived];
                 [self  reportResult:YES];
