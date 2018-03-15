@@ -13,6 +13,11 @@
     UITapGestureRecognizer* gesture_rec_PCbar;
     NSMutableArray<AppItem*>* TVInstalledApp_Array;
     NSMutableArray<AppItem*>* TVOwnedApp_Array;
+    NSOperationQueue *loadImageQueue;
+    NSMutableDictionary* TVInstalledApp_Array_image;
+    NSMutableDictionary* TVOwnedApp_Array_image;
+    NSMutableDictionary* TVInstalledApp_Array_image_done_flag;
+    NSMutableDictionary* TVOwnedApp_Array_image_done_flag;
 }
 
 @end
@@ -49,6 +54,11 @@
     TVInstalledApp_Array =[TVAppHelper getinstalledAppList];
     [_TVOwnAppSGV registerNib:[UINib nibWithNibName:@"cellView" bundle:nil] forCellWithReuseIdentifier:@"appViewCell"];
     [_TVInstalledAppSGV registerNib:[UINib nibWithNibName:@"cellView" bundle:nil] forCellWithReuseIdentifier:@"appViewCell"];
+    loadImageQueue = [[NSOperationQueue alloc] init];
+    TVInstalledApp_Array_image = [[NSMutableDictionary alloc] init];
+    TVInstalledApp_Array_image_done_flag =  [[NSMutableDictionary alloc] init];
+    TVOwnedApp_Array_image = [[NSMutableDictionary alloc] init];
+    TVOwnedApp_Array_image_done_flag =  [[NSMutableDictionary alloc] init];
 }
 - (void) tapped:(UITapGestureRecognizer*)rec{
     if(rec == gesture_rec_TVbar){
@@ -236,9 +246,14 @@
         //如果缓存池中没有,那么创建一个新的cell
         [cell.lable setText:[TVInstalledApp_Array objectAtIndex:indexPath.row].appName];
         @try {
-//            NSURL *url = [NSURL URLWithString:[TVInstalledApp_Array objectAtIndex:indexPath.row].iconURL];
-//            UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+            if([TVInstalledApp_Array_image_done_flag[[NSNumber numberWithInteger:indexPath.row]] boolValue]){
+                [cell.image setImage:TVInstalledApp_Array_image[[NSNumber numberWithInteger:indexPath.row]]];
+            }
+            else{
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
+            NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage:) object:@{@"cell":cell,@"url":[TVInstalledApp_Array objectAtIndex:indexPath.row].iconURL,@"index":[NSNumber numberWithInteger:indexPath.row],@"type":@"installed"}];
+            [loadImageQueue addOperation:op];
+            }
         } @catch (NSException *exception) {
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
         }
@@ -248,9 +263,14 @@
         cellView* cell =  (cellView*)[collectionView dequeueReusableCellWithReuseIdentifier:@"appViewCell" forIndexPath:indexPath];
         [cell.lable setText:[TVOwnedApp_Array objectAtIndex:indexPath.row].appName];
         @try {
-//            NSURL *url = [NSURL URLWithString:[TVOwnedApp_Array objectAtIndex:indexPath.row].iconURL];
-//            UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+            if([TVOwnedApp_Array_image_done_flag[[NSNumber numberWithInteger:indexPath.row]] boolValue]){
+                [cell.image setImage:TVOwnedApp_Array_image[[NSNumber numberWithInteger:indexPath.row]]];
+            }
+            else{
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
+            NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage:) object:@{@"cell":cell,@"url":[TVOwnedApp_Array objectAtIndex:indexPath.row].iconURL,@"index":[NSNumber numberWithInteger:indexPath.row],@"type":@"own"}];
+            [loadImageQueue addOperation:op];
+            }
         } @catch (NSException *exception) {
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
         }
@@ -276,4 +296,23 @@
     return 35;
 }
 // collection view delegate end
+
+- (void)downloadImage:(NSDictionary*) dic {
+    NSURL *url = [NSURL URLWithString:dic[@"url"]];
+    UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+    [self performSelectorOnMainThread:@selector(updateUI:) withObject:@{@"cell":dic[@"cell"],@"image":imagea,@"index":dic[@"index"],@"type":dic[@"type"]} waitUntilDone:YES];
+}
+
+- (void)updateUI:(NSDictionary*)dic {
+    cellView* cell = dic[@"cell"];
+    [cell.image setImage:dic[@"image"]];
+    if([dic[@"type"] isEqualToString:@"own"]){
+        [TVOwnedApp_Array_image setObject:dic[@"image"] forKey:dic[@"index"]];
+        [TVOwnedApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+    }
+    else if([dic[@"type"] isEqualToString:@"installed"]){
+        [TVInstalledApp_Array_image setObject:dic[@"image"] forKey:dic[@"index"]];
+        [TVInstalledApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+    }
+}
 @end

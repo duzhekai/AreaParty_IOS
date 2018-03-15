@@ -508,4 +508,16 @@ static Update_ReceiveMsgBean* receiveMsgBean;
         [activity dismissViewControllerAnimated:YES completion:nil];
     }
 }
++ (void)changeSelectedTVName:(NSString*) newName {
+    if(newName != nil && ![newName isEqualToString:selectedTVIP.nickName]) {
+        selectedTVIP.nickName = newName;
+        [FillingIPInforList changeTVNickName:newName Mac:selectedTVIP.mac];
+        NSString* tvJsonString = [selectedTVIP yy_modelToJSONString];
+        [[[PreferenceUtil alloc] init] writeKey:@"lastChosenTV" Value:tvJsonString];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedTVNameChange" object:nil userInfo:[NSDictionary dictionaryWithObject:[[changeSelectedDeviceNameEvent alloc] initWithName:newName] forKey:@"data"]];
+        if([MyUIApplication getSelectedPCIP]!=nil&&[MyUIApplication getSelectedTVIP]!=nil){
+            [TVAppHelper currentPcInfo2TV];
+        }
+    }
+}
 @end

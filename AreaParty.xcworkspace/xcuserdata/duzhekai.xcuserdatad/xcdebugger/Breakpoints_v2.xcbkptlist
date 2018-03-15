@@ -1178,11 +1178,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.89209"
+            timestampString = "542803518.236679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1194,11 +1194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.8923579"
+            timestampString = "542803518.236847"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1210,11 +1210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.89244"
+            timestampString = "542803518.236938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1610,11 +1610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.89299"
+            timestampString = "542803518.237565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1642,11 +1642,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893108"
+            timestampString = "542803518.237734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-OnNotification:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1658,7 +1658,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.837489"
+            timestampString = "542803518.2378401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "269"
@@ -1674,7 +1674,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.837835"
+            timestampString = "542803518.237946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -1690,7 +1690,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.837965"
+            timestampString = "542803518.238044"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "141"
@@ -1706,7 +1706,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838099"
+            timestampString = "542803518.2381589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -1722,7 +1722,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838205"
+            timestampString = "542803518.238318"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
@@ -1738,7 +1738,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838298"
+            timestampString = "542803518.2384681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -1754,7 +1754,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8383729"
+            timestampString = "542803518.238615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "354"
@@ -1770,11 +1770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893271"
+            timestampString = "542803518.238724"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "-OnNotification:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1786,7 +1786,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8384939"
+            timestampString = "542803518.238825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "224"
@@ -1802,7 +1802,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838569"
+            timestampString = "542803518.238899"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
@@ -1818,11 +1818,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893345"
+            timestampString = "542803518.2389719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-OnNotification:"
             landmarkType = "7">
          </BreakpointContent>
@@ -1834,7 +1834,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838688"
+            timestampString = "542803518.239046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "281"
@@ -1850,7 +1850,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838764"
+            timestampString = "542803518.239115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -1866,7 +1866,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8388129"
+            timestampString = "542803518.239184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "264"
@@ -1882,7 +1882,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838861"
+            timestampString = "542803518.239253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "179"
@@ -1898,7 +1898,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.838922"
+            timestampString = "542803518.239326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "180"
@@ -1914,7 +1914,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839"
+            timestampString = "542803518.239396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -1930,7 +1930,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839047"
+            timestampString = "542803518.239465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
@@ -1946,7 +1946,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839105"
+            timestampString = "542803518.2395329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -1962,7 +1962,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839149"
+            timestampString = "542803518.239599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -1978,7 +1978,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839193"
+            timestampString = "542803518.239666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -1994,7 +1994,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839241"
+            timestampString = "542803518.2397341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -2010,7 +2010,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839299"
+            timestampString = "542803518.239802"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
@@ -2026,7 +2026,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839341"
+            timestampString = "542803518.239869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "101"
@@ -2042,7 +2042,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.839384"
+            timestampString = "542803518.239938"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -2058,11 +2058,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893545"
+            timestampString = "542803518.24001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "-initView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2074,11 +2074,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893595"
+            timestampString = "542803518.240092"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "-initView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2090,11 +2090,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893644"
+            timestampString = "542803518.240163"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-initView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2106,11 +2106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.893712"
+            timestampString = "542803518.240232"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "-initView"
             landmarkType = "7">
          </BreakpointContent>
@@ -2474,7 +2474,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.840219"
+            timestampString = "542803518.24084"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "360"
@@ -2490,7 +2490,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.840317"
+            timestampString = "542803518.2409379"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "363"
@@ -2506,7 +2506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.840427"
+            timestampString = "542803518.241009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "420"
@@ -2538,7 +2538,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8405859"
+            timestampString = "542803518.241109"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -2554,7 +2554,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.840667"
+            timestampString = "542803518.241178"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "76"
@@ -2586,11 +2586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894344"
+            timestampString = "542803518.2412781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2602,7 +2602,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.840812"
+            timestampString = "542803518.241363"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "423"
@@ -2618,11 +2618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894448"
+            timestampString = "542803518.241438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "-onUIControllerResultWithCode:andData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2634,11 +2634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894497"
+            timestampString = "542803518.241511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "-onUIControllerResultWithCode:andData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2650,11 +2650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894541"
+            timestampString = "542803518.241582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
             landmarkName = "-onUIControllerResultWithCode:andData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2666,11 +2666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894583"
+            timestampString = "542803518.241652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "-onUIControllerResultWithCode:andData:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2682,11 +2682,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894627"
+            timestampString = "542803518.241722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2698,11 +2698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.8946691"
+            timestampString = "542803518.241792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -2714,11 +2714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894717"
+            timestampString = "542803518.2418621"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
             <Locations>
@@ -2762,11 +2762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.894758"
+            timestampString = "542803518.24193"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "-setDevice:type:"
             landmarkType = "7">
          </BreakpointContent>
@@ -3850,7 +3850,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8431309"
+            timestampString = "542803518.243515"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "297"
@@ -3866,7 +3866,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.8433729"
+            timestampString = "542803518.2436481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "298"
@@ -3914,7 +3914,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.843559"
+            timestampString = "542803518.2437201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "303"
@@ -4058,7 +4058,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.844034"
+            timestampString = "542803518.243989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "508"
@@ -4074,11 +4074,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.895691"
+            timestampString = "542803518.2440619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -4090,39 +4090,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.895738"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-tapAvatarView:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.89578"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "-initView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.89582"
+            timestampString = "542803518.244143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -4138,11 +4106,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
-            timestampString = "542729312.895859"
+            timestampString = "542803518.244212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "-initView"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
+            timestampString = "542803518.2442811"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-tapAvatarView:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
+            timestampString = "542803518.244348"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-tapAvatarView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4154,11 +4154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.637027"
+            timestampString = "542803518.244419"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4170,11 +4170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.637103"
+            timestampString = "542803518.244483"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4186,11 +4186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.637171"
+            timestampString = "542803518.244541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4202,11 +4202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.637238"
+            timestampString = "542803518.244599"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4218,11 +4218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.637303"
+            timestampString = "542803518.244655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
             <Locations>
@@ -4570,11 +4570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.6386811"
+            timestampString = "542803518.245169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "371"
+            endingLineNumber = "371"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4586,11 +4586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639045"
+            timestampString = "542803518.245253"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4602,11 +4602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.6392159"
+            timestampString = "542803518.245322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4618,11 +4618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639312"
+            timestampString = "542803518.2453851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4634,11 +4634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639459"
+            timestampString = "542803518.2454441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4650,11 +4650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639585"
+            timestampString = "542803518.245504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4666,11 +4666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.63964"
+            timestampString = "542803518.2455651"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4730,11 +4730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639794"
+            timestampString = "542803518.24571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4778,11 +4778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639902"
+            timestampString = "542803518.245822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -4794,11 +4794,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.639964"
+            timestampString = "542803518.245886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-initViewAndData"
             landmarkType = "7">
          </BreakpointContent>
@@ -4810,11 +4810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
-            timestampString = "542473042.640023"
+            timestampString = "542803518.245946"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-onpress:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5194,11 +5194,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896597"
+            timestampString = "542803518.246529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-tapped:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5210,11 +5210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896659"
+            timestampString = "542803518.246623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-numberOfSectionsInCollectionView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5226,11 +5226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896719"
+            timestampString = "542803518.246691"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5242,11 +5242,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896777"
+            timestampString = "542803518.246758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5258,11 +5258,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896915"
+            timestampString = "542803518.246827"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5274,11 +5274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.896991"
+            timestampString = "542803518.246891"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5290,7 +5290,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/utils/TVAppHelper.m"
-            timestampString = "542721525.908765"
+            timestampString = "542803434.592304"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
@@ -5386,7 +5386,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/utils/TVAppHelper.m"
-            timestampString = "542721525.922439"
+            timestampString = "542803434.592467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -5402,11 +5402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897154"
+            timestampString = "542803518.2471139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5418,11 +5418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8972059"
+            timestampString = "542803518.247185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "-onHandler:"
             landmarkType = "7">
             <Locations>
@@ -5466,11 +5466,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8972549"
+            timestampString = "542803518.24725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5482,11 +5482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8973041"
+            timestampString = "542803518.2473119"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-onHandler:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5498,11 +5498,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8973579"
+            timestampString = "542803518.247375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5514,11 +5514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897423"
+            timestampString = "542803518.247437"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "-collectionView:numberOfItemsInSection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5530,55 +5530,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897473"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897527"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8975739"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8976181"
+            timestampString = "542803518.247499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "217"
@@ -5594,11 +5546,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897693"
+            timestampString = "542803518.247559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
+            timestampString = "542803518.247619"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
+            timestampString = "542803518.247682"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
+            timestampString = "542803518.24775"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5610,11 +5610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897761"
+            timestampString = "542803518.2478189"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "264"
-            endingLineNumber = "264"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
             landmarkName = "-collectionView:layout:sizeForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5626,11 +5626,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897808"
+            timestampString = "542803518.247887"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "-collectionView:layout:minimumLineSpacingForSectionAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5642,11 +5642,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897866"
+            timestampString = "542803518.2479531"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "-collectionView:layout:minimumInteritemSpacingForSectionAtIndex:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5658,11 +5658,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897922"
+            timestampString = "542803518.248015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "Fragment3ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -5674,11 +5674,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.897974"
+            timestampString = "542803518.248081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5690,11 +5690,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.898047"
+            timestampString = "542803518.248153"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5706,11 +5706,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.898124"
+            timestampString = "542803518.248225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5722,11 +5722,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.898208"
+            timestampString = "542803518.248294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5738,11 +5738,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.8983051"
+            timestampString = "542803518.248359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5770,11 +5770,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.89842"
+            timestampString = "542803518.248468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5802,7 +5802,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.889056"
+            timestampString = "542803518.248566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "302"
@@ -5818,7 +5818,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.889194"
+            timestampString = "542803518.248647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "200"
@@ -5834,7 +5834,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/myapplication/MyUIApplication.m"
-            timestampString = "542720715.889304"
+            timestampString = "542803518.248722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
@@ -5850,11 +5850,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.89862"
+            timestampString = "542803518.248789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-onclick:"
             landmarkType = "7">
          </BreakpointContent>
@@ -5930,12 +5930,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AreaParty/Fragment3/Fragment3ViewController.m"
-            timestampString = "542729312.898851"
+            timestampString = "542803518.248955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/computerMonitorViewController.m"
+            timestampString = "542803518.249025"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-dealloc"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
+            timestampString = "542803518.249095"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-OnNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/myapplication/MyUIApplication.m"
+            timestampString = "542803518.249172"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
+            landmarkName = "+changeSelectedTVName:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/Fragment1ViewController.m"
+            timestampString = "542803518.249238"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-OnNotification:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AreaParty/Fragment1/ui/Dialog/AlterDeviceNameDialog.m"
+            timestampString = "542803518.2493089"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-press_ok:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,6 +21,7 @@
 #import "onHandler.h"
 #import "SettingMainViewController.h"
 #import "SettingNavigationVC.h"
+#import "tvInforViewController.h"
 @interface Fragment1ViewController : UIViewController<onUIControllerResult,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,onHandler>{
     NSString* tag;
     int PCS_RESULTCODE;
@@ -38,6 +39,7 @@
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_setting;
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_userlogo;
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_lastPCInforLL;
+@property (strong,nonatomic) UITapGestureRecognizer* recognizer_lastTVInforLL;
 @property (weak, nonatomic) IBOutlet UITextView *textview_left;
 @property (weak, nonatomic) IBOutlet UITextView *textview_right;
 @property (weak, nonatomic) IBOutlet UIImageView *tab01_loginWrap;

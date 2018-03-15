@@ -9,10 +9,10 @@
 #import "changeSelectedDeviceNameEvent.h"
 
 @implementation changeSelectedDeviceNameEvent
-- (instancetype) initWithName:(NSString*)name{
+- (instancetype) initWithName:(NSString*)name1{
     self = [super init];
     if(self){
-        name = name;
+        name = name1;
     }
     return self;
 }

@@ -39,17 +39,20 @@
     [self CPU_lineChatViewinit];
     [self Memory_pie_chatView_init];
 }
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [prepareDataForFragment_monitor initDataGroups];
-    [timer invalidate];
-    [[MyConnector sharedInstance] closeLongConnect];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 
     
+}
+- (void)dealloc{
+    [prepareDataForFragment_monitor initDataGroups];
+    [timer invalidate];
+    [[MyConnector sharedInstance] closeLongConnect];
 }
 - (void) initViewAndData{
         initial_offset_x = _computer01Indicator_imageView.frame.origin.x;

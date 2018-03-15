@@ -25,6 +25,7 @@
 #import "AFNetworking.h"
 #import "Update_ReceiveMsgBean.h"
 #import "Update_SendMsgBean.h"
+#import "changeSelectedDeviceNameEvent.h"
 @interface MyUIApplication : UIApplication
 @property (strong,nonatomic) NSMutableArray<UIViewController*>* activities;
 +(void) addMySharedFlies:(SharedflieBean*)mysharedFiles;
@@ -68,4 +69,5 @@
 + (MyUIApplication*) getInstance;
 - (void) addUiViewController:(UIViewController*) uiviewcontroller;
 - (void) closeAll;
++ (void)changeSelectedTVName:(NSString*) newName;
 @end

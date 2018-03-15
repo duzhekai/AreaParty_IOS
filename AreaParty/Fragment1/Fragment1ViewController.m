@@ -17,17 +17,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [[MyUIApplication getInstance] addUiViewController:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnNotification:) name:nil object:nil];
     [self initdata];
     [self initView];
     
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    viewOk = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(OnNotification:) name:nil object:nil];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)dealloc{
     viewOk =NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -45,23 +40,14 @@
     MainTabbarController* tabbarcontroller = (MainTabbarController*)[self tabBarController];
     outline = [[tabbarcontroller.intentbundle objectForKey:@"outline"] boolValue];
     _recognizer_pc=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_pc.numberOfTouchesRequired = 1;
-    _recognizer_pc.numberOfTapsRequired = 1;
     _recognizer_tv=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_tv.numberOfTouchesRequired = 1;
-    _recognizer_tv.numberOfTapsRequired = 1;
     _recognizer_userlogo=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_userlogo.numberOfTouchesRequired = 1;
-    _recognizer_userlogo.numberOfTapsRequired = 1;
     _recognizer_file=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_file.numberOfTouchesRequired = 1;
-    _recognizer_file.numberOfTapsRequired = 1;
     _recognizer_setting=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_setting.numberOfTouchesRequired = 1;
-    _recognizer_setting.numberOfTapsRequired = 1;
     _recognizer_lastPCInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-    _recognizer_lastPCInforLL.numberOfTouchesRequired = 1;
-    _recognizer_lastPCInforLL.numberOfTapsRequired = 1;
+    _recognizer_lastTVInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
+
+    
 }
 - (void) initView{
     _textview_left.layer.borderColor = [[UIColor colorWithRed:228/255.f green:88/255.f blue:90/255.f alpha:1] CGColor];
@@ -75,6 +61,7 @@
     [_blueDevicesLL addGestureRecognizer:_recognizer_file];
     [_settingLL addGestureRecognizer:_recognizer_setting];
     [_lastPCInforLL addGestureRecognizer:_recognizer_lastPCInforLL];
+    [_lastTVInforLL addGestureRecognizer:_recognizer_lastTVInforLL];
     _pcRecentAppView.delegate = self;
     _pcRecentAppView.dataSource = self;
     [_pcRecentAppView registerNib:[UINib nibWithNibName:@"cellView" bundle:nil] forCellWithReuseIdentifier:@"appViewCell"];
@@ -167,6 +154,14 @@
         }
         else
             [Toast ShowToast:@"当前电脑未验证或不在线" Animated:YES time:1 context:self.view];
+    }
+    else if(gesture == _recognizer_lastTVInforLL){
+        if([MyUIApplication getselectedTVVerified] && [MyUIApplication getselectedTVOnline]){
+            tvInforViewController *  vc = (tvInforViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"tvInfoViewController"];
+            [self presentViewController:vc animated:YES completion:nil];
+        }
+        else
+            [Toast ShowToast:@"当前电视未验证或不在线" Animated:YES time:1 context:self.view];
     }
 
 }

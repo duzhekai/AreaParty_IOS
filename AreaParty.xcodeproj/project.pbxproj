@@ -32,6 +32,8 @@
 		72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CAC20563AF200A4DA97 /* RebootDialog.m */; };
 		72058CB520566AAB00A4DA97 /* RegisterOperatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */; };
 		72058CBE2056816900A4DA97 /* exeContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CBD2056816900A4DA97 /* exeContentVC.m */; };
+		720F9108205A438C00CC6629 /* tvInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F9107205A438C00CC6629 /* tvInforViewController.m */; };
+		720F910B205A602900CC6629 /* AlterDeviceNameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F910A205A602900CC6629 /* AlterDeviceNameDialog.m */; };
 		7210AFB1204F9199000C80F0 /* SettingAddressHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */; };
 		721891071FB55659002E270E /* activity_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 72188EE31FB55657002E270E /* activity_background.png */; };
 		721891081FB55659002E270E /* addfolder_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72188EE41FB55657002E270E /* addfolder_normal.png */; };
@@ -836,6 +838,10 @@
 		72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterOperatorVC.m; sourceTree = "<group>"; };
 		72058CBC2056816900A4DA97 /* exeContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exeContentVC.h; sourceTree = "<group>"; };
 		72058CBD2056816900A4DA97 /* exeContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exeContentVC.m; sourceTree = "<group>"; };
+		720F9106205A438C00CC6629 /* tvInforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tvInforViewController.h; sourceTree = "<group>"; };
+		720F9107205A438C00CC6629 /* tvInforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvInforViewController.m; sourceTree = "<group>"; };
+		720F9109205A602900CC6629 /* AlterDeviceNameDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterDeviceNameDialog.h; sourceTree = "<group>"; };
+		720F910A205A602900CC6629 /* AlterDeviceNameDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlterDeviceNameDialog.m; sourceTree = "<group>"; };
 		7210AFAF204F9199000C80F0 /* SettingAddressHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingAddressHandler.h; sourceTree = "<group>"; };
 		7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingAddressHandler.m; sourceTree = "<group>"; };
 		72188EE31FB55657002E270E /* activity_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_background.png; sourceTree = "<group>"; };
@@ -1862,6 +1868,8 @@
 				72058CAC20563AF200A4DA97 /* RebootDialog.m */,
 				72058CB320566AAB00A4DA97 /* RegisterOperatorVC.h */,
 				72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */,
+				720F9109205A602900CC6629 /* AlterDeviceNameDialog.h */,
+				720F910A205A602900CC6629 /* AlterDeviceNameDialog.m */,
 			);
 			path = Dialog;
 			sourceTree = "<group>";
@@ -2960,6 +2968,8 @@
 				720158E520009E9800913961 /* utils */,
 				72F90BF91FB95D9E0058DC10 /* Fragment3ViewController.h */,
 				72F90BFA1FB95D9E0058DC10 /* Fragment3ViewController.m */,
+				720F9106205A438C00CC6629 /* tvInforViewController.h */,
+				720F9107205A438C00CC6629 /* tvInforViewController.m */,
 			);
 			path = Fragment3;
 			sourceTree = "<group>";
@@ -3864,11 +3874,13 @@
 				72287AA01FCFE83D00BC2765 /* DeleteFriendMsg.pbobjc.m in Sources */,
 				72287AB01FCFE83D00BC2765 /* UserData.pbobjc.m in Sources */,
 				720158D31FFF446300913961 /* changeSelectedDeviceNameEvent.m in Sources */,
+				720F9108205A438C00CC6629 /* tvInforViewController.m in Sources */,
 				72648A06204FD6EB003B173B /* computerMonitorViewController.m in Sources */,
 				722C944D1FFA4AA8009973FE /* NoWifiNoticeView.m in Sources */,
 				727D11A81FF1DEF600383B40 /* AllStatisticsMsgBean.m in Sources */,
 				720158EE2000A2EA00913961 /* Send2TVThread.m in Sources */,
 				727D11BA1FF4E11800383B40 /* PCDevicesUIControllerViewController.m in Sources */,
+				720F910B205A602900CC6629 /* AlterDeviceNameDialog.m in Sources */,
 				72287AA51FCFE83D00BC2765 /* KeepAliveMsg.pbobjc.m in Sources */,
 				727F312B2046E9CD000144D6 /* diskContentVC.m in Sources */,
 				72287AA41FCFE83D00BC2765 /* GetUserInfoMsg.pbobjc.m in Sources */,

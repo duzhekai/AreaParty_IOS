@@ -11,7 +11,7 @@
 @interface changeSelectedDeviceNameEvent : NSObject{
     NSString* name;
 }
-- (instancetype) initWithName:(NSString*)name;
+- (instancetype) initWithName:(NSString*)name1;
 -(NSString*) getName;
 
 @end
