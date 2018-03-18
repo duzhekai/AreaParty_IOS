@@ -18,6 +18,9 @@ static PCInforBean* pcInfor;
 + (void)setCurrentMode:(int)current{
     currentMode = current;
 }
++ (int)getCurrentMode{
+    return currentMode;
+}
 + (NSMutableArray<AppItem*>*)getappList{
     if(appList==nil){
         appList = [[NSMutableArray alloc]init];
@@ -54,5 +57,11 @@ static PCInforBean* pcInfor;
         [[self getappList] removeAllObjects];
         [[self getappList] addObjectsFromArray:list];
     }
+}
++ (void) loadList:(id<onHandler>) handler {
+    [[self getappList] removeAllObjects];
+    [[self getgameList] removeAllObjects];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_appAction_name commandType:OrderConst_appMediaAction_getList_command Handler:handler] start];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_gameAction_name commandType:OrderConst_appMediaAction_getList_command Handler:handler] start];
 }
 @end

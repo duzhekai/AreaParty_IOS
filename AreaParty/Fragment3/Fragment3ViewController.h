@@ -13,6 +13,10 @@
 #import "TVAppHelper.h"
 #import "cellView.h"
 @interface Fragment3ViewController : UIViewController<onHandler,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (weak, nonatomic) IBOutlet UIImageView *PCStateIV;
+@property (weak, nonatomic) IBOutlet UIImageView *TVStateIV;
+@property (weak, nonatomic) IBOutlet UILabel *PCNameTV;
+@property (weak, nonatomic) IBOutlet UILabel *TVNameTV;
 //页面选择容器视图
 @property (weak, nonatomic) IBOutlet UIView *TVBarView;
 @property (weak, nonatomic) IBOutlet UIView *PCBarView;
@@ -41,5 +45,19 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *TVInstalledAppSGV;//TV已安装应用
 @property (weak, nonatomic) IBOutlet UIView *TVOwnAppSGV_container;//TV自带应用容器视图
 @property (weak, nonatomic) IBOutlet UICollectionView *TVOwnAppSGV;//TV自带应用
+@property (weak, nonatomic) IBOutlet UIView *PCPageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *PCPageSV;
+@property (weak, nonatomic) IBOutlet UIButton *PCUsingHelpBtn;
+@property (weak, nonatomic) IBOutlet UIButton *PCShutdown_RestartBtn;
+@property (weak, nonatomic) IBOutlet UIButton *PCInforBtn;
+@property (weak, nonatomic) IBOutlet UIView *PCUsingHelpLL;
+@property (weak, nonatomic) IBOutlet UIView *PCShutdown_RestartLL;
+@property (weak, nonatomic) IBOutlet UIView *PCInforLL;
+@property (weak, nonatomic) IBOutlet UIButton *closeRdpBtn;
+@property (weak, nonatomic) IBOutlet UIButton *openPcDeskBtn;
+@property (weak, nonatomic) IBOutlet UICollectionView *PCAppSGV;
+@property (weak, nonatomic) IBOutlet UICollectionView *PCGameSGV;
+@property (weak, nonatomic) IBOutlet UIView *PCAppSGV_container;
+@property (weak, nonatomic) IBOutlet UIView *PCGameSGV_container;
 
 @end

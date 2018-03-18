@@ -63,12 +63,12 @@ static myChatList* myChats;
     self.navigationItem.rightBarButtonItem= rightItem;
     //设置TF图标
     UIImageView *username_img=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,30,30)];
-    username_img.image=[UIImage imageNamed:@"username.png"];
+    username_img.image=[UIImage imageNamed:@"ic_account.png"];
     _musernameTF.leftView=username_img;
     _musernameTF.leftViewMode=UITextFieldViewModeAlways;
     _musernameTF.backgroundColor = [UIColor clearColor];
     UIImageView *pwd_img=[[UIImageView alloc]initWithFrame:CGRectMake(0,0,30,30)];
-    pwd_img.image=[UIImage imageNamed:@"passwd.png"];
+    pwd_img.image=[UIImage imageNamed:@"ic_password.png"];
     _mpasswdTF.leftView=pwd_img;
     _mpasswdTF.leftViewMode=UITextFieldViewModeAlways;
     _mpasswdTF.backgroundColor = [UIColor clearColor];

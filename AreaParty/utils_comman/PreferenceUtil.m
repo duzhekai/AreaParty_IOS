@@ -22,6 +22,8 @@
     }
 }
 - (NSString*) readKey:(NSString*) key{
+    if(key == nil)
+        return @"";
     return [self.defalts objectForKey:key];
 }
 - (NSUserDefaults *)defalts{

@@ -37,7 +37,7 @@
 */
 
 - (IBAction)press_cancel:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 - (IBAction)press_ok:(id)sender {

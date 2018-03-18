@@ -19,8 +19,10 @@ extern const int PCAppHelper_MIRACAST;
 + (NSMutableArray<AppItem*>*)getappList;
 + (NSMutableArray<AppItem*>*)getgameList;
 + (PCInforBean*) getpcInfor;
++ (int)getCurrentMode;
 + (void)setCurrentMode:(int)current;
 + (void) setPcInfor:(PCInforBean*) infor;
 + (void) setList:(NSString*) type list:(NSArray<AppItem*>*)list;
 + (void )openApp_Rdp:(NSString*) path andappname:(NSString*) appname  andHandler:(id<onHandler>) myhandler;
++ (void) loadList:(id<onHandler>) handler;
 @end

@@ -8,7 +8,9 @@
 
 #import "Fragment1ViewController.h"
 #import "PCDevicesUIControllerViewController.h"
-@interface Fragment1ViewController ()
+@interface Fragment1ViewController (){
+        NSOperationQueue *loadImageQueue;
+}
 @end
 
 @implementation Fragment1ViewController
@@ -46,7 +48,7 @@
     _recognizer_setting=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
     _recognizer_lastPCInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
     _recognizer_lastTVInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
-
+    loadImageQueue = [[NSOperationQueue alloc] init];
     
 }
 - (void) initView{
@@ -329,9 +331,9 @@
     cellView* cell =  (cellView*)[collectionView dequeueReusableCellWithReuseIdentifier:@"appViewCell" forIndexPath:indexPath];
     [cell.lable setText:[_pcappList objectAtIndex:indexPath.row].appName];
         @try {
-            NSURL *url = [NSURL URLWithString:[_pcappList objectAtIndex:indexPath.row].iconURL];
-            UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-            [cell.image setImage:imagea];
+            [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
+            NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage:) object:@{@"cell":cell,@"url":[_pcappList objectAtIndex:indexPath.row].iconURL}];
+            [loadImageQueue addOperation:op];
         } @catch (NSException *exception) {
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
         }
@@ -341,9 +343,9 @@
         cellView* cell =  (cellView*)[collectionView dequeueReusableCellWithReuseIdentifier:@"appViewCell" forIndexPath:indexPath];
         [cell.lable setText:[_tvappList objectAtIndex:indexPath.row].appName];
         @try {
-            NSURL *url = [NSURL URLWithString:[_tvappList objectAtIndex:indexPath.row].iconURL];
-            UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-            [cell.image setImage:imagea];
+            [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
+            NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(downloadImage:) object:@{@"cell":cell,@"url":[_tvappList objectAtIndex:indexPath.row].iconURL}];
+            [loadImageQueue addOperation:op];
         } @catch (NSException *exception) {
             [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
         }
@@ -398,6 +400,18 @@
             [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
         }
     }
+}
+- (void)downloadImage:(NSDictionary*) dic {
+    NSURL *url = [NSURL URLWithString:dic[@"url"]];
+    cellView* cell = dic[@"cell"];
+    UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+    if(imagea !=nil){
+    dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.image setImage:imagea];
+    });
+    }
+    else
+        [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
 }
 - (void)onHandler:(NSDictionary *)message{
     

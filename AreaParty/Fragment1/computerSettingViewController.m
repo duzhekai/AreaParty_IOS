@@ -50,7 +50,7 @@
     else if(rec == tap_registeroperator){
          RegisterOperatorVC *  vc = (RegisterOperatorVC*)[self.storyboard instantiateViewControllerWithIdentifier:@"RegisterOperatorDialog"];
         vc.pushview = self;
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:vc animated:NO completion:nil];
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -69,7 +69,7 @@
 */
 
 - (IBAction)press_return_button:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 - (IBAction)press_info_exe:(id)sender {
     [Toast ShowToast:@"本操作将获取主机已安装的非微软应用程序" Animated:YES time:1 context:self.view];

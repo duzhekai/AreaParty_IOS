@@ -34,7 +34,7 @@
 - (void) tapped:(UITapGestureRecognizer*) gresture{
     AlterDeviceNameDialog* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AlterDeviceNameDialog"];
     vc.pushvc =self;
-    [self presentViewController:vc animated:YES completion:nil];
+    [self presentViewController:vc animated:NO completion:nil];
 }
 - (void) setInforView:(BOOL)state {
     if(state) {
