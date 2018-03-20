@@ -70,4 +70,5 @@
 - (void) addUiViewController:(UIViewController*) uiviewcontroller;
 - (void) closeAll;
 + (void)changeSelectedTVName:(NSString*) newName;
++ (void)changeSelectedPCName:(NSString*) newName;
 @end

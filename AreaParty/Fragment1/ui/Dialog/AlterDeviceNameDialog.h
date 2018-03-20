@@ -11,7 +11,7 @@
 @class tvInforViewController;
 @interface AlterDeviceNameDialog : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *name_tv;
-@property (strong,nonatomic) tvInforViewController* pushvc;
+@property (strong,nonatomic) UIViewController* pushvc;
 - (IBAction)press_cancel:(id)sender;
 - (IBAction)press_ok:(id)sender;
 

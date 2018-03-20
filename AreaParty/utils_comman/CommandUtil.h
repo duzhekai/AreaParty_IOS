@@ -49,4 +49,5 @@
 +(PCCommandItem*)createDeleteCommand:(NSString*)path type:(NSString*)type;
 +(PCCommandItem*)createPlayAllCommand:(NSString*) path tvname:(NSString*) tvname type:(NSString*) type;
 +(PCCommandItem*)createGetPcMediaListCommand:(NSString*) path type:(NSString*)type root:(BOOL)root;
++ (TVCommandItem*)closeRdp;
 @end

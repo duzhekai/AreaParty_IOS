@@ -18,4 +18,5 @@
 @interface prepareDataForFragment : NSObject
 +(NSObject*)getDiskActionStateData:(NSString*)name command:(NSString*)command param:(NSString*) param;
 + (NSObject*) getFileActionStateData:(NSString*)name command:(NSString*) command param:(NSString*) param;
++ (BOOL) closeRDP;
 @end

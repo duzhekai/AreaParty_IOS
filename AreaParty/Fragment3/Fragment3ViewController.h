@@ -39,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *TVSettingBtn;
 @property (weak, nonatomic) IBOutlet UIButton *TVInfoBtn;
 - (IBAction)onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *PCGameNoticeBtn;
 @property (weak, nonatomic) IBOutlet UIScrollView *TVPageSV; //TV界面的滚动视图
 @property (weak, nonatomic) IBOutlet UIView *TVPageView; //整个TV界面的视图
 @property (weak, nonatomic) IBOutlet UIView *TVInstalledAppSGV_container;//TV已安装应用的容器视图
@@ -59,5 +60,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *PCGameSGV;
 @property (weak, nonatomic) IBOutlet UIView *PCAppSGV_container;
 @property (weak, nonatomic) IBOutlet UIView *PCGameSGV_container;
+@property (weak, nonatomic) IBOutlet UIButton *PCAppOpenModelNoticeBtn;
 
 @end

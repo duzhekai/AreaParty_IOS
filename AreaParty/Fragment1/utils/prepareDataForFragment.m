@@ -138,4 +138,15 @@
     
     return allFileInfor;
 }
++ (BOOL) closeRDP{
+    BOOL state = false;
+    NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+    if(![TVIp isEqualToString:@""]) {
+        TVCommandItem* tvCommandItem = [CommandUtil closeRdp];
+        NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+        state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+    }
+    
+    return state;
+}
 @end

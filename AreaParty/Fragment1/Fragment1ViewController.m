@@ -8,6 +8,7 @@
 
 #import "Fragment1ViewController.h"
 #import "PCDevicesUIControllerViewController.h"
+#import "ImageCacheUtil.h"
 @interface Fragment1ViewController (){
         NSOperationQueue *loadImageQueue;
 }
@@ -152,7 +153,7 @@
     }
     if(gesture == _recognizer_lastPCInforLL){
         if([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline]){
-            [self performSegueWithIdentifier:@"pushcomputerMonitorView" sender:nil];
+            [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"computerMonitorViewController"] animated:YES completion:nil];
         }
         else
             [Toast ShowToast:@"当前电脑未验证或不在线" Animated:YES time:1 context:self.view];
@@ -402,12 +403,11 @@
     }
 }
 - (void)downloadImage:(NSDictionary*) dic {
-    NSURL *url = [NSURL URLWithString:dic[@"url"]];
     cellView* cell = dic[@"cell"];
-    UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    if(imagea !=nil){
+    UIImage* image = [UIImage imageWithData:[[[ImageCacheUtil alloc] init] readImage:dic[@"url"]]];
+    if(image !=nil){
     dispatch_async(dispatch_get_main_queue(), ^{
-            [cell.image setImage:imagea];
+            [cell.image setImage:image];
     });
     }
     else

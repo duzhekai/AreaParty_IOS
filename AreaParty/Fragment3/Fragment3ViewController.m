@@ -10,6 +10,10 @@
 #import "Toast.h"
 #import "tvpcAppHelper.h"
 #import "TVPCNetStateChangeEvent.h"
+#import "ImageCacheUtil.h"
+#import "Shutdown_Reboot_Dialog.h"
+#import "prepareDataForFragment.h"
+#import "pcInforViewController.h"
 @interface Fragment3ViewController (){
     UITapGestureRecognizer* gesture_rec_TVbar;
     UITapGestureRecognizer* gesture_rec_PCbar;
@@ -149,23 +153,23 @@
         [self updateDeviceNetState:[notification userInfo]];
     }
     else if([[notification name] isEqualToString:@"selectedPCChanged"]){
-//        SelectedDeviceChangedEvent* event = [notification userInfo][@"data"];
-//        [PCAppHelper setCurrentMode:PCAppHelper_NONEMODE];
-//        PCAppHelper.resetTotalInfors();
-//        pcGameAdapter.notifyDataSetChanged();
-//        pcAppAdapter.notifyDataSetChanged();
-//        if(event.isDeviceOnline()) {
-//            // 重置界面(最近播放、播放列表)
-//            PCStateIV.setImageResource(R.drawable.pcconnected);
-//            PCNameTV.setText(event.getDevice().nickName);
-//            PCNameTV.setTextColor(Color.parseColor("#ffffff"));
-//            // 重新获取数据
-//            PCAppHelper.loadList(myHandler);
-//        } else {
-//            PCStateIV.setImageResource(R.drawable.pcbroke);
-//            PCNameTV.setText("离线中");
-//            PCNameTV.setTextColor(Color.parseColor("#dbdbdb"));
-//        }
+        SelectedDeviceChangedEvent* event = [notification userInfo][@"data"];
+        [PCAppHelper setCurrentMode:PCAppHelper_NONEMODE];
+        [PCAppHelper resetTotalInfors];
+        [_PCGameSGV reloadData];
+        [_PCAppSGV reloadData];
+        if(event.isDeviceOnline) {
+            // 重置界面(最近播放、播放列表)
+            [_PCStateIV setImage:[UIImage imageNamed:@"pcconnected.png"]];
+            [_PCNameTV setText:[event getDevice].nickName];
+            [_PCNameTV setTextColor: [UIColor whiteColor]];
+            // 重新获取数据
+            [PCAppHelper loadList:self];
+        } else {
+            [_PCStateIV setImage:[UIImage imageNamed:@"pcbroke.png"]];
+            [_PCNameTV setText:@"离线中"];
+            [_PCNameTV setTextColor:[UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:1]];
+        }
     }
     else if([[notification name] isEqualToString:@"selectedTVChanged"]){
         SelectedDeviceChangedEvent* event = [notification userInfo][@"data"];
@@ -214,8 +218,47 @@
         }
         else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
     }
-    
-    
+    else if(sender == _TVUninstallAppBtn){
+        [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"uninstallTVAppViewController"] animated:YES completion:nil];
+    }
+    else if(sender == _TVSettingBtn){
+        if([MyUIApplication getselectedTVVerified] && [MyUIApplication getselectedTVOnline]) {
+            [TVAppHelper openSettingPage];
+            [Toast ShowToast:@"即将打开电视设置界面, 请观看电视" Animated:YES time:1 context:self.view];
+        } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+    }
+    else if(sender == _PCInforBtn){
+        if([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline]){
+            [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"pcInforViewController"] animated:YES completion:nil];
+        }
+        else
+            [Toast ShowToast:@"当前电脑未验证或不在线" Animated:YES time:1 context:self.view];
+    }
+    else if (sender == _PCShutdown_RestartBtn){
+        if([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline]){
+            Shutdown_Reboot_Dialog* vc = (Shutdown_Reboot_Dialog*)[self.storyboard instantiateViewControllerWithIdentifier:@"Shutdown_Reboot_Dialog"];
+            vc.command = OrderConst_computerAction_reboot_command;
+            [self presentViewController:vc animated:NO completion:nil];
+        }
+        else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+    }
+    else if(sender == _PCUsingHelpBtn){
+        
+    }
+    else if(sender == _PCAppOpenModelNoticeBtn){
+        
+    }
+    else if (sender == _PCGameNoticeBtn){
+        
+    }
+    else if (sender == _closeRdpBtn){
+        if ([MyUIApplication getselectedPCOnline]){
+            [NSThread detachNewThreadWithBlock:^(void){
+                [prepareDataForFragment closeRDP];
+            }];
+        }else
+            [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+    }
 }
 
 - (void)onHandler:(NSDictionary *)message{
@@ -497,31 +540,33 @@
 - (void)downloadImage:(NSDictionary*) dic {
     NSURL *url = [NSURL URLWithString:dic[@"url"]];
     cellView* cell = dic[@"cell"];
-    UIImage *imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        @try{
-        [cell.image setImage:imagea];
-        if([dic[@"type"] isEqualToString:@"tvown"]){
-            [TVOwnedApp_Array_image setObject:imagea forKey:dic[@"index"]];
-            [TVOwnedApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
-        }
-        else if([dic[@"type"] isEqualToString:@"tvinstalled"]){
-            [TVInstalledApp_Array_image setObject:imagea forKey:dic[@"index"]];
-            [TVInstalledApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
-        }
-        else if([dic[@"type"] isEqualToString:@"pcapp"]){
-            [pcApp_Array_image setObject:imagea forKey:dic[@"index"]];
-            [pcApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
-        }
-        else if([dic[@"type"] isEqualToString:@"pcgame"]){
-            [pcgame_Array_image setObject:imagea forKey:dic[@"index"]];
-            [pcgame_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+    UIImage *imagea;
+    imagea = [UIImage imageWithData:[[[ImageCacheUtil alloc] init] readImage:dic[@"url"]]];
+    if(imagea == nil){
+        imagea = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
+        [[[ImageCacheUtil alloc] init] writeImage:imagea andUrl:dic[@"url"]];
+    }
+    if(imagea != nil){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell.image setImage:imagea];
+            if([dic[@"type"] isEqualToString:@"tvown"]){
+                [TVOwnedApp_Array_image setObject:imagea forKey:dic[@"index"]];
+                [TVOwnedApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
             }
+            else if([dic[@"type"] isEqualToString:@"tvinstalled"]){
+                [TVInstalledApp_Array_image setObject:imagea forKey:dic[@"index"]];
+                [TVInstalledApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+            }
+            else if([dic[@"type"] isEqualToString:@"pcapp"]){
+                [pcApp_Array_image setObject:imagea forKey:dic[@"index"]];
+                [pcApp_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+            }
+            else if([dic[@"type"] isEqualToString:@"pcgame"]){
+                [pcgame_Array_image setObject:imagea forKey:dic[@"index"]];
+                [pcgame_Array_image_done_flag setObject:[NSNumber numberWithBool:YES] forKey:dic[@"index"]];
+            }
+        });
         }
-        @catch(NSException* e){
-            [cell.image setImage:[UIImage imageNamed:@"logo_loading.png"]];
-        }
-    });
 }
 - (void) updateDeviceNetState:(NSDictionary*) dic {
     TVPCNetStateChangeEvent* event = (TVPCNetStateChangeEvent*)dic[@"data"];

@@ -532,4 +532,9 @@
     cmd.param = params;
     return cmd;
 }
++ (TVCommandItem*)closeRdp {
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    [cmd setFirstcommand:OrderConst_CLOSERDP];
+    return cmd;
+}
 @end

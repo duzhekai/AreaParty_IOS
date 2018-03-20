@@ -598,6 +598,7 @@
 		7220C62B20106FC200ECC879 /* MediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7220C62A20106FC200ECC879 /* MediaItem.m */; };
 		7220C62F201071DE00ECC879 /* MediafileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7220C62E201071DE00ECC879 /* MediafileHelper.m */; };
 		7220C63520148E6A00ECC879 /* Send2SpecificTVThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 7220C63420148E6A00ECC879 /* Send2SpecificTVThread.m */; };
+		72278245205F96EC00848325 /* ImageCacheUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 72278244205F96EC00848325 /* ImageCacheUtil.m */; };
 		722879651FC1540500BC2765 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 722879641FC1540500BC2765 /* Toast.m */; };
 		722879E11FCE7E2600BC2765 /* Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 722879E01FCE7E2600BC2765 /* Base.m */; };
 		722879E41FCE8A1A00BC2765 /* DataTypeTranslater.m in Sources */ = {isa = PBXBuildFile; fileRef = 722879E31FCE8A1A00BC2765 /* DataTypeTranslater.m */; };
@@ -667,6 +668,12 @@
 		724EFBE0205D07BF0045CA1C /* tab03_pc_window.png in Resources */ = {isa = PBXBuildFile; fileRef = 724EFBD7205D07AD0045CA1C /* tab03_pc_window.png */; };
 		724EFBE1205D07BF0045CA1C /* ic_music.png in Resources */ = {isa = PBXBuildFile; fileRef = 724EFBD8205D07B40045CA1C /* ic_music.png */; };
 		724EFBE2205D07BF0045CA1C /* logo_cast_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 724EFBD9205D07B90045CA1C /* logo_cast_red.png */; };
+		72525C7B2060AC210007DB1E /* Shutdown_Reboot_Dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C7A2060AC210007DB1E /* Shutdown_Reboot_Dialog.m */; };
+		72525C7E2060F2520007DB1E /* uninstallTVAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C7D2060F2520007DB1E /* uninstallTVAppViewController.m */; };
+		72525C812060F2D70007DB1E /* pcInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C802060F2D70007DB1E /* pcInforViewController.m */; };
+		72525C8820610FAB0007DB1E /* uninstallTVAppTableViewcell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C8620610FAB0007DB1E /* uninstallTVAppTableViewcell.m */; };
+		72525C8920610FAB0007DB1E /* uninstallTVAppTableViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72525C8720610FAB0007DB1E /* uninstallTVAppTableViewcell.xib */; };
+		72525C8C20614E430007DB1E /* uninstalledTVAppEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C8B20614E430007DB1E /* uninstalledTVAppEvent.m */; };
 		7254E4E1204E3369001711BF /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E0204E3369001711BF /* SettingNameViewController.m */; };
 		7254E4E4204E3380001711BF /* SettingPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E3204E3380001711BF /* SettingPwdViewController.m */; };
 		7254E4E7204E338D001711BF /* SettingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E6204E338D001711BF /* SettingAddressViewController.m */; };
@@ -1429,6 +1436,8 @@
 		7220C63020147B1A00ECC879 /* TVDevicesUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TVDevicesUIViewController.h; sourceTree = "<group>"; };
 		7220C63320148E6A00ECC879 /* Send2SpecificTVThread.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Send2SpecificTVThread.h; sourceTree = "<group>"; };
 		7220C63420148E6A00ECC879 /* Send2SpecificTVThread.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Send2SpecificTVThread.m; sourceTree = "<group>"; };
+		72278243205F96EC00848325 /* ImageCacheUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCacheUtil.h; sourceTree = "<group>"; };
+		72278244205F96EC00848325 /* ImageCacheUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCacheUtil.m; sourceTree = "<group>"; };
 		722879631FC1540500BC2765 /* Toast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
 		722879641FC1540500BC2765 /* Toast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
 		722879DF1FCE7E2600BC2765 /* Base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
@@ -1557,6 +1566,17 @@
 		724EFBD7205D07AD0045CA1C /* tab03_pc_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab03_pc_window.png; sourceTree = "<group>"; };
 		724EFBD8205D07B40045CA1C /* ic_music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_music.png; sourceTree = "<group>"; };
 		724EFBD9205D07B90045CA1C /* logo_cast_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_cast_red.png; sourceTree = "<group>"; };
+		72525C792060AC210007DB1E /* Shutdown_Reboot_Dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Shutdown_Reboot_Dialog.h; sourceTree = "<group>"; };
+		72525C7A2060AC210007DB1E /* Shutdown_Reboot_Dialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Shutdown_Reboot_Dialog.m; sourceTree = "<group>"; };
+		72525C7C2060F2520007DB1E /* uninstallTVAppViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uninstallTVAppViewController.h; sourceTree = "<group>"; };
+		72525C7D2060F2520007DB1E /* uninstallTVAppViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uninstallTVAppViewController.m; sourceTree = "<group>"; };
+		72525C7F2060F2D70007DB1E /* pcInforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pcInforViewController.h; sourceTree = "<group>"; };
+		72525C802060F2D70007DB1E /* pcInforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pcInforViewController.m; sourceTree = "<group>"; };
+		72525C8520610FAB0007DB1E /* uninstallTVAppTableViewcell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uninstallTVAppTableViewcell.h; sourceTree = "<group>"; };
+		72525C8620610FAB0007DB1E /* uninstallTVAppTableViewcell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uninstallTVAppTableViewcell.m; sourceTree = "<group>"; };
+		72525C8720610FAB0007DB1E /* uninstallTVAppTableViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = uninstallTVAppTableViewcell.xib; sourceTree = "<group>"; };
+		72525C8A20614E430007DB1E /* uninstalledTVAppEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = uninstalledTVAppEvent.h; sourceTree = "<group>"; };
+		72525C8B20614E430007DB1E /* uninstalledTVAppEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uninstalledTVAppEvent.m; sourceTree = "<group>"; };
 		7254E4DF204E3369001711BF /* SettingNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingNameViewController.h; sourceTree = "<group>"; };
 		7254E4E0204E3369001711BF /* SettingNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNameViewController.m; sourceTree = "<group>"; };
 		7254E4E2204E3380001711BF /* SettingPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingPwdViewController.h; sourceTree = "<group>"; };
@@ -1830,6 +1850,8 @@
 				720158D81FFF469C00913961 /* TVPCNetStateChangeEvent.m */,
 				720158DA1FFF477B00913961 /* TvPlayerChangeEvent.h */,
 				720158DB1FFF477B00913961 /* TvPlayerChangeEvent.m */,
+				72525C8A20614E430007DB1E /* uninstalledTVAppEvent.h */,
+				72525C8B20614E430007DB1E /* uninstalledTVAppEvent.m */,
 			);
 			path = events;
 			sourceTree = "<group>";
@@ -2756,6 +2778,18 @@
 			path = AreaPartyUITests;
 			sourceTree = "<group>";
 		};
+		72525C782060AC040007DB1E /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				72525C792060AC210007DB1E /* Shutdown_Reboot_Dialog.h */,
+				72525C7A2060AC210007DB1E /* Shutdown_Reboot_Dialog.m */,
+				72525C8520610FAB0007DB1E /* uninstallTVAppTableViewcell.h */,
+				72525C8620610FAB0007DB1E /* uninstallTVAppTableViewcell.m */,
+				72525C8720610FAB0007DB1E /* uninstallTVAppTableViewcell.xib */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		7266EA231FE7EE9400CFD247 /* myapplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -2802,6 +2836,8 @@
 				7220C623200B960700ECC879 /* GetTvListThread.m */,
 				7220C625200DD2BB00ECC879 /* Send2PCThread.h */,
 				7220C626200DD2BB00ECC879 /* Send2PCThread.m */,
+				72278243205F96EC00848325 /* ImageCacheUtil.h */,
+				72278244205F96EC00848325 /* ImageCacheUtil.m */,
 			);
 			path = utils_comman;
 			sourceTree = "<group>";
@@ -2991,12 +3027,17 @@
 		72F90BF41FB95D6C0058DC10 /* Fragment3 */ = {
 			isa = PBXGroup;
 			children = (
+				72525C782060AC040007DB1E /* ui */,
 				720158F32001F38400913961 /* Model */,
 				720158E520009E9800913961 /* utils */,
 				72F90BF91FB95D9E0058DC10 /* Fragment3ViewController.h */,
 				72F90BFA1FB95D9E0058DC10 /* Fragment3ViewController.m */,
 				720F9106205A438C00CC6629 /* tvInforViewController.h */,
 				720F9107205A438C00CC6629 /* tvInforViewController.m */,
+				72525C7F2060F2D70007DB1E /* pcInforViewController.h */,
+				72525C802060F2D70007DB1E /* pcInforViewController.m */,
+				72525C7C2060F2520007DB1E /* uninstallTVAppViewController.h */,
+				72525C7D2060F2520007DB1E /* uninstallTVAppViewController.m */,
 			);
 			path = Fragment3;
 			sourceTree = "<group>";
@@ -3503,6 +3544,7 @@
 				721891571FB55659002E270E /* default_pic.png in Resources */,
 				7218922E1FB5565A002E270E /* nothingdownloaded.png in Resources */,
 				72BA5FAC1FBAB2FE0078EE6E /* dropzone_bluetooth_press.png in Resources */,
+				72525C8920610FAB0007DB1E /* uninstallTVAppTableViewcell.xib in Resources */,
 				721893211FB5565A002E270E /* z2.png in Resources */,
 				721891471FB55659002E270E /* circlecornersmallllbgnormal.xml in Resources */,
 				721892F81FB5565A002E270E /* webmanager_red_color.xml in Resources */,
@@ -3889,6 +3931,7 @@
 				72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */,
 				72D171E3204D7DE50069992A /* Update_ReceiveMsgBean.m in Sources */,
 				720158D61FFF451000913961 /* SelectedDeviceChangedEvent.m in Sources */,
+				72525C812060F2D70007DB1E /* pcInforViewController.m in Sources */,
 				7266EA2C1FE7F0AB00CFD247 /* IPInforBean.m in Sources */,
 				7266EA271FE7EEE800CFD247 /* FillingIPInforList.m in Sources */,
 				72287AC61FD3C20900BC2765 /* myChatList.m in Sources */,
@@ -3973,6 +4016,7 @@
 				720158EB20009FFF00913961 /* TVCommandItem.m in Sources */,
 				72287AB21FCFE83D00BC2765 /* GroupData.pbobjc.m in Sources */,
 				720158C21FFB7DF900913961 /* ReceivedActionMessageFormat.m in Sources */,
+				72278245205F96EC00848325 /* ImageCacheUtil.m in Sources */,
 				7220C61B2009F50600ECC879 /* PCAppHelper.m in Sources */,
 				72494CA81FAEB1EA002B1101 /* main.m in Sources */,
 				72287ABA1FCFE83D00BC2765 /* ChangeFriendMsg.pbobjc.m in Sources */,
@@ -4001,7 +4045,9 @@
 				7220C61820086E0A00ECC879 /* headIndexToImgId.m in Sources */,
 				7254E4E7204E338D001711BF /* SettingAddressViewController.m in Sources */,
 				7210AFB1204F9199000C80F0 /* SettingAddressHandler.m in Sources */,
+				72525C7E2060F2520007DB1E /* uninstallTVAppViewController.m in Sources */,
 				727F312F2047E2FD000144D6 /* File_item_cell.m in Sources */,
+				72525C8820610FAB0007DB1E /* uninstallTVAppTableViewcell.m in Sources */,
 				7220C63520148E6A00ECC879 /* Send2SpecificTVThread.m in Sources */,
 				72287AAA1FCFE83D00BC2765 /* RegisterMsg.pbobjc.m in Sources */,
 				72A95A5D2019B3A900CDE28C /* FileTypeConst.m in Sources */,
@@ -4022,11 +4068,13 @@
 				72812E522021EE2900C24659 /* LoadingViewForOC.m in Sources */,
 				72A95A5A2019A30E00CDE28C /* ReceivedFileManagerMessageFormat.m in Sources */,
 				7220C627200DD2BB00ECC879 /* Send2PCThread.m in Sources */,
+				72525C7B2060AC210007DB1E /* Shutdown_Reboot_Dialog.m in Sources */,
 				7245BFB4205108D700626852 /* MonitorData.m in Sources */,
 				72287ABD1FCFE83D00BC2765 /* ProgressData.pbobjc.m in Sources */,
 				72287AC11FCFE83D00BC2765 /* ProtoHead.pbobjc.m in Sources */,
 				72A95A4E201999B400CDE28C /* fileBean.m in Sources */,
 				72F90C0A1FB98EB90058DC10 /* TransitionAnimation.m in Sources */,
+				72525C8C20614E430007DB1E /* uninstalledTVAppEvent.m in Sources */,
 				720158DC1FFF477B00913961 /* TvPlayerChangeEvent.m in Sources */,
 				727F31252046E961000144D6 /* sharedFileIntentVC.m in Sources */,
 				722879E41FCE8A1A00BC2765 /* DataTypeTranslater.m in Sources */,

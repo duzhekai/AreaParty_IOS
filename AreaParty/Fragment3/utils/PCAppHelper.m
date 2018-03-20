@@ -7,6 +7,7 @@
 //
 
 #import "PCAppHelper.h"
+#import "prepareDataForFragment_monitor.h"
 const int PCAppHelper_NONEMODE = 0;
 const int PCAppHelper_RDPMODE = 1;
 const int PCAppHelper_MIRACAST = 2;
@@ -63,5 +64,18 @@ static PCInforBean* pcInfor;
     [[self getgameList] removeAllObjects];
     [[[Send2PCThread alloc] initWithtypeName:OrderConst_appAction_name commandType:OrderConst_appMediaAction_getList_command Handler:handler] start];
     [[[Send2PCThread alloc] initWithtypeName:OrderConst_gameAction_name commandType:OrderConst_appMediaAction_getList_command Handler:handler] start];
+}
++ (void) shutdownPC{
+    [NSThread detachNewThreadWithBlock:^(void){
+        [prepareDataForFragment_monitor getActionStateData:OrderConst_computerAction_name Command:OrderConst_computerAction_shutdown_command Param:@""];
+    }];
+}
++ (void) rebootPC{
+    [NSThread detachNewThreadWithBlock:^(void){
+        [prepareDataForFragment_monitor getActionStateData:OrderConst_computerAction_name Command:OrderConst_computerAction_reboot_command Param:@""];
+    }];
+}
++ (void) loadPCInfor:(id<onHandler>) handler {
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_sysAction_name commandType:OrderConst_sysAction_getInfor_command Handler:handler] start];
 }
 @end

@@ -514,10 +514,24 @@ static Update_ReceiveMsgBean* receiveMsgBean;
         [FillingIPInforList changeTVNickName:newName Mac:selectedTVIP.mac];
         NSString* tvJsonString = [selectedTVIP yy_modelToJSONString];
         [[[PreferenceUtil alloc] init] writeKey:@"lastChosenTV" Value:tvJsonString];
+        [[[PreferenceUtil alloc] init] writeKey:selectedTVIP.mac Value:newName];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedTVNameChange" object:nil userInfo:[NSDictionary dictionaryWithObject:[[changeSelectedDeviceNameEvent alloc] initWithName:newName] forKey:@"data"]];
         if([MyUIApplication getSelectedPCIP]!=nil&&[MyUIApplication getSelectedTVIP]!=nil){
             [TVAppHelper currentPcInfo2TV];
         }
     }
+}
++ (void) changeSelectedPCName:(NSString*) newName {
+    if(newName != nil && ![newName isEqualToString:selectedPCIP.name]) {
+        selectedPCIP.nickName = newName;
+        [FillingIPInforList changePCNickName:newName Mac:selectedPCIP.mac];
+        NSString* pcJsonString = [selectedPCIP yy_modelToJSONString];
+        [[[PreferenceUtil alloc] init] writeKey:@"lastChosenPC" Value:pcJsonString];
+        [[[PreferenceUtil alloc] init] writeKey:selectedPCIP.mac Value:newName];;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedPCNameChange" object:nil userInfo:[NSDictionary dictionaryWithObject:[[changeSelectedDeviceNameEvent alloc] initWithName:newName] forKey:@"data"]];
+        if([MyUIApplication getSelectedPCIP]!=nil&&[MyUIApplication getSelectedTVIP]!=nil){
+            [TVAppHelper currentPcInfo2TV];
+        }
+        }
 }
 @end

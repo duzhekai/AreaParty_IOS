@@ -9,6 +9,7 @@
 #import "AlterDeviceNameDialog.h"
 #import "MyUIApplication.h"
 #import "tvInforViewController.h"
+#import "pcInforViewController.h"
 @interface AlterDeviceNameDialog ()
 
 @end
@@ -18,7 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if([_pushvc isKindOfClass:[tvInforViewController class]]){
     [_name_tv setText:[MyUIApplication getSelectedTVIP].nickName];
+    }
+    else if ([_pushvc isKindOfClass:[pcInforViewController class]]){
+    [_name_tv setText:[MyUIApplication getSelectedPCIP].nickName];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,8 +57,16 @@
         [Toast ShowToast:@"设备名不能为空，不能包含\\ / : * ? \" < > |字符" Animated:YES time:1 context:self.view];
         [_name_tv setText:@""];
     } else {
-        [self.pushvc.nameTV setText:tempName];
-        [MyUIApplication changeSelectedTVName:tempName];
+        if([_pushvc isKindOfClass:[tvInforViewController class]]){
+            tvInforViewController* temp =(tvInforViewController*) _pushvc;
+            [temp.nameTV setText:tempName];
+            [MyUIApplication changeSelectedTVName:tempName];
+        }
+        else if ([_pushvc isKindOfClass:[pcInforViewController class]]){
+            pcInforViewController* temp =(pcInforViewController*) _pushvc;
+            [temp.nameTV setText:tempName];
+            [MyUIApplication changeSelectedPCName:tempName];
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }

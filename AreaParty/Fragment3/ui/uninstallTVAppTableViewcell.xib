@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="uninstallTVAppTableViewcell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZOy-tS-ba0">
+                        <rect key="frame" x="15" y="0.0" width="60" height="43.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ekb-5r-Wxt">
+                                <rect key="frame" x="12.5" y="4.5" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="EFq-Xz-RKu"/>
+                                    <constraint firstAttribute="width" constant="35" id="a5D-4u-Zqo"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ekb-5r-Wxt" firstAttribute="centerX" secondItem="ZOy-tS-ba0" secondAttribute="centerX" id="8vS-ld-qdW"/>
+                            <constraint firstAttribute="width" constant="60" id="aj9-Td-bk9"/>
+                            <constraint firstItem="Ekb-5r-Wxt" firstAttribute="centerY" secondItem="ZOy-tS-ba0" secondAttribute="centerY" id="xDN-R3-kXD"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dR3-Yv-EOO">
+                        <rect key="frame" x="75" y="11.5" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gf-JQ-co7">
+                        <rect key="frame" x="285" y="12.5" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="LBN-ws-gBZ"/>
+                            <constraint firstAttribute="height" constant="20" id="laq-mx-DTT"/>
+                        </constraints>
+                        <state key="normal" title="Button" image="logo_uninstall.png"/>
+                        <connections>
+                            <action selector="press_uninstall:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iSm-Ab-5Mx"/>
+                        </connections>
+                    </button>
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Tp-0LG">
+                        <rect key="frame" x="80" y="43.5" width="225" height="0.5"/>
+                        <color key="backgroundColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="Rn7-SN-sfT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dR3-Yv-EOO" firstAttribute="leading" secondItem="ZOy-tS-ba0" secondAttribute="trailing" id="1GL-Un-0ef"/>
+                    <constraint firstAttribute="bottom" secondItem="4zx-Tp-0LG" secondAttribute="bottom" id="1Mc-z0-Wcw"/>
+                    <constraint firstItem="dR3-Yv-EOO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="6JU-4d-pYD"/>
+                    <constraint firstAttribute="trailing" secondItem="9gf-JQ-co7" secondAttribute="trailing" constant="15" id="Dyg-ny-l6f"/>
+                    <constraint firstItem="4zx-Tp-0LG" firstAttribute="leading" secondItem="ZOy-tS-ba0" secondAttribute="trailing" constant="5" id="REd-k3-VPC"/>
+                    <constraint firstAttribute="bottom" secondItem="ZOy-tS-ba0" secondAttribute="bottom" id="VCK-4i-2Qc"/>
+                    <constraint firstItem="ZOy-tS-ba0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Znn-XP-mph"/>
+                    <constraint firstItem="ZOy-tS-ba0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oDD-Qb-IxN"/>
+                    <constraint firstAttribute="trailing" secondItem="4zx-Tp-0LG" secondAttribute="trailing" constant="15" id="od6-Nn-HEi"/>
+                    <constraint firstItem="9gf-JQ-co7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="t1A-03-yzv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="nameTV" destination="dR3-Yv-EOO" id="XOX-EL-nFx"/>
+                <outlet property="thumbnailIV" destination="Ekb-5r-Wxt" id="Evu-IY-Xt2"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="logo_uninstall.png" width="128" height="128"/>
+    </resources>
+</document>
