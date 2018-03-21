@@ -251,6 +251,29 @@
     else if (sender == _PCGameNoticeBtn){
         
     }
+    else if(sender == _openPcDeskBtn){
+        if([MyUIApplication getselectedPCOnline]) {
+            if([MyUIApplication getselectedTVOnline]) {
+                if([PCAppHelper getCurrentMode] == PCAppHelper_NONEMODE) {
+                    [TVAppHelper loadMouses:self];
+                }
+                if([MyUIApplication getAccessibilityIsOpen]){
+                    [TVAppHelper openTVRDP];
+                    
+                    // 需要用户手动点击进入
+                    [PCAppHelper setCurrentMode:PCAppHelper_RDPMODE];
+                    [PCAppHelper openApp_Rdp:@"back" andappname:@"desk" andHandler:self];
+                }else {
+                    [TVAppHelper openTVAccessibility];
+                    [Toast ShowToast:@"请在TV上对[AreaParty]授权" Animated:YES time:1 context:self.view];
+                }
+            } else {
+                    [Toast ShowToast:@"应用即将投放的屏幕不在线" Animated:YES time:1 context:self.view];
+            }
+        } else{
+            [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        }
+    }
     else if (sender == _closeRdpBtn){
         if ([MyUIApplication getselectedPCOnline]){
             [NSThread detachNewThreadWithBlock:^(void){

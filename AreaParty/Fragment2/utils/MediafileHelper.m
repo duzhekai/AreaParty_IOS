@@ -44,6 +44,31 @@ static NSMutableArray<MediaItem*>* mediaFolders; // 当前路径下的文件夹
     [[self getmediaFolders] removeAllObjects];
     [[self getstartPathList] removeAllObjects];
 }
+/**
+ * <summary>
+ *  启动线程从pc下载图片集、音频集
+ *  <param name="handler">消息传递句柄</param>
+ * </summary>
+ */
++ (void)loadMediaSets:(id<onHandler>) handler{
+    [audioSets removeAllObjects];
+    [imageSets removeAllObjects];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_audioAction_name commandType:OrderConst_mediaAction_getSets_command Handler:handler] start];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_imageAction_name commandType:OrderConst_mediaAction_getSets_command Handler:handler] start];
+}
+/**
+ * <summary>
+ *  启动线程从pc下载最近播放文件(视频和音频)
+ *  每次初始化或PC切换时调用
+ *  <param name="handler">消息传递句柄</param>
+ * </summary>
+ */
++ (void) loadRecentMediaFiles:(id<onHandler>) handler {
+    [recentAudios removeAllObjects];
+    [recentVideos removeAllObjects];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_audioAction_name commandType:OrderConst_appMediaAction_getRecent_command Handler:handler]start];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_videoAction_name commandType:OrderConst_appMediaAction_getRecent_command Handler:handler]start];
+}
 + (void)setMediaSets:(NSMutableDictionary<NSString*,NSMutableArray<MediaItem*>*>*) tempSets typename:(NSString*) typeName{
     if([typeName isEqualToString:OrderConst_audioAction_name]) {
         [[self getaudioSets] removeAllObjects];

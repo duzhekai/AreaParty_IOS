@@ -32,6 +32,10 @@
 		72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CAC20563AF200A4DA97 /* RebootDialog.m */; };
 		72058CB520566AAB00A4DA97 /* RegisterOperatorVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */; };
 		72058CBE2056816900A4DA97 /* exeContentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 72058CBD2056816900A4DA97 /* exeContentVC.m */; };
+		720D7BD22062245A0039C383 /* remote_control_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 720D7BCE2062244E0039C383 /* remote_control_off.png */; };
+		720D7BD32062245A0039C383 /* remote_control_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 720D7BCF206224520039C383 /* remote_control_off.png */; };
+		720D7BD42062245A0039C383 /* remote_control.png in Resources */ = {isa = PBXBuildFile; fileRef = 720D7BD0206224560039C383 /* remote_control.png */; };
+		720D7BD52062245A0039C383 /* remote_control.png in Resources */ = {isa = PBXBuildFile; fileRef = 720D7BD1206224560039C383 /* remote_control.png */; };
 		720F9108205A438C00CC6629 /* tvInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F9107205A438C00CC6629 /* tvInforViewController.m */; };
 		720F910B205A602900CC6629 /* AlterDeviceNameDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 720F910A205A602900CC6629 /* AlterDeviceNameDialog.m */; };
 		7210AFB1204F9199000C80F0 /* SettingAddressHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */; };
@@ -854,6 +858,10 @@
 		72058CB420566AAB00A4DA97 /* RegisterOperatorVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterOperatorVC.m; sourceTree = "<group>"; };
 		72058CBC2056816900A4DA97 /* exeContentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = exeContentVC.h; sourceTree = "<group>"; };
 		72058CBD2056816900A4DA97 /* exeContentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exeContentVC.m; sourceTree = "<group>"; };
+		720D7BCE2062244E0039C383 /* remote_control_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote_control_off.png; sourceTree = "<group>"; };
+		720D7BCF206224520039C383 /* remote_control_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = remote_control_off.png; path = "../../../实验室项目相关/new_AreaParty-master/app/src/main/res/drawable/remote_control_off.png"; sourceTree = "<group>"; };
+		720D7BD0206224560039C383 /* remote_control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remote_control.png; sourceTree = "<group>"; };
+		720D7BD1206224560039C383 /* remote_control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = remote_control.png; path = "../../../实验室项目相关/new_AreaParty-master/app/build/intermediates/res/merged/debug/drawable/remote_control.png"; sourceTree = "<group>"; };
 		720F9106205A438C00CC6629 /* tvInforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tvInforViewController.h; sourceTree = "<group>"; };
 		720F9107205A438C00CC6629 /* tvInforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tvInforViewController.m; sourceTree = "<group>"; };
 		720F9109205A602900CC6629 /* AlterDeviceNameDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlterDeviceNameDialog.h; sourceTree = "<group>"; };
@@ -1917,6 +1925,10 @@
 		72188EE21FB55657002E270E /* drawable */ = {
 			isa = PBXGroup;
 			children = (
+				720D7BCF206224520039C383 /* remote_control_off.png */,
+				720D7BCE2062244E0039C383 /* remote_control_off.png */,
+				720D7BD1206224560039C383 /* remote_control.png */,
+				720D7BD0206224560039C383 /* remote_control.png */,
 				724EFBD3205D07990045CA1C /* close_rdp.png */,
 				724EFBD5205D07A10045CA1C /* download_image.png */,
 				724EFBD1205D07900045CA1C /* ic_account.png */,
@@ -3243,6 +3255,7 @@
 				721891171FB55659002E270E /* barback03_left_pressed.xml in Resources */,
 				721891EA1FB5565A002E270E /* logo_win10.png in Resources */,
 				7218930E1FB5565A002E270E /* webmanager_title_bar.xml in Resources */,
+				720D7BD52062245A0039C383 /* remote_control.png in Resources */,
 				721891511FB55659002E270E /* coupon_right_red.png in Resources */,
 				7218924A1FB5565A002E270E /* press_circle.png in Resources */,
 				721892351FB5565A002E270E /* pause.png in Resources */,
@@ -3411,6 +3424,8 @@
 				721891E21FB5565A002E270E /* logo_playback_play_normal.png in Resources */,
 				721892461FB5565A002E270E /* playmusictop.png in Resources */,
 				721891351FB55659002E270E /* chapcharloading.gif in Resources */,
+				720D7BD32062245A0039C383 /* remote_control_off.png in Resources */,
+				720D7BD42062245A0039C383 /* remote_control.png in Resources */,
 				721891D41FB5565A002E270E /* logo_audioset.png in Resources */,
 				721891371FB55659002E270E /* chatfrom_bg_normal.9.png in Resources */,
 				721893351FB597E0002E270E /* username.png in Resources */,
@@ -3760,6 +3775,7 @@
 				721891F61FB5565A002E270E /* more.png in Resources */,
 				721892E91FB5565A002E270E /* webmanager_ic_downloaded.png in Resources */,
 				721891801FB55659002E270E /* gradient_right_left.xml in Resources */,
+				720D7BD22062245A0039C383 /* remote_control_off.png in Resources */,
 				7218910D1FB55659002E270E /* autologin_smile.png in Resources */,
 				7218929F1FB5565A002E270E /* tab_me_normal.png in Resources */,
 				721891971FB55659002E270E /* icon_openintv_white.png in Resources */,
@@ -3895,7 +3911,9 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${BUILT_PRODUCTS_DIR}/libwebp/libwebp.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -3905,7 +3923,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libwebp.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

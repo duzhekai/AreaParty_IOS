@@ -7,12 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "onHandler.h"
 
-@interface Fragment2ViewController : UIViewController
+@interface Fragment2ViewController : UIViewController<onHandler>
 @property (weak, nonatomic) IBOutlet UIView *middleview;
 @property (weak, nonatomic) IBOutlet UIView *Pic_playlist;
 @property (weak, nonatomic) IBOutlet UIView *Music_playlist;
 @property (weak, nonatomic) IBOutlet UIView *Playlist;
+@property (weak, nonatomic) IBOutlet UIImageView *PCStateIV;
+@property (weak, nonatomic) IBOutlet UIImageView *TVStateIV;
+@property (weak, nonatomic) IBOutlet UILabel *PCNameTV;
+@property (weak, nonatomic) IBOutlet UILabel *TVNameTV;
+@property (weak, nonatomic) IBOutlet UIView *RemoteControlLayout;
+@property (weak, nonatomic) IBOutlet UIImageView *RemoteControlImg;
+@property (weak, nonatomic) IBOutlet UILabel *RemoteControl;
+@property (weak, nonatomic) IBOutlet UIView *videoLibLL;
+@property (weak, nonatomic) IBOutlet UIView *audioLibLL;
+@property (weak, nonatomic) IBOutlet UIView *picLibLL;
+@property (weak, nonatomic) IBOutlet UIView *picsPlayListLL;
+@property (weak, nonatomic) IBOutlet UILabel *picsPlayListNumTV;
+@property (weak, nonatomic) IBOutlet UIView *audiosPlayListLL;
+@property (weak, nonatomic) IBOutlet UILabel *audiosPlayListNumTV;
+@property (weak, nonatomic) IBOutlet UIImageView *lastVideoThumbnailIV;
 
 
 @end

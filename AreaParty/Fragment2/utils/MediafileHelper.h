@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "MediaItem.h"
 #import "OrderConst.h"
+#import "onHandler.h"
+#import "Send2PCThread.h"
 @interface MediafileHelper : NSObject
 + (NSMutableArray<MediaItem*>*)getrecentAudios;
 + (NSMutableArray<MediaItem*>*)getrecentVideos;
@@ -20,4 +22,6 @@
 + (void) setMediaSets:(NSMutableDictionary<NSString*,NSMutableArray<MediaItem*>*>*) tempSets typename:(NSString*) typeName;
 + (void) setRecentFiles:(NSArray<MediaItem*>*)tempFiles filetype:(NSString*)fileType;
 + (void) setMediaFiles:(NSArray<MediaItem*>*)tempMediaFiles folders:(NSArray<MediaItem*>*) folders;
++ (void)loadMediaSets:(id<onHandler>) handler;
++ (void) loadRecentMediaFiles:(id<onHandler>) handler;
 @end
