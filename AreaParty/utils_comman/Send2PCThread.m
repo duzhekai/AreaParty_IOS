@@ -53,7 +53,7 @@
 - (instancetype)initWithtypeName:(NSString*)typeName1 path:(NSString*)path1 isRoot:(BOOL)isRoot1 Handler:(id<onHandler>) myhandler1{
     if(self = [super init]){
         typeName = typeName1;
-        commandType = @"";
+        commandType = OrderConst_appMediaAction_getList_command;
         param = [[NSMutableDictionary alloc] init];
         path = path1;
         isRoot = isRoot1;
@@ -89,9 +89,13 @@
         [outputStream open];
         NSData* senddata =[cmdStr dataUsingEncoding:NSUTF8StringEncoding];
         [outputStream write:[senddata bytes] maxLength:[senddata length]];
-        Byte receivedbuf[8192];
-        NSInteger len = [inputStream read:receivedbuf maxLength:sizeof(receivedbuf)];
-        dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:len] encoding:NSUTF8StringEncoding];
+        Byte receivedbuf[40000];
+        int readCount = 0;
+        int len = 0;
+        while ((len = [inputStream read:receivedbuf+readCount maxLength:sizeof(receivedbuf)])) {
+            readCount+=len;
+        }
+        dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:readCount] encoding:NSUTF8StringEncoding];
         NSLog(@"Send2PCThread:指令:%@",cmdStr);
         NSLog(@"Send2PCThread:回复:%@",dataReceived);
         if([dataReceived length] > 0) {
@@ -176,7 +180,7 @@
             cmdStr = [[CommandUtil createAddPcFilesToSetCommand:typeName setname:param[@"setname"] liststr:param[@"liststr"]] yy_modelToJSONString];
         }
         if([commandType isEqualToString:OrderConst_mediaAction_playSet_command]){
-            cmdStr = [[CommandUtil createOpenPcMediaSetCommand:typeName setname:param[@"setname"] tvname:param[@"tvname"]]yy_modelToJSONString];
+                cmdStr = [[CommandUtil createOpenPcMediaSetCommand:typeName setName:param[@"setname"] tvname:param[@"tvname"]] yy_modelToJSONString];
         }
         if([commandType isEqualToString:OrderConst_mediaAction_playSet_command_BGM]){
             cmdStr = [[CommandUtil createPlayAsBGMCommand:typeName setname:param[@"setname"] tvname:param[@"tvname"]]yy_modelToJSONString];
@@ -294,6 +298,7 @@
                          OrderConst_mediaAction_addFilesToSet_command,//13
                                   OrderConst_mediaAction_getSets_command,//14
                          nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
     if (result) {
         switch ([typename_array indexOfObject:typeName]) {
             case 0:
@@ -514,5 +519,6 @@
                 break;
         }
     }
+    });
 }
 @end

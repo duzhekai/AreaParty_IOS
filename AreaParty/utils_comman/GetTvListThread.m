@@ -124,29 +124,45 @@
 -(void) reportResult:(BOOL)result{
     if(result) {
         if([type isEqualToString:OrderConst_getTVOtherApps_firCommand]){
-            [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVOtherApp_OK],@"what",nil]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVOtherApp_OK],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVSYSApps_firCommand]){
-            [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVSYSApp_OK],@"what",nil]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVSYSApp_OK],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVMouses_firCommand]){
-             [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVMouse_OK],@"what",nil]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVMouse_OK],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVInfor_firCommand]){
+            dispatch_async(dispatch_get_main_queue(), ^{
              [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVInfor_OK],@"what",nil]];
-        }
+            });
+            }
     } else {
         if([type isEqualToString:OrderConst_getTVOtherApps_firCommand]){
+            dispatch_async(dispatch_get_main_queue(), ^{
             [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVOtherApp_Fail],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVSYSApps_firCommand]){
+            dispatch_async(dispatch_get_main_queue(), ^{
             [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVSYSApp_Fail],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVMouses_firCommand]){
+            dispatch_async(dispatch_get_main_queue(), ^{
             [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVMouse_Fail],@"what",nil]];
+            });
         }
         if([type isEqualToString:OrderConst_getTVInfor_firCommand]){
+            dispatch_async(dispatch_get_main_queue(), ^{
             [handler onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:OrderConst_getTVInfor_Fail],@"what",nil]];
+            });
         }
     }
 }

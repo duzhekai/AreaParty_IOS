@@ -471,10 +471,10 @@
  * <param name="tvname">tv名称</param>
  * <returns>PC指令</returns>
  */
-+(PCCommandItem*) createOpenPcMediaSetCommand:(NSString*) type setname:(NSString*) setname tvname:(NSString*) tvname {
++(PCCommandItem*) createOpenPcMediaSetCommand:(NSString*)type setName:(NSString*)setname tvname:(NSString*)tvname {
     PCCommandItem* cmd = [[PCCommandItem alloc]init];
     [cmd setName:type];
-    [cmd setCommand:OrderConst_mediaAction_playSet_command_BGM];
+    [cmd setCommand:OrderConst_mediaAction_playSet_command];
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params setObject:setname forKey:@"setname"];
     [params setObject:tvname forKey:@"tvname"];
@@ -535,6 +535,30 @@
 + (TVCommandItem*)closeRdp {
     TVCommandItem* cmd = [[TVCommandItem alloc] init];
     [cmd setFirstcommand:OrderConst_CLOSERDP];
+    return cmd;
+}
+/**
+ * <summary>
+ *  构建继续VLC的指令
+ * </summary>
+ * <returns>TV指令</returns>
+ */
++ (TVCommandItem*) createPlayVLCCommand {
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    [cmd setFirstcommand:OrderConst_VLCAction_firCommand];
+    [cmd setSecondcommand:OrderConst_VLCAction_Play_secondCommand];
+    return cmd;
+}
+/**
+ * <summary>
+ *  构建暂停/继续切换VLC的指令
+ * </summary>
+ * <returns>TV指令</returns>
+ */
++ (TVCommandItem*) createPlayPauseVLCCommand {
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    [cmd setFirstcommand:OrderConst_VLCAction_firCommand];
+    [cmd setSecondcommand:OrderConst_VLCAction_Play_Pause_secondCommand];
     return cmd;
 }
 @end

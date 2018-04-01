@@ -27,7 +27,7 @@
 
 CF_EXTERN_C_BEGIN
 
-@class FileItem;
+@class FileItemForMedia;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -93,7 +93,7 @@ typedef GPB_ENUM(GetFileInfoRsp_FieldNumber) {
 @property(nonatomic, readwrite) GetFileInfoRsp_ResultCode resultCode;
 
 @property(nonatomic, readwrite) BOOL hasResultCode;
-@property(nonatomic, readwrite, strong, null_resettable) FileItem *fileItem;
+@property(nonatomic, readwrite, strong, null_resettable) FileItemForMedia *fileItem;
 /** Test to see if @c fileItem has been set. */
 @property(nonatomic, readwrite) BOOL hasFileItem;
 

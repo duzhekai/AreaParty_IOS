@@ -54,7 +54,7 @@ typedef GPB_ENUM(FileItem_FieldNumber) {
   FileItem_FieldNumber_FileDate = 5,
 };
 
-@interface FileItem : GPBMessage
+@interface FileItem: GPBMessage
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *fileId;
 /** Test to see if @c fileId has been set. */

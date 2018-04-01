@@ -27,7 +27,7 @@
 
 CF_EXTERN_C_BEGIN
 
-@class FileItem;
+@class FileItemForMedia;
 @class UserItem;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -103,7 +103,7 @@ typedef GPB_ENUM(GetUserInfoRsp_FieldNumber) {
 /** The number of items in @c userItemArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger userItemArray_Count;
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<FileItem*> *filesArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<FileItemForMedia*> *filesArray;
 /** The number of items in @c filesArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger filesArray_Count;
 

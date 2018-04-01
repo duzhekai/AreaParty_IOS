@@ -101,7 +101,7 @@ typedef struct GetFileInfoReq__storage_ {
 typedef struct GetFileInfoRsp__storage_ {
   uint32_t _has_storage_[1];
   GetFileInfoRsp_ResultCode resultCode;
-  FileItem *fileItem;
+  FileItemForMedia *fileItem;
 } GetFileInfoRsp__storage_;
 
 // This method is threadsafe because it is initially called

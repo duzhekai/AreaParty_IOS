@@ -96,7 +96,9 @@
                                      [NSNumber numberWithInt:200],@"what",
                                      data,@"obj",
                                      nil];
-            [myhandler onHandler:message];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myhandler onHandler:message];
+            });
             
         }
     }
@@ -106,7 +108,9 @@
                                      [NSNumber numberWithInt:404],@"what",
                                      data,@"obj",
                                      nil];
-            [myhandler onHandler:message];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myhandler onHandler:message];
+            });
         }
     }
 }

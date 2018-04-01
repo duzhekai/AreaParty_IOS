@@ -83,14 +83,55 @@
     NSLog(@"标记为tag %ld的发送失败 失败原因 %@",tag, error);
 }
 -(void)udpSocket:(GCDAsyncUdpSocket *)sock didReceiveData:(NSData *)data fromAddress:(NSData *)address withFilterContext:(id)filterContext{
-    NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"收到udp报文%@",s);
-    [MyUIApplication setReceiveMsgBean:[Update_ReceiveMsgBean yy_modelWithJSON:s]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"newVersionInforChecked" object:nil userInfo:[NSDictionary dictionaryWithObject:[Update_ReceiveMsgBean yy_modelWithJSON:s] forKey:@"data"]];
-    [sock close];
-    if(s.length > 0){
-        [[MyUIApplication getversionCheckTimer] invalidate];
+    if([[GCDAsyncUdpSocket hostFromAddress:address] isEqualToString:IPAddressConst_statisticServer_ip]){
+        NSString *s = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"收到udp报文%@",s);
+        [MyUIApplication setReceiveMsgBean:[Update_ReceiveMsgBean yy_modelWithJSON:s]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newVersionInforChecked" object:nil userInfo:[NSDictionary dictionaryWithObject:[Update_ReceiveMsgBean yy_modelWithJSON:s] forKey:@"data"]];
+        [sock close];
+        if(s.length > 0){
+            [[MyUIApplication getversionCheckTimer] invalidate];
+        }
     }
+    if([[GCDAsyncUdpSocket hostFromAddress:address] isEqualToString:[MyUIApplication getSelectedTVIP].ip]){//过滤非当前连接TV的广播,
+        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Get data from TVPLAYER(%@):%@",[MyUIApplication getSelectedTVIP].ip,dataString);
+        if(data!=nil){//过滤非当前连接TV的广播
+            NSLog(@"Execute cmd from tv");
+            TVCommandItem* tvCommandItem= nil;
+            @try {
+                tvCommandItem= [TVCommandItem yy_modelWithJSON:dataString];
+                NSString* ctrlCmd = tvCommandItem.secondcommand;
+                if([ctrlCmd isEqualToString:@"PLAY_PAUSE"]){
+                    NSString* cmd = tvCommandItem.fourthCommand;
+                    if([cmd isEqualToString:@"PLAY"]){
+                        //vedioPlayControl.play();
+                    }
+                    else if([cmd isEqualToString:@"PAUSE"]){
+                        //vedioPlayControl.pause();
+                    }
+                }
+                else if([ctrlCmd isEqualToString:@"CHECK_PLAY_INFO"]){
+//                    Log.e(tag, tvCommandItem.getSevencommand());
+//                    Log.e(tag, tvCommandItem.getFourthCommand());
+//                    Log.e(tag, tvCommandItem.getFifthCommand());
+//                    playerType=tvCommandItem.getFirstcommand();
+//                vedioPlayControl.checkPlayInfo(tvCommandItem.getFifthCommand(),tvCommandItem.getFourthCommand(),tvCommandItem.getSevencommand());
+                }
+                else if([ctrlCmd isEqualToString:@"PLAY_APPOINT_POSITION"]){
+                    //vedioPlayControl.playAppointPosition(tvCommandItem.getFifthCommand());
+                }
+                else if([ctrlCmd isEqualToString:@"EXIT_PLAYER"]){
+//                    playerIsRun = false;
+//                    //修改为让遥控器一直可以开启
+//                    //   EventBus.getDefault().post(new TvPlayerChangeEvent(false), "tvPlayerStateChanged");
+//                    vedioPlayControl.exit();
+                }
+            }@catch(NSException* e){
+        }
+        }
+    }
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

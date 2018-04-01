@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "onHandler.h"
-
+#import "TVPCNetStateChangeEvent.h"
 @interface Fragment2ViewController : UIViewController<onHandler>
 @property (weak, nonatomic) IBOutlet UIView *middleview;
 @property (weak, nonatomic) IBOutlet UIView *Pic_playlist;
@@ -29,6 +29,14 @@
 @property (weak, nonatomic) IBOutlet UIView *audiosPlayListLL;
 @property (weak, nonatomic) IBOutlet UILabel *audiosPlayListNumTV;
 @property (weak, nonatomic) IBOutlet UIImageView *lastVideoThumbnailIV;
+@property (weak, nonatomic) IBOutlet UIImageView *audioPicIV;
+@property (weak, nonatomic) IBOutlet UIButton *lastVideoCastIB;
+@property (weak, nonatomic) IBOutlet UIButton *lastAudioCastIB;
+- (IBAction)onclick:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *lastVideoNameTV;
+@property (weak, nonatomic) IBOutlet UILabel *lastAudioNameTV;
+@property (weak, nonatomic) IBOutlet UILabel *moreVideoRecordsTV;
+@property (weak, nonatomic) IBOutlet UILabel *moreAudioRecordsTV;
 
 
 @end

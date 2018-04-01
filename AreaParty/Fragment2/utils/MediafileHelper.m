@@ -17,6 +17,7 @@ static NSMutableArray<NSString*>* startPathList;
 static NSString* currentPath = @"";  // 当前路径
 static NSMutableArray<MediaItem*>* mediaFiles;   // 当前路径下的媒体文件
 static NSMutableArray<MediaItem*>* mediaFolders; // 当前路径下的文件夹
+
 @implementation MediafileHelper
 
 /**
@@ -147,5 +148,226 @@ static NSMutableArray<MediaItem*>* mediaFolders; // 当前路径下的文件夹
         mediaFolders = [[NSMutableArray alloc] init];
     }
     return mediaFolders;
+}
++ (void) setMediaType:(NSString*) mediaType1{
+    mediaType = mediaType1;
+}
++ (NSString*) getMediaType {
+    return mediaType;
+}
++ (BOOL) isPathContained:(NSString*) path  List:(NSMutableArray<NSString*>*) lists {
+    if(lists.count == 0)
+        return true;
+    if([path isEqualToString:@""])
+        return true;
+    for(int i = 0; i < lists.count; ++i)
+        if([path isEqualToString:lists[i]]) 
+            return true;
+    return false;
+}
++ (NSString*)getcurrentPath{
+    return currentPath;
+}
++ (void) setcurrentPath:(NSString*) path{
+    currentPath = path;
+}
+/**
+ * <summary>
+ *  启动线程从pc下载对应媒体库文件列表
+ *  进入相应媒体库时调用
+ * </summary>
+ * <param name="handler">消息传递句柄</param>
+ */
++ (void) loadMediaLibFiles:(id<onHandler>)handler{
+    [mediaFiles removeAllObjects];
+    [mediaFolders removeAllObjects];
+    BOOL isRoot = true;
+    if(startPathList.count != 0)
+        isRoot =  [self isPathContained:currentPath List:startPathList];
+    [[[Send2PCThread alloc] initWithtypeName:mediaType path:currentPath isRoot:isRoot Handler:handler] start];
+}
+/**
+ * <summary>
+ *  启动线程播放PC上指定的媒体文件到指定TV的
+ * </summary>
+ * <param name="filetype">媒体文件类别(AUDIO、VIDEO、IMAGE)</param>
+ * <param name="filename">媒体文件名称</param>
+ * <param name="path">媒体文件路径信息</param>
+ * <param name="tvname">tv名称</param>
+ * <param name="myhandler">消息传递句柄</param>
+ */
++ (void) playMediaFile:(NSString*) filetype Path:(NSString*) path Filename:(NSString*) filename TVname:(NSString*) tvname  Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:path forKey:@"path"];
+    [param setObject:filename forKey:@"filename"];
+    [param setObject:tvname forKey:@"tvname"];
+    [[[Send2PCThread alloc] initWithtypeName:filetype commandType:OrderConst_mediaAction_play_command Map:param Handler:myhandler] start];
+//    if (!ReceiveCommandFromTVPlayer.getPlayerIsRun()){
+//        new ReceiveCommandFromTVPlayer(true).start();
+//    }
+}
+/**
+ * <summary>
+ *  播放视频成功后调用将当前视频文件添加到最近播放文件中
+ *  <param name="file">当前播放着的音频</param>
+ * </summary>
+ */
++ (void) addRecentVideos:(MediaItem*) file{
+    for(int i = 0; i < recentVideos.count; ++i) {
+        if([recentVideos[i] equals:file]){
+           [recentVideos removeObjectAtIndex:i--];
+        }
+    }
+    [recentVideos insertObject:file atIndex:0];
+}
+/**
+ * <summary>
+ *  播放音频成功后调用将当前音频文件添加到最近播放文件中
+ *  <param name="file">当前播放着的音频</param>
+ * </summary>
+ */
++ (void) addRecentAudios:(MediaItem*) file{
+    for(int i = 0; i < recentAudios.count; ++i) {
+        if([recentAudios[i] equals:file]){
+            [recentAudios removeObjectAtIndex:i--];
+        }
+    }
+    [recentAudios insertObject:file atIndex:0];
+}
+/**
+ * <summary>
+ *  过滤选中的文件列表
+ *  启动线程将剩余的文件添加到指定列表
+ *  在相应的媒体库调用
+ * </summary>
+ * <param name="setname">指定的要添加当前文件的播放列表</param>
+ * <param name="mediaList">要添加的当前文件列表</param>
+ * <param name="myhandler">消息传递句柄</param>
+ */
++ (void) addFilesToSet:(NSString*) setname List:(NSMutableArray<MediaItem*>*) mediaList handler:(id<onHandler>) myhandler{
+    if([mediaType isEqualToString:OrderConst_audioAction_name]) {
+        NSMutableArray<MediaItem*>* currentSet = [audioSets objectForKey:setname];
+        for(int i = 0; i < mediaList.count; ++i)
+            for(int j = 0; j < currentSet.count; ++j)
+                if(i>=0 && [mediaList[i] equals:currentSet[j]])
+                   [mediaList removeObjectAtIndex:i--];
+    } else if([mediaType isEqualToString:OrderConst_imageAction_name]) {
+        NSMutableArray<MediaItem*>* currentSet = [imageSets objectForKey:setname];
+        for(int i = 0; i < mediaList.count; ++i)
+            for(int j = 0; j < currentSet.count; ++j)
+                if(i>=0 && [mediaList[i] equals:currentSet[j]])
+                    [mediaList removeObjectAtIndex:i--];
+    }
+    if(mediaList.count > 0) {
+        NSString* liststr = [mediaList yy_modelToJSONString];
+        NSLog(@"MediafileHelper liststr:%@",liststr);
+        NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+        [param setObject:setname forKey:@"setname"];
+        [param setObject:liststr forKey:@"liststr"];
+        [[[Send2PCThread alloc] initWithtypeName:mediaType commandType:OrderConst_mediaAction_addFilesToSet_command Map:param Handler:myhandler] start];
+    }
+    //else myhandler.sendEmptyMessage(OrderConst.addPCFilesToSet_OK);
+}
++ (void) addFileToLocalSet:(NSString*) name List:(NSMutableArray<MediaItem*>*) fileList {
+    NSMutableArray<MediaItem*>* currentSet;
+    if([mediaType isEqualToString:OrderConst_audioAction_name]) {
+        currentSet = [audioSets objectForKey:name];
+    } else {
+        currentSet = [imageSets objectForKey:name];
+    }
+    for (MediaItem* file in fileList){
+        BOOL state = NO;
+        for(int i = 0; i < currentSet.count; ++i)
+            if([currentSet[i] equals:file])
+                state = YES;
+        if(!state)
+           [currentSet addObject:file];
+    }
+}
+/**
+ * <summary>
+ *  启动线程向PC上增加音频播放的集合
+ *  在音频集合页面调用
+ * </summary>
+ * <param name="filename">媒体文件名称</param>
+ */
++ (void) addAudioPlaySet:(NSString*) setname Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setname forKey:@"setname"];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_audioAction_name commandType:OrderConst_mediaAction_addSet_command Map:param Handler:myhandler]start];
+}
+/**
+ * <summary>
+ *  启动线程向PC上增加图片播放的集合
+ *  在音频集合页面调用
+ * </summary>
+ * <param name="filename">媒体文件名称</param>
+ */
++ (void) addImagePlaySet:(NSString*) setname Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setname forKey:@"setname"];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_imageAction_name commandType:OrderConst_mediaAction_addSet_command Map:param Handler:myhandler]start];
+}
+/**
+ * <summary>
+ *  启动线程向PC上删除音频播放的集合
+ *  在音频集合页面调用
+ * </summary>
+ * <param name="filename">媒体文件名称</param>
+ */
++ (void) deleteAudioPlaySet:(NSString*) setname Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setname forKey:@"setname"];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_audioAction_name commandType:OrderConst_mediaAction_deleteSet_command Map:param Handler:myhandler] start];
+}
+/**
+ * <summary>
+ *  启动线程播放PC上指定的媒体列表到指定TV
+ * </summary>
+ * <param name="filetype">媒体文件类别(AUDIO、IMAGE)</param>
+ * <param name="filename">媒体文件名称</param>
+ * <param name="path">媒体文件路径信息</param>
+ * <param name="tvname">tv名称</param>
+ * <param name="myhandler">消息传递句柄</param>
+ */
++ (void) playMediaSet:(NSString*) setType setName:(NSString*)setName TVName:(NSString*)tvname Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setName forKey:@"setname"];
+    [param setObject:tvname forKey:@"tvname"];
+    [[[Send2PCThread alloc] initWithtypeName:setType commandType:OrderConst_mediaAction_playSet_command Map:param Handler:myhandler] start];
+}
++ (void) playMediaSetAsBGM:(NSString*) setType setName:(NSString*)setName TVName:(NSString*)tvname Handler:(id<onHandler>) myhandler {
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setName forKey:@"setname"];
+    [param setObject:tvname forKey:@"tvname"];
+    [[[Send2PCThread alloc] initWithtypeName:setType commandType:OrderConst_mediaAction_playSet_command_BGM Map:param Handler:myhandler] start];
+}
++ (void) vlcContinue {
+    [[[Send2TVThread alloc] initWithCmd:[[CommandUtil createPlayVLCCommand] yy_modelToJSONString]] start];
+}
+
++ (void) vlcPause {
+    [[[Send2TVThread alloc] initWithCmd:[[CommandUtil createPlayPauseVLCCommand] yy_modelToJSONString]] start];
+}
++ (void) playAllMediaFile:(NSString*) filetype  Path:(NSString*) folderPath  TVName:(NSString*) tvname  Handler:(id<onHandler>) myhandler{
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:folderPath forKey:@"folder"];
+    [param setObject:tvname forKey:@"tvname"];
+    [[[Send2PCThread alloc] initWithtypeName:filetype commandType:OrderConst_mediaAction_playALL_command Map:param Handler:myhandler] start];
+    if (![ReceiveCommandFromTVPlayer getplayerIsRun]){
+        [[[ReceiveCommandFromTVPlayer alloc]initWithIsRun:YES]start];
+    }
+}
+/**
+ * <summary>
+ *  启动线程向PC上删除图片播放的集合
+ *  在图片集合页面调用
+ * </summary>
+ * <param name="filename">媒体文件名称</param>
+ */
++ (void) deleteImagePlaySet:(NSString*) setname Handler:(id<onHandler>) myhandler{
+    NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
+    [param setObject:setname forKey:@"setname"];
+    [[[Send2PCThread alloc] initWithtypeName:OrderConst_imageAction_name commandType:OrderConst_mediaAction_deleteSet_command Map:param Handler:myhandler] start];
 }
 @end
