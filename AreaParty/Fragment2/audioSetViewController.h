@@ -14,6 +14,7 @@
 #import "onHandler.h"
 #import "tab02_audioset_item.h"
 #import "audioSetContentViewController.h"
+#import "LocalSetListContainer.h"
 @interface audioSetViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,onHandler>
 - (IBAction)press_return:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *shiftBar;

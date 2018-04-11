@@ -26,7 +26,8 @@
 #import "Update_ReceiveMsgBean.h"
 #import "Update_SendMsgBean.h"
 #import "changeSelectedDeviceNameEvent.h"
-@interface MyUIApplication : UIApplication
+#import "AESc.h"
+@interface MyUIApplication : UIApplication<GCDAsyncSocketDelegate>
 @property (strong,nonatomic) NSMutableArray<UIViewController*>* activities;
 +(void) addMySharedFlies:(SharedflieBean*)mysharedFiles;
 +(NSMutableArray<SharedflieBean*> *) getmySharedFiles;
@@ -71,4 +72,7 @@
 - (void) closeAll;
 + (void)changeSelectedTVName:(NSString*) newName;
 + (void)changeSelectedPCName:(NSString*) newName;
++ (NSDictionary*) parse:(NSString*) JsonString;
++ (void) verifyLastTVMac;
++ (NSString*) getIPStr ;
 @end

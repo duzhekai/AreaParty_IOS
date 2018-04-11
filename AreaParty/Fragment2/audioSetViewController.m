@@ -66,6 +66,7 @@
             [setList addObject:tempbean];
         }];
     }
+    [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"audio"]];
 }
 - (void) initView{
     _shiftBar.layer.borderColor = [UIColor colorWithRed:230/255.0 green:87/255.0 blue:87/255.0 alpha:1].CGColor;
@@ -108,13 +109,16 @@
                 if( [self isSetContained_app:tempName]) {
                     [Toast ShowToast:@"当前列表名称已存在" Animated:YES time:1 context:self.view];
                 } else {
-//                    LocalSetListContainer.addLocalSetList("audio",tempName);
-//                    setList_app.clear();
-//                    setList_app.addAll(LocalSetListContainer.getLocalSetList("audio"));
-//                    fileAdapter.notifyDataSetChanged();
-//                    dialog.dismiss();
-//                    Toasty.success(audioSetActivity.this, "添加新的音频列表成功", Toast.LENGTH_SHORT, true).show();
-                    
+                    if( [self isSetContained_app:tempName]) {
+                        [Toast ShowToast:@"当前列表名称已存在" Animated:YES time:1 context:self.view];
+                    } else {
+                        [LocalSetListContainer addLocalSetList:@"audio" setName:tempName];
+                        [setList_app removeAllObjects];
+                        [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"audio"]];
+                        [_fileSGV reloadData];
+                        [Toast ShowToast:@"添加新的音频列表成功" Animated:YES time:1 context:self.view];
+                        
+                    }
                 }
             }
             }}
@@ -254,14 +258,14 @@
     return 65;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *reuseIdentifier = @"tab02_audioset_item";
+    tab02_audioset_item* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    //如果缓存池中没有,那么创建一个新的cell
+    if (!cell) {
+        //这里换成自己定义的cell,并调用类方法加载xib文件
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"tab02_audioset_item" owner:nil options:nil] firstObject];
+    }
     if(!_isAppContent){
-        static NSString *reuseIdentifier = @"tab02_audioset_item";
-        tab02_audioset_item* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        //如果缓存池中没有,那么创建一个新的cell
-        if (!cell) {
-            //这里换成自己定义的cell,并调用类方法加载xib文件
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"tab02_audioset_item" owner:nil options:nil] firstObject];
-        }
         [cell.nameTV setText:setList[indexPath.row].name];
         [cell.numTV setText: setList[indexPath.row].numInfor];
         [cell.thumbnailIV setImage:thumbnails[setList[indexPath.row].thumbnailID]];
@@ -269,8 +273,14 @@
         cell.index = [NSNumber numberWithInteger:indexPath.row];
         return cell;
     }
-    else
-        return nil;
+    else{
+        [cell.nameTV setText:setList_app[indexPath.row].name];
+        [cell.numTV setText: setList_app[indexPath.row].numInfor];
+        [cell.thumbnailIV setImage:thumbnails[setList_app[indexPath.row].thumbnailID]];
+        cell.perform_obj = self;
+        cell.index = [NSNumber numberWithInteger:indexPath.row];
+        return cell;
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_isAppContent){
@@ -279,10 +289,10 @@
         vc.setName = setList[indexPath.row].name;
         [self presentViewController:vc animated:YES completion:nil];
     }else {
-//        Intent intent = new Intent(audioSetActivity.this, audioSetContentActivity.class);
-//        intent.putExtra("isAppContent",true);
-//        intent.putExtra("setName", setList_app.get(i).name);
-//        startActivity(intent);
+        audioSetContentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"audioSetContentViewController"];
+        vc.isAppContent = YES;
+        vc.setName = setList_app[indexPath.row].name;
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 //tableview delegete end
@@ -294,11 +304,11 @@
         [MediafileHelper deleteAudioPlaySet:setList[i].name Handler:self];
         setToDeleteId = i;
     }else {
-//        LocalSetListContainer.deleteLocalSetList("audio",setList_app.get(i).name);
-//        setList_app.clear();
-//        setList_app.addAll(LocalSetListContainer.getLocalSetList("audio"));
-//        fileAdapter.notifyDataSetChanged();
-//        Toasty.success(audioSetActivity.this, "删除指定列表成功", Toast.LENGTH_SHORT, true).show();
+        [LocalSetListContainer deleteLocalSetList:@"audio" setName:setList_app[i].name];
+        [setList_app removeAllObjects];
+        [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"audio"]];
+        [_fileSGV reloadData];
+        [Toast ShowToast:@"删除指定列表成功" Animated:YES time:1 context:self.view];
     }
 }
 @end

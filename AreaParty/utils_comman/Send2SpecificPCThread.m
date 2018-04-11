@@ -7,6 +7,7 @@
 //
 
 #import "Send2SpecificPCThread.h"
+#import "AESc.h"
 @implementation Send2SpecificPCThread
 
 -(instancetype) initWithtypeName:(NSString*)typeName1 commandType:(NSString*)commandType1 myhandler:(id<onHandler>)myhandler1 IP:(NSString*)ip1 port:(int)port1 code:(NSString*)code1{
@@ -17,7 +18,8 @@
         myhandler = myhandler1;
         IP = ip1;
         port = port1;
-        code = code1;
+        NSString* pass1 = [AESc stringToMD5:code1];
+        code = pass1;
     }
     return self;
 }
@@ -31,20 +33,22 @@
         NSOutputStream* outputStream;
         Byte buffer[8192];
         @try {
+            NSString* cmdStr1 = [AESc EncryptAsDoNet:cmdStr key:[code substringToIndex:8]];
             CFStreamCreatePairWithSocketToHost(NULL,(__bridge CFStringRef)IP,port,&readStream,&writeStream);
             inputStream = (__bridge NSInputStream*)(readStream);
             outputStream = (__bridge NSOutputStream*)(writeStream);
             [inputStream open];
             [outputStream open];
-            NSData* senddata =[cmdStr dataUsingEncoding:NSUTF8StringEncoding];
+            NSData* senddata =[cmdStr1 dataUsingEncoding:NSUTF8StringEncoding];
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
             NSInteger length = [inputStream read:buffer maxLength:sizeof(buffer)];
             dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:buffer length:length] encoding:NSUTF8StringEncoding];
-            NSLog(@"Send2PCThread:指令:%@",cmdStr);
+            NSLog(@"Send2PCThread:指令:%@",cmdStr1);
             NSLog(@"Send2PCThread:回复:%@",dataReceived);
-            if([dataReceived length]>0){
+            NSString* decryptdata = [AESc DecryptDoNet:dataReceived key:[code substringToIndex:8]];
+            if([decryptdata length]>0){
                 @try {
-                    ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:dataReceived];
+                    ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:decryptdata];
                     if(receivedMsg.status == OrderConst_success) {
                         if(receivedMsg.data!=nil)
                            [self parseMesgReceived:receivedMsg.data];

@@ -132,6 +132,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="OrP-M9-xXk" secondAttribute="trailing" id="ef3-3c-bYN"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="nameTV" destination="efc-A2-PwR" id="eFg-mP-Cji"/>

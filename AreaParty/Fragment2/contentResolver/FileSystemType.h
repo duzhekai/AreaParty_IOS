@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef NS_ENUM(NSInteger, file_sys_type) {
+typedef NS_ENUM(NSInteger, File_Sys_Type) {
     photo,//默认从0开始
     music,
     video,

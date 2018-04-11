@@ -7,8 +7,12 @@
 //
 
 #import "Send2PCThread.h"
-
-@implementation Send2PCThread
+#import "AESc.h"
+@implementation Send2PCThread{
+    NSString* password;
+    NSString* pass;
+    NSString* pass1;
+}
 /**
  * <summary>
  *  构造函数
@@ -87,8 +91,17 @@
         outputStream = (__bridge NSOutputStream*)(writeStream);
         [inputStream open];
         [outputStream open];
-        NSData* senddata =[cmdStr dataUsingEncoding:NSUTF8StringEncoding];
+        //发送数据
+        password = [[[PreferenceUtil alloc] init] readKey:@"PCMACS"];
+        NSDictionary* PCMacs = [MyUIApplication parse:password];
+        pass = [PCMacs objectForKey:[MyUIApplication getSelectedPCIP].mac];
+        pass1 = [AESc stringToMD5:pass];
+        NSString* cmdStr1 = [AESc EncryptAsDoNet:cmdStr key:[pass1 substringToIndex:8]];
+        NSData* senddata =[cmdStr1 dataUsingEncoding:NSUTF8StringEncoding];
         [outputStream write:[senddata bytes] maxLength:[senddata length]];
+        NSString* newline = @"\n";
+        NSData* newlinedata =[newline dataUsingEncoding:NSUTF8StringEncoding];
+        [outputStream write:[newlinedata bytes] maxLength:[newlinedata length]];
         Byte receivedbuf[40000];
         int readCount = 0;
         int len = 0;
@@ -98,9 +111,10 @@
         dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:readCount] encoding:NSUTF8StringEncoding];
         NSLog(@"Send2PCThread:指令:%@",cmdStr);
         NSLog(@"Send2PCThread:回复:%@",dataReceived);
-        if([dataReceived length] > 0) {
+        NSString* decryptdata =[AESc DecryptDoNet:dataReceived key:[pass1 substringToIndex:8]];
+        if([decryptdata length] > 0) {
             @try {
-                ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:dataReceived];
+                ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:decryptdata];
                 if(receivedMsg.status == OrderConst_success) {
                     if(receivedMsg.data != nil)
                         [self parseMesgReceived:receivedMsg.data];
@@ -147,6 +161,7 @@
         }
         if([commandType isEqualToString:OrderConst_appAction_rdpOpen_command]){
             cmdStr = [[CommandUtil createOpenPcRdpAppCommand_appname:param[@"appname"] path:param[@"path"]] yy_modelToJSONString];
+//            cmdStr = @"{\"command\":\"OPEN_RDP\",\"name\":\"APP\",\"param\":{\"appname\":\"网易云音乐\",\"path\":\"F:\\\\cloudmusic\\\\cloudmusic.exe\"}}";
         }
     }
     if([typeName isEqualToString:OrderConst_gameAction_name]){

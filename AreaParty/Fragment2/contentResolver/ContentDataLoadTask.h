@@ -15,4 +15,5 @@
 @end
 @interface ContentDataLoadTask : NSThread
 @property(strong,atomic) id<OnContentDataLoadListener> mOnContentDataLoadListener;
+- (instancetype)initWithType:(File_Sys_Type) type1;
 @end

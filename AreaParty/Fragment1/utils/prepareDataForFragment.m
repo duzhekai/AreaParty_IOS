@@ -149,4 +149,84 @@
     
     return state;
 }
++ (BOOL) getDlnaCastState_File:(FileItemForMedia*) file Type:(NSString*) fileType{
+    BOOL state = NO;
+    NSString* ip = [MyUIApplication getIPStr];
+    NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+    if(!([ip isEqualToString:@""]||ip == nil) && !([TVIp isEqualToString:@""] || TVIp ==nil) ){
+        NSString* secondcommand = [NSString stringWithFormat:@"http://%@:%d/%@",ip,IPAddressConst_DLNAPHONEHTTPPORT_B,[file.mFilePath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+        NSLog(@"test->secondcommand:%@",file.mFilePath);
+        NSString* fourthcommand = file.mFileName;
+        NSString* fifthcommand  = fileType;
+        TVCommandItem* tvCommandItem = [CommandUtil createPlayUrlFileOnTVCommand_File:secondcommand FileName:fourthcommand Type:fifthcommand];
+        NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+        state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+    }
+    
+    return state;
+}
++ (BOOL) getDlnaCastState_List:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType{
+    BOOL state = NO;
+    if (setList!=nil && setList.count>0){
+        NSString* ip = [MyUIApplication getIPStr];
+        NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+        NSMutableArray<NSString*>* urls = [[NSMutableArray alloc] init];
+        if(!([ip isEqualToString:@""]) && !([TVIp isEqualToString:@""])) {
+            for (FileItemForMedia* file in setList){
+                NSString* secondcommand = [NSString stringWithFormat:@"http://%@:%d/%@",ip,IPAddressConst_DLNAPHONEHTTPPORT_B,[file.mFilePath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+                NSLog(@"test->secondcommand***%@",file.mFilePath);
+                [urls addObject:secondcommand];
+            }
+            NSString* fifthcommand  = fileType;
+            TVCommandItem* tvCommandItem = [CommandUtil createPlayUrlFileOnTVCommand_List:urls FileName:@"" Type:fifthcommand];
+            NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+            state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+        }
+    }
+    return state;
+}
++ (BOOL) getDlnaCastState_Folder:(NSString*) folderName Type:(NSString*) fileType{
+    BOOL state = NO;
+    NSString* ip = [MyUIApplication getIPStr];
+    NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+    NSMutableArray<NSString*>* urls = [[NSMutableArray alloc] init];
+    if(!([ip isEqualToString:@""]) && !([TVIp isEqualToString:@""])) {
+        NSMutableArray<FileItemForMedia*>* fileList = [[NSMutableArray alloc] init];
+        if ([fileType isEqualToString:@"image"]){
+            [fileList addObjectsFromArray:[ContentDataControl getFileItemListByFolder:photo Folder:folderName]];
+        }else if ([fileType isEqualToString:@"audio"]){
+            [fileList addObjectsFromArray:[ContentDataControl getFileItemListByFolder:music Folder:folderName]];
+        }
+        for (FileItemForMedia* file in fileList){
+            NSString* secondcommand = [NSString stringWithFormat:@"http://%@:%d/%@",ip,IPAddressConst_DLNAPHONEHTTPPORT_B,[file.mFilePath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+            NSLog(@"test->secondcommand***%@",file.mFilePath);
+            [urls addObject:secondcommand];
+        }
+        NSString* fifthcommand  = fileType;
+        TVCommandItem* tvCommandItem = [CommandUtil createPlayUrlFileOnTVCommand_List:urls FileName:@"" Type:fifthcommand];
+        NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+        state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+    }
+    return state;
+}
++ (BOOL) getDlnaCastState_bgm:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType{
+    BOOL state = NO;
+    if (setList!=nil && setList.count>0){
+        NSString* ip = [MyUIApplication getIPStr];
+        NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+        NSMutableArray<NSString*>* urls = [[NSMutableArray alloc] init];
+        if(!([ip isEqualToString:@""]) && !([TVIp isEqualToString:@""])) {
+            for (FileItemForMedia* file in setList){
+                NSString* secondcommand = [NSString stringWithFormat:@"http://%@:%d/%@",ip,IPAddressConst_DLNAPHONEHTTPPORT_B,[file.mFilePath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+                NSLog(@"test->secondcommand***%@",file.mFilePath);
+                [urls addObject:secondcommand];
+            }
+            NSString* fifthcommand  = fileType;
+            TVCommandItem* tvCommandItem = [CommandUtil createPlayBGMOnTVCommand:urls FileName:@"" Type:fifthcommand];
+            NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+            state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+        }
+    }
+    return state;
+}
 @end

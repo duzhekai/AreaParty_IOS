@@ -52,4 +52,7 @@
 + (TVCommandItem*)closeRdp;
 + (TVCommandItem*) createPlayVLCCommand;
 + (TVCommandItem*) createPlayPauseVLCCommand;
++ (TVCommandItem*) createPlayUrlFileOnTVCommand_File:(NSString*) url  FileName:(NSString*) fileName  Type:(NSString*) fileType;
++ (TVCommandItem*) createPlayUrlFileOnTVCommand_List:(NSMutableArray<NSString*>*)urls FileName:(NSString*)fileName Type:(NSString*) fileType;
++ (TVCommandItem*) createPlayBGMOnTVCommand:(NSMutableArray<NSString*>*)urls FileName:(NSString*)fileName Type:(NSString*) fileType;
 @end

@@ -26,6 +26,9 @@
     UILongPressGestureRecognizer* longpress_rec_folder;
     UILongPressGestureRecognizer* longpress_rec_file;
     NSMutableArray<MediaItem*>* selectedList;
+    ContentDataLoadTask* mContentDataLoadTask;
+    AVLoadingIndicatorView* mProgressDialog;
+    NSArray<FileItemForMedia*>* mediafiles_app;
 }
 
 @end
@@ -47,6 +50,13 @@
         [_pc_file_TV setTextColor:[UIColor colorWithRed:112/255.0 green:112/255.0 blue:112/255.0 alpha:1]];
     }
     //加载本地媒体库
+    if (mContentDataLoadTask == nil){
+        mContentDataLoadTask = [[ContentDataLoadTask alloc] initWithType:music];
+        mContentDataLoadTask.mOnContentDataLoadListener = self;
+        [mContentDataLoadTask start];
+        if([ContentDataControl getmMusicFolder]!=nil)
+            [[ContentDataControl getmMusicFolder] removeAllObjects];
+    }
 }
 - (void) initView{
     _shiftBar.layer.borderColor = [UIColor colorWithRed:230/255.0 green:87/255.0 blue:87/255.0 alpha:1].CGColor;
@@ -118,6 +128,7 @@
     isSelectModel = NO;
     isPlaying = NO;
     selectedList = [[NSMutableArray alloc] init];
+    mediafiles_app = [[NSArray alloc] init];
     pc_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     app_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     add_menu_ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
@@ -232,6 +243,7 @@
             NSIndexPath * indexPath = [_fileSLV indexPathForRowAtPoint:point];
             if(indexPath == nil) return ;
             //add your code here
+            if(!isAppContent){
             isSelectModel = YES;
             MediaItem* temp = [MediafileHelper getmediaFiles][indexPath.row];
             tab02_folder_item* item = [_fileSLV cellForRowAtIndexPath:indexPath];
@@ -239,6 +251,7 @@
             [item setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
             _menuList.hidden = NO;
             _audioPlayControl.hidden = YES;
+            }
         }
     }
 }
@@ -305,7 +318,7 @@
     }
     else{
         if(tableView == _folderSLV){
-            int height = 0;
+            int height = [ContentDataControl getFolder:music].count *50;
             NSArray* arrs = _folderSLV_container.constraints;
             for(NSLayoutConstraint* attr in arrs){
                 if(attr.firstAttribute == NSLayoutAttributeHeight){
@@ -313,9 +326,10 @@
                 }
             }
             [_Folder_scroll_view updateConstraints];
-            return 0;
+            return [ContentDataControl getFolder:music].count;
         }
-        return 0;
+        else
+            return mediafiles_app.count;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -338,6 +352,7 @@
             return cell;
         }
         else{
+            [cell.nameTV setText: [[ContentDataControl getFolder:music] objectAtIndex:indexPath.row]];
             return cell;
         }
     }
@@ -356,6 +371,9 @@
             return cell;
         }
         else{
+            [cell.nameTV setText: mediafiles_app[indexPath.row].mFileName];
+            cell.handler = self;
+            cell.index = [NSNumber numberWithInteger:indexPath.row];
             return cell;
         }
         
@@ -373,19 +391,29 @@
             [_folderSLV reloadData];
             [_fileSLV reloadData];
         }
+        else{
+            _Folder_scroll_view.hidden = YES;
+            _file_view.hidden = NO;
+            mediafiles_app = [ContentDataControl getFileItemListByFolder:music Folder:[[[ContentDataControl getmMusicFolder] allKeys] objectAtIndex:indexPath.row]];
+            [_numTV setText:[NSString stringWithFormat:@"(共%lu首)",(unsigned long)mediafiles_app.count]];
+            [_folderSLV reloadData];
+            [_fileSLV reloadData];
+        }
     }
     else if (tableView == _fileSLV){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         if (isSelectModel){
-            MediaItem* temp = [MediafileHelper getmediaFiles][indexPath.row];
-            if (![selectedList containsObject:temp]){
-                [selectedList addObject:temp];
-            [[_fileSLV cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
-            }else {
-                [selectedList removeObject:temp];
-                [[_fileSLV cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor clearColor]];
-                if (selectedList.count == 0){
-                    [self cancelSelectModel];
+            if(!isAppContent){
+                MediaItem* temp = [MediafileHelper getmediaFiles][indexPath.row];
+                if (![selectedList containsObject:temp]){
+                    [selectedList addObject:temp];
+                    [[_fileSLV cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.3]];
+                }else {
+                    [selectedList removeObject:temp];
+                    [[_fileSLV cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor clearColor]];
+                    if (selectedList.count == 0){
+                        [self cancelSelectModel];
+                    }
                 }
             }
             
@@ -398,6 +426,14 @@
                         [MediafileHelper playMediaFile:currentfile.type Path:currentfile.pathName Filename:currentfile.name TVname:[MyUIApplication getSelectedTVIP].name Handler:self];
                     } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
                 } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+            }
+            else{
+                if([MyUIApplication getselectedTVOnline]) {
+                    [DownloadFileManagerHelper setcontext:self];
+                    [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[indexPath.row] Type:@"audio"];
+                    [_currentMusicNameTV setText:mediafiles_app[indexPath.row].mFileName];
+                }
+                else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
             }
         }
     }
@@ -429,12 +465,36 @@
 }
 - (void)press_add_list:(NSNumber*) index{
     int i = [index intValue];
-    MediaItem* file = [MediafileHelper getmediaFiles][i];
-    tab02_listdialog* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"tab02_listdialog"];
-    listDialog.MediaType = file.type;
-    [listDialog.currentFileList removeAllObjects];
-    [listDialog.currentFileList addObject:file];
-    listDialog.pushvc = self;
-    [self presentViewController:listDialog animated:YES completion:nil];
+    if(!isAppContent){
+        MediaItem* file = [MediafileHelper getmediaFiles][i];
+        tab02_listdialog* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"tab02_listdialog"];
+        listDialog.MediaType = file.type;
+        [listDialog.currentFileList removeAllObjects];
+        [listDialog.currentFileList addObject:file];
+        listDialog.pushvc = self;
+        [self presentViewController:listDialog animated:YES completion:nil];
+    }
+    else{
+        FileItemForMedia* file = mediafiles_app[i];
+        listBottomDialog_app* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"listBottomDialog_app"];
+        listDialog.MediaType = @"audio";
+        [listDialog.currentFileList removeAllObjects];
+        [listDialog.currentFileList addObject:file];
+        listDialog.pushvc = self;
+        [self presentViewController:listDialog animated:YES completion:nil];
+    }
+}
+- (void)onStartLoad{
+    if (mProgressDialog == nil) {
+        mProgressDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
+    }
+    [mProgressDialog showPromptViewOnView:self.view];
+}
+- (void)onFinishLoad{
+    if (mProgressDialog != nil) {
+        [mProgressDialog removeView];
+    }
+    [_folderSLV reloadData];
+    [_fileSLV reloadData];
 }
 @end

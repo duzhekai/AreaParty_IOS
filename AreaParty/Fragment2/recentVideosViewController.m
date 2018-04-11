@@ -64,9 +64,8 @@
         }
         [cell.nameTV setText: [[MediafileHelper getrecentVideos] objectAtIndex:indexPath.row].name];
         [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:[[MediafileHelper getrecentVideos]objectAtIndex:indexPath.row].thumbnailurl] placeholderImage:[UIImage imageNamed:@"videotest.png"]];
-        cell.obj = [[MediafileHelper getrecentVideos] objectAtIndex:indexPath.row];
+        cell.index = [NSNumber numberWithInteger:indexPath.row];
         cell.handler = self;
-        cell.isrecent = YES;
     
     return cell;
 }
@@ -90,5 +89,15 @@
     else if([[message objectForKey:@"what"]intValue] == OrderConst_playPCMedia_Fail){
         [Toast ShowToast:@"打开媒体文件失败" Animated:YES time:1 context:self.view];
     }
+}
+- (void) press_castIB:(NSNumber*) index{
+    int i = [index intValue];
+        MediaItem* file = [[MediafileHelper getrecentVideos] objectAtIndex:i];
+        if([MyUIApplication getselectedPCOnline]) {
+            if([MyUIApplication getselectedTVOnline]) {
+                [MediafileHelper playMediaFile:file.type Path:file.pathName Filename:file.name TVname:[MyUIApplication getSelectedTVIP].name Handler:self];
+                //startActivity(new Intent(getApplicationContext(), vedioPlayControl.class));
+            } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+        } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
 }
 @end

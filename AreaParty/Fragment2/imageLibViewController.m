@@ -5,7 +5,7 @@
 //  Created by 杜哲凯 on 2018/3/30.
 //  Copyright © 2018年 杜哲凯. All rights reserved.
 //
-
+#define cache_path [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #import "imageLibViewController.h"
 #import "MediafileHelper.h"
 #import "MyUIApplication.h"
@@ -14,6 +14,9 @@
 #import "tab02_listdialog.h"
 #import "Tab02FolderListItemDeleteDialog.h"
 #import "imageSetViewController.h"
+#import "ContentDataControl.h"
+#import "listBottomDialog_app.h"
+#import "AVLoadingIndicatorView.h"
 @interface imageLibViewController (){
     BOOL isAppContent;
     UITapGestureRecognizer* pc_file_tap;
@@ -23,6 +26,10 @@
     UITapGestureRecognizer* to_select_bgm_tap;
     UILongPressGestureRecognizer* longpress_rec_folder;
     CAGradientLayer *top_gradientLayer;
+    ContentDataLoadTask* mContentDataLoadTask;
+    AVLoadingIndicatorView* mProgressDialog;
+    NSArray<FileItemForMedia*>* mediafiles_app;
+   // NSString* stringFolder;
 }
 
 @end
@@ -43,6 +50,13 @@
         [_pc_file_TV setTextColor:[UIColor colorWithRed:112/255.0 green:112/255.0 blue:112/255.0 alpha:1]];
     }
     //加载本地媒体库
+    if (mContentDataLoadTask == nil){
+        mContentDataLoadTask = [[ContentDataLoadTask alloc] initWithType:photo];
+        mContentDataLoadTask.mOnContentDataLoadListener = self;
+        [mContentDataLoadTask start];
+        if([ContentDataControl getmPhotoFolder]!=nil)
+            [[ContentDataControl getmPhotoFolder] removeAllObjects];
+    }
 }
 - (void) initView{
     _shiftBar.layer.borderColor = [UIColor colorWithRed:230/255.0 green:87/255.0 blue:87/255.0 alpha:1].CGColor;
@@ -89,7 +103,8 @@
     else if(gesture.view == _play_folder_list){
         if (isAppContent){
             if ([MyUIApplication getselectedTVOnline]){
-                //dlnaCast(stringFolder,"image");
+                [DownloadFileManagerHelper setcontext:self];
+                [DownloadFileManagerHelper dlnaCast_Folder:@"Photos" Type:@"image"];
             } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
         }else{
             if([MyUIApplication getselectedPCOnline]) {
@@ -120,6 +135,7 @@
     to_select_bgm_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     longpress_rec_folder = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
     longpress_rec_folder.minimumPressDuration = 1;
+    mediafiles_app = [[NSArray alloc] init];
     [MediafileHelper loadMediaLibFiles:self];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -197,7 +213,7 @@
         return [MediafileHelper getmediaFolders].count;
     }
     else{
-        return 0;
+        return [ContentDataControl getFolder:photo].count;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -216,15 +232,21 @@
             return cell;
         }
         else{
+            [cell.nameTV setText: [[[ContentDataControl getmPhotoFolder] allKeys] objectAtIndex:indexPath.row]];
             return cell;
         }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _file_view.hidden = NO;
+    if(!isAppContent){
     MediaItem* obj = [MediafileHelper getmediaFolders][indexPath.row];
     NSString* tempPath = obj.pathName;
     [MediafileHelper setcurrentPath:tempPath];
     [MediafileHelper loadMediaLibFiles:self];
+    }
+    else{
+        mediafiles_app = [ContentDataControl getFileItemListByFolder:photo Folder:[[[ContentDataControl getmPhotoFolder] allKeys] objectAtIndex:indexPath.row]];
+    }
     [_folderSLV reloadData];
     [_fileSGV reloadData];
 }
@@ -254,12 +276,24 @@
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if(!isAppContent){
         return [MediafileHelper getmediaFiles].count;
+    }
+    else{
+        return mediafiles_app.count;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-        tab02_imagelib_item* cell =  (tab02_imagelib_item*)[collectionView dequeueReusableCellWithReuseIdentifier:@"tab02_imagelib_item" forIndexPath:indexPath];
+    tab02_imagelib_item* cell =  (tab02_imagelib_item*)[collectionView dequeueReusableCellWithReuseIdentifier:@"tab02_imagelib_item" forIndexPath:indexPath];
+    if(!isAppContent){
     [cell.nameTV setText:[[MediafileHelper getmediaFiles] objectAtIndex:indexPath.row].name];
     [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:[[MediafileHelper getmediaFiles] objectAtIndex:indexPath.row].url] placeholderImage:[UIImage imageNamed:@"default_pic.png"]];
+    }
+    else{
+        [cell.nameTV setText:[mediafiles_app objectAtIndex:indexPath.row].mFileName];
+        NSString*thumbnailFile = [cache_path stringByAppendingPathComponent:[mediafiles_app objectAtIndex:indexPath.row].mFilePath];
+        [cell.thumbnailIV setImage:[UIImage imageWithContentsOfFile:thumbnailFile]];
+    }
     if(!cell.isRendered){
         CAGradientLayer *gradientLayer_top = [CAGradientLayer layer];
         gradientLayer_top.colors = @[(__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:66/255.0].CGColor, (__bridge id)[UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor];
@@ -326,20 +360,52 @@
 }
 - (void) cast_pressed:(NSNumber*) index{
     int i = [index intValue];
+    if(!isAppContent){
     MediaItem* file = [MediafileHelper getmediaFiles][i];
     if([MyUIApplication getselectedPCOnline]) {
         if([MyUIApplication getselectedTVOnline]) {
             [MediafileHelper playMediaFile:file.type Path:file.pathName Filename:file.name TVname:[MyUIApplication getSelectedTVIP].name Handler:self];
         } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
     } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+    }
+    else{
+        if ([MyUIApplication getselectedTVOnline]){
+            [DownloadFileManagerHelper setcontext:self];
+            [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"image"];
+        } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+    }
 }
 - (void) add_pressed:(NSNumber*) index{
     int i = [index intValue];
-    MediaItem* file = [MediafileHelper getmediaFiles][i];
-    tab02_listdialog* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"tab02_listdialog"];
-    listDialog.MediaType = file.type;
-    [listDialog.currentFileList addObject:file];
-    listDialog.pushvc = self;
-    [self presentViewController:listDialog animated:YES completion:nil];
+    if(!isAppContent){
+        MediaItem* file = [MediafileHelper getmediaFiles][i];
+        tab02_listdialog* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"tab02_listdialog"];
+        listDialog.MediaType = file.type;
+        [listDialog.currentFileList addObject:file];
+        listDialog.pushvc = self;
+        [self presentViewController:listDialog animated:YES completion:nil];
+    }
+    else{
+        FileItemForMedia* file = mediafiles_app[i];
+        listBottomDialog_app* listDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"listBottomDialog_app"];
+        listDialog.MediaType = @"image";
+        [listDialog.currentFileList addObject:file];
+        listDialog.pushvc = self;
+        [self presentViewController:listDialog animated:YES completion:nil];
+    }
+}
+
+- (void)onStartLoad{
+    if (mProgressDialog == nil) {
+        mProgressDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
+    }
+    [mProgressDialog showPromptViewOnView:self.view];
+}
+- (void)onFinishLoad{
+    if (mProgressDialog != nil) {
+        [mProgressDialog removeView];
+    }
+    [_folderSLV reloadData];
+    [_fileSGV reloadData];
 }
 @end

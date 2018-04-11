@@ -11,7 +11,7 @@
 @interface TVCommandItem : NSObject
 @property(strong,nonatomic) NSString* firstcommand;
 @property(strong,nonatomic) NSString* secondcommand;
-@property(assign,nonatomic) BOOL thirdcommand;
+@property(strong,nonatomic) NSNumber* thirdcommand;
 @property(strong,nonatomic) NSString* fourthCommand;
 @property(strong,nonatomic) NSString* fifthCommand;
 @property(strong,nonatomic) NSMutableArray<NSString*>* sixthcommand;

@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "onHandler.h"
+#import "ContentDataLoadTask.h"
+#import "AVLoadingIndicatorView.h"
+#import "FileItemForMedia.h"
+#import "DownloadFileManagerHelper.h"
 @class MediaItem;
-@interface videoLibViewController : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource>
+@interface videoLibViewController : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource,OnContentDataLoadListener>
 @property (weak, nonatomic) IBOutlet UIView *shiftBar;
 @property (weak, nonatomic) IBOutlet UIView *pc_file;
 @property (weak, nonatomic) IBOutlet UIView *app_file;

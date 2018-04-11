@@ -7,6 +7,11 @@
 //
 
 #import "MyConnector.h"
+#import "AESc.h"
+#import "newAES.h"
+static NSString* password = nil;
+static NSString* pass = nil;
+static NSString* pass1 = nil;
 static MyConnector *instance = nil;
 @implementation MyConnector
 
@@ -131,7 +136,13 @@ static MyConnector *instance = nil;
             outputStream = (__bridge NSOutputStream*)(writeStream);
             [inputStream open];
             [outputStream open];
-            NSData* senddata =[msgSend dataUsingEncoding:NSUTF8StringEncoding];
+            password = [[[PreferenceUtil alloc] init] readKey:@"PCMACS"];
+            NSDictionary* PCMacs = [MyUIApplication parse:password];
+            pass= [PCMacs objectForKey:[MyUIApplication getSelectedPCIP].mac];
+            pass1 = [AESc stringToMD5:pass];
+            NSString* msgSend1 = [AESc EncryptAsDoNet:msgSend key:[pass1 substringToIndex:8]];
+            
+            NSData* senddata =[msgSend1 dataUsingEncoding:NSUTF8StringEncoding];
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
             Byte rev[4000];
             while((len = [inputStream read:rev maxLength:4000])>0) {
@@ -139,10 +150,11 @@ static MyConnector *instance = nil;
                 if(len <= 0)
                     break;
             }
+            NSString* final_msg = [AESc DecryptDoNet:msg key:[pass1 substringToIndex:8]];
             [inputStream close];
             [outputStream close];
             
-            return msg;
+            return final_msg;
         } @catch (NSException *exception) {
             NSLog(@"%@",exception);
             return @"";
@@ -175,7 +187,12 @@ static MyConnector *instance = nil;
             outputStream = (__bridge NSOutputStream*)(writeStream);
             [inputStream open];
             [outputStream open];
-            NSData* senddata =[msgSend dataUsingEncoding:NSUTF8StringEncoding];
+            password = [[[PreferenceUtil alloc] init] readKey:@"PCMACS"];
+            NSDictionary* PCMacs = [MyUIApplication parse:password];
+            pass= [PCMacs objectForKey:[MyUIApplication getSelectedPCIP].mac];
+            pass1 = [AESc stringToMD5:pass];
+            NSString* msgSend1 = [AESc EncryptAsDoNet:msgSend key:[pass1 substringToIndex:8]];
+            NSData* senddata =[msgSend1 dataUsingEncoding:NSUTF8StringEncoding];
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
             Byte rev[1024];
             if((len = [inputStream read:rev maxLength:1024])>0) {
@@ -183,7 +200,8 @@ static MyConnector *instance = nil;
             }
             [inputStream close];
             [outputStream close];
-            return msg;
+            NSString* final_msg = [AESc DecryptDoNet:msg key:[pass1 substringToIndex:8]];
+            return final_msg;
         } @catch (NSException *exception) {
             NSLog(@"%@",exception);
             return @"";
@@ -203,7 +221,14 @@ static MyConnector *instance = nil;
         outputStream = (__bridge NSOutputStream*)(writeStream);
         [inputStream open];
         [outputStream open];
-        NSData* senddata =[msgSend dataUsingEncoding:NSUTF8StringEncoding];
+        
+        password = [[[PreferenceUtil alloc] init] readKey:@"TVMACS"];
+        NSDictionary* TVMacs = [MyUIApplication parse:password];
+        pass= [TVMacs objectForKey:[MyUIApplication getSelectedTVIP].mac];
+        pass1 = [AESc stringToMD5:pass];
+        NSString* msgSend1 = [newAES encrypt:msgSend key:pass1];
+        
+        NSData* senddata =[msgSend1 dataUsingEncoding:NSUTF8StringEncoding];
         [outputStream write:[senddata bytes] maxLength:[senddata length]];
         [inputStream close];
         [outputStream close];
@@ -212,7 +237,7 @@ static MyConnector *instance = nil;
         NSLog(@"%@",exception);
         signal =  NO;
     }
-    return NO;
+    return signal;
 }
 /**
  * <summary>
@@ -225,7 +250,12 @@ static MyConnector *instance = nil;
     BOOL result;
     if(moutputstream!= nil){
         @try {
-            NSData* senddata =[msg dataUsingEncoding:NSUTF8StringEncoding];
+            password = [[[PreferenceUtil alloc] init] readKey:@"PCMACS"];
+            NSDictionary* PCMacs = [MyUIApplication parse:password];
+            pass= [PCMacs objectForKey:[MyUIApplication getSelectedPCIP].mac];
+            pass1 = [AESc stringToMD5:pass];
+            NSString* msgSend1 = [AESc EncryptAsDoNet:msg key:[pass1 substringToIndex:8]];
+            NSData* senddata =[msgSend1 dataUsingEncoding:NSUTF8StringEncoding];
             [moutputstream write:[senddata bytes] maxLength:[senddata length]];
             result = YES;
             self.connetedState = YES;

@@ -7,6 +7,7 @@
 //
 
 #import "MyUIApplication.h"
+#import "newAES.h"
 @interface MyUIApplication ()
 @end
 static AFNetworkReachabilityStatus mNetWorkState;
@@ -26,6 +27,9 @@ static NSTimer* stateRefreshTimer;
 static NSTimer* versionCheckTimer;
 static AFNetworkReachabilityManager* appnetmanager;
 static Update_ReceiveMsgBean* receiveMsgBean;
+static NSString* password = nil;
+static NSString* pass = nil;
+static NSString* pass1 = nil;
 @implementation MyUIApplication
 +(void) addMySharedFlies:(SharedflieBean*)mysharedFiles{
     if(mySharedFiles == nil)
@@ -116,9 +120,10 @@ static Update_ReceiveMsgBean* receiveMsgBean;
     if(selectedPCIP != nil && ![selectedPCIP.ip isEqualToString:@""] && PCMacs != nil) {
         const NSString* IP = selectedPCIP.ip;
         const int port = selectedPCIP.port;
-        const NSString* code = [PCMacs objectForKey:selectedPCIP.mac];
-        if(code != nil && ![code isEqualToString:@""]) {
+        NSString* code1 = [PCMacs objectForKey:selectedPCIP.mac];
+        if(code1 != nil && ![code1 isEqualToString:@""]) {
             [NSThread detachNewThreadWithBlock:^(void){
+                NSString* code=  [AESc stringToMD5:code1];
                 NSString* cmdStr = [[CommandUtil createVerifyPCCommand:code] yy_modelToJSONString];
                 NSString* dataRe = @"";
                 CFReadStreamRef readStream;
@@ -132,34 +137,68 @@ static Update_ReceiveMsgBean* receiveMsgBean;
                     outputStream = (__bridge NSOutputStream*)(writeStream);
                     [inputStream open];
                     [outputStream open];
-                    NSData* cmdStrdata = [cmdStr dataUsingEncoding:NSUTF8StringEncoding];
+                    NSString* cmdStr1 = [AESc EncryptAsDoNet:cmdStr key:[code substringToIndex:8]];
+                    NSData* cmdStrdata = [cmdStr1 dataUsingEncoding:NSUTF8StringEncoding];
                     [outputStream write:[cmdStrdata bytes] maxLength:[cmdStrdata length]];
                     NSInteger len = [inputStream read:outBytes maxLength:8192];
                     dataRe = [[NSString alloc] initWithData:[NSData dataWithBytes:outBytes length:len] encoding:NSUTF8StringEncoding];
-                    if([dataRe length]>0) {
-                        ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:dataRe];
+                    NSString* decryptdata = [AESc DecryptDoNet:dataRe key:[code substringToIndex:8]];
+                    if([decryptdata length]>0) {
+                        ReceivedActionMessageFormat* receivedMsg = [ReceivedActionMessageFormat yy_modelWithJSON:decryptdata];
                         if(receivedMsg.status == OrderConst_success) {
                             if([receivedMsg.data isEqualToString:@"true"])
-                                selectedPCVerified = true;
-                            else selectedPCVerified = false;
+                                selectedPCVerified = YES;
+                            else selectedPCVerified = NO;
                         }
                     } else {
-                        selectedPCVerified = false;
+                        selectedPCVerified = NO;
                     }
                 } @catch (NSException *exception) {
-                    selectedPCVerified = false;
+                    selectedPCVerified = NO;
                 }
             }];
         }
     }
 }
+//套接字代理
+- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag{
+        NSLog(@"%ld",tag);
+        [sock readDataWithTimeout:10 tag:20];
+}
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+    if(tag == 20){
+        NSString* raw_data;
+        NSString* decryptdata;
+        raw_data = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        decryptdata = [newAES decrypt:raw_data key:pass1];
+        NSLog(@"getdta:%@",decryptdata);
+        if(decryptdata!=nil&& ![decryptdata isEqualToString:@""]){
+            if([decryptdata isEqualToString:@"true"]){
+                AccessibilityIsOpen = YES;
+            }else {
+                AccessibilityIsOpen = NO;
+            }
+        }
+        [sock disconnect];
+        [FillingIPInforList addTVInfor:selectedTVIP];
+        NSLog(@"stateChange:连接TV成功");
+        if(selectedPCIP!=nil){
+            [TVAppHelper currentPcInfo2TV];
+        }
+        if (!selectedTVVerified){
+            [MyUIApplication verifyLastTVMac];
+        }
+    }
+}
+//end deletgate
 + (void) verifyLastTVMac{
     if(selectedTVIP != nil && ![selectedTVIP.ip isEqualToString:@""] && TVMacs != nil) {
         const NSString* IP = selectedTVIP.ip;
         const int port = selectedTVIP.port;
-        const NSString* code = [TVMacs objectForKey:selectedTVIP.mac];
-        if(code != nil && ![code isEqualToString:@""]) {
+        NSString* code1 = [TVMacs objectForKey:selectedTVIP.mac];
+        if(code1 != nil && ![code1 isEqualToString:@""]) {
             [NSThread detachNewThreadWithBlock:^(void){
+                NSString* code= [AESc stringToMD5:code1];
                 NSString* cmdStr = [[[CommandUtil createVerifyTVCommand:code] yy_modelToJSONString]stringByAppendingString:@"\n"];
                 NSString* dataRe = @"";
                 CFReadStreamRef readStream;
@@ -177,13 +216,14 @@ static Update_ReceiveMsgBean* receiveMsgBean;
                     [outputStream write:[cmdStrdata bytes] maxLength:[cmdStrdata length]];
                     NSInteger len = [inputStream read:outBytes maxLength:8192];
                     dataRe = [[NSString alloc] initWithData:[NSData dataWithBytes:outBytes length:len] encoding:NSUTF8StringEncoding];
-                    if([dataRe isEqualToString:@"true"]) {
-                        selectedTVVerified = true;
+                    NSString* decryptdata = [newAES decrypt:dataRe key:code];
+                    if([decryptdata isEqualToString:@"true"]) {
+                        selectedTVVerified = YES;
                     } else {
-                        selectedTVVerified = false;
+                        selectedTVVerified = NO;
                     }
                 } @catch (NSException *exception) {
-                    selectedTVVerified = false;
+                    selectedTVVerified = NO;
                 }
             }];
         }
@@ -221,64 +261,40 @@ static Update_ReceiveMsgBean* receiveMsgBean;
                 [client disconnect];
             }
             if(selectedTVIP != nil && ![selectedTVIP.ip isEqualToString:@""]) {
-                GCDAsyncSocket* client = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+                GCDAsyncSocket* client = [[GCDAsyncSocket alloc] initWithDelegate:[MyUIApplication sharedApplication] delegateQueue:dispatch_get_main_queue()];
                 NSError *error = nil;
-                [client connectToHost:selectedTVIP.ip onPort:selectedTVIP.port error:&error];
+                [client connectToHost:selectedTVIP.ip onPort:IPAddressConst_TVRECEIVEPORT_MM error:&error];
                 [NSThread sleepForTimeInterval:2];
                 BOOL state = [client isConnected];
                 if(state){
                     //TODO:10.18.2017 告知app当前无障碍服务情况
-                    NSInputStream* inputStream= (__bridge NSInputStream*)[client readStream];
-                    NSOutputStream* outputStream= (__bridge NSOutputStream*)[client writeStream];
-                    [inputStream open];
-                    [outputStream open];
                     NSString* cmd= [[CommandUtil createCheckTvAccessibilityCommand] yy_modelToJSONString];
-                    NSData* cmddata = [cmd dataUsingEncoding:NSUTF8StringEncoding];
-                    [outputStream write:[cmddata bytes] maxLength:[cmddata length]];
-                    Byte buf[100];
-                    memset(buf,0, 100);
-                    NSInteger length;
-                    int count = 0;
-                    NSString* data;
-                    while((length = [inputStream read:buf maxLength:100])==0){
-                        if(++count>=10){
-                            data = @"false";
-                            break;
-                        }
-                    }
-                    if(count<10){
-                    data = [[NSString alloc] initWithData:[NSData dataWithBytes:buf length:length] encoding:NSUTF8StringEncoding];
-                    }
-                    NSLog(@"getdta:%@",data);
-                    if(data!=nil&& ![data isEqualToString:@""]){
-                        if([data isEqualToString:@"true"]){
-                            AccessibilityIsOpen = YES;
-                        }else {
-                            AccessibilityIsOpen = NO;
-                        }
-                    }
-                    [inputStream close];
-                    [outputStream close];
-                    TVOnline = true;
-                    [FillingIPInforList addTVInfor:selectedTVIP];
+                    
+                    password = [[[PreferenceUtil alloc] init] readKey:@"TVMACS"];
+                    NSDictionary* TVMacs = [MyUIApplication parse:password];
+                    pass= [TVMacs objectForKey:[MyUIApplication getSelectedTVIP].mac];
+                    pass1 = [AESc stringToMD5:pass];
+                    NSString* cmd1 = [[newAES encrypt:cmd key:pass1] stringByAppendingString:@"\n"];
+                    
+                    NSData* cmddata = [cmd1 dataUsingEncoding:NSUTF8StringEncoding];
+                    [client writeData:cmddata withTimeout:-1 tag:10];
+                    //[outputStream write:[cmddata bytes] maxLength:[cmddata length]];
+                    
+                    TVOnline = YES;
                     NSLog(@"stateChange:连接TV成功");
-                    if(selectedPCIP!=nil){
-                        [TVAppHelper currentPcInfo2TV];
-                    }
-                    if (!selectedTVVerified){
-                        [self verifyLastTVMac];
-                    }
                 }
                 else{
-                    TVOnline = false;
+                    TVOnline = NO;
                     NSLog(@"stateChange:连接TV失败");
+                 }
+                if([client isConnected]){
+                    [NSThread sleepForTimeInterval:1];
                 }
-                [client disconnect];
                 }
             selectedPCOnline = PCOnline;
             selectedTVOnline = TVOnline;
             NSLog(@"stateChange:发出消息");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedDeviceStateChanged" object:nil userInfo:[NSDictionary dictionaryWithObject:[[TVPCNetStateChangeEvent alloc] initWithTVOnline:TVOnline andPCOnline:PCOnline] forKey:@"data"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"selectedDeviceStateChanged" object:[MyUIApplication sharedApplication] userInfo:[NSDictionary dictionaryWithObject:[[TVPCNetStateChangeEvent alloc] initWithTVOnline:TVOnline andPCOnline:PCOnline] forKey:@"data"]];
         }];
     }];
     [stateRefreshTimer fire];
@@ -403,14 +419,14 @@ static Update_ReceiveMsgBean* receiveMsgBean;
     
     NSLog(@"PCMacsStr:%@,%@",PCMacsStr,PCString);
     NSLog(@"TVMacsStr:%@,%@",TVMacsStr,TVString);
-    if(PCMacsStr != nil && ![PCMacsStr isEqualToString:@""]){
+    if(PCMacsStr != nil && ![PCMacsStr isEqualToString:@"{}"]){
         PCMacs = [[NSMutableDictionary alloc] init];
         [PCMacs setDictionary:[NSJSONSerialization JSONObjectWithData:[PCMacsStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil]];
     }
     else{
         PCMacs = [[NSMutableDictionary alloc] init];
     }
-    if(TVMacsStr != nil && ![TVMacsStr isEqualToString:@""]){
+    if(TVMacsStr != nil && ![TVMacsStr isEqualToString:@"{}"]){
         TVMacs = [[NSMutableDictionary alloc] init];
         [TVMacs setDictionary:[NSJSONSerialization JSONObjectWithData:[TVMacsStr dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil]];
     }
@@ -533,5 +549,29 @@ static Update_ReceiveMsgBean* receiveMsgBean;
             [TVAppHelper currentPcInfo2TV];
         }
         }
+}
++ (NSDictionary*) parse:(NSString*) JsonString{
+    if (JsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [JsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+/**
+ * <summary>
+ * 获取手机在wifi下的IP
+ * </summary>
+ * <returns>String</returns>
+ */
++ (NSString*) getIPStr {
+    return [FillingIPInforList getIpStr];
 }
 @end

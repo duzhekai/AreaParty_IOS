@@ -22,6 +22,7 @@
 #import "SettingMainViewController.h"
 #import "SettingNavigationVC.h"
 #import "tvInforViewController.h"
+#import "ActionDialog_page.h"
 @interface Fragment1ViewController : UIViewController<onUIControllerResult,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource,UICollectionViewDelegate,onHandler>{
     NSString* tag;
     int PCS_RESULTCODE;
@@ -60,9 +61,11 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *pcRecentAppView;
 @property (weak, nonatomic) IBOutlet UIView *lastPCInforLL;
 @property (weak, nonatomic) IBOutlet UIView *lastTVInforLL;
+- (IBAction)press_help:(id)sender;
 @property (strong,nonatomic) NSMutableArray<AppItem*>* pcappList;
 @property (strong,nonatomic) NSMutableArray<AppItem*>* tvappList;
 - (void) setUserName:(NSDictionary *)message;
+@property (weak, nonatomic) IBOutlet UIImageView *banner_image;
 
 
 @end

@@ -208,6 +208,7 @@ static BOOL isNewTVList= NO;
                         IPInforBean* newSelectedTV = [[IPInforBean alloc] initWithHost:IPinfor.ip andPort:IPinfor.port andFunc:IPinfor.function andLaunch_time_id:IPinfor.launch_time_id];
                         newSelectedTV.name = IPinfor.name;
                         newSelectedTV.nickName = [MyUIApplication getSelectedTVIP].nickName;
+                        newSelectedTV.mac = IPinfor.mac;
                         [MyUIApplication setSelectedTVIP:newSelectedTV];
                         [[[PreferenceUtil alloc] init] writeKey:@"lastChosenTV" Value:[newSelectedTV yy_modelToJSONString]];
                     }

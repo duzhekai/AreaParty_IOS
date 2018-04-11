@@ -323,4 +323,9 @@
     }
     
 }
+- (IBAction)press_help:(id)sender {
+    ActionDialog_page* dialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_page"];
+    dialog.type = @"dialog_page02";
+    [self presentViewController:dialog animated:YES completion:nil];
+}
 @end

@@ -12,6 +12,7 @@
 #import "MediaSetBean.h"
 #import "AVLoadingIndicatorView.h"
 #import "imageSetContentViewController.h"
+#import "LocalSetListContainer.h"
 #import "Toast.h"
 @interface imageSetViewController (){
     NSMutableArray<MediaSetBean*>* setList;
@@ -60,6 +61,7 @@
             [setList addObject:tempbean];
         }];
     }
+    [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"image"]];
 }
 - (void) ontapped:(UITapGestureRecognizer*) gesture{
     if(gesture.view == _app_file){
@@ -124,12 +126,11 @@
                 if( [self isSetContained_app:tempName]) {
                     [Toast ShowToast:@"当前列表名称已存在" Animated:YES time:1 context:self.view];
                 } else {
-                    //                    LocalSetListContainer.addLocalSetList("audio",tempName);
-                    //                    setList_app.clear();
-                    //                    setList_app.addAll(LocalSetListContainer.getLocalSetList("audio"));
-                    //                    fileAdapter.notifyDataSetChanged();
-                    //                    dialog.dismiss();
-                    //                    Toasty.success(audioSetActivity.this, "添加新的音频列表成功", Toast.LENGTH_SHORT, true).show();
+                    [LocalSetListContainer addLocalSetList:@"image" setName:tempName];
+                    [setList_app removeAllObjects];
+                    [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"image"]];
+                    [_fileSGV reloadData];
+                    [Toast ShowToast:@"添加新的图片列表成功" Animated:YES time:1 context:self.view];
                     
                 }
             }
@@ -265,8 +266,21 @@
         cell.index = [NSNumber numberWithInteger:indexPath.row];
         return cell;
     }
-    else
-        return nil;
+    else{
+        static NSString *reuseIdentifier = @"tab02_imageset_item";
+        tab02_imageset_item* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        //如果缓存池中没有,那么创建一个新的cell
+        if (!cell) {
+            //这里换成自己定义的cell,并调用类方法加载xib文件
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"tab02_imageset_item" owner:nil options:nil] firstObject];
+        }
+        [cell.nameTV setText:setList_app[indexPath.row].name];
+        [cell.numTV setText: setList_app[indexPath.row].numInfor];
+        [self setImagePath:setList_app[indexPath.row].thumbnailURL forCell:cell];
+        cell.perform_obj = self;
+        cell.index = [NSNumber numberWithInteger:indexPath.row];
+        return cell;
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (!_isAppContent){
@@ -275,10 +289,10 @@
         vc.setName = setList[indexPath.row].name;
         [self presentViewController:vc animated:YES completion:nil];
     }else {
-        //        Intent intent = new Intent(audioSetActivity.this, audioSetContentActivity.class);
-        //        intent.putExtra("isAppContent",true);
-        //        intent.putExtra("setName", setList_app.get(i).name);
-        //        startActivity(intent);
+        imageSetContentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"imageSetContentViewController"];
+        vc.isAppContent = YES;
+        vc.setName = setList_app[indexPath.row].name;
+        [self presentViewController:vc animated:YES completion:nil];
     }
 }
 //tableview delegete end
@@ -290,11 +304,21 @@
         [MediafileHelper deleteImagePlaySet:setList[i].name Handler:self];
         setToDeleteId = i;
     }else {
-        //        LocalSetListContainer.deleteLocalSetList("audio",setList_app.get(i).name);
-        //        setList_app.clear();
-        //        setList_app.addAll(LocalSetListContainer.getLocalSetList("audio"));
-        //        fileAdapter.notifyDataSetChanged();
-        //        Toasty.success(audioSetActivity.this, "删除指定列表成功", Toast.LENGTH_SHORT, true).show();
+        [LocalSetListContainer deleteLocalSetList:@"image" setName:setList_app[i].name];
+        [setList_app removeAllObjects];
+        [setList_app addObjectsFromArray:[LocalSetListContainer getLocalSetList:@"image"]];
+        [_fileSGV reloadData];
+        [Toast ShowToast:@"删除指定列表成功" Animated:YES time:1 context:self.view];
     }
+}
+- (void) setImagePath:(NSString*) filepath forCell:(tab02_imageset_item*) cell{
+    [NSThread detachNewThreadWithBlock:^{
+        if(filepath == nil){
+            [cell.thumbnailIV setImage:[UIImage imageNamed:@"logo_empty.png"]];
+        }
+        else{
+            [cell.thumbnailIV setImage:[UIImage imageWithContentsOfFile:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:filepath]]];
+        }
+    }];
 }
 @end

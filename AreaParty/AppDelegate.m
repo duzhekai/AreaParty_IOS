@@ -9,7 +9,11 @@
 #import "AppDelegate.h"
 #import "MyUIApplication.h"
 #import "NetUtil.h"
-@interface AppDelegate ()
+#import "HTTPServer.h"
+#import "MyHTTPConnection.h"
+@interface AppDelegate (){
+    HTTPServer* dlnaServer;
+}
 
 @end
 
@@ -57,7 +61,19 @@
     [MyUIApplication setlaunchtimeid:[NSString stringWithFormat:@"%d",arc4random()]];
     // 打开本地Http服务器
     @try {
-        //dlnaServer = new HttpServer(IPAddressConst.DLNAPHONEHTTPPORT_B);
+        dlnaServer = [[HTTPServer alloc] init];
+        [dlnaServer setPort:IPAddressConst_DLNAPHONEHTTPPORT_B];
+        [dlnaServer setType:@"_http._tcp."];
+        // webPath是server搜寻HTML等文件的路径
+        NSString * webPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        [dlnaServer setDocumentRoot:webPath];
+        [dlnaServer setConnectionClass:[MyHTTPConnection class]];
+        NSError *err;
+        if ([dlnaServer start:&err]) {
+            NSLog(@"port %hu",[dlnaServer listeningPort]);
+        }else{
+            NSLog(@"%@",err);
+        }
     } @catch (NSException* e) {
         NSLog(@"%@",e);
     }

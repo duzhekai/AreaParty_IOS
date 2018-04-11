@@ -143,6 +143,7 @@
     return 60;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     temp = [tvList objectAtIndex:indexPath.row];
     if(selectedTVIPInfor != nil && selectedTVIPInfor.mac!=nil&&![selectedTVIPInfor.mac isEqualToString:@""]) {
         if([selectedTVIPInfor.mac isEqualToString:temp.mac]){

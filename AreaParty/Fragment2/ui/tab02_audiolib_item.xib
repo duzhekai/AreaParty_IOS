@@ -34,23 +34,29 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5N-Mu-X3H">
                         <rect key="frame" x="260" y="0.0" width="60" height="49.5"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffC-9W-dEc">
-                                <rect key="frame" x="18" y="12" width="25" height="25"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_add_red.png" translatesAutoresizingMaskIntoConstraints="NO" id="4sl-jE-Cjd">
+                                <rect key="frame" x="17.5" y="12.5" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="JsF-Dm-XXq"/>
-                                    <constraint firstAttribute="height" constant="25" id="K8U-NB-Sjn"/>
+                                    <constraint firstAttribute="height" constant="25" id="Oww-UU-d0j"/>
+                                    <constraint firstAttribute="width" constant="25" id="T9H-5j-lRL"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="logo_add_red.png"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2T-EN-x90">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="49.5"/>
                                 <connections>
-                                    <action selector="press_addToList:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IQn-Un-PHZ"/>
+                                    <action selector="press_addToList:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="HnD-PT-Fm5"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ffC-9W-dEc" firstAttribute="centerY" secondItem="o5N-Mu-X3H" secondAttribute="centerY" id="6QE-qQ-Jsc"/>
+                            <constraint firstItem="4sl-jE-Cjd" firstAttribute="centerX" secondItem="o5N-Mu-X3H" secondAttribute="centerX" id="0Cc-Kp-bcP"/>
+                            <constraint firstItem="O2T-EN-x90" firstAttribute="top" secondItem="o5N-Mu-X3H" secondAttribute="top" id="3lA-1U-mof"/>
+                            <constraint firstItem="O2T-EN-x90" firstAttribute="leading" secondItem="o5N-Mu-X3H" secondAttribute="leading" id="LNv-3T-Lg7"/>
+                            <constraint firstItem="4sl-jE-Cjd" firstAttribute="centerY" secondItem="o5N-Mu-X3H" secondAttribute="centerY" id="hda-c2-WzM"/>
                             <constraint firstAttribute="width" constant="60" id="qjs-jL-hnb"/>
-                            <constraint firstItem="ffC-9W-dEc" firstAttribute="centerX" secondItem="o5N-Mu-X3H" secondAttribute="centerX" id="uUx-1s-tsp"/>
+                            <constraint firstAttribute="trailing" secondItem="O2T-EN-x90" secondAttribute="trailing" id="uNn-if-tAk"/>
+                            <constraint firstAttribute="bottom" secondItem="O2T-EN-x90" secondAttribute="bottom" id="zQa-4p-JJt"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_music.png" translatesAutoresizingMaskIntoConstraints="NO" id="XBB-8r-J6z">

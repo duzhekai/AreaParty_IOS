@@ -323,8 +323,8 @@
  */
 +(PCCommandItem*) createOpenPcRdpAppCommand_appname:(NSString*) appname path:(NSString*) path{
     PCCommandItem* cmd = [[PCCommandItem alloc]init];
-    [cmd setName:OrderConst_appAction_name];
     [cmd setCommand:OrderConst_appAction_rdpOpen_command];
+    [cmd setName:OrderConst_appAction_name];
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params setObject:appname forKey:@"appname"];
     [params setObject:path forKey:@"path"];
@@ -559,6 +559,40 @@
     TVCommandItem* cmd = [[TVCommandItem alloc] init];
     [cmd setFirstcommand:OrderConst_VLCAction_firCommand];
     [cmd setSecondcommand:OrderConst_VLCAction_Play_Pause_secondCommand];
+    return cmd;
+}
+/**
+ * <summary>
+ *  构建在TV上打开指定URL的流媒体的指令
+ * </summary>
+ * <param name="url">流媒体资源定位符</param>
+ * <param name="fileName">流媒体文件名称</param>
+ * <param name="fileType">流媒体文件类别(只能是video、audio、image)</param>
+ * <returns>TV指令</returns>
+ */
++ (TVCommandItem*) createPlayUrlFileOnTVCommand_File:(NSString*) url  FileName:(NSString*) fileName  Type:(NSString*) fileType{
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    NSMutableArray<NSString*>* list = [[NSMutableArray alloc] init];
+    [list addObject:url];
+    cmd.firstcommand = OrderConst_dlnaCastToTV_Command;
+    cmd.fifthCommand = fileType;
+    cmd.sixthcommand = list;
+    return cmd;
+}
++ (TVCommandItem*) createPlayUrlFileOnTVCommand_List:(NSMutableArray<NSString*>*)urls FileName:(NSString*)fileName Type:(NSString*) fileType{
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    cmd.firstcommand = OrderConst_dlnaCastToTV_Command;
+    cmd.secondcommand = [NSString stringWithFormat:@"%d",5];
+    cmd.fifthCommand = fileType;
+    cmd.sixthcommand = urls;
+    return cmd;
+}
++ (TVCommandItem*) createPlayBGMOnTVCommand:(NSMutableArray<NSString*>*)urls FileName:(NSString*)fileName Type:(NSString*) fileType {
+    TVCommandItem* cmd = [[TVCommandItem alloc] init];
+    cmd.firstcommand = OrderConst_VLCAction_firCommand;
+    cmd.secondcommand = OrderConst_VLCAction_BGM_secondCommand;
+    cmd.fifthCommand = fileType;
+    cmd.sixthcommand = urls;
     return cmd;
 }
 @end

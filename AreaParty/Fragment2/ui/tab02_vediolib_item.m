@@ -25,15 +25,6 @@
 }
 
 - (IBAction)press_play:(id)sender {
-    if([MyUIApplication getselectedPCOnline]) {
-        if([MyUIApplication getselectedTVOnline]) {
-            [MediafileHelper  playMediaFile:_obj.type Path:_obj.pathName Filename:_obj.name TVname:[MyUIApplication getSelectedTVIP].name Handler:_handler];
-            if(!_isrecent){
-                videoLibViewController* vc = (videoLibViewController*)_handler;
-                [vc setcurrentfile:_obj];
-            }
-            //startActivity(new Intent(getApplicationContext(), vedioPlayControl.class));
-        } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoLibViewController"].view];
-    } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"videoLibViewController"].view];
+    [_handler performSelector:@selector(press_castIB:) withObject:_index];
 }
 @end

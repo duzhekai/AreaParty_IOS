@@ -10,6 +10,11 @@
  * 获取TV的应用、鼠标列表、信息的线程
  */
 #import "GetTvListThread.h"
+#import "AESc.h"
+#import "newAES.h"
+static NSString* password = nil;
+static NSString* pass = nil;
+static NSString* pass1 = nil;
 @implementation GetTvListThread
 
 - (instancetype)init{
@@ -45,7 +50,17 @@
             outputStream = (__bridge NSOutputStream*)(writeStream);
             [inputStream open];
             [outputStream open];
-            NSData* senddata =[cmdStr dataUsingEncoding:NSUTF8StringEncoding];
+            
+            password = [[[PreferenceUtil alloc] init] readKey:@"TVMACS"];
+            NSDictionary* TVMacs = [MyUIApplication parse:password];
+            pass= [TVMacs objectForKey:[MyUIApplication getSelectedTVIP].mac];
+            pass1 = [AESc stringToMD5:pass];
+            NSString* cmdStr1 = [[newAES encrypt:cmdStr key:pass1] stringByAppendingString:@"\n"];
+            NSData* senddata =[cmdStr1 dataUsingEncoding:NSUTF8StringEncoding];
+            
+            NSString* senddatastring = [[NSString alloc] initWithData:senddata encoding:NSUTF8StringEncoding];
+            NSString* decrypt = [newAES decrypt:senddatastring key:pass1];
+            
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
             Byte receivedbuf[40000];
             int readCount = 0;
@@ -53,13 +68,14 @@
             while ((len = [inputStream read:receivedbuf+readCount maxLength:sizeof(receivedbuf)])) {
                 readCount+=len;
             }
-            //NSInteger len = [inputStream read:receivedbuf maxLength:sizeof(receivedbuf)];
             
             dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:readCount] encoding:NSUTF8StringEncoding];
+            
+            NSString* decryptdata = [newAES decrypt:dataReceived key:pass1];
             NSLog(@"GetTvListThread:指令: %@",cmdStr);
             NSLog(@"GetTvListThread:回复: %@ len:%ld",dataReceived,(long)len);
-            if([dataReceived length]>0){
-                [self parseMesgReceived:dataReceived];
+            if([decryptdata length]>0){
+                [self parseMesgReceived:decryptdata];
                 [self  reportResult:YES];
             }
             else [self reportResult:NO];

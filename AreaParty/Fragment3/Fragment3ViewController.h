@@ -12,6 +12,7 @@
 #import "PCAppHelper.h"
 #import "TVAppHelper.h"
 #import "cellView.h"
+#import "ActionDialog_page.h"
 @interface Fragment3ViewController : UIViewController<onHandler,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *PCStateIV;
 @property (weak, nonatomic) IBOutlet UIImageView *TVStateIV;
@@ -60,6 +61,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *PCGameSGV;
 @property (weak, nonatomic) IBOutlet UIView *PCAppSGV_container;
 @property (weak, nonatomic) IBOutlet UIView *PCGameSGV_container;
-@property (weak, nonatomic) IBOutlet UIButton *PCAppOpenModelNoticeBtn;
+- (IBAction)perss_help:(id)sender;
 
 @end

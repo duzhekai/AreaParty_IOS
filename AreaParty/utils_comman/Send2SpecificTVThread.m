@@ -7,7 +7,8 @@
 //
 
 #import "Send2SpecificTVThread.h"
-
+#import "AESc.h"
+#import "newAES.h"
 @implementation Send2SpecificTVThread
 
 -(instancetype) initWithtypeName:(NSString*)typeName1 commandType:(NSString*)commandType1 myhandler:(id<onHandler>)myhandler1 IP:(NSString*)ip1 port:(int)port1 code:(NSString*)code1{
@@ -18,7 +19,8 @@
         myhandler = myhandler1;
         IP = ip1;
         port = port1;
-        code = code1;
+        NSString* pass1 = [AESc stringToMD5:code1];
+        code = pass1;
     }
     return self;
 }
@@ -43,7 +45,8 @@
             dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:buffer length:length] encoding:NSUTF8StringEncoding];
             NSLog(@"Send2TVThread:指令:%@",cmdStr);
             NSLog(@"Send2TVThread:回复:%@",dataReceived);
-            if([dataReceived isEqualToString:@"true"]){
+            NSString* decryptdata = [newAES decrypt:dataReceived key:code];
+            if([decryptdata isEqualToString:@"true"]){
               [self reportResult:YES andData:@"true"];
             }else
             {[self reportResult:YES andData:@"false"];}

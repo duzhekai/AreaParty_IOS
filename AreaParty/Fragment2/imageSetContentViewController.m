@@ -10,6 +10,8 @@
 #import "MediafileHelper.h"
 #import "tab02_imageset_content_item.h"
 #import "Toast.h"
+#import "LocalSetListContainer.h"
+#import "DownloadFileManagerHelper.h"
 @interface imageSetContentViewController (){
     NSMutableArray<MediaItem*>* files;
     NSMutableArray<FileItemForMedia*>* files_app;
@@ -31,16 +33,10 @@
             files = [[NSMutableArray alloc] init];
         }
     }else {
-        files_app = [[NSMutableArray alloc] init];
-        //        files_app = LocalSetListContainer.localMapList_audio.get(setName);
-        //        fileAdapter_app = new Adapter_app(files_app, this);
-        //        fileAdapter_app.isFirstOnly(false);
-        //        fileAdapter_app.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
-        //            @Override
-        //            public void onItemClick(View view, int i) {
-        //                // ...item点击事件
-        //            }
-        //        });
+        if((files_app = [[LocalSetListContainer getlocalMapList_image] objectForKey:_setName])==nil){
+            files_app = [[NSMutableArray alloc] init];
+        }
+        
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -91,7 +87,8 @@
     }else {
         if ([MyUIApplication getselectedTVOnline]){
             if (files_app.count > 0){
-                //dlnaCast(files_app,"image");
+                [DownloadFileManagerHelper setcontext:self];
+                [DownloadFileManagerHelper dlnaCast_List:files_app Type:@"image"];
             }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
         }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
         
@@ -102,11 +99,21 @@
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return files.count;
+    if(!_isAppContent){
+        return files.count;
+    }
+    else{
+        return files_app.count;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     tab02_imageset_content_item* cell =  (tab02_imageset_content_item*)[collectionView dequeueReusableCellWithReuseIdentifier:@"tab02_imageset_content_item" forIndexPath:indexPath];
-    [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:files[indexPath.row].url] placeholderImage:[UIImage imageNamed:@"default_pic_large.png"]];
+    if(!_isAppContent){
+        [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:files[indexPath.row].url] placeholderImage:[UIImage imageNamed:@"default_pic_large.png"]];
+    }
+    else{
+        [self setImage:files_app[indexPath.row].mFilePath ForCell:cell];
+    }
     return cell;
 }
 
@@ -130,5 +137,10 @@
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+}
+- (void) setImage:(NSString*) filePath ForCell:(tab02_imageset_content_item*)cell{
+    [NSThread detachNewThreadWithBlock:^{
+        [cell.thumbnailIV setImage:[UIImage imageWithContentsOfFile:    [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:filePath]]];
+    }];
 }
 @end

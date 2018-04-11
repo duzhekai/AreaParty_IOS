@@ -12,6 +12,7 @@
 #import "Base.h"
 #import "ReceivedActionMessageFormat.h"
 #import "onHandler.h"
+#import <CommonCrypto/CommonDigest.h>
 @interface Send2SpecificPCThread : NSThread{
      NSString* typeName;
      NSString* commandType;

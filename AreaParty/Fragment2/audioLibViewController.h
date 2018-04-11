@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "onHandler.h"
 #import "MediaItem.h"
-@interface audioLibViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,onHandler>
+#import "ContentDataLoadTask.h"
+#import "AVLoadingIndicatorView.h"
+#import "DownloadFileManagerHelper.h"
+#import "listBottomDialog_app.h"
+@interface audioLibViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,onHandler,OnContentDataLoadListener>
 - (IBAction)press_return:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *pcStateIV;
 @property (weak, nonatomic) IBOutlet UIImageView *tvStateIV;

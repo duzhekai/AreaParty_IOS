@@ -15,8 +15,14 @@
 #import "MyConnector.h"
 #import "ReceivedFileManagerMessageFormat.h"
 #import "NodeFormat.h"
+#import "ContentDataControl.h"
+#import "FileItemForMedia.h"
 @interface prepareDataForFragment : NSObject
 +(NSObject*)getDiskActionStateData:(NSString*)name command:(NSString*)command param:(NSString*) param;
 + (NSObject*) getFileActionStateData:(NSString*)name command:(NSString*) command param:(NSString*) param;
 + (BOOL) closeRDP;
++ (BOOL) getDlnaCastState_File:(FileItemForMedia*) file Type:(NSString*) fileType;
++ (BOOL) getDlnaCastState_List:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType;
++ (BOOL) getDlnaCastState_Folder:(NSString*) folderName Type:(NSString*) fileType;
++ (BOOL) getDlnaCastState_bgm:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType;
 @end

@@ -245,9 +245,6 @@
     else if(sender == _PCUsingHelpBtn){
         
     }
-    else if(sender == _PCAppOpenModelNoticeBtn){
-        
-    }
     else if (sender == _PCGameNoticeBtn){
         
     }
@@ -538,7 +535,6 @@
                 }
                 if([MyUIApplication getAccessibilityIsOpen]){
                     [TVAppHelper openTVRDP];
-                    
                     // 需要用户手动点击进入
                     [PCAppHelper setCurrentMode:PCAppHelper_RDPMODE];
                     [PCAppHelper openApp_Rdp:pcApp_Array[indexPath.row].packageName andappname:pcApp_Array[indexPath.row].appName andHandler:self];
@@ -617,5 +613,10 @@
         [_TVNameTV setText:@"离线中"];
         [_TVNameTV setTextColor:[UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:1]];
     }
+}
+- (IBAction)perss_help:(id)sender {
+    ActionDialog_page* dialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_page"];
+    dialog.type = @"dialog_page03";
+    [self presentViewController:dialog animated:YES completion:nil];
 }
 @end

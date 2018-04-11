@@ -9,6 +9,7 @@
 #import "Fragment1ViewController.h"
 #import "PCDevicesUIControllerViewController.h"
 #import "ImageCacheUtil.h"
+#import <SDWebImage/UIImage+GIF.h>
 @interface Fragment1ViewController (){
         NSOperationQueue *loadImageQueue;
 }
@@ -71,6 +72,12 @@
     _tvRecentAppView.delegate = self;
     _tvRecentAppView.dataSource = self;
     [_tvRecentAppView registerNib:[UINib nibWithNibName:@"cellView" bundle:nil] forCellWithReuseIdentifier:@"appViewCell"];
+    //设置网络库的图片
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"redboat" ofType:@"gif"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    UIImage *image = [UIImage sd_animatedGIFWithData:data];
+    _banner_image.image = image;
+    
     if(outline == YES){
         [_id_top01_userName setText:@"登录"];
         [_userLogo_imgButton setImage:[UIImage imageNamed:@"user.png"]];
@@ -388,7 +395,7 @@
                     [TVAppHelper openTVRDP];
                     // 需要用户手动点击进入
                     [PCAppHelper setCurrentMode:PCAppHelper_RDPMODE];
-                    [PCAppHelper openApp_Rdp:[[tvpcAppHelper getpcApps] objectAtIndex:indexPath.row].packageName andappname:[[PCAppHelper getappList] objectAtIndex:indexPath.row].appName andHandler:self];
+                    [PCAppHelper openApp_Rdp:[[tvpcAppHelper getpcApps] objectAtIndex:indexPath.row].packageName andappname:[[tvpcAppHelper getpcApps] objectAtIndex:indexPath.row].appName andHandler:self];
                 }else {
                     [TVAppHelper openTVAccessibility];
                     [Toast ShowToast:@"请在TV上对[AreaParty]授权" Animated:YES time:2 context:self.view];
@@ -420,5 +427,10 @@
 - (void) setUserName:(NSDictionary *)message{
     NSString* userName = [message objectForKey:@"data"];
     [_id_top01_userName setText:userName];
+}
+- (IBAction)press_help:(id)sender {
+    ActionDialog_page* dialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_page"];
+    dialog.type = @"dialog_page01";
+    [self presentViewController:dialog animated:YES completion:nil];
 }
 @end

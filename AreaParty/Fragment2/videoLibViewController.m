@@ -21,6 +21,9 @@
     UITapGestureRecognizer* pc_file_tap;
     UITapGestureRecognizer* app_file_tap;
     MediaItem* currentfile;
+    ContentDataLoadTask* mContentDataLoadTask;
+    AVLoadingIndicatorView* mProgressDialog;
+    NSArray<FileItemForMedia*>* mediafiles_app;
 }
 
 @end
@@ -41,6 +44,13 @@
         [_pc_file_TV setTextColor:[UIColor colorWithRed:112/255.0 green:112/255.0 blue:112/255.0 alpha:1]];
     }
     //加载本地媒体库
+    if (mContentDataLoadTask == nil){
+        mContentDataLoadTask = [[ContentDataLoadTask alloc] initWithType:video];
+        mContentDataLoadTask.mOnContentDataLoadListener = self;
+        [mContentDataLoadTask start];
+        if([ContentDataControl getmVideoFolder]!=nil)
+            [[ContentDataControl getmVideoFolder] removeAllObjects];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +61,7 @@
     isAppContent = NO;
     pc_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     app_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
+    mediafiles_app = [[NSArray alloc] init];
     [MediafileHelper loadMediaLibFiles:self];
 }
 - (void) initView{
@@ -74,7 +85,7 @@
 }
 - (void) ontapped:(UITapGestureRecognizer*) gesture{
     if(gesture.view == _app_file){
-        isAppContent = true;
+        isAppContent = YES;
         [_app_file_TV setTextColor:[UIColor colorWithRed:1 green:80/255.0 blue:80/255.0 alpha:1]];
         [_app_file setBackgroundColor:[UIColor colorWithRed:230/255.0 green:87/255.0  blue:87/255.0  alpha:0.17]];
         [_pc_file_TV setTextColor:[UIColor colorWithRed:112/255.0 green:112/255.0 blue:112/255.0 alpha:1]];
@@ -145,6 +156,7 @@
         [_folderSLV reloadData];
     }
     if([message[@"what"]intValue] == OrderConst_getPCMedia_Fail){
+        [Toast ShowToast:@"打开媒体文件失败" Animated:YES time:1 context:self.view];
         [_fileSLV reloadData];
         [_folderSLV reloadData];
     }
@@ -201,7 +213,7 @@
     }
     else{
         if(tableView == _folderSLV){
-            int height = 0;
+            int height = 50*[ContentDataControl getFolder:video].count;
             NSArray* arrs = _folderSLV_container.constraints;
             for(NSLayoutConstraint* attr in arrs){
                 if(attr.firstAttribute == NSLayoutAttributeHeight){
@@ -209,9 +221,9 @@
                 }
             }
         [_Scroll_View updateConstraints];
-            return 0;
+            return [ContentDataControl getFolder:video].count;
         }
-        return 0;
+        return mediafiles_app.count;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -234,6 +246,7 @@
         return cell;
     }
     else{
+        [cell.nameTV setText: [[ContentDataControl getFolder:video] objectAtIndex:indexPath.row]];
         return cell;
     }
 }
@@ -248,12 +261,15 @@
         if(!isAppContent){
             [cell.nameTV setText: [[MediafileHelper getmediaFiles] objectAtIndex:indexPath.row].name];
             [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:[[MediafileHelper getmediaFiles]objectAtIndex:indexPath.row].thumbnailurl] placeholderImage:[UIImage imageNamed:@"videotest.png"]];
-            cell.obj = [[MediafileHelper getmediaFiles] objectAtIndex:indexPath.row];
+            cell.index = [NSNumber numberWithInteger:indexPath.row];
             cell.handler = self;
-            cell.isrecent = NO;
             return cell;
         }
         else{
+            [cell.nameTV setText: [mediafiles_app objectAtIndex:indexPath.row].mFileName];
+            [cell.thumbnailIV sd_setImageWithURL:[NSURL URLWithString:[mediafiles_app objectAtIndex:indexPath.row].mFilePath] placeholderImage:[UIImage imageNamed:@"videotest.png"]];
+            cell.index = [NSNumber numberWithInteger:indexPath.row];
+            cell.handler = self;
             return cell;
         }
         
@@ -272,6 +288,14 @@
             [_folderSLV reloadData];
             [_fileSLV reloadData];
         }
+        else{
+            _shiftBar.hidden = YES;
+            _folderSLV.hidden = YES;
+            _fileSLV.hidden = NO;
+            mediafiles_app = [ContentDataControl getFileItemListByFolder:video Folder:[[[ContentDataControl getmVideoFolder] allKeys] objectAtIndex:indexPath.row]];
+            [_folderSLV reloadData];
+            [_fileSLV reloadData];
+        }
     }
     else if (tableView == _fileSLV){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -280,5 +304,36 @@
 //tableview delegete end
 - (void) setcurrentfile:(MediaItem*) item{
     currentfile = item;
+}
+- (void)onStartLoad{
+    if (mProgressDialog == nil) {
+        mProgressDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
+    }
+    [mProgressDialog showPromptViewOnView:self.view];
+}
+- (void)onFinishLoad{
+    if (mProgressDialog != nil) {
+        [mProgressDialog removeView];
+    }
+    [_folderSLV reloadData];
+    [_fileSLV reloadData];
+}
+- (void) press_castIB:(NSNumber*) index{
+    int i = [index intValue];
+    if(!isAppContent){
+        MediaItem* file = [[MediafileHelper getmediaFiles] objectAtIndex:i];
+        if([MyUIApplication getselectedPCOnline]) {
+            if([MyUIApplication getselectedTVOnline]) {
+                [MediafileHelper playMediaFile:file.type Path:file.pathName Filename:file.name TVname:[MyUIApplication getSelectedTVIP].name Handler:self];
+                currentfile = file;
+                //startActivity(new Intent(getApplicationContext(), vedioPlayControl.class));
+            } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+        } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+    }
+    else{
+        if ([MyUIApplication getselectedTVOnline]){
+            [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"video"];
+        } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+    }
 }
 @end

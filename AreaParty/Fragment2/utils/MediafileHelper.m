@@ -353,6 +353,7 @@ static NSMutableArray<MediaItem*>* mediaFolders; // 当前路径下的文件夹
     NSMutableDictionary* param = [[NSMutableDictionary alloc] init];
     [param setObject:folderPath forKey:@"folder"];
     [param setObject:tvname forKey:@"tvname"];
+    [param setObject:[NSString stringWithFormat:@"%d",5] forKey:@"t"];
     [[[Send2PCThread alloc] initWithtypeName:filetype commandType:OrderConst_mediaAction_playALL_command Map:param Handler:myhandler] start];
     if (![ReceiveCommandFromTVPlayer getplayerIsRun]){
         [[[ReceiveCommandFromTVPlayer alloc]initWithIsRun:YES]start];

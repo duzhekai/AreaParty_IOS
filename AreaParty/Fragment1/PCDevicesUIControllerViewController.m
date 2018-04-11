@@ -120,6 +120,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     temp = [pcList objectAtIndex:indexPath.row];
     if(selectedPCIPInfor != nil && selectedPCIPInfor.mac!=nil&&![selectedPCIPInfor.mac isEqualToString:@""]) {
         if([selectedPCIPInfor.mac isEqualToString:temp.mac]){

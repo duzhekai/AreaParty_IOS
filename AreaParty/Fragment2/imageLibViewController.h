@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "onHandler.h"
 #import "tab02_folder_item.h"
+#import "ContentDataLoadTask.h"
 #import <SDWebImage/UIImage+WebP.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-@interface imageLibViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,onHandler>
+#import "DownloadFileManagerHelper.h"
+@interface imageLibViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,onHandler,OnContentDataLoadListener>
 - (IBAction)press_return:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *pcStateIV;
 @property (weak, nonatomic) IBOutlet UILabel *pcStateNameTV;

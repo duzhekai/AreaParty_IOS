@@ -7,6 +7,10 @@
 //
 
 #import "Send2TVThread.h"
+#import "newAES.h"
+static NSString* password = nil;
+static NSString* pass = nil;
+static NSString* pass1 = nil;
 @implementation Send2TVThread
 
 
@@ -32,7 +36,14 @@
             outputStream = (__bridge NSOutputStream*)(writeStream);
             [inputStream open];
             [outputStream open];
-            NSData* senddata =[cmd dataUsingEncoding:NSUTF8StringEncoding];
+            
+            password = [[[PreferenceUtil alloc] init] readKey:@"TVMACS"];
+            NSDictionary* TVMacs = [MyUIApplication parse:password];
+            pass= [TVMacs objectForKey:[MyUIApplication getSelectedTVIP].mac];
+            pass1 = [AESc stringToMD5:pass];
+            NSString* cmd1 = [newAES encrypt:cmd key:pass1];
+            
+            NSData* senddata =[cmd1 dataUsingEncoding:NSUTF8StringEncoding];
             [outputStream write:[senddata bytes] maxLength:[senddata length]];
             NSLog(@"%@:%@",tag,cmd);
         } @catch (NSException *exception) {

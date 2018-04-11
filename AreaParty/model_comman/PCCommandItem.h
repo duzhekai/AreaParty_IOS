@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YYModel.h"
 @interface PCCommandItem : NSObject
-@property(strong,nonatomic) NSString* name;
 @property(strong,nonatomic) NSString* command;
+@property(strong,nonatomic) NSString* name;
 @property(strong,nonatomic) NSMutableDictionary* param;
 @end

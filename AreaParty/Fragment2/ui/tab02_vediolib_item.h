@@ -12,9 +12,8 @@
 @interface tab02_vediolib_item : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailIV;
 @property (weak, nonatomic) IBOutlet UILabel *nameTV;
-@property (strong,nonatomic) MediaItem* obj;
-@property (weak,nonatomic) id<onHandler> handler;
-@property (assign,nonatomic) BOOL isrecent;
+@property (strong,nonatomic) NSNumber* index;
+@property (weak,nonatomic) id handler;
 - (IBAction)press_play:(id)sender;
 
 @end

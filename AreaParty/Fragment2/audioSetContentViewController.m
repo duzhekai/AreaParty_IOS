@@ -7,7 +7,8 @@
 //
 
 #import "audioSetContentViewController.h"
-
+#import "LocalSetListContainer.h"
+#import "DownloadFileManagerHelper.h"
 @interface audioSetContentViewController (){
     NSMutableArray<MediaItem*>* files;
     NSMutableArray<FileItemForMedia*>* files_app;
@@ -30,16 +31,9 @@
             files = [[NSMutableArray alloc] init];
         }
     }else {
-        files_app = [[NSMutableArray alloc] init];
-//        files_app = LocalSetListContainer.localMapList_audio.get(setName);
-//        fileAdapter_app = new Adapter_app(files_app, this);
-//        fileAdapter_app.isFirstOnly(false);
-//        fileAdapter_app.setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int i) {
-//                // ...item点击事件
-//            }
-//        });
+        if((files_app = [[LocalSetListContainer getlocalMapList_audio] objectForKey:_setName])==nil){
+            files_app = [[NSMutableArray alloc] init];
+        }
     }
 }
 - (void) initView{
@@ -82,11 +76,12 @@
             } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
         } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
     }else {
-//        if (MyApplication.isSelectedTVOnline()){
-//            if (files_app.size() > 0){
-//                dlnaCast(files_app,"audio");
-//            }else Toasty.warning(audioSetContentActivity.this, "当前列表文件个数未0", Toast.LENGTH_SHORT, true).show();
-//        }else Toasty.warning(audioSetContentActivity.this, "当前电视不在线", Toast.LENGTH_SHORT, true).show();
+        if ([MyUIApplication getselectedTVOnline]){
+            if (files_app.count > 0){
+                [DownloadFileManagerHelper setcontext:self];
+                [DownloadFileManagerHelper dlnaCast_List:files_app Type:@"audio"];
+            }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
+        }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
         
     }
 }
@@ -104,7 +99,8 @@
     }else {
         if ([MyUIApplication getselectedTVOnline]){
             if (files_app.count > 0){
-                //dlnaCast(files_app,"audio",true);//作为背景音乐播放
+                [DownloadFileManagerHelper setcontext:self];
+                [DownloadFileManagerHelper dlnaCast_bgm:files_app Type:@"audio" Asbgm:YES];
             }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
         }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
     }
@@ -137,19 +133,21 @@
     return 50;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *reuseIdentifier = @"tab02_audioset_content_item";
+    tab02_audioset_content_item* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    //如果缓存池中没有,那么创建一个新的cell
+    if (!cell) {
+        //这里换成自己定义的cell,并调用类方法加载xib文件
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"tab02_audioset_content_item" owner:nil options:nil] firstObject];
+    }
     if(!_isAppContent){
-        static NSString *reuseIdentifier = @"tab02_audioset_content_item";
-        tab02_audioset_content_item* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        //如果缓存池中没有,那么创建一个新的cell
-        if (!cell) {
-            //这里换成自己定义的cell,并调用类方法加载xib文件
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"tab02_audioset_content_item" owner:nil options:nil] firstObject];
-        }
         [cell.nameTV setText:files[indexPath.row].name];
         return cell;
     }
-    else
-        return nil;
+    else{
+        [cell.nameTV setText:files_app[indexPath.row].mFileName];
+        return cell;
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
