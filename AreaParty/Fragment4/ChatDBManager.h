@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ChatSQLiteHelper.h"
+#import "ChatObj.h"
+#import <FMDB/FMDB.h>
+#import "DBConst.h"
 @interface ChatDBManager : NSObject
-
+- (void) addChatSQL:(ChatObj*) chat AndTable:(NSString*) table;
+- (NSMutableArray<ChatObj*>*) selectMyChatSQL:(NSString*) table MyId:(NSString*) myId PeerId:(NSString*) peerId Size:(int) size;
+- (NSMutableArray<ChatObj*>*) selectMyChatSQL:(NSString*) table MyId:(NSString*) myId PeerId:(NSString*) peerId  Start:(long)startTime End:( long) endTime;
+- (void) deleteSharedFileSQL:(int) fid Table:(NSString*) table;
 @end

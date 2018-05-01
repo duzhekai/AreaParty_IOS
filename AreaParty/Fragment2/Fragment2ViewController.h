@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "onHandler.h"
 #import "TVPCNetStateChangeEvent.h"
+#import "audioSetViewController.h"
+#import "imageSetViewController.h"
 #import "ActionDialog_page.h"
 @interface Fragment2ViewController : UIViewController<onHandler>
 @property (weak, nonatomic) IBOutlet UIView *middleview;

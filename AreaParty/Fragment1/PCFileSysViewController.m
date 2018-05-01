@@ -71,7 +71,7 @@
         _page04CutBarLL.hidden = YES;
         _page04DiskListActionBarLL.hidden = NO;
         _page04LocalFolderRootLL.hidden = NO;
-        if([[LoginViewController getuserId] isEqualToString:@""]) {
+        if([Login_userId isEqualToString:@""]) {
             _page04SharedFilesRootLL.hidden = YES;
         } else {
             _page04SharedFilesRootLL.hidden = NO;
@@ -240,7 +240,7 @@
     if([[message objectForKey:@"what"] intValue] == OrderConst_getDiskList_order_successful){
         dispatch_async(dispatch_get_main_queue(), ^{
         // 如果用户未登录
-        if([[LoginViewController getuserId] isEqualToString:@""]) {
+        if([Login_userId isEqualToString:@""]) {
             _page04SharedFilesRootLL.hidden = YES;
         } else {
             _page04SharedFilesRootLL.hidden = NO;
@@ -254,7 +254,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
         diskDatas = [[NSMutableArray alloc] init];
         // 如果用户未登录
-        if([[LoginViewController getuserId] isEqualToString:@""]) {
+        if([Login_userId isEqualToString:@""]) {
             _page04SharedFilesRootLL.hidden = YES;
         } else {
             _page04SharedFilesRootLL.hidden = NO;
@@ -290,7 +290,7 @@
         _page04CutBarLL.hidden = YES;
         _page04DiskListActionBarLL.hidden = NO;
         _page04LocalFolderRootLL.hidden = NO;
-        if([[LoginViewController getuserId] isEqualToString:@""])
+        if([Login_userId isEqualToString:@""])
             _page04SharedFilesRootLL.hidden = YES;
         else _page04SharedFilesRootLL.hidden = NO;
     } else [self dismissViewControllerAnimated:YES completion:nil];

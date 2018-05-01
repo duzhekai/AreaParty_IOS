@@ -7,7 +7,7 @@
 //
 
 #import "CommandUtil.h"
-
+#import "ActionDialog_playPicList.h"
 @implementation CommandUtil
 /**
  * <summary>
@@ -500,13 +500,14 @@
     cmd.param = params;
     return cmd;
 }
-+(PCCommandItem*)createPlayAllCommand:(NSString*) path tvname:(NSString*) tvname type:(NSString*) type {
++(PCCommandItem*)createPlayAllCommand:(NSString*) path tvname:(NSString*) tvname time:(NSString*) t type:(NSString*) type {
     PCCommandItem* cmd = [[PCCommandItem alloc]init];
     [cmd setName:type];
     [cmd setCommand:OrderConst_mediaAction_playALL_command];
     NSMutableDictionary* params = [[NSMutableDictionary alloc] init];
     [params setObject:path forKey:@"folder"];
     [params setObject:tvname forKey:@"tvname"];
+    [params setObject:t forKey:@"t"];
     cmd.param = params;
     return cmd;
 }
@@ -582,7 +583,7 @@
 + (TVCommandItem*) createPlayUrlFileOnTVCommand_List:(NSMutableArray<NSString*>*)urls FileName:(NSString*)fileName Type:(NSString*) fileType{
     TVCommandItem* cmd = [[TVCommandItem alloc] init];
     cmd.firstcommand = OrderConst_dlnaCastToTV_Command;
-    cmd.secondcommand = [NSString stringWithFormat:@"%d",5];
+    cmd.secondcommand = [NSString stringWithFormat:@"%d",[ActionDialog_playPicList getT]];
     cmd.fifthCommand = fileType;
     cmd.sixthcommand = urls;
     return cmd;

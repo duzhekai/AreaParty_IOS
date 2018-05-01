@@ -119,6 +119,7 @@
         if(([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline])||([MyUIApplication getselectedTVOnline] && [MyUIApplication getselectedTVVerified])) {
             audioSetViewController* vc = (audioSetViewController*)[self.storyboard instantiateViewControllerWithIdentifier:@"audioSetViewController"];
             vc.isAppContent = isAppContent;
+            vc.ifbgm = NO;
             [self presentViewController:vc animated:YES completion:nil];
         } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
     }
@@ -137,7 +138,9 @@
     longpress_rec_folder.minimumPressDuration = 1;
     longpress_rec_file = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
     longpress_rec_file.minimumPressDuration = 1;
-    [MediafileHelper loadMediaLibFiles:self];
+    if([MyUIApplication getselectedPCOnline]){
+        [MediafileHelper loadMediaLibFiles:self];
+    }
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

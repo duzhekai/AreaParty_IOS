@@ -12,6 +12,7 @@
 #import "onHandler.h"
 #import "Send2PCThread.h"
 #import "ReceiveCommandFromTVPlayer.h"
+#import "ActionDialog_playPicList.h"
 @interface MediafileHelper : NSObject
 + (NSMutableArray<MediaItem*>*)getrecentAudios;
 + (NSMutableArray<MediaItem*>*)getrecentVideos;

@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "onHandler.h"
-@class  MainTabbarController;
+@class Fragment1ViewController;
+@class Fragment4ViewController;
+@class DownloadFolderFragment;
+@class DownloadStateFragment;
 @interface MyHandler : NSObject<onHandler>
-@property (strong,nonatomic) MainTabbarController* maincontroller;
-- (instancetype)initWithController:(MainTabbarController*) controller;
+- (instancetype)initWithFragment1:(Fragment1ViewController*) controller;
+- (instancetype)initWithFragment6:(Fragment4ViewController*) controller;
+- (instancetype)initWithDownloadFolderFragment:(DownloadFolderFragment*) controller;
+- (instancetype)initWithDownloadStateFragment:(DownloadStateFragment*) controller;
 @end

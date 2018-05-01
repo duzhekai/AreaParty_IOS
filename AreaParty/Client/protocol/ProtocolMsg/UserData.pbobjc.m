@@ -53,6 +53,8 @@ static GPBFileDescriptor *UserDataRoot_FileDescriptor(void) {
 @dynamic hasFileNum, fileNum;
 @dynamic hasIsFriend, isFriend;
 @dynamic hasIsOnline, isOnline;
+@dynamic hasIsSpeed, isSpeed;
+@dynamic hasIsRecommend, isRecommend;
 
 typedef struct UserItem__storage_ {
   uint32_t _has_storage_[1];
@@ -122,6 +124,24 @@ typedef struct UserItem__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeBool,
       },
+      {
+        .name = "isSpeed",
+        .dataTypeSpecific.className = NULL,
+        .number = UserItem_FieldNumber_IsSpeed,
+        .hasIndex = 8,
+        .offset = 9,  // Stored in _has_storage_ to save space.
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeBool,
+      },
+      {
+        .name = "isRecommend",
+        .dataTypeSpecific.className = NULL,
+        .number = UserItem_FieldNumber_IsRecommend,
+        .hasIndex = 10,
+        .offset = 11,  // Stored in _has_storage_ to save space.
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeBool,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[UserItem class]
@@ -133,7 +153,7 @@ typedef struct UserItem__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\006\001\006\000\002\010\000\003\t\000\004\007\000\005\010\000\006\010\000";
+        "\010\001\006\000\002\010\000\003\t\000\004\007\000\005\010\000\006\010\000\007\007\000\010\013\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");

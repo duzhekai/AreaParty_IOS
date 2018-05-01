@@ -38,6 +38,10 @@
 }
 - (void) initView{
     [_setNameTV setText:_setName];
+    if (_asBGM)
+        [_playAsBGM setText:@"作为背景音乐"];
+    if (!_asBGM)
+        [_playAsBGM setText:@"播放全部"];
     if (!_isAppContent){
         [_numTV setText:[NSString stringWithFormat:@"(共%lu首)",(unsigned long)files.count]];
     }else{
@@ -68,43 +72,44 @@
 - (IBAction)press_playAll:(id)sender {
     // 列表投屏
     if (!_isAppContent){
-        if([MyUIApplication getselectedPCOnline]) {
-            if([MyUIApplication getselectedTVOnline]) {
-                if(files.count > 0)
-                    [MediafileHelper playMediaSet:OrderConst_audioAction_name setName:_setName TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
-                else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
-            } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-        } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        if(!_asBGM){
+            if([MyUIApplication getselectedPCOnline]) {
+                if([MyUIApplication getselectedTVOnline]) {
+                    if(files.count > 0)
+                        [MediafileHelper playMediaSet:OrderConst_audioAction_name setName:_setName TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
+                    else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
+                } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+            } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        }
+        else{ //作为背景音乐
+            if([MyUIApplication getselectedPCOnline]) {
+                if([MyUIApplication getselectedTVOnline]) {
+                    if(files.count > 0)
+                        [MediafileHelper playMediaSetAsBGM:OrderConst_audioAction_name setName:_setName TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
+                    else  [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
+                } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+            } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        }
     }else {
-        if ([MyUIApplication getselectedTVOnline]){
-            if (files_app.count > 0){
-                [DownloadFileManagerHelper setcontext:self];
-                [DownloadFileManagerHelper dlnaCast_List:files_app Type:@"audio"];
-            }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
-        }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-        
+        if(!_asBGM){
+            if ([MyUIApplication getselectedTVOnline]){
+                if (files_app.count > 0){
+                    [DownloadFileManagerHelper setcontext:self];
+                    [DownloadFileManagerHelper dlnaCast_List:files_app Type:@"audio"];
+                }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
+            }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+        }
+        else{
+            if ([MyUIApplication getselectedTVOnline]){
+                if (files_app.count > 0){
+                    [DownloadFileManagerHelper setcontext:self];
+                    [DownloadFileManagerHelper dlnaCast_bgm:files_app Type:@"audio" Asbgm:YES];
+                }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
+            }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+        }
     }
 }
 
-- (IBAction)press_playasBGM:(id)sender {
-    NSLog(@"audioSetContentActivity:play_as_bgm");
-    if (!_isAppContent){
-        if([MyUIApplication getselectedPCOnline]) {
-            if([MyUIApplication getselectedTVOnline]) {
-                if(files.count > 0)
-                    [MediafileHelper playMediaSetAsBGM:OrderConst_audioAction_name setName:_setName TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
-                else  [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
-            } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-        } else [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
-    }else {
-        if ([MyUIApplication getselectedTVOnline]){
-            if (files_app.count > 0){
-                [DownloadFileManagerHelper setcontext:self];
-                [DownloadFileManagerHelper dlnaCast_bgm:files_app Type:@"audio" Asbgm:YES];
-            }else [Toast ShowToast:@"当前列表文件个数为0" Animated:YES time:1 context:self.view];
-        }else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-    }
-}
 - (void)onHandler:(NSDictionary *)message{
     switch ([message[@"what"] intValue]) {
         case 0x219:{//OrderConst.playPCMediaSet_OK:

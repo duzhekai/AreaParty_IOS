@@ -55,6 +55,18 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [_web_content_view loadRequest:request];
     }
+    else if([_type isEqualToString:@"dialog_page04"]){
+        NSArray* arrs = _dialog_container.constraints;
+        for(NSLayoutConstraint* attr in arrs){
+            if(attr.firstAttribute == NSLayoutAttributeHeight){
+                attr.constant = 500;
+            }
+        }
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"page04" ofType:@"html"];
+        NSURL *url = [[NSURL alloc] initWithString:filePath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        [_web_content_view loadRequest:request];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

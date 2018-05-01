@@ -287,11 +287,13 @@
         audioSetContentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"audioSetContentViewController"];
         vc.isAppContent = NO;
         vc.setName = setList[indexPath.row].name;
+        vc.asBGM = _ifbgm;
         [self presentViewController:vc animated:YES completion:nil];
     }else {
         audioSetContentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"audioSetContentViewController"];
         vc.isAppContent = YES;
         vc.setName = setList_app[indexPath.row].name;
+        vc.asBGM = _ifbgm;
         [self presentViewController:vc animated:YES completion:nil];
     }
 }

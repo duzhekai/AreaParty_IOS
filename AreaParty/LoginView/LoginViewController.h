@@ -28,27 +28,32 @@
 #import "SharedflieBean.h"
 #import "MyUIApplication.h"
 #import "MainTabbarController.h"
+#import "onHandler.h"
+#import "LoginSettingViewController.h"
+#import "PreferenceUtil.h"
 @class Base;
-@interface LoginViewController : UIViewController
+
+extern Base* Login_base;
+extern NSMutableArray<UserItem*> *Login_userFriend;
+extern NSMutableArray<UserItem*> *Login_userNet;
+extern NSMutableArray<UserItem*> *Login_userShare;
+extern NSMutableArray<FileItem*> *Login_files;
+extern NSString* Login_userId;
+extern NSString* Login_userName;
+extern NSString* Login_userMac;
+extern BOOL Login_mainMobile;
+extern int Login_userHeadIndex;
+extern myChatList* Login_myChats;
+@interface LoginViewController : UIViewController<onHandler>
 
 @property (weak, nonatomic) IBOutlet UITextField *musernameTF;
 @property (weak, nonatomic) IBOutlet UITextField *mpasswdTF;
 @property (weak, nonatomic) IBOutlet UIButton *Login_btn;
 @property (weak, nonatomic) IBOutlet UIButton *offline;
-@property (weak, nonatomic) IBOutlet UIButton *registerbtn;
 @property (strong, nonatomic) UIAlertController *alertController;
 - (IBAction)Press_login_btn:(UIButton *)sender;
 - (IBAction)Press_offline_btn:(id)sender;
-- (IBAction)Press_register_btn:(id)sender;
+- (IBAction)Press_LoginByVerificationCode_btn:(id)sender;
 -(void)setmport:(NSUInteger) num;
 -(void)sethost:(NSString*)host;
-+ (NSMutableArray *)userFriend;
-+ (NSMutableArray *)userNet;
-+ (NSMutableArray *)userShare;
-+ (NSMutableArray *)files;
-+ (myChatList *)myChats;
-+ (NSString*) getuserId;
-+ (NSString*) getuserMac;
-+ (NSString*) getuserName;
-+ (Base*) getBase;
 @end

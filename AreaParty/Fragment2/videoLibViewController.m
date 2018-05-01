@@ -15,6 +15,11 @@
 #import "tab02_vediolib_item.h"
 #import <SDWebImage/UIImage+WebP.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <AssetsLibrary/ALAsset.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetsGroup.h>
+#import <AssetsLibrary/ALAssetRepresentation.h>
+#define Video_path [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"video"]
 @interface videoLibViewController (){
     BOOL isAppContent;
     NSMutableArray<MediaItem*>* folderArray_pc;
@@ -24,6 +29,7 @@
     ContentDataLoadTask* mContentDataLoadTask;
     AVLoadingIndicatorView* mProgressDialog;
     NSArray<FileItemForMedia*>* mediafiles_app;
+    NSFileManager * fileManager;
 }
 
 @end
@@ -33,6 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotification:) name:nil object:nil];
+    fileManager =[NSFileManager defaultManager];
     [self initData];
     [self initView];
     // Do any additional setup after loading the view.
@@ -62,7 +69,9 @@
     pc_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     app_file_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ontapped:)];
     mediafiles_app = [[NSArray alloc] init];
-    [MediafileHelper loadMediaLibFiles:self];
+    if([MyUIApplication getselectedPCOnline]){
+        [MediafileHelper loadMediaLibFiles:self];
+    }
 }
 - (void) initView{
     _shiftBar.layer.borderColor = [UIColor colorWithRed:230/255.0 green:87/255.0 blue:87/255.0 alpha:1].CGColor;
@@ -332,7 +341,55 @@
     }
     else{
         if ([MyUIApplication getselectedTVOnline]){
-            [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"video"];
+            NSString* fileName = mediafiles_app[i].mFileName;
+            NSString * videoPath = [Video_path stringByAppendingPathComponent:fileName];
+            NSURL* url = mediafiles_app[i].mAssertUrl;
+            if (![fileManager fileExistsAtPath:videoPath]) {
+                [mProgressDialog showPromptViewOnView:self.view];
+                [NSThread detachNewThreadWithBlock:^{
+                    // 将原始视频的URL转化为NSData数据,写入沙盒
+                    ALAssetsLibrary *assetLibrary = [[ALAssetsLibrary alloc] init];
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        if (url) {
+                            [assetLibrary assetForURL:url resultBlock:^(ALAsset *asset) {
+                                ALAssetRepresentation *rep = [asset defaultRepresentation];
+                                NSString * videoPath = [Video_path stringByAppendingPathComponent:fileName];
+                                char const *cvideoPath = [videoPath UTF8String];
+                                FILE *file = fopen(cvideoPath, "a+");
+                                if (file) {
+                                    const int bufferSize = 11024 * 1024;
+                                    // 初始化一个1M的buffer
+                                    Byte *buffer = (Byte*)malloc(bufferSize);
+                                    NSUInteger read = 0, offset = 0, written = 0;
+                                    NSError* err = nil;
+                                    if (rep.size != 0)
+                                    {
+                                        do {
+                                            read = [rep getBytes:buffer fromOffset:offset length:bufferSize error:&err];
+                                            written = fwrite(buffer, sizeof(char), read, file);
+                                            offset += read;
+                                        } while (read != 0 && !err);//没到结尾，没出错，ok继续
+                                    }
+                                    // 释放缓冲区，关闭文件
+                                    free(buffer);
+                                    buffer = NULL;
+                                    fclose(file);
+                                    file = NULL;
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        [mProgressDialog removeView];
+                                        [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"video"];
+                                    });
+                                }
+                            } failureBlock:^(NSError *error) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [Toast ShowToast:@"播放失败" Animated:YES time:1 context:self.view];
+                                    [mProgressDialog removeView];
+                                });
+                            }];
+                        }
+                    });
+                }];
+            }
         } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
     }
 }

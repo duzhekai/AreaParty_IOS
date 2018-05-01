@@ -101,22 +101,14 @@
         }
     }
     else if(gesture.view == _play_folder_list){
-        if (isAppContent){
-            if ([MyUIApplication getselectedTVOnline]){
-                [DownloadFileManagerHelper setcontext:self];
-                [DownloadFileManagerHelper dlnaCast_Folder:@"Photos" Type:@"image"];
-            } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-        }else{
-            if([MyUIApplication getselectedPCOnline]) {
-                if([MyUIApplication getselectedTVOnline]) {
-                    [MediafileHelper playAllMediaFile:OrderConst_imageAction_name Path:[MediafileHelper getcurrentPath] TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
-                } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
-            } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
-            
-        }
+        ActionDialog_playPicList* vc = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_playPicList"];
+        vc.holder = self;
+        [self presentViewController:vc animated:YES completion:nil];
     }
     else if (gesture.view == _to_select_bgm){
-        [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"audioSetViewController"] animated:YES completion:nil];
+        audioSetViewController*vc =  [self.storyboard instantiateViewControllerWithIdentifier:@"audioSetViewController"];
+        vc.ifbgm = YES;
+        [self presentViewController:vc animated:YES completion:nil];
     }
     else if (gesture.view == _picsPlayListLL){
         if(([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline])||([MyUIApplication getselectedTVVerified] && [MyUIApplication getselectedTVOnline])) {
@@ -407,5 +399,20 @@
     }
     [_folderSLV reloadData];
     [_fileSGV reloadData];
+}
+-(void)Dialog_press_ok{
+    if (isAppContent){
+        if ([MyUIApplication getselectedTVOnline]){
+            [DownloadFileManagerHelper setcontext:self];
+            [DownloadFileManagerHelper dlnaCast_Folder:@"Photos" Type:@"image"];
+        } else [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+    }else{
+        if([MyUIApplication getselectedPCOnline]) {
+            if([MyUIApplication getselectedTVOnline]) {
+                [MediafileHelper playAllMediaFile:OrderConst_imageAction_name Path:[MediafileHelper getcurrentPath] TVName:[MyUIApplication getSelectedTVIP].name Handler:self];
+            } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
+        } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        
+    }
 }
 @end

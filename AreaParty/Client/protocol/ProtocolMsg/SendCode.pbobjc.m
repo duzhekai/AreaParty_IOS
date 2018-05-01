@@ -48,11 +48,13 @@ static GPBFileDescriptor *SendCodeRoot_FileDescriptor(void) {
 
 @dynamic hasChangeType, changeType;
 @dynamic hasMobile, mobile;
+@dynamic hasUserId, userId;
 
 typedef struct SendCodeSync__storage_ {
   uint32_t _has_storage_[1];
   SendCodeSync_ChangeType changeType;
   NSString *mobile;
+  NSString *userId;
 } SendCodeSync__storage_;
 
 // This method is threadsafe because it is initially called
@@ -79,6 +81,15 @@ typedef struct SendCodeSync__storage_ {
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "userId",
+        .dataTypeSpecific.className = NULL,
+        .number = SendCodeSync_FieldNumber_UserId,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(SendCodeSync__storage_, userId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[SendCodeSync class]
@@ -90,7 +101,7 @@ typedef struct SendCodeSync__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\001\001\n\000";
+        "\002\001\n\000\003\006\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -107,11 +118,14 @@ GPBEnumDescriptor *SendCodeSync_ChangeType_EnumDescriptor(void) {
   static GPBEnumDescriptor *descriptor = NULL;
   if (!descriptor) {
     static const char *valueNames =
-        "Password\000Register\000Mobile\000";
+        "Password\000Register\000Mobile\000Login\000Mainphone"
+        "\000";
     static const int32_t values[] = {
         SendCodeSync_ChangeType_Password,
         SendCodeSync_ChangeType_Register,
         SendCodeSync_ChangeType_Mobile,
+        SendCodeSync_ChangeType_Login,
+        SendCodeSync_ChangeType_Mainphone,
     };
     GPBEnumDescriptor *worker =
         [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(SendCodeSync_ChangeType)
@@ -131,6 +145,8 @@ BOOL SendCodeSync_ChangeType_IsValidValue(int32_t value__) {
     case SendCodeSync_ChangeType_Password:
     case SendCodeSync_ChangeType_Register:
     case SendCodeSync_ChangeType_Mobile:
+    case SendCodeSync_ChangeType_Login:
+    case SendCodeSync_ChangeType_Mainphone:
       return YES;
     default:
       return NO;

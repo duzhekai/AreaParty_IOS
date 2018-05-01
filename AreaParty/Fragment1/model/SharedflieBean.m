@@ -14,7 +14,7 @@
 {
     self = [super init];
     if (self) {
-        _id = mid;
+        _mid = mid;
         _name = mname;
         _path = mpath;
         _size = msize;

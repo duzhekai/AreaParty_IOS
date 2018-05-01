@@ -11,7 +11,11 @@
 @interface RemoteDownloadActivityViewController ()
 
 @end
-static NSString* btFilesPath;
+NSString* RemoteDownload_rootPath;
+NSString* RemoteDownload_btFilesPath;
+NSString* RemoteDownload_targetPath;
+NSString* RemoteDownload_downloadPath;
+
 @implementation RemoteDownloadActivityViewController
 
 - (void)viewDidLoad {
@@ -22,12 +26,6 @@ static NSString* btFilesPath;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-+ (void)setbtFilesPath:(NSString*) path{
-    btFilesPath = path;
-}
-+ (NSString*)getbtFilesPath{
-    return btFilesPath;
 }
 /*
 #pragma mark - Navigation

@@ -111,8 +111,8 @@ static BOOL isNewTVList= NO;
 }
 +(void)runSendStatistic2Server{
     NSString* type = @"app";
-    NSString* userId = [LoginViewController getuserId];
-    NSString* id_ = [LoginViewController getuserMac];
+    NSString* userId = Login_userId;
+    NSString* id_ = Login_userMac;
     NSString* mac = id_;
     long time =[[NSDate date] timeIntervalSince1970]*1000;
     NSMutableArray<StatisticsMsgBean*>* pcMsg = [[NSMutableArray alloc] init];

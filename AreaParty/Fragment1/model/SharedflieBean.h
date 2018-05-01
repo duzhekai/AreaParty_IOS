@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SharedflieBean : NSObject
-@property(assign,nonatomic) int id;
+@property(assign,nonatomic) int mid;
 @property(copy,nonatomic) NSString* name;
 @property(copy,nonatomic) NSString* path;
 @property(assign,nonatomic) int size;

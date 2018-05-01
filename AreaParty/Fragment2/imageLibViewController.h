@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImage+WebP.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DownloadFileManagerHelper.h"
+#import "audioSetViewController.h"
 @interface imageLibViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,onHandler,OnContentDataLoadListener>
 - (IBAction)press_return:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *pcStateIV;

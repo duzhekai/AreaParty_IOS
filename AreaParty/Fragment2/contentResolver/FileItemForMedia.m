@@ -9,12 +9,13 @@
 #import "FileItemForMedia.h"
 
 @implementation FileItemForMedia
-- (instancetype)initWithmFileId:(NSString*)mFileId1 mFilePath:(NSString*)mFilePath1 mFileName:(NSString*)mFileName1{
+- (instancetype)initWithmFileId:(NSString*)mFileId1 mFilePath:(NSString*)mFilePath1 mFileName:(NSString*)mFileName1 AssertUrl:(NSURL*)asserurl{
     self = [super init];
     if(self){
         _mFileId = mFileId1;
         _mFilePath = mFilePath1;
         _mFileName = mFileName1;
+        _mAssertUrl = asserurl;
     }
     return self;
 }

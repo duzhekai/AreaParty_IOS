@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 @interface LoginSettingViewController : UIViewController
-
+@property(strong,nonatomic) NSMutableDictionary* bundle;
 @end

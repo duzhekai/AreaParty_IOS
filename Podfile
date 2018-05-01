@@ -10,4 +10,5 @@ pod 'SDWebImage', '~> 4.0'
 pod 'SDWebImage/WebP'
 pod 'MJRefresh'
 pod 'Charts'
+pod 'FMDB'
 end

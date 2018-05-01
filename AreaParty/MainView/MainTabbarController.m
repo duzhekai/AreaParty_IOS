@@ -13,15 +13,21 @@
 #import "ChatDBManager.h"
 #import "FriendRequestDBManager.h"
 #import "FileRequestDBManager.h"
-
+#import "UserData.pbobjc.h"
 @interface MainTabbarController ()
 
 @end
 static ChatDBManager* chatDBManager;
 static FriendRequestDBManager* friendRequestDBManager;
 static FileRequestDBManager* fileRequestDBManager;
-static NSUserDefaults* defaults;
-static MyHandler* handler;
+static NSUserDefaults* sp;
+MyHandler* MainTabbarController_handlerTab01;
+MyHandler* MainTabbarController_handlerTab06;
+MyHandler* MainTabbarController_btHandler;
+MyHandler* MainTabbarController_downloadHandler;
+MyHandler* MainTabbarController_stateHandler;
+DownloadFolderFragment* MainTabbarController_DownloadFolderFragment;
+DownloadStateFragment* MainTabbarController_DownloadStateFragment;
 @implementation MainTabbarController
 
 - (void)viewDidLoad {
@@ -29,7 +35,13 @@ static MyHandler* handler;
     // Do any additional setup after loading the view.
     self.delegate = self;
     self.selectedIndex = 0;
-    handler = [[MyHandler alloc] initWithController: self];
+    MainTabbarController_DownloadFolderFragment = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DownloadFolderFragment"];
+    MainTabbarController_DownloadStateFragment = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"DownloadStateFragment"];
+    
+    MainTabbarController_handlerTab01 = [[MyHandler alloc] initWithFragment1:self.viewControllers[0]];
+    MainTabbarController_handlerTab06 = [[MyHandler alloc] initWithFragment6:self.viewControllers[3]];
+    MainTabbarController_downloadHandler = [[MyHandler alloc] initWithDownloadFolderFragment:MainTabbarController_DownloadFolderFragment];
+    MainTabbarController_stateHandler = [[MyHandler alloc] initWithDownloadStateFragment:MainTabbarController_DownloadStateFragment];
     // 添加pan手势
     [self.view addGestureRecognizer:self.panGestureRecognizer];
 //    //需要添加activity？
@@ -37,15 +49,15 @@ static MyHandler* handler;
     if([FillingIPInforList getStatisticThread] != nil && ![[FillingIPInforList getStatisticThread]isExecuting]){
         [[FillingIPInforList getStatisticThread] start];
     }
-//    /**
-//     * 获取聊天数据库，如果当前用户第一次登陆，新建表
-//     */
-//    if(![[LoginViewController getuserId] isEqualToString:@""]){
-//        chatDBManager = [[ChatDBManager alloc] init];
-//        friendRequestDBManager = [[FriendRequestDBManager alloc] init];
-//        fileRequestDBManager = [[FileRequestDBManager alloc]init];
-//        
-//    }
+    /**
+     * 获取聊天数据库，如果当前用户第一次登陆，新建表
+     */
+    if(![Login_userId isEqualToString:@""]){
+        chatDBManager = [[ChatDBManager alloc] init];
+        friendRequestDBManager = [[FriendRequestDBManager alloc] init];
+        fileRequestDBManager = [[FileRequestDBManager alloc] init];
+    }
+    [self initEvent];
     
 }
 //懒加载
@@ -118,9 +130,6 @@ static MyHandler* handler;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-+ (MyHandler*)getMyhandler{
-    return handler;
-}
 
 /*
 #pragma mark - Navigation
@@ -131,4 +140,64 @@ static MyHandler* handler;
     // Pass the selected object to the new view controller.
 }
 */
++ (FriendRequestDBManager*)getFriendRequestDBManager{
+    return friendRequestDBManager;
+}
++ (FileRequestDBManager*)getFileRequestDBManager{
+    return fileRequestDBManager;
+}
++ (ChatDBManager*) getChatDBManager{
+    return chatDBManager;
+}
+- (void) initEvent {
+    /**
+     * 接收离线消息，保存进数据库
+     */
+    if(![Login_userId isEqualToString:@""]){
+        @try {
+            sp = [[NSUserDefaults alloc] initWithSuiteName: [NSString stringWithFormat:@"%@_chatNum",Login_userId]];
+            NSArray<UserItem*>* friendList = Login_userFriend;
+            for (UserItem* friend in friendList) {
+                int chatNum = (int)[sp integerForKey:friend.userId];
+                [[Fragment4ViewController getFriendChatNum] setObject:[NSNumber numberWithInt:chatNum] forKey:friend.userId];
+            }
+            myChatList* chats = (myChatList*) _intentbundle[@"chats"];
+            for (ChatItem* c in chats.list) {
+                if (c.targetType == ChatItem_TargetType_Individual){
+                    if ([[Fragment4ViewController getFriendChatNum]objectForKey:c.sendUserId]) {
+                        [[Fragment4ViewController getFriendChatNum] setObject:@([[[Fragment4ViewController getFriendChatNum] objectForKey:c.sendUserId] intValue]+1) forKey:c.sendUserId];
+                    } else {
+                        [[Fragment4ViewController getFriendChatNum] setObject:@1 forKey:c.sendUserId];
+                    }
+                    ChatDBManager* chatDB = [MainTabbarController getChatDBManager];
+                    ChatObj* chat = [[ChatObj alloc] init];
+                    chat.date = c.date;
+                    chat.msg = c.chatBody;
+                    chat.receiver_id = c.receiveUserId;
+                    chat.sender_id = c.sendUserId;
+                    [chatDB addChatSQL:chat AndTable:Login_userId];
+                    int chatNum = (int)[sp integerForKey:c.sendUserId];
+                    [sp setInteger:++chatNum forKey:c.sendUserId];
+                } else if(c.targetType == ChatItem_TargetType_Download){
+                    fileObj* fileRequest = [[fileObj alloc] init];
+                    fileRequest.fileDate = c.fileDate;
+                    fileRequest.fileName =  c.fileName;
+                    fileRequest.senderId = c.sendUserId;
+                    fileRequest.fileSize = [c.fileSize intValue];
+                    FileRequestDBManager* fileRequestDBManager = [MainTabbarController getFileRequestDBManager];
+                    [fileRequestDBManager addFileRequestSQL:fileRequest AndTable:[NSString stringWithFormat:@"%@transform",Login_userId]];
+                    NSMutableDictionary* fileRequestMsg = [[NSMutableDictionary alloc] init];
+                    fileRequestMsg[@"obj"] = fileRequest;
+                    fileRequestMsg[@"what"] = [NSNumber numberWithInt:OrderConst_addFileRequest];
+                    [MainTabbarController_handlerTab06 onHandler:fileRequestMsg];
+                }
+            }
+        }@catch (NSException* e){
+            NSLog(@"%@",e.name);
+        }
+    }
+}
++ (NSUserDefaults*) getSp{
+    return sp;
+}
 @end

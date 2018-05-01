@@ -11,6 +11,7 @@
 #import "NetUtil.h"
 #import "HTTPServer.h"
 #import "MyHTTPConnection.h"
+#import "IPAddressConst.h"
 @interface AppDelegate (){
     HTTPServer* dlnaServer;
 }
@@ -23,6 +24,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     NSLog(@"MyApplication:applicationCreate");
+    [NSThread detachNewThreadWithBlock:^{
+        [MyUIApplication setAREAPARTY_NET:[MyUIApplication GetInetAddress:[MyUIApplication getdomain]]];
+        IPAddressConst_statisticServer_ip = [MyUIApplication GetInetAddress:[MyUIApplication getdomain1]];
+    }];
     //初始化下载器
     //初始化tvpcip
     [MyUIApplication initTVPCIP];

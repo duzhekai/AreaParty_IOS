@@ -7,7 +7,7 @@
 //
 
 #import "diskContentVC.h"
-
+#import "MyTableView.h"
 @interface diskContentVC ()
 
 @end
@@ -46,6 +46,7 @@ static PCFileHelper* pCFileHelper;
     _page04DiskContentBar02MoreRootLL.layer.shadowRadius = 2;//半径
     _page04DiskContentBar02MoreRootLL.layer.shadowOpacity = 0.25;
     _LoadingDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
+    
     NSString* initTitle = [_diskName stringByAppendingString:@":>"];
     [_page04DiskContentCurrentPathTV setText:initTitle];
     [_page04DiskContentTitleTV setText:[NSString stringWithFormat:@"%@盘",_diskName]];
@@ -124,6 +125,44 @@ static PCFileHelper* pCFileHelper;
     }];
     [_delete_folder_dialog addAction:del_cacleAction];
     [_delete_folder_dialog addAction:del_sureAction];
+    
+    _share_file_dialog = [UIAlertController alertControllerWithTitle:@"共享文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [_share_file_dialog addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        _sshareFileDesET = textField;
+        textField.placeholder = @"输入当前文件描述信息";
+    }];
+    [_share_file_dialog addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        _sshareFileUrlET = textField;
+        textField.placeholder = @"输入网盘链接(选填)";
+    }];
+    [_share_file_dialog addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        _sshareFilePwdET = textField;
+        textField.placeholder = @"输入网盘密码(选填)";
+    }];
+    
+    UIAlertAction * share_cacleAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *share_sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        _page04DiskContentBar02MoreRootLL.hidden = YES;
+        NSString* des = _sshareFileDesET.text;
+        if([des isEqualToString:@""])
+            [Toast ShowToast:@"文件描述信息不能为空" Animated:YES time:1 context:self.view];
+        else{
+            [_share_file_dialog dismissViewControllerAnimated:YES completion:nil];
+            [_LoadingDialog showPromptViewOnView:self.view];
+            NSString* name = [PCFileHelper getSelectedFiles][0].name;
+            int size = [PCFileHelper getSelectedFiles][0].size;
+            long time = [[NSDate date] timeIntervalSince1970];
+            [PCFileHelper setSelectedShareFile:[[SharedflieBean alloc] initWithName:name Path:[NSString stringWithFormat:@"%@%@",[PCFileHelper getNowFilePath],name] Size:size Des:des TimeLong:time*1000 URL:_sshareFileUrlET.text Pwd:_sshareFilePwdET.text]];
+            NSLog(@"page04--路径：%@", [PCFileHelper getSelectedShareFile].path);
+            [pCFileHelper shareFile:des fileBean:[PCFileHelper getSelectedShareFile]];
+        }
+        
+    }];
+    [_share_file_dialog addAction:share_cacleAction];
+    [_share_file_dialog addAction:share_sureAction];
+    
 }
 - (void)addFolderDialog{
     [self presentViewController:_add_folder_dialog animated:YES completion:nil];
@@ -342,7 +381,7 @@ static PCFileHelper* pCFileHelper;
             if(selectedFileList.count == 1) {
                 _bar02MoreSaveLL.userInteractionEnabled = YES;
                 [_bar02MoreSaveLL setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                if(!([[LoginViewController getuserId] isEqualToString:@""])) {
+                if(!([Login_userId isEqualToString:@""])) {
                     _bar02MoreShareLL.userInteractionEnabled = YES;
                     [_bar02MoreShareLL setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 } else {
@@ -354,7 +393,7 @@ static PCFileHelper* pCFileHelper;
             } else {
                 _bar02MoreSaveLL.userInteractionEnabled = NO;
                 [_bar02MoreSaveLL setTitleColor:[UIColor colorWithRed:211/255.0 green:211/255.0  blue:211/255.0  alpha:1] forState:UIControlStateNormal];
-                if(!([[LoginViewController getuserId] isEqualToString:@""])) {
+                if(!([Login_userId isEqualToString:@""])) {
                     _bar02MoreShareLL.userInteractionEnabled = NO;
                     [_bar02MoreShareLL setTitleColor:[UIColor colorWithRed:211/255.0 green:211/255.0  blue:211/255.0  alpha:1] forState:UIControlStateNormal];
                 } else {
@@ -374,7 +413,7 @@ static PCFileHelper* pCFileHelper;
             if(selectedFolderList.count != 0) {
                 _bar02MoreSaveLL.userInteractionEnabled = NO;
                 [_bar02MoreSaveLL setTitleColor:[UIColor colorWithRed:211/255.0 green:211/255.0  blue:211/255.0  alpha:1] forState:UIControlStateNormal];
-                if(!([[LoginViewController getuserId] isEqualToString:@""])) {
+                if(!([Login_userId isEqualToString:@""])) {
                     _bar02MoreShareLL.userInteractionEnabled = NO;
                     [_bar02MoreShareLL setTitleColor:[UIColor colorWithRed:211/255.0 green:211/255.0  blue:211/255.0  alpha:1] forState:UIControlStateNormal];
                 } else {
@@ -384,7 +423,7 @@ static PCFileHelper* pCFileHelper;
             } else {
                 _bar02MoreSaveLL.userInteractionEnabled = YES;
                 [_bar02MoreSaveLL setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                if(!([[LoginViewController getuserId] isEqualToString:@""])) {
+                if(!([Login_userId isEqualToString:@""])) {
                     _bar02MoreShareLL.userInteractionEnabled = NO;
                     [_bar02MoreShareLL setTitleColor:[UIColor colorWithRed:211/255.0 green:211/255.0  blue:211/255.0  alpha:1] forState:UIControlStateNormal];
                 } else {
@@ -449,11 +488,16 @@ static PCFileHelper* pCFileHelper;
         _page04DiskContentBar02MoreRootLL.hidden = YES;
     }
     else if(sender == _bar02MoreRenameLL){
-        
+        [self reNameDialog];
     }
     else if(sender == _bar02MoreShareLL){
         _page04DiskContentBar02MoreRootLL.hidden = YES;
-        //shareFileDialog();
+        NSString* name = [PCFileHelper getSelectedFiles][0].name;
+        if (name.length > 100){
+            [Toast ShowToast:@"文件名过长，不能分享" Animated: YES time:1 context:self.view];
+        }else {
+           [self shareFileDialog];
+        }
     }
     else if(sender == _bar02MoreDetailLL){
         
@@ -730,7 +774,12 @@ static PCFileHelper* pCFileHelper;
         _page04DiskContentActionBar01LL.hidden = NO;
         [_LoadingDialog removeView];
         //Toasty.success(this, "所有选中添加到本地下载队列成功", Toast.LENGTH_SHORT, true).show();
-    } else {
+    } else if ([actionType isEqualToString:OrderConst_fileOrFolderAction_renameInComputer_command]){
+        _page04DiskContentBar02MoreRootLL.hidden = YES;
+        _page04DiskContentActionBar02LL.hidden = YES;
+        _page04DiskContentActionBar01LL.hidden =NO;
+        [pCFileHelper loadFiles];
+    }else {
         [pCFileHelper loadFiles];
     }
     });
@@ -868,6 +917,48 @@ static PCFileHelper* pCFileHelper;
             [_bar02TxCopyTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
             [_bar02TxCutTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
             [_bar02TxDeleteTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
+        }
+    }
+}
+- (void) shareFileDialog {
+    [_share_file_dialog setMessage:[PCFileHelper getSelectedFiles][0].name];
+    [self presentViewController:_share_file_dialog animated:YES completion:nil];
+}
+- (void) reNameDialog{
+    ActionDialog_reName* reNameDialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_reName"];
+    fileBean* fileBean;
+    if ([PCFileHelper getSelectedFiles].count>0){
+        fileBean = [PCFileHelper getSelectedFiles][0];
+    }else if ([PCFileHelper getSelectedFolders].count>0){
+        fileBean = [PCFileHelper getSelectedFolders][0];
+    }else {
+        return;
+    }
+    int type = fileBean.type;
+    NSString* name1 = fileBean.name;
+    reNameDialog.oldfileName = name1;
+    reNameDialog.filetype = type;
+    reNameDialog.holder = self;
+    [self presentViewController:reNameDialog animated:YES completion:nil];
+    
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if(_page04DiskContentBar01MoreRootLL.hidden == NO){
+        UITouch *touch = [touches anyObject];
+        CGPoint touchPoint = [touch locationInView:self.view];
+        if((touchPoint.x > _page04DiskContentBar01MoreRootLL.frame.origin.x) && (touchPoint.x < _page04DiskContentBar01MoreRootLL.frame.origin.x+_page04DiskContentBar01MoreRootLL.frame.size.width) && (touchPoint.y > _page04DiskContentBar01MoreRootLL.frame.origin.y) && (touchPoint.y < _page04DiskContentBar01MoreRootLL.frame.origin.y+_page04DiskContentBar01MoreRootLL.frame.size.height)){
+        }
+        else{
+            _page04DiskContentBar01MoreRootLL.hidden = YES;
+        }
+    }
+    if(_page04DiskContentBar02MoreRootLL.hidden == NO){
+        UITouch *touch = [touches anyObject];
+        CGPoint touchPoint = [touch locationInView:self.view];
+        if((touchPoint.x > _page04DiskContentBar02MoreRootLL.frame.origin.x) && (touchPoint.x < _page04DiskContentBar02MoreRootLL.frame.origin.x+_page04DiskContentBar02MoreRootLL.frame.size.width) && (touchPoint.y > _page04DiskContentBar02MoreRootLL.frame.origin.y) && (touchPoint.y < _page04DiskContentBar02MoreRootLL.frame.origin.y+_page04DiskContentBar02MoreRootLL.frame.size.height)){
+        }
+        else{
+            _page04DiskContentBar02MoreRootLL.hidden = YES;
         }
     }
 }

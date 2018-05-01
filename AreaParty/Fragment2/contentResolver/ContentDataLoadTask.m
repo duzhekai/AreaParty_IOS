@@ -80,7 +80,7 @@
                                                 NSLog(@"fileName = %@",fileName);
                                                 NSLog(@"url = %@",url);
                                                 NSLog(@"fileSize = %lld",fileSize);
-                                                [photos addObject:[[FileItemForMedia alloc] initWithmFileId:fileid mFilePath:fileUrl mFileName:fileName]];
+                                                [photos addObject:[[FileItemForMedia alloc] initWithmFileId:fileid mFilePath:fileUrl mFileName:fileName AssertUrl:url]];
                                                 NSString * imagePath = [Photo_path stringByAppendingPathComponent:fileName];
                                                 if (![fileManager fileExistsAtPath:imagePath]) {
                                                     [self imageWithUrl:url withFileName:fileName];
@@ -166,11 +166,12 @@
                                                     NSLog(@"fileName = %@",fileName);
                                                     NSLog(@"url = %@",url);
                                                     NSLog(@"fileSize = %lld",fileSize);
-                                                    [videos addObject:[[FileItemForMedia alloc] initWithmFileId:fileid mFilePath:fileUrl mFileName:fileName]];
-                                                    NSString * videoPath = [Video_path stringByAppendingPathComponent:fileName];
-                                                    if (![fileManager fileExistsAtPath:videoPath]) {
-                                                        [self videoWithUrl:url withFileName:fileName];
-                                                    }
+                                                    [videos addObject:[[FileItemForMedia alloc] initWithmFileId:fileid mFilePath:fileUrl mFileName:fileName AssertUrl:url]];
+//扫描时不做copy，放在投屏时
+//                                                    NSString * videoPath = [Video_path stringByAppendingPathComponent:fileName];
+//                                                    if (![fileManager fileExistsAtPath:videoPath]) {
+//                                                        [self videoWithUrl:url withFileName:fileName];
+//                                                    }
                                                 }
                                             }
                                         }];

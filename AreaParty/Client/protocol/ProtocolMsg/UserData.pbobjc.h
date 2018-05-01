@@ -53,6 +53,8 @@ typedef GPB_ENUM(UserItem_FieldNumber) {
   UserItem_FieldNumber_FileNum = 4,
   UserItem_FieldNumber_IsFriend = 5,
   UserItem_FieldNumber_IsOnline = 6,
+  UserItem_FieldNumber_IsSpeed = 7,
+  UserItem_FieldNumber_IsRecommend = 8,
 };
 
 @interface UserItem : GPBMessage
@@ -77,6 +79,12 @@ typedef GPB_ENUM(UserItem_FieldNumber) {
 @property(nonatomic, readwrite) BOOL isOnline;
 
 @property(nonatomic, readwrite) BOOL hasIsOnline;
+@property(nonatomic, readwrite) BOOL isSpeed;
+
+@property(nonatomic, readwrite) BOOL hasIsSpeed;
+@property(nonatomic, readwrite) BOOL isRecommend;
+
+@property(nonatomic, readwrite) BOOL hasIsRecommend;
 @end
 
 NS_ASSUME_NONNULL_END

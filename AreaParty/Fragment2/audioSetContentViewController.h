@@ -18,9 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *setNameTV;
 @property (weak, nonatomic) IBOutlet UITableView *fileSGV;
 @property (assign,nonatomic) BOOL isAppContent;
+@property (assign,nonatomic) BOOL asBGM;
 @property (weak, nonatomic) IBOutlet UILabel *currentMusicNameTV;
 @property (weak, nonatomic) IBOutlet UIImageView *playOrPauseIV;
 - (IBAction)press_playOrPauseBtn:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *playAsBGM;
 
 @property (strong,nonatomic) NSString* setName;
 

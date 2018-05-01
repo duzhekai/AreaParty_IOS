@@ -8,6 +8,9 @@
 #import "ReceivedFileManagerMessageFormat.h"
 #import "PCFileHelper.h"
 #import "prepareDataForFragment.h"
+#import "SharedflieBean.h"
+#import "LoginViewController.h"
+#import "AddFileMsg.pbobjc.h"
 static NSString* HTTPINDEX =@"";
 static BOOL isInitial = YES;
 static BOOL isCopy = NO;
@@ -110,6 +113,31 @@ static NSMutableArray* reCeivedActionErrorMessageList;
                 [myHandler onHandler:message];
             }
         }]start];
+}
+/**
+ * <summary>
+ *  分享当前文件到服务器
+ * </summary>
+ * <param name="des">文件描述信息</param>
+ * <param name="file">文件</param>
+ */
+- (void) shareFile:(NSString*) des fileBean:(SharedflieBean*) file {
+    [NSThread detachNewThreadWithBlock:^{
+        AddFileReq* builder = [[AddFileReq alloc] init];
+        builder.fileName = file.name;
+        builder.userId = Login_userId;
+        builder.fileInfo = des;
+        builder.fileSize = [NSString stringWithFormat:@"%d",file.size];
+        builder.fileDate = [NSString stringWithFormat:@"%ld",file.timeLong];
+        builder.fileURL = file.url;
+        builder.filePwd = file.pwd;
+        @try {
+            NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_AddFileReq packetBytes:[builder data]];
+            [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
+        } @catch (NSException* e) {
+            NSLog(@"%@",e.name);
+        }
+    }];
 }
 /**
  * <summary>
@@ -271,6 +299,122 @@ static NSMutableArray* reCeivedActionErrorMessageList;
         }
     }]start];
 }
+
+/**
+ * <summary>
+ *  根据分享文件到服务器的状态决定是否向PC写入信息
+ * </summary>
+ * <param name="msg">状态对象</param>
+ */
+- (void) shareFileState:(NSMutableDictionary*) msg{
+    BOOL shareState =  [msg[@"obj"] boolValue];
+    NSLog(@"PCFileHelper_开始向PC写入分享文件的信息,分享状态%@",shareState?@"yes":@"no");
+    [NSThread detachNewThreadWithBlock:^{
+        if(shareState) {
+            SharedFilePathFormat* filePath =  [[SharedFilePathFormat alloc] init];
+            filePath.creatTime = [NSString stringWithFormat:@"%ld",selectedShareFile.timeLong];
+            filePath.wholePath = selectedShareFile.path;
+            filePath.fileName = selectedShareFile.name;
+            filePath.fileSize = selectedShareFile.size;
+            @try {
+                ReceivedActionMessageFormat* fileActionMessageReceived = (ReceivedActionMessageFormat*)[prepareDataForFragment getFileActionStateData:OrderConst_fileAction_name command:OrderConst_fileAction_share_command param:[filePath yy_modelToJSONString]];
+                if(fileActionMessageReceived.status == OrderConst_success) {
+                    NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+                    message[@"what"] = [NSNumber numberWithInt:OrderConst_addSharedFilePath_successful];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [myHandler onHandler:message];
+                    });
+                } else {
+                    NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+                    message[@"what"] = [NSNumber numberWithInt:OrderConst_addSharedFilePath_fail];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [myHandler onHandler:message];
+                    });
+                }
+            } @catch (NSException* e) {
+                NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+                message[@"what"] = [NSNumber numberWithInt:OrderConst_addSharedFilePath_fail];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [myHandler onHandler:message];
+                });
+            }
+        } else {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_addSharedFilePath_fail];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }];
+}
+/*重命名*/
+
+- (void) reNameFolder:(NSString*) name Path:(NSString*) targetPath{
+    [reCeivedActionErrorMessageList removeAllObjects];
+    [NSThread detachNewThreadWithBlock:^{
+        @try {
+            ReceivedActionMessageFormat* tmp = (ReceivedActionMessageFormat*)[prepareDataForFragment getFileActionStateData:OrderConst_folderAction_name command:OrderConst_fileOrFolderAction_renameInComputer_command param:[NSString stringWithFormat:@"%@%@%@%@%@",OrderConst_paramSourcePath,nowFilePath,name,OrderConst_paramTargetPath,targetPath]];
+            if(tmp.status == OrderConst_failure) {
+                [reCeivedActionErrorMessageList addObject:tmp.message];
+            }
+        } @catch(NSException* e) {
+                [reCeivedActionErrorMessageList addObject:e.name];
+        }
+        //
+        // 执行成功
+        if(reCeivedActionErrorMessageList.count == 0) {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_renameInComputer_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        } else {
+            // 执行失败
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_renameInComputer_command;
+            message[@"error"] = @"部分文件复制出错，详情请查看错误日志。";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }];
+}
+- (void) reNameFile:(NSString*) name Path:(NSString*) targetPath{
+    //Log.e("PCFileHelper", "开始复制选中的文件(夹)到" + targetPath);
+    [reCeivedActionErrorMessageList removeAllObjects];
+    [NSThread detachNewThreadWithBlock:^{
+        @try {
+            ReceivedActionMessageFormat* tmp = (ReceivedActionMessageFormat*)[prepareDataForFragment getFileActionStateData:OrderConst_fileAction_name command:OrderConst_fileOrFolderAction_renameInComputer_command param:[NSString stringWithFormat:@"%@%@%@%@%@",OrderConst_paramSourcePath,nowFilePath,name,OrderConst_paramTargetPath,targetPath]];
+            if(tmp.status == OrderConst_failure) {
+                [reCeivedActionErrorMessageList addObject:tmp.message];
+            }
+        } @catch(NSException* e) {
+            [reCeivedActionErrorMessageList addObject:e.name];
+        }
+        //
+        // 执行成功
+        if(reCeivedActionErrorMessageList.count == 0) {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_renameInComputer_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        } else {
+            // 执行失败
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_renameInComputer_command;
+            message[@"error"] = @"部分文件复制出错，详情请查看错误日志。";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }];
+};
+
 + (NSString*)getNowFilePath {
     return nowFilePath;
 }

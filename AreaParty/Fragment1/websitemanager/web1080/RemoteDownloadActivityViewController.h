@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+extern NSString* RemoteDownload_rootPath;
+extern NSString* RemoteDownload_btFilesPath;
+extern NSString* RemoteDownload_targetPath;
+extern NSString* RemoteDownload_downloadPath;
 @interface RemoteDownloadActivityViewController : UIViewController
-+ (void)setbtFilesPath:(NSString*) path;
-+ (NSString*)getbtFilesPath;
 @end

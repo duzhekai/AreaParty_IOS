@@ -39,7 +39,7 @@ static SettingNameHandler* mhandler;
 
 - (IBAction)press_set_name:(id)sender {
     _mnewName = _setting_name_et.text;
-    if([[LoginViewController getuserName]isEqualToString:_mnewName] || [_mnewName isEqualToString:@""] ){
+    if([Login_userName isEqualToString:_mnewName] || [_mnewName isEqualToString:@""] ){
        [Toast ShowToast:@"请正确填写用户名" Animated:YES time:2 context:self.view];
         return;
     }
@@ -49,7 +49,7 @@ static SettingNameHandler* mhandler;
         NSData* reByteArray;
             @try {
                 reByteArray = [NetworkPacket packMessage:ENetworkMessage_PersonalsettingsReq packetBytes:[builder data]];
-                [[LoginViewController getBase] writeToServer:[LoginViewController getBase].outputStream arrayBytes:reByteArray];
+                [Login_base writeToServer:Login_base.outputStream arrayBytes:reByteArray];
             } @catch (NSException* e) {
                 NSLog(@"%@",e);
             }

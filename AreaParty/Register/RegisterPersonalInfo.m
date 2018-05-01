@@ -133,6 +133,10 @@
             NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
             NSUInteger port = [defaults integerForKey:@"SERVER_PORT"];
             NSString*  host = [defaults objectForKey:@"SERVER_IP"];
+            if(port ==0)
+                port = 3333;
+            if(host ==nil)
+                host = [MyUIApplication getAREAPARTY_NET];
             Base* base  = [[Base alloc] initWithHost:host andPort:(int)port];
             NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_SendCode packetBytes:[scsbuilder data]];
             [base writeToServer:base.outputStream arrayBytes:byteArray];
@@ -162,6 +166,10 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSUInteger port = [defaults integerForKey:@"SERVER_PORT"];
     NSString*  host = [defaults objectForKey:@"SERVER_IP"];
+    if(port ==0)
+        port = 3333;
+    if(host ==nil)
+        host = [MyUIApplication getAREAPARTY_NET];
     NSLog(@"host:%@ port:%ld",host,port);
     RegisterReq * reqbuilder = [[RegisterReq alloc] init];
     [reqbuilder setRequestCode:RegisterReq_RequestCode_Checkmobile];

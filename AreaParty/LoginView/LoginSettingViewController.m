@@ -59,6 +59,14 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSInteger mport = [defaults integerForKey:@"SERVER_PORT"];
     NSString* mhost = [defaults stringForKey:@"SERVER_IP"];
+    if(mport == nil){
+        if(_bundle != nil)
+            mport = [[_bundle objectForKey:@"port"] integerValue];
+        }
+    if(mhost == nil){
+        if(_bundle != nil)
+            mhost = [_bundle objectForKey:@"ip"];
+    }
     [_setting_ip setText:mhost];
     [_setting_port setText:[NSString stringWithFormat:@"%ld",(long)mport]];
 }

@@ -27,7 +27,7 @@
 
 CF_EXTERN_C_BEGIN
 
-@class FileItemForMedia;
+@class FileItem;
 @class GroupItem;
 @class UserItem;
 
@@ -129,7 +129,7 @@ typedef GPB_ENUM(GetPersonalInfoRsp_FieldNumber) {
 /** The number of items in @c friendsArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger friendsArray_Count;
 
-@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<FileItemForMedia*> *filesArray;
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<FileItem*> *filesArray;
 /** The number of items in @c filesArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger filesArray_Count;
 

@@ -47,7 +47,7 @@
 + (PCCommandItem*) createOpenPcMediaSetCommand:(NSString*)type setName:(NSString*)setname tvname:(NSString*)tvname;
 + (PCCommandItem*) createPlayAsBGMCommand:(NSString*)type setname:(NSString*)setname tvname:(NSString*) tvname ;
 + (PCCommandItem*)createDeleteCommand:(NSString*)path type:(NSString*)type;
-+ (PCCommandItem*)createPlayAllCommand:(NSString*) path tvname:(NSString*) tvname type:(NSString*) type;
++(PCCommandItem*)createPlayAllCommand:(NSString*) path tvname:(NSString*) tvname time:(NSString*) t type:(NSString*) type;
 + (PCCommandItem*)createGetPcMediaListCommand:(NSString*) path type:(NSString*)type root:(BOOL)root;
 + (TVCommandItem*)closeRdp;
 + (TVCommandItem*) createPlayVLCCommand;

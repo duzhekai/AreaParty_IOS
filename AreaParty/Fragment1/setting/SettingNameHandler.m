@@ -28,7 +28,7 @@
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [Toast ShowToast:@"修改成功" Animated:YES time:2 context:_ctl.view];
                 NSDictionary* message =  [NSDictionary dictionaryWithObjectsAndKeys:_ctl.setting_name_et.text,@"data",[NSNumber numberWithInt:OrderConst_setUserName],@"what",nil];
-                [[MainTabbarController getMyhandler] onHandler:message];
+                [MainTabbarController_handlerTab01 onHandler:message];
                 [_ctl dismissViewControllerAnimated:YES completion:nil];
             });
             break;

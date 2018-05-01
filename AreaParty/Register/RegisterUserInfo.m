@@ -141,6 +141,10 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSUInteger port = [defaults integerForKey:@"SERVER_PORT"];
     NSString* host = [defaults objectForKey:@"SERVER_IP"];
+    if(port ==0)
+        port = 3333;
+    if(host ==nil)
+        host = [MyUIApplication getAREAPARTY_NET];
     RegisterReq* req = [[RegisterReq alloc] init];
     [req setRequestCode:RegisterReq_RequestCode_Checkuserid];
     [req setUserId:userId];

@@ -12,6 +12,6 @@
 @property(strong,nonatomic) NSString* mFileId;
 @property(strong,nonatomic) NSString* mFilePath;
 @property(strong,nonatomic) NSString* mFileName;
-@property(strong,nonatomic) NSString* mGroupName;
-- (instancetype)initWithmFileId:(NSString*)mFileId1 mFilePath:(NSString*)mFilePath1 mFileName:(NSString*)mFileName1;
+@property(strong,nonatomic) NSURL* mAssertUrl;
+- (instancetype)initWithmFileId:(NSString*)mFileId1 mFilePath:(NSString*)mFilePath1 mFileName:(NSString*)mFileName1 AssertUrl:(NSURL*)asserurl;
 @end

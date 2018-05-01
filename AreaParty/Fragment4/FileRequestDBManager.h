@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "fileObj.h"
+#import <FMDB/FMDB.h>
+#import "DBConst.h"
 @interface FileRequestDBManager : NSObject
-
+- (void) addFileRequestSQL:(fileObj*) request AndTable:(NSString*) table;
+- (NSMutableArray<fileObj*>*) selectFileRequestSQL:(NSString*) table;
+- (void) deleteFileRequestSQL:(NSString*) peerId Date:(NSString*)fileDate Table:(NSString*)table;
 @end

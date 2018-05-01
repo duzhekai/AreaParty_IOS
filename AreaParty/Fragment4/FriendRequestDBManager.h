@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ChatSQLiteHelper.h"
+#import "RequestFriendObj.h"
+#import <FMDB/FMDB.h>
+#import "DBConst.h"
 @interface FriendRequestDBManager : NSObject
-
+- (void) addRequestFriendSQL:(RequestFriendObj*) request AndTable:(NSString*)table;
+- (NSMutableArray<RequestFriendObj*>*) selectRequestFriendSQL:(NSString*) table;
+- (void) changeRequestStateSQL:(RequestFriendObj*) request Table:(NSString*) table;
 @end

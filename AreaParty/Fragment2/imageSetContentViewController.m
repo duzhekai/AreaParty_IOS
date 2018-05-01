@@ -52,11 +52,11 @@
 - (void)onHandler:(NSDictionary *)message{
     switch ([message[@"what"] intValue]) {
         case 0x219:{//OrderConst.playPCMediaSet_OK:
-            [Toast ShowToast:@"即将在当前电视上播放当前音频集合, 请观看电视" Animated:YES time:1 context:self.view];
+            [Toast ShowToast:@"即将在当前电视上播放图片集, 请观看电视" Animated:YES time:1 context:self.view];
             break;
         }
         case 0x220:{//OrderConst.playPCMediaSet_Fail:
-            [Toast ShowToast:@"播放音频集失败" Animated:YES time:1 context:self.view];
+            [Toast ShowToast:@"播放图片集失败" Animated:YES time:1 context:self.view];
             break;
         }
     }

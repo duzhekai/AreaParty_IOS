@@ -8,8 +8,14 @@
 
 #import "MyUIApplication.h"
 #import "newAES.h"
+#import "DownloadFolderFragment.h"
+#import "DownloadFileManagerHelper.h"
 @interface MyUIApplication ()
 @end
+static NSString* AREAPARTY_NET;//服務器ip地址
+static NSString* domain = @"www.areaparty.net";//用户服務器域名
+static NSString* domain1 = @"www.areaparty.com";//统计服務器域名
+
 static AFNetworkReachabilityStatus mNetWorkState;
 static NSMutableArray<SharedflieBean*> * mySharedFiles=nil;
 static MyUIApplication* instance;
@@ -103,8 +109,12 @@ static NSString* pass1 = nil;
                     }
                     NSLog(@"GET_AREAPARTY_PATH:path:%@",path);
                     if(path!=nil && ![path isEqualToString:@""]){
-                        [RemoteDownloadActivityViewController setbtFilesPath:[path stringByAppendingString:@"BtFiles\\"]];
-                        NSLog(@"GET_AREAPARTY_PATH:RemoteDownloadActivity.btFilesPath:%@",[RemoteDownloadActivityViewController getbtFilesPath]);
+                        RemoteDownload_rootPath = path;
+                        RemoteDownload_btFilesPath = [path stringByAppendingString:@"\\BTdownload\\Torrent\\"];
+                        RemoteDownload_targetPath = [path stringByAppendingString:@"\\BTdownload\\forLoad\\"];
+                        RemoteDownload_downloadPath = [path stringByAppendingString:@"\\BTdownload\\download\\"];
+                        DownloadFolderFragment_rootPath = [path stringByAppendingString:@"\\FriendsDownload\\"];
+                        NSLog(@"GET_AREAPARTY_PATH:RemoteDownloadActivity.btFilesPath:%@",RemoteDownload_btFilesPath);
                     }
                 } @catch (NSException *exception) {
                     NSLog(@"%@",exception);
@@ -249,7 +259,7 @@ static NSString* pass1 = nil;
                     NSLog(@"stateChange:连接PC成功");
                     PCOnline = true;
                     [FillingIPInforList addPCInfor:selectedPCIP];
-                    if ([RemoteDownloadActivityViewController getbtFilesPath]==nil ){[self getPcAreaPartyPath];}
+                    if (RemoteDownload_btFilesPath==nil ){[self getPcAreaPartyPath];}
                     if (!selectedPCVerified){
                         [self verifyLastPCMac];
                     }
@@ -574,4 +584,29 @@ static NSString* pass1 = nil;
 + (NSString*) getIPStr {
     return [FillingIPInforList getIpStr];
 }
+
++ (NSString *)GetInetAddress:(NSString *)domain
+{
+    struct hostent *hs;
+    struct sockaddr_in server;
+    if ((hs = gethostbyname([domain UTF8String])) != NULL)
+    {
+        server.sin_addr = *((struct in_addr*)hs->h_addr_list[0]);
+        return [NSString stringWithUTF8String:inet_ntoa(server.sin_addr)];
+    }
+    return nil;
+}
++ (NSString*) getAREAPARTY_NET{
+    return AREAPARTY_NET;
+}
++ (void) setAREAPARTY_NET:(NSString*)net{
+    AREAPARTY_NET = net;
+}
++(NSString*) getdomain{
+    return domain;
+}
++(NSString*) getdomain1{
+    return domain1;
+}
+
 @end

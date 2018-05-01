@@ -11,6 +11,7 @@
 #import "fileBean.h"
 #import "SharedflieBean.h"
 #import "FileTypeConst.h"
+#import "SharedFilePathFormat.h"
 @interface PCFileHelper : NSObject{
     id<onHandler> myHandler;
 }
@@ -67,4 +68,12 @@
 - (void) addFolder:(NSString*) name;
 
 - (void) deleteFileAndFolder;
+
+- (void) shareFile:(NSString*) des fileBean:(SharedflieBean*) file;
+
+- (void) shareFileState:(NSMutableDictionary*) msg;
+
+- (void) reNameFolder:(NSString*) name Path:(NSString*) targetPath;
+
+- (void) reNameFile:(NSString*) name Path:(NSString*) targetPath;
 @end

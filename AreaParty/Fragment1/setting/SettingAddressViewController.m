@@ -65,7 +65,7 @@ static SettingAddressHandler* mhandler;
         NSData* reByteArray;
             @try {
                 reByteArray = [NetworkPacket packMessage:ENetworkMessage_PersonalsettingsReq packetBytes:[builder data]];
-                [[LoginViewController getBase] writeToServer: [LoginViewController getBase].outputStream arrayBytes:reByteArray];
+                [Login_base writeToServer: Login_base.outputStream arrayBytes:reByteArray];
             } @catch (NSException* e) {
             }
     }];

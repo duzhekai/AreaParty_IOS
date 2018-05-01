@@ -27,6 +27,18 @@
 #import "Update_SendMsgBean.h"
 #import "changeSelectedDeviceNameEvent.h"
 #import "AESc.h"
+//域名转IP
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+//获取IP
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <ifaddrs.h>
+#import <dlfcn.h>
+#import <SystemConfiguration/SystemConfiguration.h>  
 @interface MyUIApplication : UIApplication<GCDAsyncSocketDelegate>
 @property (strong,nonatomic) NSMutableArray<UIViewController*>* activities;
 +(void) addMySharedFlies:(SharedflieBean*)mysharedFiles;
@@ -75,4 +87,10 @@
 + (NSDictionary*) parse:(NSString*) JsonString;
 + (void) verifyLastTVMac;
 + (NSString*) getIPStr ;
++ (NSString *)GetInetAddress:(NSString *)domain;
++ (NSString*) getAREAPARTY_NET;
++ (void) setAREAPARTY_NET:(NSString*)net;
++(NSString*) getdomain;
++(NSString*) getdomain1;
++ (void)getPcAreaPartyPath;
 @end

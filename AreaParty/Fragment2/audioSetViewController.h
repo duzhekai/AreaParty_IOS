@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *app_file;
 @property (weak, nonatomic) IBOutlet UILabel *app_file_TV;
 @property (weak, nonatomic) IBOutlet UITableView *fileSGV;
+@property (assign,nonatomic) BOOL ifbgm;
 - (IBAction)press_add_set:(id)sender;
 @property (assign,nonatomic) BOOL isAppContent;
 @property (strong,nonatomic) UIAlertController* addSetDialog;

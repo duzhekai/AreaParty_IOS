@@ -204,7 +204,7 @@
             cmdStr = [[CommandUtil createDeleteCommand:path type:typeName]yy_modelToJSONString];
         }
         if([commandType isEqualToString:OrderConst_mediaAction_playALL_command]){
-            cmdStr  = [[CommandUtil createPlayAllCommand:param[@"folder"] tvname:param[@"tvname"] type:typeName] yy_modelToJSONString];
+            cmdStr  = [[CommandUtil createPlayAllCommand:param[@"folder"] tvname:param[@"tvname"] time:param[@"t"] type:typeName] yy_modelToJSONString];
         }
     }
     return cmdStr;

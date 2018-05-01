@@ -318,7 +318,9 @@
     }
     else if( gestrue.view == _audiosPlayListLL){
         if(([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline])||([MyUIApplication getselectedTVVerified] && [MyUIApplication getselectedTVOnline])) {
-            [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"audioSetViewController"] animated:YES completion:nil];
+            audioSetViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"audioSetViewController"];
+            vc.ifbgm = NO;
+            [self presentViewController:vc animated:YES completion:nil];
         } else  [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
     }
     

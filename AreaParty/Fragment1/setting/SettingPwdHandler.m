@@ -41,7 +41,7 @@
             dispatch_async(dispatch_get_main_queue(), ^(void){
                 [Toast ShowToast:@"修改成功，请重新登录" Animated:YES time:2 context:_ctl.view];
                 @try {
-                    [[LoginViewController getBase] close];
+                    [Login_base close];
                 } @catch (NSException* e) {
                 }
                 [[MyUIApplication getInstance] closeAll];

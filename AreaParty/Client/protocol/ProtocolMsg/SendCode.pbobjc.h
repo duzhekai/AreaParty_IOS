@@ -32,9 +32,20 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Enum SendCodeSync_ChangeType
 
 typedef GPB_ENUM(SendCodeSync_ChangeType) {
+  /** 修改密码验证码 */
   SendCodeSync_ChangeType_Password = 0,
+
+  /** 注册验证码 */
   SendCodeSync_ChangeType_Register = 1,
+
+  /** 未知 */
   SendCodeSync_ChangeType_Mobile = 2,
+
+  /** 使用验证码登录验证码 */
+  SendCodeSync_ChangeType_Login = 3,
+
+  /** 修改主设备 */
+  SendCodeSync_ChangeType_Mainphone = 4,
 };
 
 GPBEnumDescriptor *SendCodeSync_ChangeType_EnumDescriptor(void);
@@ -65,8 +76,15 @@ BOOL SendCodeSync_ChangeType_IsValidValue(int32_t value);
 typedef GPB_ENUM(SendCodeSync_FieldNumber) {
   SendCodeSync_FieldNumber_ChangeType = 1,
   SendCodeSync_FieldNumber_Mobile = 2,
+  SendCodeSync_FieldNumber_UserId = 3,
 };
 
+/**
+ * *
+ * 胡国勇 3.28修改
+ * 其中MOBILE字段是上一届遗留下来的不知道有没有用处
+ * 没做改动
+ **/
 @interface SendCodeSync : GPBMessage
 
 @property(nonatomic, readwrite) SendCodeSync_ChangeType changeType;
@@ -75,6 +93,10 @@ typedef GPB_ENUM(SendCodeSync_FieldNumber) {
 @property(nonatomic, readwrite, copy, null_resettable) NSString *mobile;
 /** Test to see if @c mobile has been set. */
 @property(nonatomic, readwrite) BOOL hasMobile;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *userId;
+/** Test to see if @c userId has been set. */
+@property(nonatomic, readwrite) BOOL hasUserId;
 
 @end
 

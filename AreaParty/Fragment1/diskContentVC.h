@@ -13,6 +13,7 @@
 #import "OrderConst.h"
 #import "Toast.h"
 #import "LoginViewController.h"
+#import "ActionDialog_reName.h"
 @interface diskContentVC : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *page04DiskContentTitleTV;
 @property (weak, nonatomic) IBOutlet UILabel *page04DiskContentCurrentPathTV;
@@ -68,6 +69,10 @@
 @property (strong,nonatomic) UIAlertController* add_folder_dialog;
 @property (weak,nonatomic) UITextField* add_folder_name_tf;
 @property (strong,nonatomic) UIAlertController* delete_folder_dialog;
+@property (strong,nonatomic) UIAlertController* share_file_dialog;
+@property (weak,nonatomic) UITextField* sshareFileDesET;
+@property (weak,nonatomic) UITextField* sshareFileUrlET;
+@property (weak,nonatomic) UITextField* sshareFilePwdET;
 + (PCFileHelper*) getPCFileHelper;
 
 @end
