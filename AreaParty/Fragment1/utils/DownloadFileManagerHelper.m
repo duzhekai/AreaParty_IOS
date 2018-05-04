@@ -8,8 +8,27 @@
 
 #import "DownloadFileManagerHelper.h"
 #import "Toast.h"
+#import "downloadedFileBean.h"
+#import "downloadTab02Fragment.h"
 static UIViewController* context;
+static int REFRESHTAB02 = 1;
+static int DLNASUCCESSFUL = 2;
+static int DLNAFAITH = 3;
 @implementation DownloadFileManagerHelper
+
++ (void) dlnaCastDownloadedFile:(downloadedFileBean*)file{
+    [NSThread detachNewThreadWithBlock:^{
+        BOOL state = [prepareDataForFragment getDlnaCastState_Downloadfile:file];
+        NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+        if(state) {
+            message[@"what"] = [NSNumber numberWithInt:DLNASUCCESSFUL];
+        } else message[@"what"] = [NSNumber numberWithInt:DLNAFAITH];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[downloadTab02Fragment getHandler] onHandler:message];
+        });
+    }];
+}
+
 + (void) dlnaCast_File:(FileItemForMedia*) file Type:(NSString*) type{
     if ([MyUIApplication getselectedTVOnline]){
         [NSThread detachNewThreadWithBlock:^(void){

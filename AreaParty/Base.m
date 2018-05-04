@@ -164,7 +164,7 @@ int const Base_FILENUM = 3;
                 break;
             case ENetworkMessage_DeleteFileRsp:
                 NSLog(@"ENetworkMessage_DeleteFileRsp");
-                //deleteFile(byteArray, size);
+                [self deleteFile:byteArray andSize:size];
                 break;
             default:
                 break;
@@ -417,22 +417,28 @@ int const Base_FILENUM = 3;
                         [MainTabbarController_handlerTab06 onHandler:userMsg];
                     });
                 }else if([[chatData componentsSeparatedByString:@","][0] isEqualToString:@"mobile accredit request"]){
-//                    Intent intent = new Intent(MyApplication.getContext(),AlertAccreditActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.putExtra("style","accreditRequest");
-//                    intent.putExtra("mobileInfo",chatData.split(",")[2]);
-//                    intent.putExtra("mobileMac",chatData.split(",")[1]);
-//                    intent.putExtra("deviceType","mobile");
-//                    MyApplication.getContext().startActivity(intent);
+                    NSMutableDictionary * bundle = [[NSMutableDictionary alloc] init];
+                    bundle[@"style"] = @"accreditRequest";
+                    bundle[@"mobileInfo"] = [chatData componentsSeparatedByString:@","][2];
+                    bundle[@"mobileMac"] = [chatData componentsSeparatedByString:@","][1];
+                    bundle[@"deviceType"] = @"mobile";
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        AlertAccreditActivity* vc = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"AlertAccreditActivity"];
+                        vc.intentBundle = bundle;
+                        [[self topViewController] presentViewController:vc animated:YES completion:nil];
+                    });
                 }else if([[chatData componentsSeparatedByString:@","][0] isEqualToString:@"pc accredit request"]){
                     NSLog(@"授权消息");
-//                    Intent intent = new Intent(MyApplication.getContext(), AlertAccreditActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.putExtra("style", "accreditRequest");
-//                    intent.putExtra("mobileInfo", chatData.split(",")[2]);
-//                    intent.putExtra("mobileMac", chatData.split(",")[1]);
-//                    intent.putExtra("deviceType", "pc");
-//                    MyApplication.getContext().startActivity(intent);
+                    NSMutableDictionary * bundle = [[NSMutableDictionary alloc] init];
+                    bundle[@"style"] = @"accreditRequest";
+                    bundle[@"mobileInfo"] = [chatData componentsSeparatedByString:@","][2];
+                    bundle[@"mobileMac"] = [chatData componentsSeparatedByString:@","][1];
+                    bundle[@"deviceType"] = @"pc";
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        AlertAccreditActivity* vc = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"AlertAccreditActivity"];
+                        vc.intentBundle = bundle;
+                        [[self topViewController] presentViewController:vc animated:YES completion:nil];
+                    });
                 }else if([chatData containsString:@"FILE_EXIST_RECEIVER"]){
 //                    Intent intent = new Intent(MyApplication.getContext(),MyService.class);
 //                    intent.putExtra("style","holeMsg");
@@ -835,5 +841,38 @@ int const Base_FILENUM = 3;
         return vc;
     }
     return nil;
+}
+- (void) deleteFile:(NSData*) byteArray andSize:(int) size{
+    @try{
+        int objlength = size - [NetworkPacket getMessageObjectStartIndex];
+        Byte* byteArray_b = (Byte*)[byteArray bytes];
+        Byte objBytes[objlength];
+        for (int i = 0; i < objlength; i++)
+            objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex] + i];
+        
+        DeleteFileRsp* response =  [DeleteFileRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
+        if(response.resultCode == DeleteFileRsp_ResultCode_Fail){
+//            if (sharedFileIntentActivity.handler != null){
+//                sharedFileIntentActivity.handler.sendEmptyMessage(2);
+//            }
+        }else if(response.resultCode == DeleteFileRsp_ResultCode_Success){
+            for (int i = 0; i < [MyUIApplication getmySharedFiles].count; i++){
+                SharedflieBean* file = [MyUIApplication getmySharedFiles][i];
+                if ([file.name isEqualToString:response.fileName] && [file.des isEqualToString:response.fileInfo]){
+                    [[MyUIApplication getmySharedFiles] removeObjectAtIndex:i];
+                    i--;
+                }
+            }
+//            if (sharedFileIntentActivity.handler != null){
+//                sharedFileIntentActivity.handler.sendEmptyMessage(1);
+//            }
+            NSMutableDictionary* shareFile06 = [[NSMutableDictionary alloc] init];
+            shareFile06[@"what"] = [NSNumber numberWithInt:OrderConst_deleteShareFileSuccess];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MainTabbarController_handlerTab06 onHandler:shareFile06];
+            });
+        }
+    }@catch (NSException* e) {
+    }
 }
 @end

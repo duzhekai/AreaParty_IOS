@@ -83,6 +83,7 @@ int const OrderConst_userLogOut = 0x607;
 int const OrderConst_showUnfriendFiles = 0x608;
 int const OrderConst_showFriendFiles = 0x609;
 int const OrderConst_shareFileSuccess = 0x610;
+int const OrderConst_deleteShareFileSuccess = 0x614;
 int const OrderConst_shareFileFail = 0x611;
 int const OrderConst_addChatNum = 0x612;
 int const OrderConst_addFileRequest = 0x613;

@@ -78,10 +78,10 @@
         }
     }
     if(gesture.view == _page04LocalFolderRootLL){
-        [self performSegueWithIdentifier:@"pushdownloadvc" sender:nil];
+        [self presentViewController:[[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"downloadVC"] animated:YES completion:nil];
     }
     if(gesture.view == _page04SharedFilesRootLL){
-        [self performSegueWithIdentifier:@"pushsharedfilevc" sender:nil];
+        [self presentViewController:[[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"sharedFileIntentVC"] animated:YES completion:nil];
     }
     
 }

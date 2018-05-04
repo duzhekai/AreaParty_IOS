@@ -7,7 +7,10 @@
 //
 
 #import "prepareDataForFragment.h"
-
+#import "downloadedFileBean.h"
+#import "AddPathToHttpParamBean.h"
+#import "ReceivedAddPathToHttpMessageFormat.h"
+#import "FileTypeConst.h"
 @implementation prepareDataForFragment
 /**
  * <summary>
@@ -227,6 +230,53 @@
             state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
         }
     }
+    return state;
+}
+/**
+ * <summary>
+ *  发送添加指定路径到Http服务器指令并获取执行状态
+ * </summary>
+ * <param name="path">路径信息</param>
+ * <returns>执行结果</returns>
+ */
++ (NSObject*) getAddPathToHttpState:(NSMutableArray<NSString*>*) paths{
+    NSObject* message = [[NSObject alloc] init];
+    
+    AddPathToHttpParamBean* param = [[AddPathToHttpParamBean alloc] init];
+    [param makePath:paths];
+    RequestFormatAddPathToHttp* request = [[RequestFormatAddPathToHttp alloc] init];
+    request.name =OrderConst_addPathToHttp_Name;
+    request.command = OrderConst_addPathToHttp_command;
+    request.param = param;
+    NSString* requestString = [request yy_modelToJSONString];
+    NSString* msgReceived = [[MyConnector sharedInstance] getAddPathToHttpStateMsg:requestString];
+    NSLog(@"prepareDataForFragment:%@",msgReceived);
+    if(![msgReceived isEqualToString:@""]) {
+        message = [ReceivedAddPathToHttpMessageFormat yy_modelWithJSON:msgReceived];
+    }
+    return message;
+}
++ (BOOL) getDlnaCastState_Downloadfile:(downloadedFileBean*) file{
+    BOOL state = false;
+    NSString* ip = [MyUIApplication getIPStr];
+    NSString* TVIp = [MyUIApplication getSelectedTVIP].ip;
+    if(!([ip isEqualToString:@""]) && !([TVIp isEqualToString:@""])) {
+        NSString* fileType = @"";
+        if(file.fileType == FileTypeConst_video) {
+            fileType = @"video";
+        } else if(file.fileType == FileTypeConst_music) {
+            fileType = @"audio";
+        } else if(file.fileType == FileTypeConst_pic) {
+            fileType = @"image";
+        }
+        NSString* secondcommand = [NSString stringWithFormat:@"http://%@:%d/%@",ip,IPAddressConst_DLNAPHONEHTTPPORT_B,[file.path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]]];
+        NSString* fourthcommand = file.name;
+        NSString* fifthcommand  = fileType;
+        TVCommandItem* tvCommandItem = [CommandUtil createPlayUrlFileOnTVCommand_File:secondcommand FileName:fourthcommand Type:fifthcommand];
+        NSString* requestStr = [tvCommandItem yy_modelToJSONString];
+        state = [[MyConnector sharedInstance] sendMsgToIP:TVIp Port:IPAddressConst_TVRECEIVEPORT_MM Msg:requestStr];
+    }
+    
     return state;
 }
 @end

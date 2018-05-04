@@ -7,16 +7,34 @@
 //
 
 #import "downloadVC.h"
-
-@interface downloadVC ()
+#import "downloadTab01Fragment.h"
+#import "downloadTab02Fragment.h"
+@interface downloadVC (){
+    int initial_offset_x;
+}
 
 @end
 
-@implementation downloadVC
+@implementation downloadVC{
+    downloadTab01Fragment* fragment1;
+    downloadTab02Fragment* fragment2;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    int SCREEN_W = [UIScreen mainScreen].bounds.size.width;
+    initial_offset_x = _Indicator.frame.origin.x;
+    fragment1 = [[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"downloadTab01Fragment"];
+    [fragment1 viewWillAppear:YES];
+    fragment1.view.frame = CGRectMake(0, 0,_page04DownloadVP.frame.size.width, _page04DownloadVP.frame.size.height);
+    fragment2 = [[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"downloadTab02Fragment"];
+    [fragment2 viewWillAppear:YES];
+    fragment2.view.frame = CGRectMake(SCREEN_W, 0,_page04DownloadVP.frame.size.width, _page04DownloadVP.frame.size.height);
+    [_page04DownloadVP addSubview:fragment1.view];
+    [_page04DownloadVP addSubview:fragment2.view];
+    _page04DownloadVP.contentSize = CGSizeMake(SCREEN_W*2,_page04DownloadVP.frame.size.height);
+    _page04DownloadVP.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +52,15 @@
 }
 */
 
+- (IBAction)Press_Back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if(scrollView == _page04DownloadVP){
+        int content_off = scrollView.contentOffset.x;
+        int window_width = [UIScreen mainScreen].bounds.size.width;
+        int distance = _Tab2.frame.origin.x - _Tab1.frame.origin.x;
+        [_Indicator setFrame:CGRectMake(initial_offset_x+((float)((float)content_off/(float)window_width))*distance, _Indicator.frame.origin.y, _Indicator.frame.size.width, _Indicator.frame.size.height)];
+    }
+}
 @end

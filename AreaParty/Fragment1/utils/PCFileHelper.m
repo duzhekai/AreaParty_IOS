@@ -414,7 +414,85 @@ static NSMutableArray* reCeivedActionErrorMessageList;
         }
     }];
 };
-
+- (void) downloadSelectedFiles {
+    NSLog(@"PCFileHelper---添加选定的文件路径到HTTP服务器%lu",(unsigned long)selectedFiles.count);
+    [reCeivedActionErrorMessageList removeAllObjects];
+    NSMutableArray<NSString*>* filePaths = [[NSMutableArray alloc] init];
+    for(fileBean* file in selectedFiles) {
+        [filePaths addObject:[NSString stringWithFormat:@"%@%@",nowFilePath,file.name]];
+        NSLog(@"PCFileHelper---添加路径%@%@",nowFilePath,file.name);
+    }
+    [NSThread detachNewThreadWithBlock:^{
+        @try {
+            ReceivedAddPathToHttpMessageFormat* messageFormat = (ReceivedAddPathToHttpMessageFormat*)[prepareDataForFragment getAddPathToHttpState:filePaths];
+            if(messageFormat.status == OrderConst_failure) {
+                NSLog(@"PCFileHelper--添加路径到PC服务器出错");
+                NSString* errorFiles = @"---";
+                reCeivedActionErrorMessageList = messageFormat.data;
+                // 过滤错误的文件
+                for(NSString* errorPath in reCeivedActionErrorMessageList) {
+                    for(int i = 0; i < selectedFiles.count; ++i) {
+                        if([errorPath isEqualToString:[NSString stringWithFormat:@"%@%@",nowFilePath,selectedFiles[i].name]]) {
+                            errorFiles = [[errorFiles stringByAppendingString:selectedFiles[i].name] stringByAppendingString:@"---"];
+                            [selectedFiles removeObjectAtIndex:i];
+                            break;
+                        }
+                    }
+                }
+                // 添加剩余文件到下载中
+                for(fileBean* file in selectedFiles) {
+                    DownloadFileModel* downloadFile = [[DownloadFileModel alloc] init];
+                    downloadFile.createTime = [[NSDate date] timeIntervalSince1970]*1000;
+                    downloadFile.name = file.name;
+                    downloadFile.url = [NSString stringWithFormat:@"http://%@:%d/%@",[MyConnector sharedInstance].IP,IPAddressConst_LOCALHTTPPORT_Y,[file.name stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+                    //这里第一个参数是tag，代表下载任务的唯一标识，传任意字符串都行，需要保证唯一,我这里用url作为了tag
+                    [[MCDownloadManager defaultInstance] downloadFileWithURL:downloadFile.url progress:nil destination:nil success:nil failure:nil];
+                }
+                
+                if(selectedFiles.count == 0)
+                    errorFiles = @"所有文件";
+                NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+                message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+                message[@"actionType"] = OrderConst_addPathToHttp_command;
+                message[@"error"] = [NSString stringWithFormat:@"%@保存失败",errorFiles];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [myHandler onHandler:message];
+                });
+            } else {
+                for(fileBean* file in selectedFiles) {
+                    NSString* url = [NSString stringWithFormat:@"http://%@:%d/%@",[MyConnector sharedInstance].IP,IPAddressConst_LOCALHTTPPORT_Y,[file.name stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]]];
+                    DownloadFileModel* downloadFile = [[DownloadFileModel alloc] init];
+                    downloadFile.createTime = [[NSDate date] timeIntervalSince1970]*1000;
+                    downloadFile.name = file.name;
+                    downloadFile.url = url;
+                    NSLog(@"PCFileHelper--添加路径正确%@",url);
+                    [[MCDownloadManager defaultInstance] downloadFileWithURL:downloadFile.url progress:nil destination:nil success:nil failure:nil];
+                }
+                NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+                message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+                message[@"actionType"] = OrderConst_addPathToHttp_command;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [myHandler onHandler:message];
+                });
+            }
+        } @catch (NSException* e) {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"actionType"] = OrderConst_addPathToHttp_command;
+            message[@"error"] = e.name;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+        
+        [selectedFiles removeAllObjects];
+        [selectedFolders removeAllObjects];
+        for(fileBean* file in datas) {
+            file.isChecked = NO;
+            file.isShow = NO;
+        }
+    }];
+}
 + (NSString*)getNowFilePath {
     return nowFilePath;
 }

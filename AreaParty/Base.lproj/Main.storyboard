@@ -11539,8 +11539,6 @@
                         <outlet property="page04LocalFolderRootLL" destination="Qg9-8c-XDS" id="o7B-gB-hmU"/>
                         <outlet property="page04SharedFilesRootLL" destination="sPa-du-4pA" id="Z0L-kf-wf9"/>
                         <outlet property="scroll_view" destination="dqh-EF-aby" id="fXB-6h-gb9"/>
-                        <segue destination="eiW-7O-EvK" kind="presentation" identifier="pushsharedfilevc" id="gos-9Q-MfZ"/>
-                        <segue destination="XvP-qE-yhD" kind="presentation" identifier="pushdownloadvc" id="kJg-8D-Zzu"/>
                         <segue destination="7iv-R2-oRf" kind="presentation" identifier="pushdiskcontentvc" id="wNv-GN-kG7"/>
                     </connections>
                 </viewController>
@@ -11620,36 +11618,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G6g-cd-ZeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2577" y="2561"/>
-        </scene>
-        <!--Shared File IntentVC-->
-        <scene sceneID="Bp4-wu-J3C">
-            <objects>
-                <viewController id="eiW-7O-EvK" customClass="sharedFileIntentVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2dJ-5D-2hP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="tKl-ax-yt0"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4HG-7l-Er7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1247" y="3767"/>
-        </scene>
-        <!--DownloadVC-->
-        <scene sceneID="uPN-dg-Pfw">
-            <objects>
-                <viewController id="XvP-qE-yhD" customClass="downloadVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="gPh-lh-Bbh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="XDP-Oj-b5l"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gy4-gh-KOS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-551" y="3767"/>
         </scene>
         <!--Disk ContentVC-->
         <scene sceneID="Nqj-te-TbN">

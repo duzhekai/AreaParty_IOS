@@ -83,6 +83,7 @@ extern int const OrderConst_userLogOut ;
 extern int const OrderConst_showUnfriendFiles ;
 extern int const OrderConst_showFriendFiles ;
 extern int const OrderConst_shareFileSuccess ;
+extern int const OrderConst_deleteShareFileSuccess;
 extern int const OrderConst_shareFileFail ;
 extern int const OrderConst_addChatNum ;
 extern int const OrderConst_addFileRequest ;

@@ -513,7 +513,7 @@ static PCFileHelper* pCFileHelper;
             }
         }
         [_LoadingDialog showPromptViewOnView:self.view];
-        //[pCFileHelper downloadSelectedFiles];
+        [pCFileHelper downloadSelectedFiles];
     }
     else if(sender == _bar02MoreAddToVideoList){
         _page04DiskContentBar02MoreRootLL.hidden = YES;
@@ -773,7 +773,7 @@ static PCFileHelper* pCFileHelper;
         _page04DiskContentActionBar02LL.hidden = YES;
         _page04DiskContentActionBar01LL.hidden = NO;
         [_LoadingDialog removeView];
-        //Toasty.success(this, "所有选中添加到本地下载队列成功", Toast.LENGTH_SHORT, true).show();
+        [Toast ShowToast:@"所有选中添加到本地下载队列成功" Animated:YES time:1 context:self.view];
     } else if ([actionType isEqualToString:OrderConst_fileOrFolderAction_renameInComputer_command]){
         _page04DiskContentBar02MoreRootLL.hidden = YES;
         _page04DiskContentActionBar02LL.hidden = YES;

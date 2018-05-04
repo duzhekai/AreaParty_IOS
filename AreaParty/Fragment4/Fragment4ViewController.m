@@ -86,7 +86,7 @@ static myFileList* showFriendFilesList;
         [item setObject:file.name forKey:@"fileName"];
         [item setObject:file.des forKey:@"fileInfo"];
         [item setObject:[NSString stringWithFormat:@"%d",file.size] forKey:@"fileSize"];
-        [item setObject:[NSString stringWithFormat:@"%d",style] forKey:@"fileImg"];
+        [item setObject:[fileIndexToImgId toImgId:style] forKey:@"fileImg"];
         [item setObject:[NSString stringWithFormat:@"%ld",file.timeLong] forKey:@"fileDate"];
         [item setObject:[NSString stringWithFormat:@"%d",file.mid] forKey:@"id"];
         [filedata addObject:item];
@@ -455,7 +455,7 @@ static myFileList* showFriendFilesList;
     }
     else if(tableView == _id_tab06_fileComputer){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
+        [self showShareFileDialog:filedata[indexPath.row]];
     }
 }
 //tableview delegete end
@@ -741,5 +741,25 @@ static myFileList* showFriendFilesList;
 }
 - (void) deleteFileSuccess:(NSMutableDictionary*) msg{
     [self refreshFileData];
+}
+
+- (void) showShareFileDialog:(NSMutableDictionary<NSString*,NSObject*>*) dic{
+    Share_File_Dialog* vc = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"Share_File_Dialog"];
+    vc.delegate = self;
+    vc.h = dic;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+- (void) Press_DeleteSharedFile:(NSMutableDictionary<NSString*,NSObject*>*) h{
+    DeleteFileReq* builder = [[DeleteFileReq alloc] init];
+    builder.fileId = [((NSString*)h[@"id"]) intValue];
+    builder.fileName = (NSString*)h[@"fileName"];
+    builder.userId = Login_userId;
+    builder.fileInfo = (NSString*)h[@"fileInfo"];
+    builder.fileSize = [((NSString*)h[@"fileSize"]) intValue];
+    @try {
+        NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_DeleteFileReq packetBytes:[builder data]];
+        [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
+    } @catch (NSException* e) {
+    }
 }
 @end

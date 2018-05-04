@@ -70,7 +70,7 @@
         [dlnaServer setPort:IPAddressConst_DLNAPHONEHTTPPORT_B];
         [dlnaServer setType:@"_http._tcp."];
         // webPath是server搜寻HTML等文件的路径
-        NSString * webPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString * webPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         [dlnaServer setDocumentRoot:webPath];
         [dlnaServer setConnectionClass:[MyHTTPConnection class]];
         NSError *err;

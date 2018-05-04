@@ -62,14 +62,42 @@ BOOL DeleteFileRsp_ResultCode_IsValidValue(int32_t value);
 #pragma mark - DeleteFileReq
 
 typedef GPB_ENUM(DeleteFileReq_FieldNumber) {
-  DeleteFileReq_FieldNumber_FileName = 1,
+  DeleteFileReq_FieldNumber_UserId = 1,
+  DeleteFileReq_FieldNumber_FileId = 2,
+  DeleteFileReq_FieldNumber_FileName = 3,
+  DeleteFileReq_FieldNumber_FileSize = 4,
+  DeleteFileReq_FieldNumber_FileInfo = 5,
+  DeleteFileReq_FieldNumber_FileURL = 6,
+  DeleteFileReq_FieldNumber_FilePwd = 7,
 };
 
 @interface DeleteFileReq : GPBMessage
 
+@property(nonatomic, readwrite, copy, null_resettable) NSString *userId;
+/** Test to see if @c userId has been set. */
+@property(nonatomic, readwrite) BOOL hasUserId;
+
+@property(nonatomic, readwrite) int32_t fileId;
+
+@property(nonatomic, readwrite) BOOL hasFileId;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *fileName;
 /** Test to see if @c fileName has been set. */
 @property(nonatomic, readwrite) BOOL hasFileName;
+
+@property(nonatomic, readwrite) int64_t fileSize;
+
+@property(nonatomic, readwrite) BOOL hasFileSize;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *fileInfo;
+/** Test to see if @c fileInfo has been set. */
+@property(nonatomic, readwrite) BOOL hasFileInfo;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *fileURL;
+/** Test to see if @c fileURL has been set. */
+@property(nonatomic, readwrite) BOOL hasFileURL;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *filePwd;
+/** Test to see if @c filePwd has been set. */
+@property(nonatomic, readwrite) BOOL hasFilePwd;
 
 @end
 
@@ -77,7 +105,10 @@ typedef GPB_ENUM(DeleteFileReq_FieldNumber) {
 
 typedef GPB_ENUM(DeleteFileRsp_FieldNumber) {
   DeleteFileRsp_FieldNumber_ResultCode = 1,
-  DeleteFileRsp_FieldNumber_FileName = 2,
+  DeleteFileRsp_FieldNumber_FileId = 2,
+  DeleteFileRsp_FieldNumber_FileName = 3,
+  DeleteFileRsp_FieldNumber_FileDate = 4,
+  DeleteFileRsp_FieldNumber_FileInfo = 5,
 };
 
 @interface DeleteFileRsp : GPBMessage
@@ -85,9 +116,20 @@ typedef GPB_ENUM(DeleteFileRsp_FieldNumber) {
 @property(nonatomic, readwrite) DeleteFileRsp_ResultCode resultCode;
 
 @property(nonatomic, readwrite) BOOL hasResultCode;
+@property(nonatomic, readwrite) int32_t fileId;
+
+@property(nonatomic, readwrite) BOOL hasFileId;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *fileName;
 /** Test to see if @c fileName has been set. */
 @property(nonatomic, readwrite) BOOL hasFileName;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *fileDate;
+/** Test to see if @c fileDate has been set. */
+@property(nonatomic, readwrite) BOOL hasFileDate;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *fileInfo;
+/** Test to see if @c fileInfo has been set. */
+@property(nonatomic, readwrite) BOOL hasFileInfo;
 
 @end
 

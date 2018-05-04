@@ -17,6 +17,8 @@
 #import "NodeFormat.h"
 #import "ContentDataControl.h"
 #import "FileItemForMedia.h"
+#import "RequestFormatAddPathToHttp.h"
+@class downloadedFileBean;
 @interface prepareDataForFragment : NSObject
 +(NSObject*)getDiskActionStateData:(NSString*)name command:(NSString*)command param:(NSString*) param;
 + (NSObject*) getFileActionStateData:(NSString*)name command:(NSString*) command param:(NSString*) param;
@@ -25,4 +27,6 @@
 + (BOOL) getDlnaCastState_List:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType;
 + (BOOL) getDlnaCastState_Folder:(NSString*) folderName Type:(NSString*) fileType;
 + (BOOL) getDlnaCastState_bgm:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType;
++ (NSObject*) getAddPathToHttpState:(NSMutableArray<NSString*>*) paths;
++ (BOOL) getDlnaCastState_Downloadfile:(downloadedFileBean*) file;
 @end

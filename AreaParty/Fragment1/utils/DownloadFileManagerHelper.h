@@ -16,4 +16,5 @@
 + (void) dlnaCast_List:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) type;
 + (void) dlnaCast_Folder:(NSString*)foldername Type:(NSString*) type;
 + (void) dlnaCast_bgm:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) type Asbgm:(BOOL) asbgm;
++ (void) dlnaCastDownloadedFile:(downloadedFileBean*)file;
 @end

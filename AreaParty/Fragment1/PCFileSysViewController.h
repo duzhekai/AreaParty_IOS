@@ -18,6 +18,8 @@
 #import "PCFileHelper.h"
 #import "FileSysDiskListCell.h"
 #import "diskContentVC.h"
+#import "downloadTab01Fragment.h"
+#import "downloadTab02Fragment.h"
 @interface PCFileSysViewController : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource>{
     NSMutableArray<DiskInformat*>* diskDatas;
     NSString* disk_SYS;

@@ -12,6 +12,9 @@
 #import "SharedflieBean.h"
 #import "FileTypeConst.h"
 #import "SharedFilePathFormat.h"
+#import "ReceivedAddPathToHttpMessageFormat.h"
+#import "MCDownloadManager.h"
+#import "DownloadFileModel.h"
 @interface PCFileHelper : NSObject{
     id<onHandler> myHandler;
 }
@@ -76,4 +79,6 @@
 - (void) reNameFolder:(NSString*) name Path:(NSString*) targetPath;
 
 - (void) reNameFile:(NSString*) name Path:(NSString*) targetPath;
+
+- (void) downloadSelectedFiles;
 @end

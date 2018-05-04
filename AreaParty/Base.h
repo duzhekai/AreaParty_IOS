@@ -33,6 +33,8 @@
 #import "fileList.h"
 #import "AddFileMsg.pbobjc.h"
 #import "KeepAliveMsg.pbobjc.h"
+#import "DeleteFileMsg.pbobjc.h"
+#import "AlertAccreditActivity.h"
 extern int const Base_FILENUM;
 @interface Base : NSObject<NSStreamDelegate>{
     

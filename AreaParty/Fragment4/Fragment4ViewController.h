@@ -25,6 +25,8 @@
 #import "NetworkPacket.h"
 #import "FileListDialog.h"
 #import "downloadManager.h"
+#import "DeleteFileMsg.pbobjc.h"
+#import "Share_File_Dialog.h"
 @interface Fragment4ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *outline_view;
 @property (weak, nonatomic) IBOutlet UITableView *id_tab06_userFriend;
