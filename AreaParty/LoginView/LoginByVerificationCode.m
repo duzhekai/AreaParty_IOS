@@ -165,6 +165,10 @@
             [Login_userNet removeAllObjects];
             [Login_userShare removeAllObjects];
             [Login_base.onlineUserId addObject:Login_userId];
+            GroupItem* ggb = [[GroupItem alloc] init];
+            ggb.groupName = @"全部好友";
+            ggb.groupId = @"0";
+            ggb.createrUserId = Login_userId;
             //用户分类
             NSMutableArray* lu = [response userItemArray];
             if([lu count]!=0){
@@ -175,6 +179,7 @@
                     }
                     if(u.isFriend){
                         [Login_userFriend addObject:u];
+                        [ggb.memberUserIdArray addObject:u.userId];
                     }
                     if(u.isSpeed&&u.isFriend){
                         [Login_userNet addObject:u];
@@ -186,6 +191,15 @@
             }
             NSMutableArray* chats = response.chatItemArray;
             [Login_myChats setList:chats];
+            
+            NSArray<GroupItem*>* groups = response.groupItemArray;
+            [Login_userGroups addObject:ggb];
+            if(groups.count !=0) {
+                for(GroupItem* g in groups) {
+                    [Login_userGroups addObject:g];
+                }
+            }
+            
             GetUserInfoReq* userBuilder = [[GetUserInfoReq alloc] init];
             [userBuilder.targetUserIdArray addObject:Login_userId];
             [userBuilder setFileInfo:YES];
@@ -209,10 +223,11 @@
                 
                 if(fileresponse.resultCode == GetUserInfoRsp_ResultCode_Success){
                     if([fileresponse.userItemArray[0].userId isEqualToString:Login_userId]){
-                        Login_files = fileresponse.filesArray;
+                        //Login_files = fileresponse.filesArray;
                         NSDateFormatter* formartter = [[NSDateFormatter alloc] init];
                         [formartter setDateFormat:@"yyyy/MM/dd HH:mm"];
                         for(FileItem* file in Login_files){
+                            [Login_files addObject:file];
                             SharedflieBean* sharedFile = [[SharedflieBean alloc] init];
                             sharedFile.mid = [file.fileId intValue];
                             sharedFile.name =file.fileName;

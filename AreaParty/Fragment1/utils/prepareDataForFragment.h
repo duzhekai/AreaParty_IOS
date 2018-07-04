@@ -29,4 +29,5 @@
 + (BOOL) getDlnaCastState_bgm:(NSMutableArray<FileItemForMedia*>*) setList Type:(NSString*) fileType;
 + (NSObject*) getAddPathToHttpState:(NSMutableArray<NSString*>*) paths;
 + (BOOL) getDlnaCastState_Downloadfile:(downloadedFileBean*) file;
++ (NSObject*) addPathToList:(NSString*) path;
 @end

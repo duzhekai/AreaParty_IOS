@@ -12,6 +12,7 @@
 #import "UserData.pbobjc.h"
 #import "Toast.h"
 #import "userObj.h"
+#import "fileList.h"
 #import "myFileList.h"
 
 @class searchFriendHandler;

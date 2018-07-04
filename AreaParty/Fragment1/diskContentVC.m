@@ -46,6 +46,14 @@ static PCFileHelper* pCFileHelper;
     _page04DiskContentBar02MoreRootLL.layer.shadowRadius = 2;//半径
     _page04DiskContentBar02MoreRootLL.layer.shadowOpacity = 0.25;
     _LoadingDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
+    _bar02CutLL.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _bar02CutLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
+    _bar02CutLL.layer.shadowRadius = 2;//半径
+    _bar02CutLL.layer.shadowOpacity = 0.25;
+    _bar02CopyLL.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _bar02CopyLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
+    _bar02CopyLL.layer.shadowRadius = 2;//半径
+    _bar02CopyLL.layer.shadowOpacity = 0.25;
     
     NSString* initTitle = [_diskName stringByAppendingString:@":>"];
     [_page04DiskContentCurrentPathTV setText:initTitle];
@@ -154,7 +162,8 @@ static PCFileHelper* pCFileHelper;
             NSString* name = [PCFileHelper getSelectedFiles][0].name;
             int size = [PCFileHelper getSelectedFiles][0].size;
             long time = [[NSDate date] timeIntervalSince1970];
-            [PCFileHelper setSelectedShareFile:[[SharedflieBean alloc] initWithName:name Path:[NSString stringWithFormat:@"%@%@",[PCFileHelper getNowFilePath],name] Size:size Des:des TimeLong:time*1000 URL:_sshareFileUrlET.text Pwd:_sshareFilePwdET.text]];
+            NSArray<NSString*>* list = @[@"0"];
+            [PCFileHelper setSelectedShareFile:[[SharedflieBean alloc] initWithName:name Path:[NSString stringWithFormat:@"%@%@",[PCFileHelper getNowFilePath],name] Size:size Des:des TimeLong:time*1000 URL:_sshareFileUrlET.text Pwd:_sshareFilePwdET.text Group:list]];
             NSLog(@"page04--路径：%@", [PCFileHelper getSelectedShareFile].path);
             [pCFileHelper shareFile:des fileBean:[PCFileHelper getSelectedShareFile]];
         }
@@ -354,10 +363,28 @@ static PCFileHelper* pCFileHelper;
         if([_bar02TxSelectAllTV.text isEqualToString:@"全选"]){
             [_bar02IconSelectAllIV setImage:[UIImage imageNamed:@"selectedall_pressed.png"]];
             [_bar02TxSelectAllTV setText:@"取消全选"];
+            _bar02CopyLL.userInteractionEnabled = YES;
+            _bar02CutLL.userInteractionEnabled = YES;
+            _bar02DeleteLL.userInteractionEnabled = YES;
+            [_bar02IconCopyIV setImage:[UIImage imageNamed:@"copy_normal.png"]];
+            [_bar02IconCutIV setImage:[UIImage imageNamed:@"cut_normal.png"]];
+            [_bar02IconDeleteIV setImage:[UIImage imageNamed:@"delete_normal.png"]];
+            [_bar02TxCopyTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
+            [_bar02TxCutTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
+            [_bar02TxDeleteTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
         }
         else if([_bar02TxSelectAllTV.text isEqualToString:@"取消全选"]){
             [_bar02IconSelectAllIV setImage:[UIImage imageNamed:@"selectedall_normal.png"]];
             [_bar02TxSelectAllTV setText:@"全选"];
+            _bar02CopyLL.userInteractionEnabled = NO;
+            _bar02CutLL.userInteractionEnabled = NO;
+            _bar02DeleteLL.userInteractionEnabled = NO;
+            [_bar02IconCopyIV setImage:[UIImage imageNamed:@"copy_pressed.png"]];
+            [_bar02IconCutIV setImage:[UIImage imageNamed:@"cut_pressed.png"]];
+            [_bar02IconDeleteIV setImage:[UIImage imageNamed:@"delete_pressed.png"]];
+            [_bar02TxCopyTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
+            [_bar02TxCutTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
+            [_bar02TxDeleteTV setTextColor:[UIColor colorWithRed:211/255.0 green:211/255.0 blue:211/255.0 alpha:1]];
         }
         [_page04DiskContentLV reloadData];
     }
@@ -526,7 +553,7 @@ static PCFileHelper* pCFileHelper;
             }
         }
         if (selectedFolderList.count > 0){
-            //addToMediaList(selectedFolderList.get(0));
+            [self addToMediaList];
         }
         _page04DiskContentBar02MoreRootLL.hidden = YES;
     }
@@ -817,7 +844,7 @@ static PCFileHelper* pCFileHelper;
     dispatch_async(dispatch_get_main_queue(), ^{
     _isCheckBoxIn = false;
     [_LoadingDialog removeView];
-    [Toast ShowToast:@"分享文件成功" Animated:YES time:1 context:self.view];
+    [Toast ShowToast:@"分享文件失败" Animated:YES time:1 context:self.view]; 
     });
 }
 - (IBAction)press_back_button:(id)sender {
@@ -941,6 +968,23 @@ static PCFileHelper* pCFileHelper;
     reNameDialog.holder = self;
     [self presentViewController:reNameDialog animated:YES completion:nil];
     
+}
+- (void)AddToVideoList{
+    [pCFileHelper addToVideoList:[PCFileHelper getSelectedFolders][0] Type:@"VIDEO"];
+    [_LoadingDialog showPromptViewOnView:self.view];
+}
+- (void)AddToAudioList{
+    [pCFileHelper addToVideoList:[PCFileHelper getSelectedFolders][0] Type:@"AUDIO"];
+    [_LoadingDialog showPromptViewOnView:self.view];
+}
+- (void)AddToPicList{
+    [pCFileHelper addToVideoList:[PCFileHelper getSelectedFolders][0] Type:@"IMAGE"];
+    [_LoadingDialog showPromptViewOnView:self.view];
+}
+- (void)addToMediaList{
+    AddToMediaListDialog* dialog = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"AddToMediaListDialog"];
+    dialog.delegate =self;
+    [self presentViewController:dialog animated:YES completion:nil];
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     if(_page04DiskContentBar01MoreRootLL.hidden == NO){

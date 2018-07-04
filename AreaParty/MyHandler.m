@@ -60,6 +60,7 @@
             //shareFileState
         case 0x118:{
             [[diskContentVC getPCFileHelper] shareFileState:message];
+            [[DownloadFolderFragment getPCFileHelper] shareFileState:message];
             break;
         }
             //addFriend_order
@@ -90,6 +91,11 @@
             //agreeDownload
         case 0x6106:{
             [downloadFolderFragment agreeDownload:message];
+            break;
+        }
+            //agreeDownloadState
+        case 0x6107:{
+            [downloadStateFragment agreeDownload:message];
             break;
         }
             //shareUserLogIn_order
@@ -135,6 +141,26 @@
             //addChatNum
         case 0x612:{
             [fragment06 addChatNum:message];
+            break;
+        }
+            //addGroupRequest
+        case 0x615:{
+            [fragment06 addGroup:message];
+            break;
+        }
+            //showGroupFiles
+        case 0x616:{
+            [fragment06 showGroupFiles:message];
+            break;
+        }
+            //updateGroupInfo
+        case 0x617:{
+            [fragment06 updateGroup:message];
+            break;
+        }
+            //deleteGroupInfo
+        case 0x618:{
+            [fragment06 deleteGroup:message];
             break;
         }
         default:

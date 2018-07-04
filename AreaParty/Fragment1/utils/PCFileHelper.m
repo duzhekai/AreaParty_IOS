@@ -131,6 +131,9 @@ static NSMutableArray* reCeivedActionErrorMessageList;
         builder.fileDate = [NSString stringWithFormat:@"%ld",file.timeLong];
         builder.fileURL = file.url;
         builder.filePwd = file.pwd;
+        for (int i = 0; i < file.listGroupId.count; i++) {
+            [builder.fileGroupIdArray addValue:[file.listGroupId[i] intValue]];
+        }
         @try {
             NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_AddFileReq packetBytes:[builder data]];
             [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
@@ -493,6 +496,113 @@ static NSMutableArray* reCeivedActionErrorMessageList;
         }
     }];
 }
+- (void) addToVideoList:(fileBean*) file Type:(NSString*) type{
+    NSString* path = [NSString stringWithFormat:@"%@%@%@",type,nowFilePath,file.name];
+    NSLog(@"PCFileHelper:%@",path);
+    [NSThread detachNewThreadWithBlock:^{
+        int status = [(NSNumber*)[prepareDataForFragment addPathToList:path] intValue];
+        if (status == OrderConst_success){
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+            message[@"actionType"] =OrderConst_folderAction_addToList_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }else {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"actionType"] =OrderConst_folderAction_addToList_command;
+            message[@"error"] =  @"添加到媒体库出错，详情请查看错误日志。";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }];
+    
+}
+/**
+ * <summary>
+ *  删除选中文件和文件夹，并发出消息
+ * </summary>
+ */
+- (void) deleteFile:(NSArray<NSString*>*) paths{
+    NSLog(@"PCFileHelper,开始删除选中的文件(夹)%lu",(unsigned long)paths.count);
+    [reCeivedActionErrorMessageList removeAllObjects];
+    [NSThread detachNewThreadWithBlock:^{
+        // 依次删除选中的文件
+        for (NSString* path in paths) {
+            @try {
+                ReceivedActionMessageFormat* tmp = (ReceivedActionMessageFormat*)[prepareDataForFragment getFileActionStateData:OrderConst_fileAction_name command:OrderConst_fileOrFolderAction_deleteInComputer_command param:path];
+                if(tmp.status == OrderConst_failure) {
+                    [reCeivedActionErrorMessageList addObject:tmp.message];
+                }
+            } @catch(NSException* e) {
+                [reCeivedActionErrorMessageList addObject:e.name];
+            }
+        }
+        // 执行成功
+        if(reCeivedActionErrorMessageList.count == 0) {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_deleteInComputer_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        } else {
+            // 执行失败
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"error"] = @"部分文件删除出错，详情请查看错误日志。";
+            message[@"actionType"] = OrderConst_fileOrFolderAction_deleteInComputer_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }
+    ];
+}
+/**
+ * <summary>
+ *  复制选中文件和文件夹，并发出消息
+ * </summary>
+ */
+- (void) copyFile:(NSMutableArray<NSString*>*) paths TargetPath:(NSString*) targetPath{
+    NSLog(@"PCFileHelper,开始复制选中的文件(夹)到%@",targetPath);
+    [reCeivedActionErrorMessageList removeAllObjects];
+    [NSThread detachNewThreadWithBlock:^{
+        for (NSString*  path in paths) {
+            @try {
+                ReceivedActionMessageFormat* tmp = (ReceivedActionMessageFormat*)[prepareDataForFragment getFileActionStateData:OrderConst_fileAction_name command:OrderConst_fileOrFolderAction_copy_command param:[NSString stringWithFormat:@"%@%@%@%@",OrderConst_paramSourcePath,path,OrderConst_paramTargetPath,[targetPath substringToIndex:targetPath.length-1]]];
+                if(tmp.status == OrderConst_failure) {
+                    [reCeivedActionErrorMessageList addObject:tmp.message];
+                }
+            } @catch(NSException* e) {
+                [reCeivedActionErrorMessageList addObject:e.name];
+            }
+        }
+        // 执行成功
+        if(reCeivedActionErrorMessageList.count == 0) {
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionSuccess_order];
+            message[@"actionType"] = OrderConst_fileOrFolderAction_copy_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        } else {
+            // 执行失败
+            // 执行失败
+            NSMutableDictionary* message = [[NSMutableDictionary alloc] init];
+            message[@"what"] = [NSNumber numberWithInt:OrderConst_actionFail_order];
+            message[@"error"] = @"部分文件复制出错，详情请查看错误日志。";
+            message[@"actionType"] = OrderConst_fileOrFolderAction_copy_command;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [myHandler onHandler:message];
+            });
+        }
+    }];
+}
+
+
 + (NSString*)getNowFilePath {
     return nowFilePath;
 }

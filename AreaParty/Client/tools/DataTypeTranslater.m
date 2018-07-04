@@ -14,7 +14,11 @@ union ftob
     float   num ;
     Byte   buf[sizeof(float)];
 };
-
+union btoi
+{
+    int   num ;
+    Byte   buf[sizeof(int)];
+};
 + (int) bytesToInt:(Byte[])bytes offset:(int)offset{
     int value = 0;
     for(int i =0;i<4;i++){
@@ -23,6 +27,13 @@ union ftob
     }
     return value;
 }
+//+ (int) bytesToInt:(Byte [])bytes offset:(int)offset{
+//    union btoi temp;
+//    for(int i =0;i<sizeof(int);i++){
+//        temp.buf[i] = bytes[offset+i];
+//    }
+//    return temp.num;
+//}
 +(NSData*) intToByte:(int) i{
     Byte b1=i & 0xff;
     Byte b2=(i>>8) & 0xff;

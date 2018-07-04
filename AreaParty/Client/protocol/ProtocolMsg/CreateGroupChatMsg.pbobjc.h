@@ -63,6 +63,7 @@ BOOL CreateGroupChatRsp_ResultCode_IsValidValue(int32_t value);
 
 typedef GPB_ENUM(CreateGroupChatReq_FieldNumber) {
   CreateGroupChatReq_FieldNumber_UserIdArray = 1,
+  CreateGroupChatReq_FieldNumber_GroupName = 2,
 };
 
 @interface CreateGroupChatReq : GPBMessage
@@ -71,6 +72,10 @@ typedef GPB_ENUM(CreateGroupChatReq_FieldNumber) {
 /** The number of items in @c userIdArray without causing the array to be created. */
 @property(nonatomic, readonly) NSUInteger userIdArray_Count;
 
+@property(nonatomic, readwrite, copy, null_resettable) NSString *groupName;
+/** Test to see if @c groupName has been set. */
+@property(nonatomic, readwrite) BOOL hasGroupName;
+
 @end
 
 #pragma mark - CreateGroupChatRsp
@@ -78,6 +83,7 @@ typedef GPB_ENUM(CreateGroupChatReq_FieldNumber) {
 typedef GPB_ENUM(CreateGroupChatRsp_FieldNumber) {
   CreateGroupChatRsp_FieldNumber_ResultCode = 1,
   CreateGroupChatRsp_FieldNumber_GroupChatId = 2,
+  CreateGroupChatRsp_FieldNumber_GroupName = 3,
 };
 
 @interface CreateGroupChatRsp : GPBMessage
@@ -88,6 +94,10 @@ typedef GPB_ENUM(CreateGroupChatRsp_FieldNumber) {
 @property(nonatomic, readwrite) int32_t groupChatId;
 
 @property(nonatomic, readwrite) BOOL hasGroupChatId;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *groupName;
+/** Test to see if @c groupName has been set. */
+@property(nonatomic, readwrite) BOOL hasGroupName;
+
 @end
 
 NS_ASSUME_NONNULL_END

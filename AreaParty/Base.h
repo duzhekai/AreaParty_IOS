@@ -35,6 +35,13 @@
 #import "KeepAliveMsg.pbobjc.h"
 #import "DeleteFileMsg.pbobjc.h"
 #import "AlertAccreditActivity.h"
+#import "sharedFileIntentVC.h"
+#import "CreateGroupChatMsg.pbobjc.h"
+#import "groupObj.h"
+#import "ChangeGroupMsg.pbobjc.h"
+#import "GroupChat.h"
+#import "SettingMainPhoneViewController.h"
+#import "GetGroupInfoMsg.pbobjc.h"
 extern int const Base_FILENUM;
 @interface Base : NSObject<NSStreamDelegate>{
     

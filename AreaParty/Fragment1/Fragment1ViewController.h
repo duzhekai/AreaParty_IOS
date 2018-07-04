@@ -41,6 +41,8 @@
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_userlogo;
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_lastPCInforLL;
 @property (strong,nonatomic) UITapGestureRecognizer* recognizer_lastTVInforLL;
+@property (strong,nonatomic) UITapGestureRecognizer* recognizer_BannerLL;
+
 @property (weak, nonatomic) IBOutlet UITextView *textview_left;
 @property (weak, nonatomic) IBOutlet UITextView *textview_right;
 @property (weak, nonatomic) IBOutlet UIImageView *tab01_loginWrap;

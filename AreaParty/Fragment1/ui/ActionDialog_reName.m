@@ -42,7 +42,11 @@
 }
 
 - (IBAction)Press_sure:(id)sender {
-    _holder.page04DiskContentBar02MoreRootLL.hidden= YES;
+    if([_holder isKindOfClass:[diskContentVC class]]){
+        ((diskContentVC*)_holder).page04DiskContentBar02MoreRootLL.hidden= YES;
+    }
+    else
+        ((DownloadFolderFragment*)_holder).page04DiskContentBar02MoreRootLL.hidden= YES;
     NSString* des = _valueEditText.text;
     if([des isEqualToString:@""]|| [des characterAtIndex:des.length-1] == '.' ||
        [des containsString:@"\\"] || [des containsString:@"/"] ||
@@ -53,15 +57,22 @@
         [Toast ShowToast:@"设备名不能为空，不能包含\\ / : * ? \" < > |字符" Animated:YES time:1 context:self.view];
         [_valueEditText setText:@""];
     } else {
-        
         if (_filetype == FileTypeConst_folder){
-            [[diskContentVC getPCFileHelper] reNameFolder:_oldfileName Path:des];
+            if([_holder isKindOfClass:[diskContentVC class]]){
+                [[diskContentVC getPCFileHelper] reNameFolder:_oldfileName Path:des];
+            }
+            else
+                [[DownloadFolderFragment getPCFileHelper] reNameFolder:_oldfileName Path:des];
         }else {
             NSArray*a =  [_oldname.text componentsSeparatedByString:@"."];
             NSString* houzhui =  [a lastObject];
             if (![des containsString:@"."] && a.count!=1)
                 des = [NSString stringWithFormat:@"%@.%@",des,houzhui];
-            [[diskContentVC getPCFileHelper] reNameFile:_oldfileName Path:des];
+            if([_holder isKindOfClass:[diskContentVC class]]){
+                [[diskContentVC getPCFileHelper] reNameFile:_oldfileName Path:des];
+            }
+            else
+                [[DownloadFolderFragment getPCFileHelper] reNameFile:_oldfileName Path:des];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }

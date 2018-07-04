@@ -50,9 +50,11 @@ BOOL ChangeGroupReq_ChangeType_IsValidValue(int32_t value);
 #pragma mark - Enum ChangeGroupRsp_ResultCode
 
 typedef GPB_ENUM(ChangeGroupRsp_ResultCode) {
-  ChangeGroupRsp_ResultCode_Success = 0,
-  ChangeGroupRsp_ResultCode_Fail = 1,
-  ChangeGroupRsp_ResultCode_NoAuthority = 2,
+  ChangeGroupRsp_ResultCode_UpdateSuccess = 0,
+  ChangeGroupRsp_ResultCode_UpdateFail = 1,
+  ChangeGroupRsp_ResultCode_DeleteSuccess = 2,
+  ChangeGroupRsp_ResultCode_DeleteFail = 3,
+  ChangeGroupRsp_ResultCode_NoAuthority = 4,
 };
 
 GPBEnumDescriptor *ChangeGroupRsp_ResultCode_EnumDescriptor(void);
@@ -110,6 +112,10 @@ typedef GPB_ENUM(ChangeGroupReq_FieldNumber) {
 
 typedef GPB_ENUM(ChangeGroupRsp_FieldNumber) {
   ChangeGroupRsp_FieldNumber_ResultCode = 1,
+  ChangeGroupRsp_FieldNumber_GroupChatId = 2,
+  ChangeGroupRsp_FieldNumber_OldGroupName = 3,
+  ChangeGroupRsp_FieldNumber_NewGroupName = 4,
+  ChangeGroupRsp_FieldNumber_UserIdArray = 5,
 };
 
 @interface ChangeGroupRsp : GPBMessage
@@ -117,6 +123,21 @@ typedef GPB_ENUM(ChangeGroupRsp_FieldNumber) {
 @property(nonatomic, readwrite) ChangeGroupRsp_ResultCode resultCode;
 
 @property(nonatomic, readwrite) BOOL hasResultCode;
+@property(nonatomic, readwrite) int32_t groupChatId;
+
+@property(nonatomic, readwrite) BOOL hasGroupChatId;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *oldGroupName;
+/** Test to see if @c oldGroupName has been set. */
+@property(nonatomic, readwrite) BOOL hasOldGroupName;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *newGroupName NS_RETURNS_NOT_RETAINED;
+/** Test to see if @c newGroupName has been set. */
+@property(nonatomic, readwrite) BOOL hasNewGroupName;
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *userIdArray;
+/** The number of items in @c userIdArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger userIdArray_Count;
+
 @end
 
 #pragma mark - ChangeGroupSync

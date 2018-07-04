@@ -91,17 +91,21 @@ static userObj* userItem;
     else if ([_userSearchBtn.titleLabel.text isEqualToString:@"查看文件"]) {
         myFileList* mf = [[myFileList alloc] init];
         mf.list = userItem.shareFiles;
-//        Intent intent = new Intent();
-//        intent.setClass(searchFriend.this, fileList.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("userId", userItem.getUserId());
-//        bundle.putSerializable("friendFile", mf);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
+        fileList* fl = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"fileList"];
+        fl.intentBundle = [NSMutableDictionary dictionaryWithObjectsAndKeys:[headIndexToImgId toImgId:userItem.headIndex],@"userHead",
+                           userItem.userName,@"userName",
+                           userItem.userId,@"userId",
+                           mf,@"friendFile",
+                           Login_userId,@"myUserId",
+                           [headIndexToImgId toImgId:Login_userHeadIndex],@"myUserHead",nil];
+        [self presentViewController:fl animated:YES completion:nil];
     }
 }
 + (searchFriendHandler*) getHandler{
     return mHandler;
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_searchUserId resignFirstResponder];
 }
 @end
 
@@ -157,5 +161,4 @@ static userObj* userItem;
         default:break;
     }
 }
-
 @end

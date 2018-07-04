@@ -54,7 +54,7 @@ typedef void (^MCProgressBlock)(NSProgress * _Nonnull,MCDownloadReceipt *);
 @property (assign, nonatomic, readonly) long long totalBytesExpectedToWrite;
 
 @property (nonatomic, copy, readonly, nonnull) NSProgress *progress;
-@property (nonatomic,strong,readonly,nullable) NSDate *date;
+@property (nonatomic,copy,readonly,nonnull) NSDate *date;
 @property (nonatomic, strong, readonly, nullable) NSError *error;
 
 @property (nonatomic,copy)MCSucessBlock successBlock;

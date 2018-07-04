@@ -12,5 +12,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userHead;
 @property (weak, nonatomic) IBOutlet UILabel *userId;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *chatNumLabel;
+@property (weak, nonatomic) IBOutlet UIView *chatNum;
 
 @end

@@ -54,6 +54,8 @@ static GPBFileDescriptor *PersonalSettingsMsgRoot_FileDescriptor(void) {
 @dynamic hasUserAddress, userAddress;
 @dynamic hasUserStreet, userStreet;
 @dynamic hasUserCommunity, userCommunity;
+@dynamic hasUserMainMac, userMainMac;
+@dynamic hasUserId, userId;
 
 typedef struct PersonalSettingsReq__storage_ {
   uint32_t _has_storage_[1];
@@ -65,6 +67,8 @@ typedef struct PersonalSettingsReq__storage_ {
   NSString *userAddress;
   NSString *userStreet;
   NSString *userCommunity;
+  NSString *userMainMac;
+  NSString *userId;
 } PersonalSettingsReq__storage_;
 
 // This method is threadsafe because it is initially called
@@ -145,6 +149,24 @@ typedef struct PersonalSettingsReq__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "userMainMac",
+        .dataTypeSpecific.className = NULL,
+        .number = PersonalSettingsReq_FieldNumber_UserMainMac,
+        .hasIndex = 8,
+        .offset = (uint32_t)offsetof(PersonalSettingsReq__storage_, userMainMac),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "userId",
+        .dataTypeSpecific.className = NULL,
+        .number = PersonalSettingsReq_FieldNumber_UserId,
+        .hasIndex = 9,
+        .offset = (uint32_t)offsetof(PersonalSettingsReq__storage_, userId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[PersonalSettingsReq class]
@@ -156,7 +178,7 @@ typedef struct PersonalSettingsReq__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\007\001\010\000\002\014\000\003\t\000\005\017\000\006\013\000\007\n\000\010\r\000";
+        "\t\001\010\000\002\014\000\003\t\000\005\017\000\006\013\000\007\n\000\010\r\000\t\013\000\n\006\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -232,11 +254,12 @@ GPBEnumDescriptor *PersonalSettingsRsp_ResultCode_EnumDescriptor(void) {
   static GPBEnumDescriptor *descriptor = NULL;
   if (!descriptor) {
     static const char *valueNames =
-        "Success\000Fail\000Oldpasswordwrong\000";
+        "Success\000Fail\000Oldpasswordwrong\000Codewrong\000";
     static const int32_t values[] = {
         PersonalSettingsRsp_ResultCode_Success,
         PersonalSettingsRsp_ResultCode_Fail,
         PersonalSettingsRsp_ResultCode_Oldpasswordwrong,
+        PersonalSettingsRsp_ResultCode_Codewrong,
     };
     GPBEnumDescriptor *worker =
         [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(PersonalSettingsRsp_ResultCode)
@@ -256,6 +279,7 @@ BOOL PersonalSettingsRsp_ResultCode_IsValidValue(int32_t value__) {
     case PersonalSettingsRsp_ResultCode_Success:
     case PersonalSettingsRsp_ResultCode_Fail:
     case PersonalSettingsRsp_ResultCode_Oldpasswordwrong:
+    case PersonalSettingsRsp_ResultCode_Codewrong:
       return YES;
     default:
       return NO;
@@ -268,11 +292,12 @@ GPBEnumDescriptor *PersonalSettingsRsp_ChangeType_EnumDescriptor(void) {
   static GPBEnumDescriptor *descriptor = NULL;
   if (!descriptor) {
     static const char *valueNames =
-        "Name\000Password\000Address\000";
+        "Name\000Password\000Address\000Mainmac\000";
     static const int32_t values[] = {
         PersonalSettingsRsp_ChangeType_Name,
         PersonalSettingsRsp_ChangeType_Password,
         PersonalSettingsRsp_ChangeType_Address,
+        PersonalSettingsRsp_ChangeType_Mainmac,
     };
     GPBEnumDescriptor *worker =
         [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(PersonalSettingsRsp_ChangeType)
@@ -292,6 +317,7 @@ BOOL PersonalSettingsRsp_ChangeType_IsValidValue(int32_t value__) {
     case PersonalSettingsRsp_ChangeType_Name:
     case PersonalSettingsRsp_ChangeType_Password:
     case PersonalSettingsRsp_ChangeType_Address:
+    case PersonalSettingsRsp_ChangeType_Mainmac:
       return YES;
     default:
       return NO;

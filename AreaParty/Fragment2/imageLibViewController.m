@@ -5,7 +5,7 @@
 //  Created by 杜哲凯 on 2018/3/30.
 //  Copyright © 2018年 杜哲凯. All rights reserved.
 //
-#define cache_path [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+#define cache_path [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #import "imageLibViewController.h"
 #import "MediafileHelper.h"
 #import "MyUIApplication.h"

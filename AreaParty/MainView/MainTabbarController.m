@@ -13,6 +13,7 @@
 #import "ChatDBManager.h"
 #import "FriendRequestDBManager.h"
 #import "FileRequestDBManager.h"
+#import "GroupChatDBManager.h"
 #import "UserData.pbobjc.h"
 @interface MainTabbarController ()
 
@@ -20,6 +21,7 @@
 static ChatDBManager* chatDBManager;
 static FriendRequestDBManager* friendRequestDBManager;
 static FileRequestDBManager* fileRequestDBManager;
+static GroupChatDBManager* groupChatDBManager;
 static NSUserDefaults* sp;
 MyHandler* MainTabbarController_handlerTab01;
 MyHandler* MainTabbarController_handlerTab06;
@@ -32,6 +34,7 @@ DownloadStateFragment* MainTabbarController_DownloadStateFragment;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotification:) name:nil object:nil];
     // Do any additional setup after loading the view.
     self.delegate = self;
     self.selectedIndex = 0;
@@ -56,6 +59,7 @@ DownloadStateFragment* MainTabbarController_DownloadStateFragment;
         chatDBManager = [[ChatDBManager alloc] init];
         friendRequestDBManager = [[FriendRequestDBManager alloc] init];
         fileRequestDBManager = [[FileRequestDBManager alloc] init];
+        groupChatDBManager = [[GroupChatDBManager alloc] init];
     }
     [self initEvent];
     
@@ -148,6 +152,9 @@ DownloadStateFragment* MainTabbarController_DownloadStateFragment;
 }
 + (ChatDBManager*) getChatDBManager{
     return chatDBManager;
+}
++ (GroupChatDBManager*) getGroupChatDBManager{
+    return groupChatDBManager;
 }
 - (void) initEvent {
     /**

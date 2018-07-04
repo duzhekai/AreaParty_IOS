@@ -38,7 +38,8 @@
 #include <net/if.h>
 #include <ifaddrs.h>
 #import <dlfcn.h>
-#import <SystemConfiguration/SystemConfiguration.h>  
+#import <SystemConfiguration/SystemConfiguration.h>
+#import "LogoutMsg.pbobjc.h"
 @interface MyUIApplication : UIApplication<GCDAsyncSocketDelegate>
 @property (strong,nonatomic) NSMutableArray<UIViewController*>* activities;
 +(void) addMySharedFlies:(SharedflieBean*)mysharedFiles;
@@ -93,4 +94,5 @@
 +(NSString*) getdomain;
 +(NSString*) getdomain1;
 + (void)getPcAreaPartyPath;
+- (void) sendLogoutMessage;
 @end

@@ -46,6 +46,7 @@ static SettingNameHandler* mhandler;
     [NSThread detachNewThreadWithBlock:^(void){
         PersonalSettingsReq * builder = [[PersonalSettingsReq alloc] init];
         builder.userName = _mnewName;
+        builder.userId = Login_userId;
         NSData* reByteArray;
             @try {
                 reByteArray = [NetworkPacket packMessage:ENetworkMessage_PersonalsettingsReq packetBytes:[builder data]];

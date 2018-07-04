@@ -35,6 +35,9 @@ typedef GPB_ENUM(PersonalSettingsRsp_ResultCode) {
   PersonalSettingsRsp_ResultCode_Success = 0,
   PersonalSettingsRsp_ResultCode_Fail = 1,
   PersonalSettingsRsp_ResultCode_Oldpasswordwrong = 2,
+
+  /** 验证码错误 */
+  PersonalSettingsRsp_ResultCode_Codewrong = 3,
 };
 
 GPBEnumDescriptor *PersonalSettingsRsp_ResultCode_EnumDescriptor(void);
@@ -51,6 +54,7 @@ typedef GPB_ENUM(PersonalSettingsRsp_ChangeType) {
   PersonalSettingsRsp_ChangeType_Name = 0,
   PersonalSettingsRsp_ChangeType_Password = 1,
   PersonalSettingsRsp_ChangeType_Address = 2,
+  PersonalSettingsRsp_ChangeType_Mainmac = 3,
 };
 
 GPBEnumDescriptor *PersonalSettingsRsp_ChangeType_EnumDescriptor(void);
@@ -87,10 +91,13 @@ typedef GPB_ENUM(PersonalSettingsReq_FieldNumber) {
   PersonalSettingsReq_FieldNumber_UserAddress = 6,
   PersonalSettingsReq_FieldNumber_UserStreet = 7,
   PersonalSettingsReq_FieldNumber_UserCommunity = 8,
+  PersonalSettingsReq_FieldNumber_UserMainMac = 9,
+  PersonalSettingsReq_FieldNumber_UserId = 10,
 };
 
 @interface PersonalSettingsReq : GPBMessage
 
+/** 呢称 */
 @property(nonatomic, readwrite, copy, null_resettable) NSString *userName;
 /** Test to see if @c userName has been set. */
 @property(nonatomic, readwrite) BOOL hasUserName;
@@ -120,6 +127,14 @@ typedef GPB_ENUM(PersonalSettingsReq_FieldNumber) {
 @property(nonatomic, readwrite, copy, null_resettable) NSString *userCommunity;
 /** Test to see if @c userCommunity has been set. */
 @property(nonatomic, readwrite) BOOL hasUserCommunity;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *userMainMac;
+/** Test to see if @c userMainMac has been set. */
+@property(nonatomic, readwrite) BOOL hasUserMainMac;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *userId;
+/** Test to see if @c userId has been set. */
+@property(nonatomic, readwrite) BOOL hasUserId;
 
 @end
 

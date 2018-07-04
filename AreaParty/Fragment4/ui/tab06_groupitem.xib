@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="tab06_groupitem">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbI-h0-byJ">
+                        <rect key="frame" x="0.0" y="0.0" width="75" height="43"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rtt-1R-7nv">
+                                <rect key="frame" x="15" y="0.0" width="45" height="43"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rtt-1R-7nv" firstAttribute="top" secondItem="dbI-h0-byJ" secondAttribute="top" id="5AH-na-L60"/>
+                            <constraint firstAttribute="trailing" secondItem="Rtt-1R-7nv" secondAttribute="trailing" constant="15" id="FaV-t2-bgw"/>
+                            <constraint firstAttribute="bottom" secondItem="Rtt-1R-7nv" secondAttribute="bottom" id="dQP-yd-iM4"/>
+                            <constraint firstItem="Rtt-1R-7nv" firstAttribute="leading" secondItem="dbI-h0-byJ" secondAttribute="leading" constant="15" id="gjR-RP-TZ8"/>
+                            <constraint firstAttribute="width" constant="75" id="uYE-Dz-rFp"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncf-bL-GdH">
+                        <rect key="frame" x="75" y="12" width="237" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ndq-FC-15I">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.82745098039215681" green="0.82745098039215681" blue="0.82745098039215681" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="T16-JP-by2"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ndq-FC-15I" firstAttribute="top" secondItem="dbI-h0-byJ" secondAttribute="bottom" id="0Y6-jy-ahW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ncf-bL-GdH" secondAttribute="trailing" id="2M5-sd-UbJ"/>
+                    <constraint firstItem="Ndq-FC-15I" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="41J-bx-vHv"/>
+                    <constraint firstAttribute="bottom" secondItem="Ndq-FC-15I" secondAttribute="bottom" id="OOq-z1-eDU"/>
+                    <constraint firstItem="ncf-bL-GdH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aY1-px-hhv"/>
+                    <constraint firstItem="dbI-h0-byJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ac7-d3-Vgx"/>
+                    <constraint firstItem="dbI-h0-byJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iyv-c4-bcP"/>
+                    <constraint firstItem="ncf-bL-GdH" firstAttribute="leading" secondItem="dbI-h0-byJ" secondAttribute="trailing" id="pDV-SE-cgJ"/>
+                    <constraint firstAttribute="trailing" secondItem="Ndq-FC-15I" secondAttribute="trailing" id="u6P-bJ-vF4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="groupHead" destination="Rtt-1R-7nv" id="IdE-hh-QQZ"/>
+                <outlet property="groupName" destination="ncf-bL-GdH" id="yEt-di-8KU"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

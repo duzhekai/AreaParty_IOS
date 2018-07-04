@@ -23,7 +23,7 @@
     }
     return self;
 }
-- (instancetype)initWithName:(NSString*)mname Path:(NSString*)mpath Size:(int)msize Des:(NSString*)mdes TimeLong:(long)mtimelong URL:(NSString*) murl Pwd:(NSString*) mpwd
+- (instancetype)initWithName:(NSString*)mname Path:(NSString*)mpath Size:(int)msize Des:(NSString*)mdes TimeLong:(long)mtimelong URL:(NSString*) murl Pwd:(NSString*) mpwd Group:(NSArray*) l
 {
     self = [super init];
     if (self) {
@@ -37,6 +37,7 @@
         _timeStr = [formartter stringFromDate:[[NSDate alloc] initWithTimeIntervalSince1970:(mtimelong/1000)]];
         _url = murl;
         _pwd = mpwd;
+        _listGroupId = l;
     }
     return self;
 }

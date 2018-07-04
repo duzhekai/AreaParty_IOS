@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DownloadFolderFragment.h"
 @class diskContentVC;
 @interface ActionDialog_reName : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *oldname;
 @property (weak, nonatomic) NSString* oldfileName;
 @property (weak, nonatomic) IBOutlet UITextField *valueEditText;
-@property (strong,nonatomic) diskContentVC* holder;
+@property (strong,nonatomic) UIViewController* holder;
 @property (assign,nonatomic) int filetype;
 - (IBAction)Press_cancel:(id)sender;
 - (IBAction)Press_sure:(id)sender;

@@ -19,7 +19,7 @@
 #import <AssetsLibrary/ALAssetsLibrary.h>
 #import <AssetsLibrary/ALAssetsGroup.h>
 #import <AssetsLibrary/ALAssetRepresentation.h>
-#define Video_path [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"video"]
+#define Video_path [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"video"]
 @interface videoLibViewController (){
     BOOL isAppContent;
     NSMutableArray<MediaItem*>* folderArray_pc;
@@ -341,6 +341,10 @@
     }
     else{
         if ([MyUIApplication getselectedTVOnline]){
+            if(mediafiles_app[i].mAssertUrl == nil){
+                [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"video"];
+                return;
+            }
             NSString* fileName = mediafiles_app[i].mFileName;
             NSString * videoPath = [Video_path stringByAppendingPathComponent:fileName];
             NSURL* url = mediafiles_app[i].mAssertUrl;
@@ -390,6 +394,8 @@
                     });
                 }];
             }
+            else
+                [DownloadFileManagerHelper dlnaCast_File:mediafiles_app[i] Type:@"video"];
         } else  [Toast ShowToast:@"当前电视不在线" Animated:YES time:1 context:self.view];
     }
 }

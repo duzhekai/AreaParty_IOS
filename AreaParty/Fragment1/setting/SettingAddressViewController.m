@@ -62,6 +62,7 @@ static SettingAddressHandler* mhandler;
         [builder setUserAddress:_setting_address.titleLabel.text];
         [builder setUserStreet:_setting_street.text];
         [builder setUserCommunity:_setting_community.text];
+        [builder setUserId:Login_userId];
         NSData* reByteArray;
             @try {
                 reByteArray = [NetworkPacket packMessage:ENetworkMessage_PersonalsettingsReq packetBytes:[builder data]];

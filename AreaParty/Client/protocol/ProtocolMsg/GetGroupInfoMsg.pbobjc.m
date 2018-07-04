@@ -15,6 +15,7 @@
 
  #import "GetGroupInfoMsg.pbobjc.h"
  #import "GroupData.pbobjc.h"
+ #import "FileData.pbobjc.h"
 // @@protoc_insertion_point(imports)
 
 #pragma clang diagnostic push
@@ -48,10 +49,13 @@ static GPBFileDescriptor *GetGroupInfoMsgRoot_FileDescriptor(void) {
 @implementation GetGroupInfoReq
 
 @dynamic hasGroupId, groupId;
+@dynamic hasWhere, where;
+@dynamic hasFileInfo, fileInfo;
 
 typedef struct GetGroupInfoReq__storage_ {
   uint32_t _has_storage_[1];
   NSString *groupId;
+  NSString *where;
 } GetGroupInfoReq__storage_;
 
 // This method is threadsafe because it is initially called
@@ -69,6 +73,24 @@ typedef struct GetGroupInfoReq__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "where",
+        .dataTypeSpecific.className = NULL,
+        .number = GetGroupInfoReq_FieldNumber_Where,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(GetGroupInfoReq__storage_, where),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "fileInfo",
+        .dataTypeSpecific.className = NULL,
+        .number = GetGroupInfoReq_FieldNumber_FileInfo,
+        .hasIndex = 2,
+        .offset = 3,  // Stored in _has_storage_ to save space.
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldHasDefaultValue | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeBool,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[GetGroupInfoReq class]
@@ -80,7 +102,7 @@ typedef struct GetGroupInfoReq__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\001\001\007\000";
+        "\002\001\007\000\003\010\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -97,11 +119,15 @@ typedef struct GetGroupInfoReq__storage_ {
 
 @dynamic hasResultCode, resultCode;
 @dynamic hasGroupItem, groupItem;
+@dynamic hasWhere, where;
+@dynamic filesArray, filesArray_Count;
 
 typedef struct GetGroupInfoRsp__storage_ {
   uint32_t _has_storage_[1];
   GetGroupInfoRsp_ResultCode resultCode;
   GroupItem *groupItem;
+  NSString *where;
+  NSMutableArray *filesArray;
 } GetGroupInfoRsp__storage_;
 
 // This method is threadsafe because it is initially called
@@ -126,6 +152,24 @@ typedef struct GetGroupInfoRsp__storage_ {
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(GetGroupInfoRsp__storage_, groupItem),
         .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeMessage,
+      },
+      {
+        .name = "where",
+        .dataTypeSpecific.className = NULL,
+        .number = GetGroupInfoRsp_FieldNumber_Where,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(GetGroupInfoRsp__storage_, where),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "filesArray",
+        .dataTypeSpecific.className = GPBStringifySymbol(FileItem),
+        .number = GetGroupInfoRsp_FieldNumber_FilesArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(GetGroupInfoRsp__storage_, filesArray),
+        .flags = GPBFieldRepeated,
         .dataType = GPBDataTypeMessage,
       },
     };

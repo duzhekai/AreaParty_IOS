@@ -21,10 +21,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUL-4K-Q3D">
-                        <rect key="frame" x="13" y="16" width="467" height="103.5"/>
+                        <rect key="frame" x="3" y="8" width="487" height="113.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YuU-pv-juC">
-                                <rect key="frame" x="0.0" y="0.0" width="467" height="55"/>
+                                <rect key="frame" x="0.0" y="0.0" width="487" height="55"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="none.png" translatesAutoresizingMaskIntoConstraints="NO" id="04N-2f-dne">
                                         <rect key="frame" x="0.0" y="10" width="45" height="45"/>
@@ -34,7 +34,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whI-Bb-kOo">
-                                        <rect key="frame" x="60" y="5" width="407" height="25"/>
+                                        <rect key="frame" x="60" y="5" width="427" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="rae-d2-WQp"/>
                                         </constraints>
@@ -43,7 +43,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLx-XD-06K">
-                                        <rect key="frame" x="60" y="30" width="407" height="25"/>
+                                        <rect key="frame" x="60" y="30" width="427" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="oq1-gf-OKu"/>
                                         </constraints>
@@ -66,10 +66,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjR-O2-bk3">
-                                <rect key="frame" x="0.0" y="55" width="467" height="49"/>
+                                <rect key="frame" x="0.0" y="55" width="487" height="59"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xEm-B5-Xyu">
-                                        <rect key="frame" x="15" y="9.5" width="203.5" height="30"/>
+                                        <rect key="frame" x="15" y="14.5" width="213.5" height="30"/>
                                         <color key="backgroundColor" red="0.20392156859999999" green="0.68627450980000004" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Fe9-fR-HSM"/>
@@ -87,7 +87,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSO-CS-ttO">
-                                        <rect key="frame" x="248.5" y="9.5" width="203.5" height="30"/>
+                                        <rect key="frame" x="258.5" y="14.5" width="213.5" height="30"/>
                                         <color key="backgroundColor" red="0.61960784313725492" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="KXg-8w-0Rc"/>
@@ -129,10 +129,10 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="hUL-4K-Q3D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="gpy-mv-kSa"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="hUL-4K-Q3D" secondAttribute="bottom" constant="2" id="pPG-kL-s3B"/>
-                    <constraint firstItem="hUL-4K-Q3D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="tTX-0q-BB6"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="hUL-4K-Q3D" secondAttribute="trailing" constant="5" id="yW5-E0-D6Z"/>
+                    <constraint firstItem="hUL-4K-Q3D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gpy-mv-kSa"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="hUL-4K-Q3D" secondAttribute="bottom" id="pPG-kL-s3B"/>
+                    <constraint firstItem="hUL-4K-Q3D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-5" id="tTX-0q-BB6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hUL-4K-Q3D" secondAttribute="trailing" constant="-5" id="yW5-E0-D6Z"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

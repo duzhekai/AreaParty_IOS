@@ -50,6 +50,7 @@
     _recognizer_setting=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
     _recognizer_lastPCInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
     _recognizer_lastTVInforLL =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
+    _recognizer_BannerLL = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAvatarView:)];
     loadImageQueue = [[NSOperationQueue alloc] init];
     
 }
@@ -66,6 +67,8 @@
     [_settingLL addGestureRecognizer:_recognizer_setting];
     [_lastPCInforLL addGestureRecognizer:_recognizer_lastPCInforLL];
     [_lastTVInforLL addGestureRecognizer:_recognizer_lastTVInforLL];
+    [_banner_image addGestureRecognizer:_recognizer_BannerLL];
+    _banner_image.userInteractionEnabled = YES;
     _pcRecentAppView.delegate = self;
     _pcRecentAppView.dataSource = self;
     [_pcRecentAppView registerNib:[UINib nibWithNibName:@"cellView" bundle:nil] forCellWithReuseIdentifier:@"appViewCell"];
@@ -146,19 +149,19 @@
     if(gesture == _recognizer_pc){
         [self performSegueWithIdentifier:@"pushpcdevicesview" sender:self];
     }
-    if(gesture == _recognizer_tv){
+    else if(gesture == _recognizer_tv){
         [self performSegueWithIdentifier:@"pushtvdevicesview" sender:self];
     }
-    if(gesture == _recognizer_file){
+    else if(gesture == _recognizer_file){
         [self performSegueWithIdentifier:@"pushpcfilesysview" sender:self];
     }
-    if (gesture == _recognizer_setting){
+    else if (gesture == _recognizer_setting){
         [self performSegueWithIdentifier:@"pushusersettingview" sender:[NSNumber numberWithBool:outline]];
     }
-    if(gesture == _recognizer_userlogo){
+    else if(gesture == _recognizer_userlogo){
         [[MyUIApplication getInstance] closeAll];
     }
-    if(gesture == _recognizer_lastPCInforLL){
+    else if(gesture == _recognizer_lastPCInforLL){
         if([MyUIApplication getselectedPCVerified] && [MyUIApplication getselectedPCOnline]){
             [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"computerMonitorViewController"] animated:YES completion:nil];
         }
@@ -173,7 +176,9 @@
         else
             [Toast ShowToast:@"当前电视未验证或不在线" Animated:YES time:1 context:self.view];
     }
-
+    else if(gesture == _recognizer_BannerLL){
+        [self presentViewController:[[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"StartActivity"] animated:YES completion:nil];
+    }
 }
 - (void)onUIControllerResultWithCode:(int)resultCode andData:(NSDictionary *)data{
     if(resultCode == PCS_RESULTCODE){

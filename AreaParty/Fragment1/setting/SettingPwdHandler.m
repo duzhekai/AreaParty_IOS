@@ -48,6 +48,10 @@
             });
             break;
         }
+        case 4:{
+                [Toast ShowToast:@"验证码错误" Animated:YES time:2 context:_ctl.view];
+            [_ctl.setting_codePwd setText:@""];
+        }
         default:
             break;
     }

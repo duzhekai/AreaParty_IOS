@@ -14,6 +14,7 @@
 #import "Toast.h"
 #import "LoginViewController.h"
 #import "ActionDialog_reName.h"
+#import "AddToMediaListDialog.h"
 @interface diskContentVC : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *page04DiskContentTitleTV;
 @property (weak, nonatomic) IBOutlet UILabel *page04DiskContentCurrentPathTV;
@@ -59,7 +60,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cutCancelLL;
 @property (weak, nonatomic) IBOutlet UIButton *cutPasteLL;
 
-
+ 
 @property (strong,nonatomic) NSString* diskName;
 @property (assign,nonatomic) int lastPoint;
 @property (assign,nonatomic) BOOL isBack;

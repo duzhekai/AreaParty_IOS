@@ -427,7 +427,9 @@ static fileListHandler* mHandler;
 - (NSMutableDictionary<NSNumber*,NSNumber*>*)getSendChatIdList{
     return  sendChatIdList;
 }
-
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_et_sendmessage resignFirstResponder];
+}
 @end
 
 
@@ -446,7 +448,7 @@ static fileListHandler* mHandler;
             NSMutableDictionary<NSString*,NSObject*>* map= [[NSMutableDictionary alloc] init];
             [map setObject:[NSNumber numberWithInt:ME] forKey:@"person"];
             [map setObject:@"tx1.png" forKey:@"userHead"];
-            [map setObject:_holder.chatData[position][@"text"] forKeyedSubscript:@"text"];
+            [map setObject:_holder.chatData[position][@"text"] forKey:@"text"];
             [map setObject:[NSNumber numberWithBool:YES] forKey:@"state"];
             [map setObject:_holder.chatData[position][@"chatId"] forKey:@"chatId"];
             _holder.chatData[position] = map;

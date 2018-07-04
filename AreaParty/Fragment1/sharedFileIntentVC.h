@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MysharedFileItem.h"
+#import "DeleteFileMsg.pbobjc.h"
+#import "LoginViewController.h"
+#import "onHandler.h"
+@class sharedFileIntentVCHandler;
 @interface sharedFileIntentVC : UIViewController<UITableViewDelegate,UITableViewDataSource>
 - (IBAction)Press_return:(id)sender;
 @property (weak, nonatomic) IBOutlet UITableView *sharedFileContentLV;
@@ -23,5 +27,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *sharedDocumentNumTV;
 @property (weak, nonatomic) IBOutlet UILabel *sharedRarNumTV;
 @property (weak, nonatomic) IBOutlet UILabel *sharedOtherNumTV;
-
++ (sharedFileIntentVCHandler*) getHandler;
+@end
+@interface sharedFileIntentVCHandler:NSObject<onHandler>
+- (instancetype)initWithDelegate:(sharedFileIntentVC*) ctl;
+@property (strong,nonatomic) sharedFileIntentVC* delegate;
 @end

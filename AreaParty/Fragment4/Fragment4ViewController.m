@@ -11,6 +11,7 @@
 static NSMutableArray<UserItem*>* userFirend_list;
 static NSMutableArray<UserItem*>* userNet_list;
 static NSMutableArray<UserItem*>* userShare_list;
+static NSMutableArray<GroupItem*>* userGroup_list;
 static NSMutableDictionary<NSString*,NSNumber*>* friendChatNum;
 @interface Fragment4ViewController (){
     BOOL outline;
@@ -20,6 +21,8 @@ static NSMutableDictionary<NSString*,NSNumber*>* friendChatNum;
     NSString* showUserId;
     NSString* showUserName;
     NSString* showUserHead;
+    NSString* showGroupId;
+    NSString* showGroupName;
     userObj* userFriendMsg;
     userObj* userNetMsg;
     userObj* userShareMsg;
@@ -30,6 +33,7 @@ static NSMutableDictionary<NSString*,NSNumber*>* friendChatNum;
     NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*>* userNetData;
     NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*>* userShareData;
     NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*>* filedata;
+    NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*>* userGroupData;
     NSUserDefaults* sp;
     NSArray<NSString*>* imgId;
     UITapGestureRecognizer* id_tab06_friendWrap_tap;
@@ -39,11 +43,14 @@ static NSMutableDictionary<NSString*,NSNumber*>* friendChatNum;
     UITapGestureRecognizer* mnewFriend_wrap_tap;
     UITapGestureRecognizer* transform_wrap_tap;
     UITapGestureRecognizer* download_wrap_tap;
+    UITapGestureRecognizer* group_wrap_tap;
     long getFriendFilesTimer;
+    long getGroupFilesTimer;
 }
 
 @end
 static myFileList* showFriendFilesList;
+static myFileList* showGroupFilesList;
 @implementation Fragment4ViewController
 +(void)load{
     friendChatNum = [[NSMutableDictionary alloc] init];
@@ -102,6 +109,7 @@ static myFileList* showFriendFilesList;
     userFirend_list = Login_userFriend;
     userNet_list = Login_userNet;
     userShare_list = Login_userShare;
+    userGroup_list = Login_userGroups;
     mainMobile = Login_mainMobile;
     if(userFriendData.count == 0){
         for(UserItem* user in userFirend_list){
@@ -148,6 +156,14 @@ static myFileList* showFriendFilesList;
         [item setObject:[NSString stringWithFormat:@"%d",file.mid] forKey:@"id"];
         [filedata addObject:item];
     }
+    for(GroupItem* group in userGroup_list){
+        NSMutableDictionary<NSString*,NSObject*>* item = [[NSMutableDictionary alloc] init];
+        [item setObject:group.createrUserId forKey:@"createrId"];
+        [item setObject:group.groupName forKey:@"groupName"];
+        [item setObject:group.groupId forKey:@"groupId"];
+        [item setObject:[headIndexToImgId toImgId:1] forKey:@"groupHead"];
+        [userGroupData addObject:item];
+    }
 }
 
 - (void) initData{
@@ -158,6 +174,7 @@ static myFileList* showFriendFilesList;
     userFriendData = (userFriendData==nil)?[[NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*> alloc] init]:userFriendData;
     userNetData = (userNetData==nil)?[[NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*> alloc] init]:userNetData;
     userShareData = (userShareData==nil)?[[NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*> alloc] init]:userShareData;
+    userGroupData = (userGroupData==nil)?[[NSMutableArray<NSMutableDictionary<NSString*,NSObject*>*> alloc] init]:userGroupData;
     imgId = (imgId==nil)?[[NSArray alloc] initWithObjects:@"tx1.png",@"tx2.png",@"tx3.png",@"tx4.png",@"tx5.png",nil]:imgId;
 }
 
@@ -183,6 +200,10 @@ static myFileList* showFriendFilesList;
     _id_tab06_fileComputer.delegate = self;
     _id_tab06_fileComputer.dataSource = self;
     
+    _id_tab06_userGroup.hidden = YES;
+    _id_tab06_userGroup.delegate = self;
+    _id_tab06_userGroup.dataSource = self;
+    
     id_tab06_friendWrap_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapped:)];
     [_id_tab06_friendWrap addGestureRecognizer:id_tab06_friendWrap_tap];
     id_tab06_netWrap_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapped:)];
@@ -197,8 +218,47 @@ static myFileList* showFriendFilesList;
     [_transform_wrap addGestureRecognizer:transform_wrap_tap];
     download_wrap_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapped:)];
     [_download_wrap addGestureRecognizer:download_wrap_tap];
-}
+    group_wrap_tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapped:)];
+    [_id_tab06_groupWrap addGestureRecognizer:group_wrap_tap];
+    UILongPressGestureRecognizer* longpress_rec = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
+    longpress_rec.minimumPressDuration = 1;
+    [_id_tab06_userGroup addGestureRecognizer:longpress_rec];
 
+}
+-(void)longPressToDo:(UILongPressGestureRecognizer *)gesture
+{
+    if(gesture.state == UIGestureRecognizerStateBegan)
+    {
+        CGPoint point = [gesture locationInView:_id_tab06_userGroup];
+        NSIndexPath * indexPath = [_id_tab06_userGroup indexPathForRowAtPoint:point];
+        if(indexPath == nil) return ;
+        //add your code here
+        if(indexPath.row == 0){
+            return;
+        }
+        if(Login_mainMobile) {
+            UIAlertController* _delete_folder_dialog = [UIAlertController alertControllerWithTitle:@"删除" message:@"请问确定要删除该群组?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * del_cacleAction = [UIAlertAction actionWithTitle:@"不是" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                
+            }];
+            UIAlertAction *del_sureAction = [UIAlertAction actionWithTitle:@"是的" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                @try {
+                    ChangeGroupReq* builder = [[ChangeGroupReq alloc] init];
+                    builder.changeType = ChangeGroupReq_ChangeType_Delete;
+                    builder.groupId = GroupChat_group_id;
+                    NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_ChangeGroupReq packetBytes:[builder data]];
+                    [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
+                } @catch (NSException* e) {
+                }
+            }];
+            [_delete_folder_dialog addAction:del_cacleAction];
+            [_delete_folder_dialog addAction:del_sureAction];
+            [self presentViewController:_delete_folder_dialog animated:YES completion:nil];
+        }else{
+            [Toast ShowToast:@"当前设备不是主设备，无法使用此功能" Animated:YES time:1 context:self.view];
+        }
+    }
+}
 - (void)onTapped:(UITapGestureRecognizer *)gesture{
     if(gesture.view == _id_tab06_friendWrap){
         if(_id_tab06_userFriend.hidden == NO){
@@ -272,12 +332,26 @@ static myFileList* showFriendFilesList;
         }
     }
     else if (gesture.view == _download_wrap){
-//        if ([MyUIApplication getselectedPCOnline]){
+        if ([MyUIApplication getselectedPCOnline]){
             downloadManager* vc = [[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"downloadManager"];
             [self presentViewController:vc animated:YES completion:nil];
-//        }else {
-//            [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
-//        }
+        }else {
+            [Toast ShowToast:@"当前电脑不在线" Animated:YES time:1 context:self.view];
+        }
+    }
+    else if (gesture.view == _id_tab06_groupWrap){
+        if(_id_tab06_userGroup.hidden == NO){
+            _id_tab06_userGroup.hidden = YES;
+            _id_tab06_addGroupButton.hidden = YES;
+            [self setHeightForView:_id_tab06_userGroup Height:0];
+            [_id_tab06_groupButton setImage:[UIImage imageNamed:@"tab06_item_merge"]];
+        }
+        else{
+            _id_tab06_userGroup.hidden = NO;
+            _id_tab06_addGroupButton.hidden = NO;
+            [_id_tab06_userGroup reloadData];
+            [_id_tab06_groupButton setImage:[UIImage imageNamed:@"tab06_item_open"]];
+        }
     }
 }
 /*
@@ -342,6 +416,11 @@ static myFileList* showFriendFilesList;
             [self setHeightForView:tableView Height:height];
             return filedata.count;
         }
+        else if(tableView == _id_tab06_userGroup){
+            int height = userGroupData.count*46;
+            [self setHeightForView:tableView Height:height];
+            return userGroupData.count;
+        }
         return 0;
     }
 }
@@ -366,6 +445,18 @@ static myFileList* showFriendFilesList;
             [cell.userHead setAlpha:80/255.0];
         [cell.userName setText:(NSString*)user[@"userName"]];
         [cell.userId setText:(NSString*)user[@"userId"]];
+        int chatNum = [user[@"chatNum"] intValue];
+        if(chatNum > 0){
+            if(chatNum > 99){
+                [cell.chatNumLabel setText:@"99+"];
+            }else{
+                [cell.chatNumLabel setText:[NSString stringWithFormat:@"%d",chatNum]];
+            }
+            cell.chatNum.hidden = NO;
+        }else{
+            cell.chatNum.hidden = YES;
+        }
+
         return cell;
     }
     else if(tableView == _id_tab06_userNet){
@@ -430,6 +521,19 @@ static myFileList* showFriendFilesList;
         cell.file_download_btn.hidden =YES;
         return cell;
     }
+    else if (tableView == _id_tab06_userGroup){
+        static NSString *reuseIdentifier = @"tab06_groupitem";
+        tab06_groupitem* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        //如果缓存池中没有,那么创建一个新的cell
+        if (!cell) {
+            //这里换成自己定义的cell,并调用类方法加载xib文件
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"tab06_groupitem" owner:nil options:nil] firstObject];
+        }
+        NSDictionary* group = userGroupData[indexPath.row];
+        [cell.groupHead setImage:[UIImage imageNamed:group[@"groupHead"]]];
+        [cell.groupName setText:group[@"groupName"]];
+        return cell;
+    }
         return nil;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -456,6 +560,21 @@ static myFileList* showFriendFilesList;
     else if(tableView == _id_tab06_fileComputer){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         [self showShareFileDialog:filedata[indexPath.row]];
+    }
+    else if (tableView == _id_tab06_userGroup){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        if(mainMobile) {
+            NSMutableDictionary<NSString*,NSString*>* map = userGroupData[indexPath.row];
+            showGroupId = map[@"groupId"];
+            showGroupName = map[@"groupName"];
+            long nowTime = [[NSDate date] timeIntervalSince1970];
+            if (nowTime - getGroupFilesTimer > 2) {
+                getGroupFilesTimer = nowTime;
+                [NSThread detachNewThreadSelector:@selector(getGroupFile) toTarget:self withObject:nil];
+            }
+        }else{
+            [Toast ShowToast:@"当前设备不是主设备,无法使用此功能" Animated:YES time:1 context:self.view];
+        }
     }
 }
 //tableview delegete end
@@ -761,5 +880,90 @@ static myFileList* showFriendFilesList;
         [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
     } @catch (NSException* e) {
     }
+}
+- (IBAction)Press_addGroup:(id)sender {
+    if(Login_mainMobile) {
+        if (Login_userFriend.count > 0) {
+            AddGroup* addgroup = [[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"AddGroup"];
+            addgroup.isAdd = YES;
+            [self presentViewController:addgroup animated:YES completion:nil];
+        } else {
+            [Toast ShowToast:@"请先添加好友" Animated:YES time:1 context:self.view];
+        }
+    }else{
+            [Toast ShowToast:@"当前设备不是主设备,无法使用此功能" Animated:YES time:1 context:self.view];
+    }
+}
+- (void) addGroup:(NSMutableDictionary*) msg{
+    NSMutableDictionary<NSString*,NSObject*>* item = [[NSMutableDictionary alloc] init];
+    [item setObject:((groupObj*)msg[@"obj"]).groupId forKey:@"groupId"];
+    [item setObject:((groupObj*)msg[@"obj"]).groupName forKey:@"groupName"];
+    [item setObject:[headIndexToImgId toImgId:1] forKey:@"groupHead"];
+    [userGroupData addObject:item];
+    if(_id_tab06_userGroup != nil)
+        [_id_tab06_userGroup reloadData];
+}
+- (void) getGroupFile{
+    @try{
+        GetGroupInfoReq* builder = [[GetGroupInfoReq alloc] init];
+        builder.groupId = showGroupId;
+        builder.where =  @"page06FragmentGroup";
+        builder.fileInfo = YES;
+        NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_GetGroupInfoReq packetBytes:[builder data]];
+        [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
+    }@catch (NSException* e){
+    }
+}
+- (void) showGroupFiles:(NSMutableDictionary*) msg{
+    NSArray<NSString*>* showMembersList = ((GetGroupInfoRsp*)msg[@"obj"]).groupItem.memberUserIdArray;
+    NSArray<FileItem*>* showFilesList = ((GetGroupInfoRsp*)msg[@"obj"]).filesArray;
+    
+    showGroupFilesList = [[myFileList alloc] init];
+    showGroupFilesList.list = showFilesList;
+    NSMutableArray<NSString*>* groupMems = [[NSMutableArray alloc] init];
+    [groupMems addObjectsFromArray:showMembersList];
+    GroupChat* gc = [[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"GroupChat"];
+    NSMutableDictionary* bundle = [[NSMutableDictionary alloc] init];
+    bundle[@"myUserId"] = myUserId;
+    bundle[@"myUserName"] = myUserName;
+    bundle[@"GroupFile"] = showGroupFilesList;
+    gc.intentBundle = bundle;
+    GroupChat_group_id=@"";
+    GroupChat_group_name=@"";
+    [GroupChat_groupMems removeAllObjects];
+    
+    GroupChat_group_id=showGroupId;
+    GroupChat_group_name=showGroupName;
+    GroupChat_groupMems= groupMems;
+    [self presentViewController:gc animated:YES completion:nil];
+}
+- (void) updateGroup:(NSMutableDictionary*) msg{
+    for(int i = 0; i< userGroupData.count;i++){
+        NSMutableDictionary<NSString*,NSObject*>* g = userGroupData[i];
+        if([((NSString*)g[@"groupId"]) isEqualToString:((groupObj*)msg[@"obj"]).groupId]){
+            g[@"groupName"] =((groupObj*)msg[@"obj"]).groupName;
+            break;
+        }
+    }
+    GroupChat_group_id=@"";
+    GroupChat_group_name=@"";
+    [GroupChat_groupMems removeAllObjects];
+    
+    GroupChat_group_id= ((groupObj*)msg[@"obj"]).groupId;
+    GroupChat_group_name=((groupObj*) msg[@"obj"]).groupName;
+    [GroupChat_groupMems addObjectsFromArray:((groupObj*) msg[@"obj"]).memberUserId];
+    if (_id_tab06_userGroup != nil)
+        [_id_tab06_userGroup reloadData];
+}
+- (void) deleteGroup:(NSMutableDictionary*) msg{
+    for(int i = 0; i< userGroupData.count;i++){
+        NSMutableDictionary<NSString*,NSObject*>* g = userGroupData[i];
+        if([((NSString*)g[@"groupId"]) isEqualToString:((groupObj*)msg[@"obj"]).groupId]){
+            [userGroupData removeObject:g];
+            break;
+        }
+    }
+    if (_id_tab06_userGroup != nil)
+        [_id_tab06_userGroup reloadData];
 }
 @end

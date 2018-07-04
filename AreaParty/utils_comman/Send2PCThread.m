@@ -79,7 +79,7 @@
     IPInforBean* pcIpInfor = [MyUIApplication getSelectedPCIP];
     if(pcIpInfor != nil && ![pcIpInfor.ip isEqualToString:@""]) {
         NSLog(@"Send2PCThread:执行线程" );
-        NSString* cmdStr = [self createCmdStr];
+        NSString* cmdStr = [[self createCmdStr]stringByAppendingString:@"\n"];
         NSString* dataReceived = @"";
         CFReadStreamRef readStream;
         CFWriteStreamRef writeStream;
@@ -99,14 +99,14 @@
         NSString* cmdStr1 = [AESc EncryptAsDoNet:cmdStr key:[pass1 substringToIndex:8]];
         NSData* senddata =[cmdStr1 dataUsingEncoding:NSUTF8StringEncoding];
         [outputStream write:[senddata bytes] maxLength:[senddata length]];
-        NSString* newline = @"\n";
-        NSData* newlinedata =[newline dataUsingEncoding:NSUTF8StringEncoding];
-        [outputStream write:[newlinedata bytes] maxLength:[newlinedata length]];
+//        NSString* newline = @"\n";
+//        NSData* newlinedata =[newline dataUsingEncoding:NSUTF8StringEncoding];
+//        [outputStream write:[newlinedata bytes] maxLength:[newlinedata length]];
         Byte receivedbuf[40000];
         int readCount = 0;
         int len = 0;
-        while ((len = [inputStream read:receivedbuf+readCount maxLength:sizeof(receivedbuf)])) {
-            readCount+=len;
+        while((len = [inputStream read:receivedbuf+readCount maxLength:sizeof(receivedbuf)]) >0){
+            readCount += len;
         }
         dataReceived = [[NSString alloc] initWithData:[NSData dataWithBytes:receivedbuf length:readCount] encoding:NSUTF8StringEncoding];
         NSLog(@"Send2PCThread:指令:%@",cmdStr);

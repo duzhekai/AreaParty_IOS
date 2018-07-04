@@ -11,4 +11,5 @@ pod 'SDWebImage/WebP'
 pod 'MJRefresh'
 pod 'Charts'
 pod 'FMDB'
+pod 'AFNetworking', '~> 3.0'
 end

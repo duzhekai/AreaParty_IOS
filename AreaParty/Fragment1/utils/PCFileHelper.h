@@ -81,4 +81,10 @@
 - (void) reNameFile:(NSString*) name Path:(NSString*) targetPath;
 
 - (void) downloadSelectedFiles;
+
+- (void) addToVideoList:(fileBean*) file Type:(NSString*) type;
+
+- (void) deleteFile:(NSArray<NSString*>*) paths;
+
+- (void) copyFile:(NSMutableArray<NSString*>*) paths TargetPath:(NSString*) targetPath;
 @end

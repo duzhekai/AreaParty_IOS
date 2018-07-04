@@ -62,6 +62,7 @@ static SettingPwdHandler* mhandler;
             @try{
                 SendCodeSync* builder = [[SendCodeSync alloc] init];
                 [builder setChangeType:SendCodeSync_ChangeType_Password];
+                [builder setUserId:Login_userId];
                 NSData* reByteArray = [NetworkPacket packMessage:ENetworkMessage_SendCode packetBytes:[builder data]];
                 [Login_base writeToServer:Login_base.outputStream arrayBytes:reByteArray];
             }@catch (NSException* e){
@@ -113,6 +114,7 @@ static SettingPwdHandler* mhandler;
                 @try{
                     PersonalSettingsReq* builder = [[PersonalSettingsReq alloc] init];
                     [builder setCode:[confirmCode intValue]];
+                    [builder setUserId:Login_userId];
                     [builder setUserPassword:newPwd1];
                     [builder setUserOldPassword:oldPwd1];
                     NSData* reByteArray = [NetworkPacket packMessage:ENetworkMessage_PersonalsettingsReq packetBytes:[builder data]];

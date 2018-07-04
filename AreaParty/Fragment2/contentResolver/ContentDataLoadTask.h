@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FileSystemType.h"
+#import "FileTypeConst.h"
 #import "ContentDataControl.h"
 @protocol OnContentDataLoadListener
 - (void)onStartLoad;

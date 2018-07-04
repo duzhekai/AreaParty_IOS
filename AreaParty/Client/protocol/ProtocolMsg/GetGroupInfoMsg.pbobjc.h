@@ -27,6 +27,7 @@
 
 CF_EXTERN_C_BEGIN
 
+@class FileItem;
 @class GroupItem;
 
 NS_ASSUME_NONNULL_BEGIN
@@ -71,6 +72,8 @@ BOOL GetGroupInfoRsp_ResultCode_IsValidValue(int32_t value);
 
 typedef GPB_ENUM(GetGroupInfoReq_FieldNumber) {
   GetGroupInfoReq_FieldNumber_GroupId = 1,
+  GetGroupInfoReq_FieldNumber_Where = 2,
+  GetGroupInfoReq_FieldNumber_FileInfo = 3,
 };
 
 @interface GetGroupInfoReq : GPBMessage
@@ -79,6 +82,13 @@ typedef GPB_ENUM(GetGroupInfoReq_FieldNumber) {
 /** Test to see if @c groupId has been set. */
 @property(nonatomic, readwrite) BOOL hasGroupId;
 
+@property(nonatomic, readwrite, copy, null_resettable) NSString *where;
+/** Test to see if @c where has been set. */
+@property(nonatomic, readwrite) BOOL hasWhere;
+
+@property(nonatomic, readwrite) BOOL fileInfo;
+
+@property(nonatomic, readwrite) BOOL hasFileInfo;
 @end
 
 #pragma mark - GetGroupInfoRsp
@@ -86,6 +96,8 @@ typedef GPB_ENUM(GetGroupInfoReq_FieldNumber) {
 typedef GPB_ENUM(GetGroupInfoRsp_FieldNumber) {
   GetGroupInfoRsp_FieldNumber_ResultCode = 1,
   GetGroupInfoRsp_FieldNumber_GroupItem = 2,
+  GetGroupInfoRsp_FieldNumber_Where = 3,
+  GetGroupInfoRsp_FieldNumber_FilesArray = 4,
 };
 
 @interface GetGroupInfoRsp : GPBMessage
@@ -96,6 +108,14 @@ typedef GPB_ENUM(GetGroupInfoRsp_FieldNumber) {
 @property(nonatomic, readwrite, strong, null_resettable) GroupItem *groupItem;
 /** Test to see if @c groupItem has been set. */
 @property(nonatomic, readwrite) BOOL hasGroupItem;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *where;
+/** Test to see if @c where has been set. */
+@property(nonatomic, readwrite) BOOL hasWhere;
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<FileItem*> *filesArray;
+/** The number of items in @c filesArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger filesArray_Count;
 
 @end
 

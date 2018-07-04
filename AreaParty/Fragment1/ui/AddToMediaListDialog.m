@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,4 +35,21 @@
 }
 */
 
+- (IBAction)press_video_btn:(id)sender {
+    if(_delegate)
+       [_delegate performSelector:@selector(AddToVideoList) withObject:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)press_audio_btn:(id)sender {
+    if(_delegate)
+        [_delegate performSelector:@selector(AddToAudioList) withObject:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)press_pic_btn:(id)sender {
+    if(_delegate)
+        [_delegate performSelector:@selector(AddToPicList) withObject:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

@@ -11,6 +11,8 @@
 #import "AddPathToHttpParamBean.h"
 #import "ReceivedAddPathToHttpMessageFormat.h"
 #import "FileTypeConst.h"
+#import "ReceiveDownloadProcessFormat.h"
+#import "ReceivedDownloadListFormat.h"
 @implementation prepareDataForFragment
 /**
  * <summary>
@@ -56,7 +58,7 @@
     request.command = command;
     request.param = param;
     NSString* requestString = [request yy_modelToJSONString];
-    NSArray * a = [NSArray arrayWithObjects:OrderConst_fileAction_share_command,OrderConst_folderAction_addInComputer_command,OrderConst_fileAction_openInComputer_command,OrderConst_fileOrFolderAction_deleteInComputer_command,OrderConst_fileOrFolderAction_renameInComputer_command,OrderConst_fileOrFolderAction_copy_command,OrderConst_fileOrFolderAction_cut_command,OrderConst_folderAction_openInComputer_command,OrderConst_diskAction_get_command, nil];
+    NSArray * a = [NSArray arrayWithObjects:OrderConst_fileAction_share_command,OrderConst_folderAction_addInComputer_command,OrderConst_fileAction_openInComputer_command,OrderConst_fileOrFolderAction_deleteInComputer_command,OrderConst_fileOrFolderAction_renameInComputer_command,OrderConst_fileOrFolderAction_copy_command,OrderConst_fileOrFolderAction_cut_command,OrderConst_folderAction_openInComputer_command,OrderConst_diskAction_get_command,OrderConst_GETDOWNLOADSTATE,OrderConst_GETDOWNLOADProcess,nil];
     switch ([a indexOfObject:command]) {
         case 0:
         case 1:
@@ -83,7 +85,24 @@
             }
         }
             break;
+        case 9:{
+            NSString* msgReceived;
+            msgReceived = [[MyConnector sharedInstance] getActionStateMsg:requestString];
+            if(![msgReceived isEqualToString:@""]) {
+                message = [ReceivedDownloadListFormat yy_modelWithJSON:msgReceived];
+            }
+        }
+            break;
+        case 10:{
+            NSString* msgReceived;
+            msgReceived = [[MyConnector sharedInstance] getActionStateMsg:requestString];
+            if(![msgReceived isEqualToString:@""]) {
+                message = [ReceiveDownloadProcessFormat yy_modelWithJSON:msgReceived];
+            }
+        }
+            break;
     }
+    
     return message;
 }
 /**
@@ -278,5 +297,25 @@
     }
     
     return state;
+}
++ (NSObject*) addPathToList:(NSString*) path{
+    RequestFormat* request = [[RequestFormat alloc] init];
+    request.name = OrderConst_folderAction_name;
+    request.command = OrderConst_folderAction_addToList_command;
+    request.param = path;
+    NSString* requestString = [request yy_modelToJSONString];
+    NSString* msgReceived = [[MyConnector sharedInstance] getActionStateMsg:requestString];
+    int status;
+    @try {
+        NSData *jsonData = [msgReceived dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&err];
+        status = [jsonObject[@"status"] intValue];
+    }@catch (NSException* e){
+        status = 404;
+    }
+    return [NSNumber numberWithInt:status];
 }
 @end

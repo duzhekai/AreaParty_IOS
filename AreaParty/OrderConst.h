@@ -87,6 +87,10 @@ extern int const OrderConst_deleteShareFileSuccess;
 extern int const OrderConst_shareFileFail ;
 extern int const OrderConst_addChatNum ;
 extern int const OrderConst_addFileRequest ;
+extern int const OrderConst_addGroupRequest;
+extern int const OrderConst_showGroupFiles;
+extern int const OrderConst_updateGroupInfo;
+extern int const OrderConst_deleteGroupInfo;
 //downloadFragment
 extern int const OrderConst_torrentFileStartReq ;
 extern int const OrderConst_torrentFilePauseReq ;
@@ -153,6 +157,7 @@ extern NSString* const OrderConst_addPathToHttp_command;
 
 extern NSString* const OrderConst_dlnaCastToTV_Command;
 
+extern NSString*  const OrderConst_UTOrrent;
 extern NSString* const OrderConst_sysAction_name;
 extern NSString* const OrderConst_appAction_name;
 extern NSString* const OrderConst_identityAction_name;
@@ -220,6 +225,18 @@ extern NSString* const OrderConst_GET_AREAPARTY_PATH ;
 extern NSString* const OrderConst_VLCAction_Subtitle_Before_SecondCommand;
 extern NSString* const OrderConst_VLCAction_SubtitleDelay_SecondCommand;
 extern NSString* const OrderConst_CLOSERDP ;
+
+extern NSString* const OrderConst_GETDOWNLOADSTATE;
+extern NSString* const OrderConst_GETDOWNLOADProcess;
+extern NSString* const OrderConst_STOPDOWNLOAD;
+extern NSString* const OrderConst_RECOVERDOWNLOAD;
+extern NSString* const OrderConst_DELETEDOWNLOAD;
+
+extern NSString* const OrderConst_BLUETOOTH;
+extern NSString* const OrderConst_openBLUETOOTH;
+extern NSString* const OrderConst_closeBLUETOOTH;
+extern NSString* const OrderConst_connectBLUETOOTH;
+extern NSString* const OrderConst_unpairBlueTooth;
 @interface OrderConst: NSObject
 
 @end

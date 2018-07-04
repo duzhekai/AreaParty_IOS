@@ -18,7 +18,8 @@
 @property(assign,nonatomic) long timeLong;
 @property(copy,nonatomic) NSString* url;
 @property(copy,nonatomic) NSString* pwd;
+@property(copy,nonatomic) NSArray<NSString*>* listGroupId;
 - (instancetype)initWithId:(int)mid Name:(NSString*)mname Path:(NSString*)mpath Size:(int)msize Des:(NSString*)mdes TimeStr:(NSString*)mtime;
-- (instancetype)initWithName:(NSString*)mname Path:(NSString*)mpath Size:(int)msize Des:(NSString*)mdes TimeLong:(long)mtimelong URL:(NSString*) murl Pwd:(NSString*) mpwd;
+- (instancetype)initWithName:(NSString*)mname Path:(NSString*)mpath Size:(int)msize Des:(NSString*)mdes TimeLong:(long)mtimelong URL:(NSString*) murl Pwd:(NSString*) mpwd Group:(NSArray*) l;
 - (instancetype)initWithName:(NSString*)mname Size:(int)msize Des:(NSString*)mdes TimeLong:(long)mtimelong;
 @end

@@ -21,6 +21,7 @@
             BOOL b1 = [self createChatTables:[DBConst chatTB]];
             BOOL b2 = [self createFriendTables:[DBConst friendTB]];
             BOOL b3 = [self createFileRequestTables:[DBConst fileRequestTB]];
+            BOOL b4 = [self createGroupTables:[DBConst groupchatTB]];
         }
     }
     return self;
@@ -35,6 +36,19 @@
     [sBuffer appendString:@"[receiver_id] TEXT,"];                              //接收者id
     [sBuffer appendString:@"[msg] TEXT,"];                                      //信息
     [sBuffer appendString:@"[date] INTEGER)"];                                  //发送或接收时间
+    return [db executeUpdate:sBuffer];
+}
+- (BOOL) createGroupTables:(NSString*) table_name{
+    NSMutableString* sBuffer = [[NSMutableString alloc] init];
+    [sBuffer appendString:@"CREATE TABLE IF NOT EXISTS["];
+    [sBuffer appendString:table_name];
+    [sBuffer appendString:@"] ("];  //创建表和定义表明
+    [sBuffer appendString:@"[_id] INTEGER PRIMARY KEY AUTOINCREMENT, "];        //设置_id为主键，不能为空与自增性质
+    [sBuffer appendString:@"[sender_id] TEXT,"];                                //发送者id
+    [sBuffer appendString:@"[receiver_id] TEXT,"];                              //接收者id
+    [sBuffer appendString:@"[msg] TEXT,"];                                      //信息
+    [sBuffer appendString:@"[date] INTEGER,"];                                  //发送或接收时间
+    [sBuffer appendString:@"[group_id] TEXT)"];
     return [db executeUpdate:sBuffer];
 }
 - (BOOL)createFriendTables:(NSString*) table_name {
@@ -60,6 +74,7 @@
     [sBuffer appendString:@"[file_size] TEXT)"];                              //请求文件的size
     return [db executeUpdate:sBuffer];
 }
+
 - (FMDatabase*) getdb{
     return db;
 }

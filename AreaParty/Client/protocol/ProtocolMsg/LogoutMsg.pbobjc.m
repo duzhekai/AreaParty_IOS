@@ -46,9 +46,13 @@ static GPBFileDescriptor *LogoutMsgRoot_FileDescriptor(void) {
 
 @implementation LogoutReq
 
+@dynamic hasLogoutType, logoutType;
+@dynamic hasUserId, userId;
 
 typedef struct LogoutReq__storage_ {
   uint32_t _has_storage_[1];
+  LogoutReq_LogoutType logoutType;
+  NSString *userId;
 } LogoutReq__storage_;
 
 // This method is threadsafe because it is initially called
@@ -56,14 +60,39 @@ typedef struct LogoutReq__storage_ {
 + (GPBDescriptor *)descriptor {
   static GPBDescriptor *descriptor = nil;
   if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "logoutType",
+        .dataTypeSpecific.enumDescFunc = LogoutReq_LogoutType_EnumDescriptor,
+        .number = LogoutReq_FieldNumber_LogoutType,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(LogoutReq__storage_, logoutType),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor),
+        .dataType = GPBDataTypeEnum,
+      },
+      {
+        .name = "userId",
+        .dataTypeSpecific.className = NULL,
+        .number = LogoutReq_FieldNumber_UserId,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(LogoutReq__storage_, userId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+    };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[LogoutReq class]
                                      rootClass:[LogoutMsgRoot class]
                                           file:LogoutMsgRoot_FileDescriptor()
-                                        fields:NULL
-                                    fieldCount:0
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
                                    storageSize:sizeof(LogoutReq__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
+#if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    static const char *extraTextFormatInfo =
+        "\002\001\n\000\002\006\000";
+    [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
+#endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
   }
@@ -71,6 +100,42 @@ typedef struct LogoutReq__storage_ {
 }
 
 @end
+
+#pragma mark - Enum LogoutReq_LogoutType
+
+GPBEnumDescriptor *LogoutReq_LogoutType_EnumDescriptor(void) {
+  static GPBEnumDescriptor *descriptor = NULL;
+  if (!descriptor) {
+    static const char *valueNames =
+        "Mobile\000Pc\000PcForce\000";
+    static const int32_t values[] = {
+        LogoutReq_LogoutType_Mobile,
+        LogoutReq_LogoutType_Pc,
+        LogoutReq_LogoutType_PcForce,
+    };
+    GPBEnumDescriptor *worker =
+        [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(LogoutReq_LogoutType)
+                                       valueNames:valueNames
+                                           values:values
+                                            count:(uint32_t)(sizeof(values) / sizeof(int32_t))
+                                     enumVerifier:LogoutReq_LogoutType_IsValidValue];
+    if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
+      [worker release];
+    }
+  }
+  return descriptor;
+}
+
+BOOL LogoutReq_LogoutType_IsValidValue(int32_t value__) {
+  switch (value__) {
+    case LogoutReq_LogoutType_Mobile:
+    case LogoutReq_LogoutType_Pc:
+    case LogoutReq_LogoutType_PcForce:
+      return YES;
+    default:
+      return NO;
+  }
+}
 
 #pragma mark - LogoutRsp
 
@@ -126,10 +191,16 @@ GPBEnumDescriptor *LogoutRsp_ResultCode_EnumDescriptor(void) {
   static GPBEnumDescriptor *descriptor = NULL;
   if (!descriptor) {
     static const char *valueNames =
-        "Success\000Fail\000";
+        "Success\000Fail\000PcSuccess\000PcFail\000PcForceSuc"
+        "cess\000PcForceFail\000PcForceLogout\000";
     static const int32_t values[] = {
         LogoutRsp_ResultCode_Success,
         LogoutRsp_ResultCode_Fail,
+        LogoutRsp_ResultCode_PcSuccess,
+        LogoutRsp_ResultCode_PcFail,
+        LogoutRsp_ResultCode_PcForceSuccess,
+        LogoutRsp_ResultCode_PcForceFail,
+        LogoutRsp_ResultCode_PcForceLogout,
     };
     GPBEnumDescriptor *worker =
         [GPBEnumDescriptor allocDescriptorForName:GPBNSStringifySymbol(LogoutRsp_ResultCode)
@@ -148,6 +219,11 @@ BOOL LogoutRsp_ResultCode_IsValidValue(int32_t value__) {
   switch (value__) {
     case LogoutRsp_ResultCode_Success:
     case LogoutRsp_ResultCode_Fail:
+    case LogoutRsp_ResultCode_PcSuccess:
+    case LogoutRsp_ResultCode_PcFail:
+    case LogoutRsp_ResultCode_PcForceSuccess:
+    case LogoutRsp_ResultCode_PcForceFail:
+    case LogoutRsp_ResultCode_PcForceLogout:
       return YES;
     default:
       return NO;

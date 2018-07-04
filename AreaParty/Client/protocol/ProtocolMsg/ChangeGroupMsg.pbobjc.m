@@ -165,10 +165,18 @@ BOOL ChangeGroupReq_ChangeType_IsValidValue(int32_t value__) {
 @implementation ChangeGroupRsp
 
 @dynamic hasResultCode, resultCode;
+@dynamic hasGroupChatId, groupChatId;
+@dynamic hasOldGroupName, oldGroupName;
+@dynamic hasNewGroupName, newGroupName;
+@dynamic userIdArray, userIdArray_Count;
 
 typedef struct ChangeGroupRsp__storage_ {
   uint32_t _has_storage_[1];
   ChangeGroupRsp_ResultCode resultCode;
+  int32_t groupChatId;
+  NSString *oldGroupName;
+  NSString *newGroupName;
+  NSMutableArray *userIdArray;
 } ChangeGroupRsp__storage_;
 
 // This method is threadsafe because it is initially called
@@ -186,6 +194,42 @@ typedef struct ChangeGroupRsp__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom | GPBFieldHasEnumDescriptor),
         .dataType = GPBDataTypeEnum,
       },
+      {
+        .name = "groupChatId",
+        .dataTypeSpecific.className = NULL,
+        .number = ChangeGroupRsp_FieldNumber_GroupChatId,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(ChangeGroupRsp__storage_, groupChatId),
+        .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeInt32,
+      },
+      {
+        .name = "oldGroupName",
+        .dataTypeSpecific.className = NULL,
+        .number = ChangeGroupRsp_FieldNumber_OldGroupName,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(ChangeGroupRsp__storage_, oldGroupName),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "newGroupName",
+        .dataTypeSpecific.className = NULL,
+        .number = ChangeGroupRsp_FieldNumber_NewGroupName,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(ChangeGroupRsp__storage_, newGroupName),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "userIdArray",
+        .dataTypeSpecific.className = NULL,
+        .number = ChangeGroupRsp_FieldNumber_UserIdArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(ChangeGroupRsp__storage_, userIdArray),
+        .flags = (GPBFieldFlags)(GPBFieldRepeated | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[ChangeGroupRsp class]
@@ -197,7 +241,7 @@ typedef struct ChangeGroupRsp__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\001\001\n\000";
+        "\005\001\n\000\002\013\000\003\014\000\004\014\000\005\000userId\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -214,10 +258,13 @@ GPBEnumDescriptor *ChangeGroupRsp_ResultCode_EnumDescriptor(void) {
   static GPBEnumDescriptor *descriptor = NULL;
   if (!descriptor) {
     static const char *valueNames =
-        "Success\000Fail\000NoAuthority\000";
+        "UpdateSuccess\000UpdateFail\000DeleteSuccess\000D"
+        "eleteFail\000NoAuthority\000";
     static const int32_t values[] = {
-        ChangeGroupRsp_ResultCode_Success,
-        ChangeGroupRsp_ResultCode_Fail,
+        ChangeGroupRsp_ResultCode_UpdateSuccess,
+        ChangeGroupRsp_ResultCode_UpdateFail,
+        ChangeGroupRsp_ResultCode_DeleteSuccess,
+        ChangeGroupRsp_ResultCode_DeleteFail,
         ChangeGroupRsp_ResultCode_NoAuthority,
     };
     GPBEnumDescriptor *worker =
@@ -235,8 +282,10 @@ GPBEnumDescriptor *ChangeGroupRsp_ResultCode_EnumDescriptor(void) {
 
 BOOL ChangeGroupRsp_ResultCode_IsValidValue(int32_t value__) {
   switch (value__) {
-    case ChangeGroupRsp_ResultCode_Success:
-    case ChangeGroupRsp_ResultCode_Fail:
+    case ChangeGroupRsp_ResultCode_UpdateSuccess:
+    case ChangeGroupRsp_ResultCode_UpdateFail:
+    case ChangeGroupRsp_ResultCode_DeleteSuccess:
+    case ChangeGroupRsp_ResultCode_DeleteFail:
     case ChangeGroupRsp_ResultCode_NoAuthority:
       return YES;
     default:

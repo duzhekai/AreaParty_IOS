@@ -24,11 +24,17 @@
 #import "GetPersonalInfoMsg.pbobjc.h"
 #import "NetworkPacket.h"
 #import "FileListDialog.h"
+#import "GroupData.pbobjc.h"
 #import "downloadManager.h"
 #import "DeleteFileMsg.pbobjc.h"
 #import "Share_File_Dialog.h"
+#import "tab06_groupitem.h"
+#import "AddGroup.h"
+#import "GetGroupInfoMsg.pbobjc.h"
 @interface Fragment4ViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *outline_view;
+- (IBAction)Press_addGroup:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *id_tab06_addGroupButton;
 @property (weak, nonatomic) IBOutlet UITableView *id_tab06_userFriend;
 - (IBAction)press_helpInfo:(id)sender;
 - (IBAction)press_addFriend:(id)sender;
@@ -50,8 +56,11 @@
 @property (weak, nonatomic) IBOutlet UIView *id_tab06_friendWrap;
 @property (weak, nonatomic) IBOutlet UIScrollView *container_scroll_view;
 @property (weak, nonatomic) IBOutlet UIButton *help_btn;
+@property (weak, nonatomic) IBOutlet UIView *id_tab06_groupWrap;
 - (void) delFriend:(NSMutableDictionary*) msg;
 - (void) addFriend:(NSMutableDictionary*) msg;
+@property (weak, nonatomic) IBOutlet UIImageView *id_tab06_groupButton;
+@property (weak, nonatomic) IBOutlet UITableView *id_tab06_userGroup;
 - (void) friendUserAdd:(NSMutableDictionary*) msg;
 - (void) showFriendFiles:(NSDictionary*) message;
 + (NSMutableDictionary<NSString*,NSNumber*>*)getFriendChatNum;
@@ -64,4 +73,8 @@
 - (void) addChatNum:(NSMutableDictionary*) msg;
 - (void) shareFileFail;
 - (void) deleteFileSuccess:(NSMutableDictionary*) msg;
+- (void) addGroup:(NSMutableDictionary*) msg;
+- (void) showGroupFiles:(NSMutableDictionary*) msg;
+- (void) updateGroup:(NSMutableDictionary*) msg;
+- (void) deleteGroup:(NSMutableDictionary*) msg;
 @end

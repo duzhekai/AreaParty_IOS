@@ -1890,6 +1890,152 @@
             </objects>
             <point key="canvasLocation" x="824.79999999999995" y="-84.107946026986511"/>
         </scene>
+        <!--Add To Media List Dialog-->
+        <scene sceneID="cnK-JW-Aob">
+            <objects>
+                <viewController storyboardIdentifier="AddToMediaListDialog" definesPresentationContext="YES" modalPresentationStyle="overFullScreen" id="F7b-jB-g5D" customClass="AddToMediaListDialog" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="23W-H9-wTn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MLC-xv-633">
+                                <rect key="frame" x="20" y="273.5" width="335" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加到媒体库:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lC7-6n-xN3">
+                                        <rect key="frame" x="113" y="20" width="109" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3To-UX-Iuz">
+                                        <rect key="frame" x="115" y="80" width="105" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qh-zs-U7f">
+                                                <rect key="frame" x="5" y="5" width="95" height="30"/>
+                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="音频库">
+                                                    <color key="titleColor" red="0.90196078430000004" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="press_audio_btn:" destination="F7b-jB-g5D" eventType="touchUpInside" id="HyJ-6W-wi5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="0qh-zs-U7f" secondAttribute="bottom" constant="5" id="BV8-2G-Mqp"/>
+                                            <constraint firstItem="0qh-zs-U7f" firstAttribute="leading" secondItem="3To-UX-Iuz" secondAttribute="leading" constant="5" id="Nhl-sy-wrS"/>
+                                            <constraint firstAttribute="trailing" secondItem="0qh-zs-U7f" secondAttribute="trailing" constant="5" id="QfV-j4-TeA"/>
+                                            <constraint firstAttribute="height" constant="40" id="YvS-Ej-rah"/>
+                                            <constraint firstItem="0qh-zs-U7f" firstAttribute="top" secondItem="3To-UX-Iuz" secondAttribute="top" constant="5" id="hXv-w5-8dV"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqR-lY-Uts">
+                                        <rect key="frame" x="220" y="80" width="105" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIV-NU-6zT">
+                                                <rect key="frame" x="5" y="5" width="95" height="30"/>
+                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="图片库">
+                                                    <color key="titleColor" red="0.90196078430000004" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="press_pic_btn:" destination="F7b-jB-g5D" eventType="touchUpInside" id="6WS-7J-5ky"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="2Il-3w-uy0"/>
+                                            <constraint firstItem="EIV-NU-6zT" firstAttribute="leading" secondItem="VqR-lY-Uts" secondAttribute="leading" constant="5" id="DaZ-rv-HM4"/>
+                                            <constraint firstAttribute="bottom" secondItem="EIV-NU-6zT" secondAttribute="bottom" constant="5" id="Pz4-yQ-Bjr"/>
+                                            <constraint firstItem="EIV-NU-6zT" firstAttribute="top" secondItem="VqR-lY-Uts" secondAttribute="top" constant="5" id="Qhc-kq-P9R"/>
+                                            <constraint firstAttribute="trailing" secondItem="EIV-NU-6zT" secondAttribute="trailing" constant="5" id="pTR-KI-O45"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9S-SE-fF6">
+                                        <rect key="frame" x="10" y="80" width="105" height="40"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2nX-FD-RY5">
+                                                <rect key="frame" x="5" y="5" width="95" height="30"/>
+                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="视频库">
+                                                    <color key="titleColor" red="0.90196078430000004" green="0.3411764706" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                        <color key="value" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="press_video_btn:" destination="F7b-jB-g5D" eventType="touchUpInside" id="QuV-aA-JfY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="2nX-FD-RY5" secondAttribute="bottom" constant="5" id="2od-Dd-NkF"/>
+                                            <constraint firstItem="2nX-FD-RY5" firstAttribute="top" secondItem="R9S-SE-fF6" secondAttribute="top" constant="5" id="LHS-az-naK"/>
+                                            <constraint firstAttribute="height" constant="40" id="tq2-uL-2bz"/>
+                                            <constraint firstItem="2nX-FD-RY5" firstAttribute="leading" secondItem="R9S-SE-fF6" secondAttribute="leading" constant="5" id="uhO-Cf-08G"/>
+                                            <constraint firstAttribute="trailing" secondItem="2nX-FD-RY5" secondAttribute="trailing" constant="5" id="v45-5r-KFS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="lC7-6n-xN3" firstAttribute="centerX" secondItem="MLC-xv-633" secondAttribute="centerX" id="2Tg-rD-la1"/>
+                                    <constraint firstItem="3To-UX-Iuz" firstAttribute="width" secondItem="R9S-SE-fF6" secondAttribute="width" id="5Ym-YY-q8T"/>
+                                    <constraint firstAttribute="bottom" secondItem="R9S-SE-fF6" secondAttribute="bottom" constant="20" id="Cxh-eT-bIg"/>
+                                    <constraint firstItem="R9S-SE-fF6" firstAttribute="leading" secondItem="MLC-xv-633" secondAttribute="leading" constant="10" id="HYo-Es-wuq"/>
+                                    <constraint firstItem="3To-UX-Iuz" firstAttribute="leading" secondItem="R9S-SE-fF6" secondAttribute="trailing" id="I4v-Lg-GmX"/>
+                                    <constraint firstAttribute="height" constant="140" id="LDx-Ik-Uh0"/>
+                                    <constraint firstItem="VqR-lY-Uts" firstAttribute="width" secondItem="R9S-SE-fF6" secondAttribute="width" id="RTe-xJ-eZk"/>
+                                    <constraint firstItem="lC7-6n-xN3" firstAttribute="top" secondItem="MLC-xv-633" secondAttribute="top" constant="20" id="Rvo-ZY-kba"/>
+                                    <constraint firstAttribute="trailing" secondItem="VqR-lY-Uts" secondAttribute="trailing" constant="10" id="ZEP-M0-FHI"/>
+                                    <constraint firstItem="VqR-lY-Uts" firstAttribute="leading" secondItem="3To-UX-Iuz" secondAttribute="trailing" id="aOr-DG-jh9"/>
+                                    <constraint firstAttribute="bottom" secondItem="3To-UX-Iuz" secondAttribute="bottom" constant="20" id="bgJ-Wo-sOL"/>
+                                    <constraint firstAttribute="bottom" secondItem="VqR-lY-Uts" secondAttribute="bottom" constant="20" id="nvl-CJ-hSa"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="MLC-xv-633" firstAttribute="centerY" secondItem="r9I-2U-NbO" secondAttribute="centerY" id="0Sj-gl-dCr"/>
+                            <constraint firstItem="MLC-xv-633" firstAttribute="leading" secondItem="23W-H9-wTn" secondAttribute="leading" constant="20" id="H8f-5C-F3Z"/>
+                            <constraint firstItem="r9I-2U-NbO" firstAttribute="trailing" secondItem="MLC-xv-633" secondAttribute="trailing" constant="20" id="wNV-YX-2P3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="r9I-2U-NbO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IzD-dc-vfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="825" y="598"/>
+        </scene>
     </scenes>
     <resources>
         <image name="checkbox.png" width="40" height="40"/>

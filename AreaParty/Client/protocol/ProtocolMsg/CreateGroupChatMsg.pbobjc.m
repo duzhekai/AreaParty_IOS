@@ -48,10 +48,12 @@ static GPBFileDescriptor *CreateGroupChatMsgRoot_FileDescriptor(void) {
 @implementation CreateGroupChatReq
 
 @dynamic userIdArray, userIdArray_Count;
+@dynamic hasGroupName, groupName;
 
 typedef struct CreateGroupChatReq__storage_ {
   uint32_t _has_storage_[1];
   NSMutableArray *userIdArray;
+  NSString *groupName;
 } CreateGroupChatReq__storage_;
 
 // This method is threadsafe because it is initially called
@@ -69,6 +71,15 @@ typedef struct CreateGroupChatReq__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldRepeated | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "groupName",
+        .dataTypeSpecific.className = NULL,
+        .number = CreateGroupChatReq_FieldNumber_GroupName,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(CreateGroupChatReq__storage_, groupName),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[CreateGroupChatReq class]
@@ -80,7 +91,7 @@ typedef struct CreateGroupChatReq__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\001\001\000userId\000";
+        "\002\001\000userId\000\002\t\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -97,11 +108,13 @@ typedef struct CreateGroupChatReq__storage_ {
 
 @dynamic hasResultCode, resultCode;
 @dynamic hasGroupChatId, groupChatId;
+@dynamic hasGroupName, groupName;
 
 typedef struct CreateGroupChatRsp__storage_ {
   uint32_t _has_storage_[1];
   CreateGroupChatRsp_ResultCode resultCode;
   int32_t groupChatId;
+  NSString *groupName;
 } CreateGroupChatRsp__storage_;
 
 // This method is threadsafe because it is initially called
@@ -128,6 +141,15 @@ typedef struct CreateGroupChatRsp__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeInt32,
       },
+      {
+        .name = "groupName",
+        .dataTypeSpecific.className = NULL,
+        .number = CreateGroupChatRsp_FieldNumber_GroupName,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(CreateGroupChatRsp__storage_, groupName),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[CreateGroupChatRsp class]
@@ -139,7 +161,7 @@ typedef struct CreateGroupChatRsp__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\002\001\n\000\002\013\000";
+        "\003\001\n\000\002\013\000\003\t\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");

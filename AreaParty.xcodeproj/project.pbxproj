@@ -672,25 +672,19 @@
 		72287AA61FCFE83D00BC2765 /* ApplicationData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A691FCFE82A00BC2765 /* ApplicationData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AA71FCFE83D00BC2765 /* FileData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A6D1FCFE82C00BC2765 /* FileData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AA81FCFE83D00BC2765 /* DownloadData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A6F1FCFE82C00BC2765 /* DownloadData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287AA91FCFE83D00BC2765 /* ChangeGroupMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A701FCFE82D00BC2765 /* ChangeGroupMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AAA1FCFE83D00BC2765 /* RegisterMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A711FCFE82D00BC2765 /* RegisterMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AAB1FCFE83D00BC2765 /* MiracastData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A731FCFE82D00BC2765 /* MiracastData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AAC1FCFE83D00BC2765 /* OffLineMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A741FCFE82E00BC2765 /* OffLineMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AAE1FCFE83D00BC2765 /* SendChatMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A7A1FCFE83100BC2765 /* SendChatMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287AAF1FCFE83D00BC2765 /* LogoutMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A7B1FCFE83100BC2765 /* LogoutMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AB21FCFE83D00BC2765 /* GroupData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A811FCFE83200BC2765 /* GroupData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AB31FCFE83D00BC2765 /* GetMiracastInfoMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A821FCFE83300BC2765 /* GetMiracastInfoMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287AB41FCFE83D00BC2765 /* PersonalSettingsMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A841FCFE83400BC2765 /* PersonalSettingsMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AB51FCFE83D00BC2765 /* GetPersonalInfoMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A851FCFE83500BC2765 /* GetPersonalInfoMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AB61FCFE83D00BC2765 /* SendDownloadMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A871FCFE83500BC2765 /* SendDownloadMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287AB71FCFE83D00BC2765 /* AddFileMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A881FCFE83600BC2765 /* AddFileMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AB81FCFE83D00BC2765 /* ReceiveChatMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A891FCFE83600BC2765 /* ReceiveChatMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287AB91FCFE83D00BC2765 /* CreateGroupChatMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A8D1FCFE83700BC2765 /* CreateGroupChatMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287ABA1FCFE83D00BC2765 /* ChangeFriendMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A8E1FCFE83800BC2765 /* ChangeFriendMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287ABB1FCFE83D00BC2765 /* ChatData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A8F1FCFE83800BC2765 /* ChatData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287ABD1FCFE83D00BC2765 /* ProgressData.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A931FCFE83900BC2765 /* ProgressData.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287ABE1FCFE83D00BC2765 /* GetDownloadFileInfo.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A951FCFE83A00BC2765 /* GetDownloadFileInfo.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		72287ABF1FCFE83D00BC2765 /* GetGroupInfoMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A991FCFE83B00BC2765 /* GetGroupInfoMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AC01FCFE83D00BC2765 /* AgreeAddFriendMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A9A1FCFE83B00BC2765 /* AgreeAddFriendMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AC11FCFE83D00BC2765 /* ProtoHead.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A9D1FCFE83C00BC2765 /* ProtoHead.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72287AC21FCFE83D00BC2765 /* AddFriendMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72287A9E1FCFE83D00BC2765 /* AddFriendMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -760,19 +754,51 @@
 		72525C8C20614E430007DB1E /* uninstalledTVAppEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 72525C8B20614E430007DB1E /* uninstalledTVAppEvent.m */; };
 		725355BE207F457200FA5B34 /* LoginByVerificationCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 725355BD207F457200FA5B34 /* LoginByVerificationCode.m */; };
 		725355C1208083FC00FA5B34 /* ActionDialog_launch.m in Sources */ = {isa = PBXBuildFile; fileRef = 725355C0208083FC00FA5B34 /* ActionDialog_launch.m */; };
-		725355C420809F3600FA5B34 /* LoginMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 725355C220809F3600FA5B34 /* LoginMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		7254E4E1204E3369001711BF /* SettingNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E0204E3369001711BF /* SettingNameViewController.m */; };
 		7254E4E4204E3380001711BF /* SettingPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E3204E3380001711BF /* SettingPwdViewController.m */; };
 		7254E4E7204E338D001711BF /* SettingAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E6204E338D001711BF /* SettingAddressViewController.m */; };
 		7254E4EA204E7366001711BF /* MyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4E9204E7366001711BF /* MyHandler.m */; };
 		7254E4F0204E9039001711BF /* SettingNameHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4EF204E9039001711BF /* SettingNameHandler.m */; };
 		7254E4F4204ECCED001711BF /* SettingPwdHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 7254E4F3204ECCED001711BF /* SettingPwdHandler.m */; };
+		725EC1F520A178AA00E52016 /* StartActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC1F420A178AA00E52016 /* StartActivity.m */; };
+		725EC1F720A17D0D00E52016 /* ic_help.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC1F620A17D0C00E52016 /* ic_help.png */; };
+		725EC1F920A1818100E52016 /* tencent_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC1F820A1818100E52016 /* tencent_logo.png */; };
+		725EC1FB20A1831700E52016 /* youku_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC1FA20A1831600E52016 /* youku_logo.png */; };
+		725EC1FD20A1833F00E52016 /* leshi_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC1FC20A1833E00E52016 /* leshi_logo.png */; };
+		725EC1FF20A187F600E52016 /* webmanager_dayangd.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC1FE20A187F500E52016 /* webmanager_dayangd.png */; };
+		725EC20120A1899000E52016 /* webmanager_webchcdchd_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC20020A1898F00E52016 /* webmanager_webchcdchd_logo.png */; };
+		725EC20320A189A600E52016 /* webmaneger_87lou.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC20220A189A500E52016 /* webmaneger_87lou.png */; };
+		725EC20520A189CA00E52016 /* webmanager_hdchd_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC20420A189C800E52016 /* webmanager_hdchd_logo.png */; };
+		725EC20720A18A2F00E52016 /* webmanager_hdchd_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC20620A18A2F00E52016 /* webmanager_hdchd_logo.png */; };
+		725EC20920A18A6300E52016 /* webmanager_hdhome_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC20820A18A6200E52016 /* webmanager_hdhome_logo.png */; };
+		725EC20C20A1A41C00E52016 /* MainActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC20B20A1A41C00E52016 /* MainActivity.m */; };
+		725EC20F20A2CB6900E52016 /* DownloadManeger_torrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC20E20A2CB6900E52016 /* DownloadManeger_torrent.m */; };
+		725EC21320A4002400E52016 /* TorrentFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC21220A4002400E52016 /* TorrentFile.m */; };
+		725EC21720A409A800E52016 /* torrentFileItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC21520A409A800E52016 /* torrentFileItem.m */; };
+		725EC21820A409A800E52016 /* torrentFileItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 725EC21620A409A800E52016 /* torrentFileItem.xib */; };
+		725EC21A20A40B4C00E52016 /* webmaneger_bt_img.png in Resources */ = {isa = PBXBuildFile; fileRef = 725EC21920A40B4B00E52016 /* webmaneger_bt_img.png */; };
+		725EC21F20A4377B00E52016 /* UrlUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 725EC21E20A4377B00E52016 /* UrlUtils.m */; };
 		72648A06204FD6EB003B173B /* computerMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72648A05204FD6EB003B173B /* computerMonitorViewController.m */; };
+		72651A4B20E5CDD500B5DA64 /* launch_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 72651A4A20E5CDD400B5DA64 /* launch_pic.png */; };
+		72651A4D20E5FC4700B5DA64 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = 72651A4C20E5FC3F00B5DA64 /* logout.png */; };
+		72651A5020E6006F00B5DA64 /* LogoutMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72651A4F20E6006F00B5DA64 /* LogoutMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		72651A5220E72E5700B5DA64 /* tab06_addgroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 72651A5120E72E4D00B5DA64 /* tab06_addgroup.png */; };
+		72651A5620E8BF7900B5DA64 /* tab06_groupitem.m in Sources */ = {isa = PBXBuildFile; fileRef = 72651A5420E8BF7900B5DA64 /* tab06_groupitem.m */; };
+		72651A5720E8BF7900B5DA64 /* tab06_groupitem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72651A5520E8BF7900B5DA64 /* tab06_groupitem.xib */; };
+		72651A5A20E8CB9B00B5DA64 /* AddGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 72651A5920E8CB9B00B5DA64 /* AddGroup.m */; };
 		7266EA271FE7EEE800CFD247 /* FillingIPInforList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7266EA261FE7EEE800CFD247 /* FillingIPInforList.m */; };
 		7266EA2C1FE7F0AB00CFD247 /* IPInforBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 7266EA2B1FE7F0AB00CFD247 /* IPInforBean.m */; };
 		7266EA2F1FE8001700CFD247 /* IPInforMessageBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 7266EA2E1FE8001700CFD247 /* IPInforMessageBean.m */; };
 		7266EA701FE8BDA300CFD247 /* IPAddressConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7266EA6F1FE8BDA300CFD247 /* IPAddressConst.m */; };
+		72678DB320D20F8D0065ECD2 /* LoginMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72678DAF20D20F8C0065ECD2 /* LoginMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		72678DB420D20F8D0065ECD2 /* AddFileMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 72678DB220D20F8D0065ECD2 /* AddFileMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		72772D6C206388E6006DCE79 /* videoLibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72772D6B206388E6006DCE79 /* videoLibViewController.m */; };
+		7279CDDD20E9C1F400D73438 /* tab06_addgroupitem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDDB20E9C1F400D73438 /* tab06_addgroupitem.m */; };
+		7279CDDE20E9C1F400D73438 /* tab06_addgroupitem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7279CDDC20E9C1F400D73438 /* tab06_addgroupitem.xib */; };
+		7279CDE120E9D0AA00D73438 /* CreateGroupChatMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDE020E9D0AA00D73438 /* CreateGroupChatMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7279CDE420E9D25600D73438 /* ChangeGroupMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDE220E9D25500D73438 /* ChangeGroupMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7279CDE720EA0C6F00D73438 /* groupObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDE620EA0C6F00D73438 /* groupObj.m */; };
+		7279CDEA20EA150B00D73438 /* GetGroupInfoMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279CDE920EA150B00D73438 /* GetGroupInfoMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		727D11991FF0C8B100383B40 /* OrderConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 727D11981FF0C8B100383B40 /* OrderConst.m */; };
 		727D11A51FF1308300383B40 /* StatisticsMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 727D11A41FF1308300383B40 /* StatisticsMsgBean.m */; };
 		727D11A81FF1DEF600383B40 /* AllStatisticsMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 727D11A71FF1DEF600383B40 /* AllStatisticsMsgBean.m */; };
@@ -796,6 +822,15 @@
 		72885E2020679C5F009366C5 /* tab02_folder_item.m in Sources */ = {isa = PBXBuildFile; fileRef = 72885E1E20679C5F009366C5 /* tab02_folder_item.m */; };
 		72885E2120679C5F009366C5 /* tab02_folder_item.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72885E1F20679C5F009366C5 /* tab02_folder_item.xib */; };
 		72885E242067F8DB009366C5 /* FileItemForMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 72885E232067F8DB009366C5 /* FileItemForMedia.m */; };
+		728B022C20E0E72400655F7C /* ReceivedDownloadListFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B022B20E0E72400655F7C /* ReceivedDownloadListFormat.m */; };
+		728B022F20E0E78400655F7C /* ReceiveDataFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B022E20E0E78400655F7C /* ReceiveDataFormat.m */; };
+		728B023220E0E7C300655F7C /* ReceiveData.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B023120E0E7C300655F7C /* ReceiveData.m */; };
+		728B023520E32FC700655F7C /* ProgressObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B023420E32FC700655F7C /* ProgressObj.m */; };
+		728B023920E35B6900655F7C /* tab06_download_manager_stateitem.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B023720E35B6900655F7C /* tab06_download_manager_stateitem.m */; };
+		728B023A20E35B6900655F7C /* tab06_download_manager_stateitem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 728B023820E35B6900655F7C /* tab06_download_manager_stateitem.xib */; };
+		728B023D20E36C6300655F7C /* ReceiveDownloadProcessFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B023C20E36C6300655F7C /* ReceiveDownloadProcessFormat.m */; };
+		728B024020E36C8000655F7C /* DownloadProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B023F20E36C8000655F7C /* DownloadProcess.m */; };
+		728B024320E37CA600655F7C /* PersonalSettingsMsg.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B024220E37CA500655F7C /* PersonalSettingsMsg.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		728B713D2088402C00B7C18D /* searchFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B713C2088402C00B7C18D /* searchFriend.m */; };
 		728B7140208859F300B7C18D /* userObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B713F208859F300B7C18D /* userObj.m */; };
 		728B7143208867FF00B7C18D /* myFileList.m in Sources */ = {isa = PBXBuildFile; fileRef = 728B7142208867FF00B7C18D /* myFileList.m */; };
@@ -811,6 +846,7 @@
 		72A09FC21FD6819F000214B6 /* checkbox-checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A09FBF1FD6819E000214B6 /* checkbox-checked.png */; };
 		72A09FC41FD6861D000214B6 /* checkbox-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 72A09FC31FD6861B000214B6 /* checkbox-normal.png */; };
 		72A09FC71FD7E16A000214B6 /* RegisterPersonalInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A09FC61FD7E16A000214B6 /* RegisterPersonalInfo.m */; };
+		72A0ADFD20E0E53500FD5ED6 /* DownloadBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A0ADFC20E0E53500FD5ED6 /* DownloadBean.m */; };
 		72A95A482019789B00CDE28C /* prepareDataForFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A95A472019789B00CDE28C /* prepareDataForFragment.m */; };
 		72A95A4B2019988C00CDE28C /* PCFileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A95A4A2019988C00CDE28C /* PCFileHelper.m */; };
 		72A95A4E201999B400CDE28C /* fileBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A95A4D201999B400CDE28C /* fileBean.m */; };
@@ -875,6 +911,13 @@
 		72C39D69208ED3A600FE664D /* tab06_userinfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72C39D67208ED3A600FE664D /* tab06_userinfo.xib */; };
 		72C39D6C208F16B100FE664D /* dealFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C39D6B208F16B100FE664D /* dealFileRequest.m */; };
 		72C800821FB5FDB700073111 /* LoginSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C800811FB5FDB700073111 /* LoginSettingViewController.m */; };
+		72CC16CB20EA1949001E9AA7 /* GroupChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16CA20EA1949001E9AA7 /* GroupChat.m */; };
+		72CC16CD20EA1DB6001E9AA7 /* tab_06_imggroupsetting.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC16CC20EA1DB5001E9AA7 /* tab_06_imggroupsetting.png */; };
+		72CC16D020EA21FA001E9AA7 /* GroupChatDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16CF20EA21FA001E9AA7 /* GroupChatDBManager.m */; };
+		72CC16D320EA2646001E9AA7 /* GroupChatObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16D220EA2646001E9AA7 /* GroupChatObj.m */; };
+		72CC16D520EB221A001E9AA7 /* icon_mainphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC16D420EB2218001E9AA7 /* icon_mainphone.png */; };
+		72CC16D820EB3C80001E9AA7 /* SettingMainPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16D720EB3C80001E9AA7 /* SettingMainPhoneViewController.m */; };
+		72CC16DB20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16DA20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m */; };
 		72D171E3204D7DE50069992A /* Update_ReceiveMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D171E2204D7DE50069992A /* Update_ReceiveMsgBean.m */; };
 		72D171E6204D870E0069992A /* Update_SendMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D171E5204D870E0069992A /* Update_SendMsgBean.m */; };
 		72D1E8E7201864C1004262B1 /* AVLoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D1E8E6201864C1004262B1 /* AVLoadingIndicatorView.m */; };
@@ -919,6 +962,15 @@
 		72FDAA6E20688E56003E7A1D /* tab02_vediolib_item.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDAA6C20688E56003E7A1D /* tab02_vediolib_item.m */; };
 		72FDAA6F20688E56003E7A1D /* tab02_vediolib_item.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FDAA6D20688E56003E7A1D /* tab02_vediolib_item.xib */; };
 		72FDAA722068C6D4003E7A1D /* ReceiveCommandFromTVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDAA712068C6D4003E7A1D /* ReceiveCommandFromTVPlayer.m */; };
+		72FDF76820B3B04800057084 /* UTorrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF76720B3B04800057084 /* UTorrentViewController.m */; };
+		72FDF76C20B3B5BB00057084 /* utorrent_torrent_item.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF76A20B3B5BB00057084 /* utorrent_torrent_item.m */; };
+		72FDF76D20B3B5BB00057084 /* utorrent_torrent_item.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FDF76B20B3B5BB00057084 /* utorrent_torrent_item.xib */; };
+		72FDF77120B3BFC400057084 /* Torrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF77020B3BFC400057084 /* Torrent.m */; };
+		72FDF77420B3C20600057084 /* TorrentUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF77320B3C20600057084 /* TorrentUtils.m */; };
+		72FDF77720B512BB00057084 /* UTFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF77620B512BB00057084 /* UTFileViewController.m */; };
+		72FDF77A20B514E000057084 /* TFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF77920B514E000057084 /* TFile.m */; };
+		72FDF77E20B52A8900057084 /* utorrent_file_item.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF77C20B52A8900057084 /* utorrent_file_item.m */; };
+		72FDF77F20B52A8900057084 /* utorrent_file_item.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FDF77D20B52A8900057084 /* utorrent_file_item.xib */; };
 		72FDF9972053A37600232F4D /* Process_detail_dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF9962053A37600232F4D /* Process_detail_dialog.m */; };
 		72FDF99D2053AE5F00232F4D /* Process_close_dialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF99C2053AE5F00232F4D /* Process_close_dialog.m */; };
 		72FDF9A0205426D500232F4D /* computerSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72FDF99F205426D500232F4D /* computerSettingViewController.m */; };
@@ -1708,52 +1760,40 @@
 		72287A631FCFE82900BC2765 /* GetUserInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserInfoMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A641FCFE82900BC2765 /* ReceiveChatMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveChatMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A651FCFE82900BC2765 /* GetUserInfoMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserInfoMsg.pbobjc.m; sourceTree = "<group>"; };
-		72287A671FCFE82A00BC2765 /* PersonalSettingsMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSettingsMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A681FCFE82A00BC2765 /* KeepAliveMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeepAliveMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A691FCFE82A00BC2765 /* ApplicationData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationData.pbobjc.m; sourceTree = "<group>"; };
 		72287A6A1FCFE82B00BC2765 /* ChangeFriendMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeFriendMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A6B1FCFE82B00BC2765 /* AddFriendMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFriendMsg.pbobjc.h; sourceTree = "<group>"; };
-		72287A6C1FCFE82B00BC2765 /* CreateGroupChatMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChatMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A6D1FCFE82C00BC2765 /* FileData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileData.pbobjc.m; sourceTree = "<group>"; };
-		72287A6E1FCFE82C00BC2765 /* LogoutMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A6F1FCFE82C00BC2765 /* DownloadData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadData.pbobjc.m; sourceTree = "<group>"; };
-		72287A701FCFE82D00BC2765 /* ChangeGroupMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGroupMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A711FCFE82D00BC2765 /* RegisterMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A721FCFE82D00BC2765 /* KeepAliveMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeepAliveMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A731FCFE82D00BC2765 /* MiracastData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiracastData.pbobjc.m; sourceTree = "<group>"; };
 		72287A741FCFE82E00BC2765 /* OffLineMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffLineMsg.pbobjc.m; sourceTree = "<group>"; };
-		72287A761FCFE82F00BC2765 /* AddFileMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFileMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A771FCFE82F00BC2765 /* GetDownloadFileInfo.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetDownloadFileInfo.pbobjc.h; sourceTree = "<group>"; };
 		72287A781FCFE82F00BC2765 /* OffLineMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffLineMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A791FCFE83000BC2765 /* GetFileInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFileInfoMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A7A1FCFE83100BC2765 /* SendChatMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendChatMsg.pbobjc.m; sourceTree = "<group>"; };
-		72287A7B1FCFE83100BC2765 /* LogoutMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A7D1FCFE83100BC2765 /* DownloadData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadData.pbobjc.h; sourceTree = "<group>"; };
 		72287A7E1FCFE83200BC2765 /* SendDownloadMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendDownloadMsg.pbobjc.h; sourceTree = "<group>"; };
-		72287A801FCFE83200BC2765 /* ChangeGroupMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGroupMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A811FCFE83200BC2765 /* GroupData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupData.pbobjc.m; sourceTree = "<group>"; };
 		72287A821FCFE83300BC2765 /* GetMiracastInfoMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetMiracastInfoMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A831FCFE83300BC2765 /* ApplicationData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationData.pbobjc.h; sourceTree = "<group>"; };
-		72287A841FCFE83400BC2765 /* PersonalSettingsMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSettingsMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A851FCFE83500BC2765 /* GetPersonalInfoMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPersonalInfoMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A861FCFE83500BC2765 /* SendChatMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendChatMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A871FCFE83500BC2765 /* SendDownloadMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendDownloadMsg.pbobjc.m; sourceTree = "<group>"; };
-		72287A881FCFE83600BC2765 /* AddFileMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFileMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A891FCFE83600BC2765 /* ReceiveChatMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveChatMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A8A1FCFE83600BC2765 /* MiracastData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiracastData.pbobjc.h; sourceTree = "<group>"; };
 		72287A8B1FCFE83700BC2765 /* ProtoHead.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtoHead.pbobjc.h; sourceTree = "<group>"; };
 		72287A8C1FCFE83700BC2765 /* ChatData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatData.pbobjc.h; sourceTree = "<group>"; };
-		72287A8D1FCFE83700BC2765 /* CreateGroupChatMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChatMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A8E1FCFE83800BC2765 /* ChangeFriendMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeFriendMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A8F1FCFE83800BC2765 /* ChatData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatData.pbobjc.m; sourceTree = "<group>"; };
 		72287A911FCFE83900BC2765 /* GetExeInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetExeInfoMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A921FCFE83900BC2765 /* ProgressData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressData.pbobjc.h; sourceTree = "<group>"; };
 		72287A931FCFE83900BC2765 /* ProgressData.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressData.pbobjc.m; sourceTree = "<group>"; };
-		72287A941FCFE83900BC2765 /* GetGroupInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetGroupInfoMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A951FCFE83A00BC2765 /* GetDownloadFileInfo.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetDownloadFileInfo.pbobjc.m; sourceTree = "<group>"; };
 		72287A971FCFE83A00BC2765 /* FileData.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileData.pbobjc.h; sourceTree = "<group>"; };
 		72287A981FCFE83A00BC2765 /* DeleteFriendMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteFriendMsg.pbobjc.h; sourceTree = "<group>"; };
-		72287A991FCFE83B00BC2765 /* GetGroupInfoMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetGroupInfoMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A9A1FCFE83B00BC2765 /* AgreeAddFriendMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgreeAddFriendMsg.pbobjc.m; sourceTree = "<group>"; };
 		72287A9C1FCFE83C00BC2765 /* GetPersonalInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetPersonalInfoMsg.pbobjc.h; sourceTree = "<group>"; };
 		72287A9D1FCFE83C00BC2765 /* ProtoHead.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtoHead.pbobjc.m; sourceTree = "<group>"; };
@@ -1870,8 +1910,6 @@
 		725355BD207F457200FA5B34 /* LoginByVerificationCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginByVerificationCode.m; sourceTree = "<group>"; };
 		725355BF208083FC00FA5B34 /* ActionDialog_launch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionDialog_launch.h; sourceTree = "<group>"; };
 		725355C0208083FC00FA5B34 /* ActionDialog_launch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActionDialog_launch.m; sourceTree = "<group>"; };
-		725355C220809F3600FA5B34 /* LoginMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginMsg.pbobjc.m; path = "../../../../../IOS proto/ProtocolMsg/LoginMsg.pbobjc.m"; sourceTree = "<group>"; };
-		725355C320809F3600FA5B34 /* LoginMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginMsg.pbobjc.h; path = "../../../../../IOS proto/ProtocolMsg/LoginMsg.pbobjc.h"; sourceTree = "<group>"; };
 		7254E4DF204E3369001711BF /* SettingNameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingNameViewController.h; sourceTree = "<group>"; };
 		7254E4E0204E3369001711BF /* SettingNameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNameViewController.m; sourceTree = "<group>"; };
 		7254E4E2204E3380001711BF /* SettingPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingPwdViewController.h; sourceTree = "<group>"; };
@@ -1884,8 +1922,42 @@
 		7254E4EF204E9039001711BF /* SettingNameHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingNameHandler.m; sourceTree = "<group>"; };
 		7254E4F2204ECCED001711BF /* SettingPwdHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingPwdHandler.h; sourceTree = "<group>"; };
 		7254E4F3204ECCED001711BF /* SettingPwdHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingPwdHandler.m; sourceTree = "<group>"; };
+		725EC1F320A178AA00E52016 /* StartActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartActivity.h; sourceTree = "<group>"; };
+		725EC1F420A178AA00E52016 /* StartActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartActivity.m; sourceTree = "<group>"; };
+		725EC1F620A17D0C00E52016 /* ic_help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_help.png; sourceTree = "<group>"; };
+		725EC1F820A1818100E52016 /* tencent_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tencent_logo.png; sourceTree = "<group>"; };
+		725EC1FA20A1831600E52016 /* youku_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youku_logo.png; sourceTree = "<group>"; };
+		725EC1FC20A1833E00E52016 /* leshi_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leshi_logo.png; sourceTree = "<group>"; };
+		725EC1FE20A187F500E52016 /* webmanager_dayangd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webmanager_dayangd.png; sourceTree = "<group>"; };
+		725EC20020A1898F00E52016 /* webmanager_webchcdchd_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webmanager_webchcdchd_logo.png; sourceTree = "<group>"; };
+		725EC20220A189A500E52016 /* webmaneger_87lou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webmaneger_87lou.png; sourceTree = "<group>"; };
+		725EC20420A189C800E52016 /* webmanager_hdchd_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = webmanager_hdchd_logo.png; path = "../../../实验室项目相关/new_AreaParty-master/app/build/intermediates/res/merged/debug/drawable/webmanager_hdchd_logo.png"; sourceTree = "<group>"; };
+		725EC20620A18A2F00E52016 /* webmanager_hdchd_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webmanager_hdchd_logo.png; sourceTree = "<group>"; };
+		725EC20820A18A6200E52016 /* webmanager_hdhome_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = webmanager_hdhome_logo.png; path = "../../../实验室项目相关/new_AreaParty-master/app/src/main/res/drawable/webmanager_hdhome_logo.png"; sourceTree = "<group>"; };
+		725EC20A20A1A41C00E52016 /* MainActivity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainActivity.h; sourceTree = "<group>"; };
+		725EC20B20A1A41C00E52016 /* MainActivity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainActivity.m; sourceTree = "<group>"; };
+		725EC20D20A2CB6900E52016 /* DownloadManeger_torrent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadManeger_torrent.h; sourceTree = "<group>"; };
+		725EC20E20A2CB6900E52016 /* DownloadManeger_torrent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadManeger_torrent.m; sourceTree = "<group>"; };
+		725EC21120A4002400E52016 /* TorrentFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentFile.h; sourceTree = "<group>"; };
+		725EC21220A4002400E52016 /* TorrentFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorrentFile.m; sourceTree = "<group>"; };
+		725EC21420A409A800E52016 /* torrentFileItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = torrentFileItem.h; sourceTree = "<group>"; };
+		725EC21520A409A800E52016 /* torrentFileItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = torrentFileItem.m; sourceTree = "<group>"; };
+		725EC21620A409A800E52016 /* torrentFileItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = torrentFileItem.xib; sourceTree = "<group>"; };
+		725EC21920A40B4B00E52016 /* webmaneger_bt_img.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webmaneger_bt_img.png; sourceTree = "<group>"; };
+		725EC21D20A4377B00E52016 /* UrlUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UrlUtils.h; sourceTree = "<group>"; };
+		725EC21E20A4377B00E52016 /* UrlUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UrlUtils.m; sourceTree = "<group>"; };
 		72648A04204FD6EB003B173B /* computerMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = computerMonitorViewController.h; sourceTree = "<group>"; };
 		72648A05204FD6EB003B173B /* computerMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = computerMonitorViewController.m; sourceTree = "<group>"; };
+		72651A4A20E5CDD400B5DA64 /* launch_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_pic.png; sourceTree = "<group>"; };
+		72651A4C20E5FC3F00B5DA64 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logout.png; sourceTree = "<group>"; };
+		72651A4E20E6006E00B5DA64 /* LogoutMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutMsg.pbobjc.h; sourceTree = "<group>"; };
+		72651A4F20E6006F00B5DA64 /* LogoutMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutMsg.pbobjc.m; sourceTree = "<group>"; };
+		72651A5120E72E4D00B5DA64 /* tab06_addgroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab06_addgroup.png; sourceTree = "<group>"; };
+		72651A5320E8BF7900B5DA64 /* tab06_groupitem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab06_groupitem.h; sourceTree = "<group>"; };
+		72651A5420E8BF7900B5DA64 /* tab06_groupitem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tab06_groupitem.m; sourceTree = "<group>"; };
+		72651A5520E8BF7900B5DA64 /* tab06_groupitem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tab06_groupitem.xib; sourceTree = "<group>"; };
+		72651A5820E8CB9B00B5DA64 /* AddGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddGroup.h; sourceTree = "<group>"; };
+		72651A5920E8CB9B00B5DA64 /* AddGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddGroup.m; sourceTree = "<group>"; };
 		7266EA251FE7EEE800CFD247 /* FillingIPInforList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FillingIPInforList.h; sourceTree = "<group>"; };
 		7266EA261FE7EEE800CFD247 /* FillingIPInforList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FillingIPInforList.m; sourceTree = "<group>"; };
 		7266EA2A1FE7F0AB00CFD247 /* IPInforBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPInforBean.h; sourceTree = "<group>"; };
@@ -1894,8 +1966,23 @@
 		7266EA2E1FE8001700CFD247 /* IPInforMessageBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPInforMessageBean.m; sourceTree = "<group>"; };
 		7266EA6E1FE8BDA300CFD247 /* IPAddressConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPAddressConst.h; sourceTree = "<group>"; };
 		7266EA6F1FE8BDA300CFD247 /* IPAddressConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressConst.m; sourceTree = "<group>"; };
+		72678DAF20D20F8C0065ECD2 /* LoginMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginMsg.pbobjc.m; sourceTree = "<group>"; };
+		72678DB020D20F8C0065ECD2 /* AddFileMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddFileMsg.pbobjc.h; sourceTree = "<group>"; };
+		72678DB120D20F8C0065ECD2 /* LoginMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginMsg.pbobjc.h; sourceTree = "<group>"; };
+		72678DB220D20F8D0065ECD2 /* AddFileMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddFileMsg.pbobjc.m; sourceTree = "<group>"; };
 		72772D6A206388E6006DCE79 /* videoLibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = videoLibViewController.h; sourceTree = "<group>"; };
 		72772D6B206388E6006DCE79 /* videoLibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = videoLibViewController.m; sourceTree = "<group>"; };
+		7279CDDA20E9C1F400D73438 /* tab06_addgroupitem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab06_addgroupitem.h; sourceTree = "<group>"; };
+		7279CDDB20E9C1F400D73438 /* tab06_addgroupitem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tab06_addgroupitem.m; sourceTree = "<group>"; };
+		7279CDDC20E9C1F400D73438 /* tab06_addgroupitem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tab06_addgroupitem.xib; sourceTree = "<group>"; };
+		7279CDDF20E9D0A900D73438 /* CreateGroupChatMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateGroupChatMsg.pbobjc.h; sourceTree = "<group>"; };
+		7279CDE020E9D0AA00D73438 /* CreateGroupChatMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateGroupChatMsg.pbobjc.m; sourceTree = "<group>"; };
+		7279CDE220E9D25500D73438 /* ChangeGroupMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeGroupMsg.pbobjc.m; sourceTree = "<group>"; };
+		7279CDE320E9D25500D73438 /* ChangeGroupMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeGroupMsg.pbobjc.h; sourceTree = "<group>"; };
+		7279CDE520EA0C6F00D73438 /* groupObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = groupObj.h; sourceTree = "<group>"; };
+		7279CDE620EA0C6F00D73438 /* groupObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = groupObj.m; sourceTree = "<group>"; };
+		7279CDE820EA150A00D73438 /* GetGroupInfoMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetGroupInfoMsg.pbobjc.h; sourceTree = "<group>"; };
+		7279CDE920EA150B00D73438 /* GetGroupInfoMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetGroupInfoMsg.pbobjc.m; sourceTree = "<group>"; };
 		727D11971FF0C8B100383B40 /* OrderConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderConst.h; sourceTree = "<group>"; };
 		727D11981FF0C8B100383B40 /* OrderConst.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderConst.m; sourceTree = "<group>"; };
 		727D11A31FF1308300383B40 /* StatisticsMsgBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsMsgBean.h; sourceTree = "<group>"; };
@@ -1939,6 +2026,23 @@
 		72885E1F20679C5F009366C5 /* tab02_folder_item.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tab02_folder_item.xib; sourceTree = "<group>"; };
 		72885E222067F8DB009366C5 /* FileItemForMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileItemForMedia.h; sourceTree = "<group>"; };
 		72885E232067F8DB009366C5 /* FileItemForMedia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileItemForMedia.m; sourceTree = "<group>"; };
+		728B022A20E0E72400655F7C /* ReceivedDownloadListFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceivedDownloadListFormat.h; sourceTree = "<group>"; };
+		728B022B20E0E72400655F7C /* ReceivedDownloadListFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceivedDownloadListFormat.m; sourceTree = "<group>"; };
+		728B022D20E0E78400655F7C /* ReceiveDataFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveDataFormat.h; sourceTree = "<group>"; };
+		728B022E20E0E78400655F7C /* ReceiveDataFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveDataFormat.m; sourceTree = "<group>"; };
+		728B023020E0E7C300655F7C /* ReceiveData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveData.h; sourceTree = "<group>"; };
+		728B023120E0E7C300655F7C /* ReceiveData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveData.m; sourceTree = "<group>"; };
+		728B023320E32FC700655F7C /* ProgressObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProgressObj.h; sourceTree = "<group>"; };
+		728B023420E32FC700655F7C /* ProgressObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProgressObj.m; sourceTree = "<group>"; };
+		728B023620E35B6900655F7C /* tab06_download_manager_stateitem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab06_download_manager_stateitem.h; sourceTree = "<group>"; };
+		728B023720E35B6900655F7C /* tab06_download_manager_stateitem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tab06_download_manager_stateitem.m; sourceTree = "<group>"; };
+		728B023820E35B6900655F7C /* tab06_download_manager_stateitem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tab06_download_manager_stateitem.xib; sourceTree = "<group>"; };
+		728B023B20E36C6300655F7C /* ReceiveDownloadProcessFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveDownloadProcessFormat.h; sourceTree = "<group>"; };
+		728B023C20E36C6300655F7C /* ReceiveDownloadProcessFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveDownloadProcessFormat.m; sourceTree = "<group>"; };
+		728B023E20E36C8000655F7C /* DownloadProcess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadProcess.h; sourceTree = "<group>"; };
+		728B023F20E36C8000655F7C /* DownloadProcess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadProcess.m; sourceTree = "<group>"; };
+		728B024120E37CA400655F7C /* PersonalSettingsMsg.pbobjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalSettingsMsg.pbobjc.h; sourceTree = "<group>"; };
+		728B024220E37CA500655F7C /* PersonalSettingsMsg.pbobjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalSettingsMsg.pbobjc.m; sourceTree = "<group>"; };
 		728B713B2088402C00B7C18D /* searchFriend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = searchFriend.h; sourceTree = "<group>"; };
 		728B713C2088402C00B7C18D /* searchFriend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = searchFriend.m; sourceTree = "<group>"; };
 		728B713E208859F300B7C18D /* userObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userObj.h; sourceTree = "<group>"; };
@@ -1963,6 +2067,8 @@
 		72A09FC31FD6861B000214B6 /* checkbox-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox-normal.png"; sourceTree = "<group>"; };
 		72A09FC51FD7E16A000214B6 /* RegisterPersonalInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterPersonalInfo.h; sourceTree = "<group>"; };
 		72A09FC61FD7E16A000214B6 /* RegisterPersonalInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterPersonalInfo.m; sourceTree = "<group>"; };
+		72A0ADFB20E0E53500FD5ED6 /* DownloadBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DownloadBean.h; sourceTree = "<group>"; };
+		72A0ADFC20E0E53500FD5ED6 /* DownloadBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DownloadBean.m; sourceTree = "<group>"; };
 		72A95A462019789B00CDE28C /* prepareDataForFragment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prepareDataForFragment.h; sourceTree = "<group>"; };
 		72A95A472019789B00CDE28C /* prepareDataForFragment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = prepareDataForFragment.m; sourceTree = "<group>"; };
 		72A95A492019988C00CDE28C /* PCFileHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCFileHelper.h; sourceTree = "<group>"; };
@@ -2048,6 +2154,18 @@
 		72C39D6B208F16B100FE664D /* dealFileRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dealFileRequest.m; sourceTree = "<group>"; };
 		72C800801FB5FDB700073111 /* LoginSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginSettingViewController.h; sourceTree = "<group>"; };
 		72C800811FB5FDB700073111 /* LoginSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginSettingViewController.m; sourceTree = "<group>"; };
+		72CC16C920EA1949001E9AA7 /* GroupChat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChat.h; sourceTree = "<group>"; };
+		72CC16CA20EA1949001E9AA7 /* GroupChat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChat.m; sourceTree = "<group>"; };
+		72CC16CC20EA1DB5001E9AA7 /* tab_06_imggroupsetting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_06_imggroupsetting.png; sourceTree = "<group>"; };
+		72CC16CE20EA21FA001E9AA7 /* GroupChatDBManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChatDBManager.h; sourceTree = "<group>"; };
+		72CC16CF20EA21FA001E9AA7 /* GroupChatDBManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChatDBManager.m; sourceTree = "<group>"; };
+		72CC16D120EA2646001E9AA7 /* GroupChatObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChatObj.h; sourceTree = "<group>"; };
+		72CC16D220EA2646001E9AA7 /* GroupChatObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChatObj.m; sourceTree = "<group>"; };
+		72CC16D420EB2218001E9AA7 /* icon_mainphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_mainphone.png; sourceTree = "<group>"; };
+		72CC16D620EB3C80001E9AA7 /* SettingMainPhoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingMainPhoneViewController.h; sourceTree = "<group>"; };
+		72CC16D720EB3C80001E9AA7 /* SettingMainPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingMainPhoneViewController.m; sourceTree = "<group>"; };
+		72CC16D920EB3CAC001E9AA7 /* SettingMainPhoneHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingMainPhoneHandler.h; sourceTree = "<group>"; };
+		72CC16DA20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingMainPhoneHandler.m; sourceTree = "<group>"; };
 		72D171E1204D7DE50069992A /* Update_ReceiveMsgBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Update_ReceiveMsgBean.h; sourceTree = "<group>"; };
 		72D171E2204D7DE50069992A /* Update_ReceiveMsgBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Update_ReceiveMsgBean.m; sourceTree = "<group>"; };
 		72D171E4204D870E0069992A /* Update_SendMsgBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Update_SendMsgBean.h; sourceTree = "<group>"; };
@@ -2127,6 +2245,22 @@
 		72FDAA6D20688E56003E7A1D /* tab02_vediolib_item.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = tab02_vediolib_item.xib; sourceTree = "<group>"; };
 		72FDAA702068C6D4003E7A1D /* ReceiveCommandFromTVPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReceiveCommandFromTVPlayer.h; sourceTree = "<group>"; };
 		72FDAA712068C6D4003E7A1D /* ReceiveCommandFromTVPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReceiveCommandFromTVPlayer.m; sourceTree = "<group>"; };
+		72FDF76620B3B04800057084 /* UTorrentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTorrentViewController.h; sourceTree = "<group>"; };
+		72FDF76720B3B04800057084 /* UTorrentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTorrentViewController.m; sourceTree = "<group>"; };
+		72FDF76920B3B5BB00057084 /* utorrent_torrent_item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utorrent_torrent_item.h; sourceTree = "<group>"; };
+		72FDF76A20B3B5BB00057084 /* utorrent_torrent_item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utorrent_torrent_item.m; sourceTree = "<group>"; };
+		72FDF76B20B3B5BB00057084 /* utorrent_torrent_item.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = utorrent_torrent_item.xib; sourceTree = "<group>"; };
+		72FDF76F20B3BFC400057084 /* Torrent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Torrent.h; sourceTree = "<group>"; };
+		72FDF77020B3BFC400057084 /* Torrent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Torrent.m; sourceTree = "<group>"; };
+		72FDF77220B3C20600057084 /* TorrentUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TorrentUtils.h; sourceTree = "<group>"; };
+		72FDF77320B3C20600057084 /* TorrentUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TorrentUtils.m; sourceTree = "<group>"; };
+		72FDF77520B512BB00057084 /* UTFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UTFileViewController.h; sourceTree = "<group>"; };
+		72FDF77620B512BB00057084 /* UTFileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UTFileViewController.m; sourceTree = "<group>"; };
+		72FDF77820B514E000057084 /* TFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TFile.h; sourceTree = "<group>"; };
+		72FDF77920B514E000057084 /* TFile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFile.m; sourceTree = "<group>"; };
+		72FDF77B20B52A8900057084 /* utorrent_file_item.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utorrent_file_item.h; sourceTree = "<group>"; };
+		72FDF77C20B52A8900057084 /* utorrent_file_item.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = utorrent_file_item.m; sourceTree = "<group>"; };
+		72FDF77D20B52A8900057084 /* utorrent_file_item.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = utorrent_file_item.xib; sourceTree = "<group>"; };
 		72FDF9952053A37600232F4D /* Process_detail_dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process_detail_dialog.h; sourceTree = "<group>"; };
 		72FDF9962053A37600232F4D /* Process_detail_dialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Process_detail_dialog.m; sourceTree = "<group>"; };
 		72FDF99B2053AE5F00232F4D /* Process_close_dialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Process_close_dialog.h; sourceTree = "<group>"; };
@@ -2249,6 +2383,7 @@
 		720158E01FFF50FA00913961 /* websitemanager */ = {
 			isa = PBXGroup;
 			children = (
+				725EC1F220A1787A00E52016 /* start */,
 				720158E11FFF512600913961 /* web1080 */,
 			);
 			path = websitemanager;
@@ -2257,8 +2392,11 @@
 		720158E11FFF512600913961 /* web1080 */ = {
 			isa = PBXGroup;
 			children = (
+				725EC21020A4001100E52016 /* adapter */,
 				720158E21FFF518600913961 /* RemoteDownloadActivityViewController.h */,
 				720158E31FFF518600913961 /* RemoteDownloadActivityViewController.m */,
+				725EC20A20A1A41C00E52016 /* MainActivity.h */,
+				725EC20B20A1A41C00E52016 /* MainActivity.m */,
 			);
 			path = web1080;
 			sourceTree = "<group>";
@@ -2324,6 +2462,15 @@
 		72188EE21FB55657002E270E /* drawable */ = {
 			isa = PBXGroup;
 			children = (
+				72CC16D420EB2218001E9AA7 /* icon_mainphone.png */,
+				72CC16CC20EA1DB5001E9AA7 /* tab_06_imggroupsetting.png */,
+				72651A4C20E5FC3F00B5DA64 /* logout.png */,
+				72651A4A20E5CDD400B5DA64 /* launch_pic.png */,
+				725EC21920A40B4B00E52016 /* webmaneger_bt_img.png */,
+				725EC1FA20A1831600E52016 /* youku_logo.png */,
+				725EC1FC20A1833E00E52016 /* leshi_logo.png */,
+				725EC1F820A1818100E52016 /* tencent_logo.png */,
+				725EC1F620A17D0C00E52016 /* ic_help.png */,
 				7237C90B207DF27300572FF4 /* redboat.gif */,
 				7237C909207DF0B900572FF4 /* ic_infohelp.png */,
 				7237C902207DE77F00572FF4 /* ic_cancel.png */,
@@ -2332,6 +2479,7 @@
 				724EFBD3205D07990045CA1C /* close_rdp.png */,
 				724EFBD5205D07A10045CA1C /* download_image.png */,
 				724EFBD1205D07900045CA1C /* ic_account.png */,
+				72651A5120E72E4D00B5DA64 /* tab06_addgroup.png */,
 				724EFBD4205D079D0045CA1C /* ic_goback.png */,
 				724EFBD8205D07B40045CA1C /* ic_music.png */,
 				724EFBD2205D07940045CA1C /* ic_password.png */,
@@ -2844,12 +2992,18 @@
 				721890B11FB55658002E270E /* webmanager_blufans_logo.png */,
 				721890B21FB55658002E270E /* webmanager_bottom_bar.xml */,
 				721890B31FB55658002E270E /* webmanager_bottom_layout_selector.xml */,
+				725EC20620A18A2F00E52016 /* webmanager_hdchd_logo.png */,
+				725EC20820A18A6200E52016 /* webmanager_hdhome_logo.png */,
 				721890B41FB55658002E270E /* webmanager_bottom_select.xml */,
+				725EC20220A189A500E52016 /* webmaneger_87lou.png */,
 				721890B51FB55658002E270E /* webmanager_bottom_unselect.xml */,
 				721890B61FB55658002E270E /* webmanager_bt_pic.png */,
+				725EC20420A189C800E52016 /* webmanager_hdchd_logo.png */,
 				721890B71FB55658002E270E /* webmanager_button.xml */,
 				721890B81FB55658002E270E /* webmanager_chapcharloading.gif */,
 				721890B91FB55658002E270E /* webmanager_cover_default.png */,
+				725EC20020A1898F00E52016 /* webmanager_webchcdchd_logo.png */,
+				725EC1FE20A187F500E52016 /* webmanager_dayangd.png */,
 				721890BA1FB55658002E270E /* webmanager_download.png */,
 				721890BB1FB55658002E270E /* webmanager_edittext_color1.xml */,
 				721890BC1FB55658002E270E /* webmanager_edittext_color2.xml */,
@@ -3087,6 +3241,8 @@
 				721992982099841A00793C32 /* MCDownloadManager.m */,
 				722879631FC1540500BC2765 /* Toast.h */,
 				722879641FC1540500BC2765 /* Toast.m */,
+				725EC20D20A2CB6900E52016 /* DownloadManeger_torrent.h */,
+				725EC20E20A2CB6900E52016 /* DownloadManeger_torrent.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -3094,28 +3250,30 @@
 		7228796A1FC327EC00BC2765 /* ProtocolMsg */ = {
 			isa = PBXGroup;
 			children = (
-				725355C320809F3600FA5B34 /* LoginMsg.pbobjc.h */,
-				725355C220809F3600FA5B34 /* LoginMsg.pbobjc.m */,
 				72287A5A1FCFE82800BC2765 /* AccreditMsg.pbobjc.h */,
 				72287A5E1FCFE82800BC2765 /* AccreditMsg.pbobjc.m */,
-				72287A761FCFE82F00BC2765 /* AddFileMsg.pbobjc.h */,
-				72287A881FCFE83600BC2765 /* AddFileMsg.pbobjc.m */,
+				72678DB020D20F8C0065ECD2 /* AddFileMsg.pbobjc.h */,
+				72678DB220D20F8D0065ECD2 /* AddFileMsg.pbobjc.m */,
+				72678DB120D20F8C0065ECD2 /* LoginMsg.pbobjc.h */,
+				72678DAF20D20F8C0065ECD2 /* LoginMsg.pbobjc.m */,
 				72287A6B1FCFE82B00BC2765 /* AddFriendMsg.pbobjc.h */,
 				72287A9E1FCFE83D00BC2765 /* AddFriendMsg.pbobjc.m */,
 				72287A5B1FCFE82800BC2765 /* AgreeAddFriendMsg.pbobjc.h */,
 				72287A9A1FCFE83B00BC2765 /* AgreeAddFriendMsg.pbobjc.m */,
+				7279CDE320E9D25500D73438 /* ChangeGroupMsg.pbobjc.h */,
+				7279CDE220E9D25500D73438 /* ChangeGroupMsg.pbobjc.m */,
 				72287A831FCFE83300BC2765 /* ApplicationData.pbobjc.h */,
 				72287A691FCFE82A00BC2765 /* ApplicationData.pbobjc.m */,
 				72287A6A1FCFE82B00BC2765 /* ChangeFriendMsg.pbobjc.h */,
 				72287A8E1FCFE83800BC2765 /* ChangeFriendMsg.pbobjc.m */,
-				72287A801FCFE83200BC2765 /* ChangeGroupMsg.pbobjc.h */,
-				72287A701FCFE82D00BC2765 /* ChangeGroupMsg.pbobjc.m */,
+				7279CDDF20E9D0A900D73438 /* CreateGroupChatMsg.pbobjc.h */,
+				7279CDE020E9D0AA00D73438 /* CreateGroupChatMsg.pbobjc.m */,
+				7279CDE820EA150A00D73438 /* GetGroupInfoMsg.pbobjc.h */,
+				7279CDE920EA150B00D73438 /* GetGroupInfoMsg.pbobjc.m */,
 				72287A8C1FCFE83700BC2765 /* ChatData.pbobjc.h */,
 				72287A8F1FCFE83800BC2765 /* ChatData.pbobjc.m */,
 				721992AF209AE62900793C32 /* DeleteFileMsg.pbobjc.h */,
 				721992AE209AE62900793C32 /* DeleteFileMsg.pbobjc.m */,
-				72287A6C1FCFE82B00BC2765 /* CreateGroupChatMsg.pbobjc.h */,
-				72287A8D1FCFE83700BC2765 /* CreateGroupChatMsg.pbobjc.m */,
 				72287A981FCFE83A00BC2765 /* DeleteFriendMsg.pbobjc.h */,
 				72287A591FCFE82700BC2765 /* DeleteFriendMsg.pbobjc.m */,
 				72287A7D1FCFE83100BC2765 /* DownloadData.pbobjc.h */,
@@ -3130,8 +3288,8 @@
 				72287A571FCFE82700BC2765 /* GetExeInfoMsg.pbobjc.m */,
 				72287A791FCFE83000BC2765 /* GetFileInfoMsg.pbobjc.h */,
 				72287A611FCFE82900BC2765 /* GetFileInfoMsg.pbobjc.m */,
-				72287A941FCFE83900BC2765 /* GetGroupInfoMsg.pbobjc.h */,
-				72287A991FCFE83B00BC2765 /* GetGroupInfoMsg.pbobjc.m */,
+				72651A4E20E6006E00B5DA64 /* LogoutMsg.pbobjc.h */,
+				72651A4F20E6006F00B5DA64 /* LogoutMsg.pbobjc.m */,
 				72287A5F1FCFE82800BC2765 /* GetMiracastInfoMsg.pbobjc.h */,
 				72287A821FCFE83300BC2765 /* GetMiracastInfoMsg.pbobjc.m */,
 				72287A9C1FCFE83C00BC2765 /* GetPersonalInfoMsg.pbobjc.h */,
@@ -3142,14 +3300,12 @@
 				72287A811FCFE83200BC2765 /* GroupData.pbobjc.m */,
 				72287A721FCFE82D00BC2765 /* KeepAliveMsg.pbobjc.h */,
 				72287A681FCFE82A00BC2765 /* KeepAliveMsg.pbobjc.m */,
-				72287A6E1FCFE82C00BC2765 /* LogoutMsg.pbobjc.h */,
-				72287A7B1FCFE83100BC2765 /* LogoutMsg.pbobjc.m */,
 				72287A8A1FCFE83600BC2765 /* MiracastData.pbobjc.h */,
 				72287A731FCFE82D00BC2765 /* MiracastData.pbobjc.m */,
 				72287A781FCFE82F00BC2765 /* OffLineMsg.pbobjc.h */,
 				72287A741FCFE82E00BC2765 /* OffLineMsg.pbobjc.m */,
-				72287A671FCFE82A00BC2765 /* PersonalSettingsMsg.pbobjc.h */,
-				72287A841FCFE83400BC2765 /* PersonalSettingsMsg.pbobjc.m */,
+				728B024120E37CA400655F7C /* PersonalSettingsMsg.pbobjc.h */,
+				728B024220E37CA500655F7C /* PersonalSettingsMsg.pbobjc.m */,
 				72287A921FCFE83900BC2765 /* ProgressData.pbobjc.h */,
 				72287A931FCFE83900BC2765 /* ProgressData.pbobjc.m */,
 				72287A8B1FCFE83700BC2765 /* ProtoHead.pbobjc.h */,
@@ -3356,6 +3512,48 @@
 			path = ui;
 			sourceTree = "<group>";
 		};
+		725EC1F220A1787A00E52016 /* start */ = {
+			isa = PBXGroup;
+			children = (
+				725EC1F320A178AA00E52016 /* StartActivity.h */,
+				725EC1F420A178AA00E52016 /* StartActivity.m */,
+			);
+			path = start;
+			sourceTree = "<group>";
+		};
+		725EC21020A4001100E52016 /* adapter */ = {
+			isa = PBXGroup;
+			children = (
+				725EC21120A4002400E52016 /* TorrentFile.h */,
+				725EC21220A4002400E52016 /* TorrentFile.m */,
+			);
+			path = adapter;
+			sourceTree = "<group>";
+		};
+		725EC21B20A4375C00E52016 /* utorrent */ = {
+			isa = PBXGroup;
+			children = (
+				72FDF76E20B3BF9800057084 /* model */,
+				725EC21C20A4376600E52016 /* utils */,
+				72FDF76620B3B04800057084 /* UTorrentViewController.h */,
+				72FDF76720B3B04800057084 /* UTorrentViewController.m */,
+				72FDF77520B512BB00057084 /* UTFileViewController.h */,
+				72FDF77620B512BB00057084 /* UTFileViewController.m */,
+			);
+			path = utorrent;
+			sourceTree = "<group>";
+		};
+		725EC21C20A4376600E52016 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				725EC21D20A4377B00E52016 /* UrlUtils.h */,
+				725EC21E20A4377B00E52016 /* UrlUtils.m */,
+				72FDF77220B3C20600057084 /* TorrentUtils.h */,
+				72FDF77320B3C20600057084 /* TorrentUtils.m */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		7266EA231FE7EE9400CFD247 /* myapplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -3503,6 +3701,15 @@
 				72B5F973209C308B00168F7A /* MysharedFileItem.h */,
 				72B5F974209C308B00168F7A /* MysharedFileItem.m */,
 				72B5F975209C308B00168F7A /* MysharedFileItem.xib */,
+				725EC21420A409A800E52016 /* torrentFileItem.h */,
+				725EC21520A409A800E52016 /* torrentFileItem.m */,
+				725EC21620A409A800E52016 /* torrentFileItem.xib */,
+				72FDF76920B3B5BB00057084 /* utorrent_torrent_item.h */,
+				72FDF76A20B3B5BB00057084 /* utorrent_torrent_item.m */,
+				72FDF76B20B3B5BB00057084 /* utorrent_torrent_item.xib */,
+				72FDF77B20B52A8900057084 /* utorrent_file_item.h */,
+				72FDF77C20B52A8900057084 /* utorrent_file_item.m */,
+				72FDF77D20B52A8900057084 /* utorrent_file_item.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -3568,6 +3775,10 @@
 				7254E4F3204ECCED001711BF /* SettingPwdHandler.m */,
 				7210AFAF204F9199000C80F0 /* SettingAddressHandler.h */,
 				7210AFB0204F9199000C80F0 /* SettingAddressHandler.m */,
+				72CC16D620EB3C80001E9AA7 /* SettingMainPhoneViewController.h */,
+				72CC16D720EB3C80001E9AA7 /* SettingMainPhoneViewController.m */,
+				72CC16D920EB3CAC001E9AA7 /* SettingMainPhoneHandler.h */,
+				72CC16DA20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m */,
 			);
 			path = setting;
 			sourceTree = "<group>";
@@ -3585,6 +3796,25 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		72A0ADFA20E0E51900FD5ED6 /* duzhekai */ = {
+			isa = PBXGroup;
+			children = (
+				72A0ADFB20E0E53500FD5ED6 /* DownloadBean.h */,
+				72A0ADFC20E0E53500FD5ED6 /* DownloadBean.m */,
+				728B022A20E0E72400655F7C /* ReceivedDownloadListFormat.h */,
+				728B022B20E0E72400655F7C /* ReceivedDownloadListFormat.m */,
+				728B022D20E0E78400655F7C /* ReceiveDataFormat.h */,
+				728B022E20E0E78400655F7C /* ReceiveDataFormat.m */,
+				728B023020E0E7C300655F7C /* ReceiveData.h */,
+				728B023120E0E7C300655F7C /* ReceiveData.m */,
+				728B023B20E36C6300655F7C /* ReceiveDownloadProcessFormat.h */,
+				728B023C20E36C6300655F7C /* ReceiveDownloadProcessFormat.m */,
+				728B023E20E36C8000655F7C /* DownloadProcess.h */,
+				728B023F20E36C8000655F7C /* DownloadProcess.m */,
+			);
+			path = duzhekai;
+			sourceTree = "<group>";
+		};
 		72B3ECEA20899EB90090B624 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -3597,6 +3827,9 @@
 				72C39D65208ED3A600FE664D /* tab06_userinfo.h */,
 				72C39D66208ED3A600FE664D /* tab06_userinfo.m */,
 				72C39D67208ED3A600FE664D /* tab06_userinfo.xib */,
+				72651A5320E8BF7900B5DA64 /* tab06_groupitem.h */,
+				72651A5420E8BF7900B5DA64 /* tab06_groupitem.m */,
+				72651A5520E8BF7900B5DA64 /* tab06_groupitem.xib */,
 				72868EE62090219D00FD0C26 /* tab06_downloadrequestitem.h */,
 				72868EE72090219D00FD0C26 /* tab06_downloadrequestitem.m */,
 				72868EE82090219D00FD0C26 /* tab06_downloadrequestitem.xib */,
@@ -3612,6 +3845,12 @@
 				723F246D2094707F00A6DE9E /* FileListDialog.m */,
 				721992AB209ADF5300793C32 /* Share_File_Dialog.h */,
 				721992AC209ADF5300793C32 /* Share_File_Dialog.m */,
+				728B023620E35B6900655F7C /* tab06_download_manager_stateitem.h */,
+				728B023720E35B6900655F7C /* tab06_download_manager_stateitem.m */,
+				728B023820E35B6900655F7C /* tab06_download_manager_stateitem.xib */,
+				7279CDDA20E9C1F400D73438 /* tab06_addgroupitem.h */,
+				7279CDDB20E9C1F400D73438 /* tab06_addgroupitem.m */,
+				7279CDDC20E9C1F400D73438 /* tab06_addgroupitem.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -3661,6 +3900,7 @@
 		72F90BEF1FB9578B0058DC10 /* Fragment1 */ = {
 			isa = PBXGroup;
 			children = (
+				725EC21B20A4375C00E52016 /* utorrent */,
 				72945D83204BEC850042E643 /* setting */,
 				720158E01FFF50FA00913961 /* websitemanager */,
 				720158B21FFB5C5500913961 /* utils */,
@@ -3748,6 +3988,7 @@
 		72F90BF51FB95D760058DC10 /* Fragment4 */ = {
 			isa = PBXGroup;
 			children = (
+				72A0ADFA20E0E51900FD5ED6 /* duzhekai */,
 				72B3ECEA20899EB90090B624 /* ui */,
 				72F90BFC1FB95DB00058DC10 /* Fragment4ViewController.h */,
 				72F90BFD1FB95DB00058DC10 /* Fragment4ViewController.m */,
@@ -3759,6 +4000,8 @@
 				727D11B01FF23F5A00383B40 /* FriendRequestDBManager.m */,
 				727D11B21FF23F7F00383B40 /* FileRequestDBManager.h */,
 				727D11B31FF23F7F00383B40 /* FileRequestDBManager.m */,
+				72CC16CE20EA21FA001E9AA7 /* GroupChatDBManager.h */,
+				72CC16CF20EA21FA001E9AA7 /* GroupChatDBManager.m */,
 				7220C61620086E0A00ECC879 /* headIndexToImgId.h */,
 				7220C61720086E0A00ECC879 /* headIndexToImgId.m */,
 				72B3ECF92089B9640090B624 /* fileIndexToImgId.h */,
@@ -3781,8 +4024,6 @@
 				72C39D6B208F16B100FE664D /* dealFileRequest.m */,
 				72868EE3209013A000FD0C26 /* fileObj.h */,
 				72868EE4209013A000FD0C26 /* fileObj.m */,
-				72868EEB20903EFA00FD0C26 /* fileList.h */,
-				72868EEC20903EFA00FD0C26 /* fileList.m */,
 				72868EEE20904E4900FD0C26 /* ChatObj.h */,
 				72868EEF20904E4900FD0C26 /* ChatObj.m */,
 				723F245A2092F0E400A6DE9E /* myList.h */,
@@ -3797,6 +4038,18 @@
 				723F2473209702BB00A6DE9E /* DownloadFolderFragment.m */,
 				723F2478209704F500A6DE9E /* DownloadStateFragment.h */,
 				723F2479209704F500A6DE9E /* DownloadStateFragment.m */,
+				728B023320E32FC700655F7C /* ProgressObj.h */,
+				728B023420E32FC700655F7C /* ProgressObj.m */,
+				72651A5820E8CB9B00B5DA64 /* AddGroup.h */,
+				72651A5920E8CB9B00B5DA64 /* AddGroup.m */,
+				7279CDE520EA0C6F00D73438 /* groupObj.h */,
+				7279CDE620EA0C6F00D73438 /* groupObj.m */,
+				72868EEB20903EFA00FD0C26 /* fileList.h */,
+				72868EEC20903EFA00FD0C26 /* fileList.m */,
+				72CC16C920EA1949001E9AA7 /* GroupChat.h */,
+				72CC16CA20EA1949001E9AA7 /* GroupChat.m */,
+				72CC16D120EA2646001E9AA7 /* GroupChatObj.h */,
+				72CC16D220EA2646001E9AA7 /* GroupChatObj.m */,
 			);
 			path = Fragment4;
 			sourceTree = "<group>";
@@ -3834,6 +4087,17 @@
 				72F90BED1FB956AB0058DC10 /* MainTabbarController.m */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		72FDF76E20B3BF9800057084 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				72FDF76F20B3BFC400057084 /* Torrent.h */,
+				72FDF77020B3BFC400057084 /* Torrent.m */,
+				72FDF77820B514E000057084 /* TFile.h */,
+				72FDF77920B514E000057084 /* TFile.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		8C7BD0E82A92C67E04B0537E /* Frameworks */ = {
@@ -3996,6 +4260,7 @@
 				721892FE1FB5565A002E270E /* webmanager_shape_progressbar_bg.xml in Resources */,
 				721891C51FB5565A002E270E /* linearlayout_selector01.xml in Resources */,
 				721892F11FB5565A002E270E /* webmanager_mid_layout_selector.xml in Resources */,
+				725EC20720A18A2F00E52016 /* webmanager_hdchd_logo.png in Resources */,
 				721892AF1FB5565A002E270E /* top_layout_selector.xml in Resources */,
 				721891891FB55659002E270E /* ic_goback.png in Resources */,
 				721892D21FB5565A002E270E /* webmanager_back_image.jpg in Resources */,
@@ -4068,6 +4333,8 @@
 				721891811FB55659002E270E /* gradient_top_bottom.xml in Resources */,
 				7218913F1FB55659002E270E /* circle.xml in Resources */,
 				721892211FB5565A002E270E /* n8.png in Resources */,
+				725EC20920A18A6300E52016 /* webmanager_hdhome_logo.png in Resources */,
+				72651A4B20E5CDD500B5DA64 /* launch_pic.png in Resources */,
 				72BA5FCC1FBAB2FE0078EE6E /* dropzone_bluemouse_normal.png in Resources */,
 				721891F01FB5565A002E270E /* mm_title_back_pressed.9.png in Resources */,
 				72BA5FB71FBAB2FE0078EE6E /* bluetoothdevicekeyboard.png in Resources */,
@@ -4075,6 +4342,7 @@
 				72BA5FB21FBAB2FE0078EE6E /* zhangyu_belongto2345.png in Resources */,
 				721E22782091ACC900F665BB /* chatfrom_bg_normal.9.png in Resources */,
 				721892881FB5565A002E270E /* start.png in Resources */,
+				725EC21A20A40B4C00E52016 /* webmaneger_bt_img.png in Resources */,
 				721891F31FB5565A002E270E /* monitor_normal.png in Resources */,
 				721891791FB55659002E270E /* frag04_driver_system_icon.png in Resources */,
 				7218917B1FB55659002E270E /* frag04_localfolder_icon.png in Resources */,
@@ -4096,12 +4364,14 @@
 				721892201FB5565A002E270E /* n7.png in Resources */,
 				7218927B1FB5565A002E270E /* shape_progressbar_bg.xml in Resources */,
 				7218912B1FB55659002E270E /* btn_leftnormal.png in Resources */,
+				725EC20520A189CA00E52016 /* webmanager_hdchd_logo.png in Resources */,
 				721891261FB55659002E270E /* bottom_unselect.xml in Resources */,
 				721893031FB5565A002E270E /* webmanager_single_select.xml in Resources */,
 				721891F71FB5565A002E270E /* more_normal.png in Resources */,
 				7218920C1FB5565A002E270E /* music_widget_play_normal_emui5.png in Resources */,
 				7218919E1FB55659002E270E /* icon_setfolder.png in Resources */,
 				721891551FB55659002E270E /* date.png in Resources */,
+				72FDF77F20B52A8900057084 /* utorrent_file_item.xib in Resources */,
 				72DE100A206CBB3D00A48742 /* tab02_audioset_item.xib in Resources */,
 				721891271FB55659002E270E /* breakfast_radiobutton_checked.png in Resources */,
 				721892631FB5565A002E270E /* run.png in Resources */,
@@ -4110,6 +4380,7 @@
 				721891101FB55659002E270E /* background.png in Resources */,
 				7218931D1FB5565A002E270E /* xml.png in Resources */,
 				7218911A1FB55659002E270E /* barback04.xml in Resources */,
+				728B023A20E35B6900655F7C /* tab06_download_manager_stateitem.xib in Resources */,
 				7218922F1FB5565A002E270E /* nothingdownloading.png in Resources */,
 				721892EB1FB5565A002E270E /* webmanager_ic_home.png in Resources */,
 				721892C61FB5565A002E270E /* txt.png in Resources */,
@@ -4133,6 +4404,7 @@
 				7218918F1FB55659002E270E /* icon.jpg in Resources */,
 				721892121FB5565A002E270E /* my_btn01.xml in Resources */,
 				721892B31FB5565A002E270E /* topbk_color.xml in Resources */,
+				725EC21820A409A800E52016 /* torrentFileItem.xib in Resources */,
 				7218915E1FB55659002E270E /* disabledbuttonradius.xml in Resources */,
 				721892EE1FB5565A002E270E /* webmanager_ic_select_all.png in Resources */,
 				721892E61FB5565A002E270E /* webmanager_ic_delete.png in Resources */,
@@ -4167,6 +4439,7 @@
 				720D7BD42062245A0039C383 /* remote_control.png in Resources */,
 				721891D41FB5565A002E270E /* logo_audioset.png in Resources */,
 				721893351FB597E0002E270E /* username.png in Resources */,
+				725EC1FB20A1831700E52016 /* youku_logo.png in Resources */,
 				72BA5FB51FBAB2FE0078EE6E /* exit_normal.png in Resources */,
 				7218924C1FB5565A002E270E /* process_selected.png in Resources */,
 				721891981FB55659002E270E /* icon_pcdirectdevice.png in Resources */,
@@ -4188,6 +4461,7 @@
 				721891CD1FB5565A002E270E /* loginsetting.png in Resources */,
 				721891861FB55659002E270E /* ic_download.png in Resources */,
 				7218931C1FB5565A002E270E /* wordtest.png in Resources */,
+				7279CDDE20E9C1F400D73438 /* tab06_addgroupitem.xib in Resources */,
 				721891B21FB5565A002E270E /* life_icon_chongzhi.png in Resources */,
 				721891C01FB5565A002E270E /* life_icon_zhuangzhan.png in Resources */,
 				721893231FB5565A002E270E /* z4.png in Resources */,
@@ -4224,7 +4498,9 @@
 				721891911FB55659002E270E /* icon_cast_white.png in Resources */,
 				722C474020524E2400C7E369 /* Process_item.xib in Resources */,
 				721891721FB55659002E270E /* fanhuianniu.jpg in Resources */,
+				725EC1FF20A187F600E52016 /* webmanager_dayangd.png in Resources */,
 				72BA5FC31FBAB2FE0078EE6E /* checkbox.png in Resources */,
+				725EC20120A1899000E52016 /* webmanager_webchcdchd_logo.png in Resources */,
 				721891291FB55659002E270E /* bt_pic.png in Resources */,
 				721893021FB5565A002E270E /* webmanager_single_layout_selector.xml in Resources */,
 				721891201FB55659002E270E /* bkcolor.xml in Resources */,
@@ -4239,6 +4515,7 @@
 				721891401FB55659002E270E /* circlebg.xml in Resources */,
 				721891691FB55659002E270E /* edittext_color2.xml in Resources */,
 				72BA5FAE1FBAB2FE0078EE6E /* bluetoothdevicemousered.png in Resources */,
+				72FDF76D20B3B5BB00057084 /* utorrent_torrent_item.xib in Resources */,
 				721892FC1FB5565A002E270E /* webmanager_setting_arrow.png in Resources */,
 				721891C81FB5565A002E270E /* list_divider01.xml in Resources */,
 				721891E51FB5565A002E270E /* logo_return_redarrow.png in Resources */,
@@ -4270,6 +4547,7 @@
 				7218926A1FB5565A002E270E /* selectedall_normal.png in Resources */,
 				721892111FB5565A002E270E /* my_btn00.xml in Resources */,
 				7220C6142006FDD000ECC879 /* cellView.xib in Resources */,
+				72651A5720E8BF7900B5DA64 /* tab06_groupitem.xib in Resources */,
 				721892A01FB5565A002E270E /* tab_me_pressed.png in Resources */,
 				72BA5FC81FBAB2FE0078EE6E /* arrowleft_belongto2345.png in Resources */,
 				721891AC1FB55659002E270E /* install.png in Resources */,
@@ -4319,6 +4597,7 @@
 				721891771FB55659002E270E /* folder.png in Resources */,
 				721892181FB5565A002E270E /* myinfo.png in Resources */,
 				721892441FB5565A002E270E /* playlist.png in Resources */,
+				725EC20320A189A600E52016 /* webmaneger_87lou.png in Resources */,
 				721892971FB5565A002E270E /* tab06_item_merge.png in Resources */,
 				721892001FB5565A002E270E /* music3.jpg in Resources */,
 				721892991FB5565A002E270E /* tab06_normal.png in Resources */,
@@ -4377,6 +4656,7 @@
 				7237C90E207DFA0600572FF4 /* page02.html in Resources */,
 				7218927A1FB5565A002E270E /* shape_origin_point_white.xml in Resources */,
 				724EFBE2205D07BF0045CA1C /* logo_cast_red.png in Resources */,
+				72651A5220E72E5700B5DA64 /* tab06_addgroup.png in Resources */,
 				721892591FB5565A002E270E /* registeroperator.png in Resources */,
 				7218922C1FB5565A002E270E /* notepad.png in Resources */,
 				7218917C1FB55659002E270E /* frag04_sharefile_icon.png in Resources */,
@@ -4400,6 +4680,7 @@
 				721891F91FB5565A002E270E /* movie.jpg in Resources */,
 				721891431FB55659002E270E /* circlecornerllbg.xml in Resources */,
 				721891231FB55659002E270E /* bottom_bar.xml in Resources */,
+				725EC1FD20A1833F00E52016 /* leshi_logo.png in Resources */,
 				721891501FB55659002E270E /* coupon_left_red.png in Resources */,
 				72BA5FCB1FBAB2FE0078EE6E /* exit_press.png in Resources */,
 				721892F21FB5565A002E270E /* webmanager_movie.jpg in Resources */,
@@ -4412,6 +4693,7 @@
 				721893121FB5565A002E270E /* webmanager_top_unselect.xml in Resources */,
 				721892F41FB5565A002E270E /* webmanager_myinfo.png in Resources */,
 				7218911E1FB55659002E270E /* bg_view_enter_edit_left_selector.xml in Resources */,
+				725EC1F720A17D0D00E52016 /* ic_help.png in Resources */,
 				721892C21FB5565A002E270E /* tx2.png in Resources */,
 				721891BC1FB5565A002E270E /* life_icon_xinyongka.png in Resources */,
 				7225F85D207A14F9004C8BB6 /* About.txt in Resources */,
@@ -4469,6 +4751,7 @@
 				721891961FB55659002E270E /* icon_notice.png in Resources */,
 				721892F31FB5565A002E270E /* webmanager_movietext_color.xml in Resources */,
 				721891481FB55659002E270E /* circlecornersmallllbgselected.xml in Resources */,
+				72651A4D20E5FC4700B5DA64 /* logout.png in Resources */,
 				721891D91FB5565A002E270E /* logo_loading.png in Resources */,
 				721891C61FB5565A002E270E /* linearlayout_selector02.xml in Resources */,
 				721891AA1FB55659002E270E /* indicator_unselect.png in Resources */,
@@ -4486,6 +4769,7 @@
 				721892861FB5565A002E270E /* sound_volume.png in Resources */,
 				7218912E1FB55659002E270E /* btn_rightnormal.png in Resources */,
 				7218922D1FB5565A002E270E /* nothing.webp in Resources */,
+				725EC1F920A1818100E52016 /* tencent_logo.png in Resources */,
 				721892BB1FB5565A002E270E /* tv_offline_top.png in Resources */,
 				724EFBE1205D07BF0045CA1C /* ic_music.png in Resources */,
 				721892791FB5565A002E270E /* shape_origin_point_pink.xml in Resources */,
@@ -4499,6 +4783,7 @@
 				727F31302047E2FD000144D6 /* File_item_cell.xib in Resources */,
 				7218917E1FB55659002E270E /* gradient_bottom_top.xml in Resources */,
 				721891ED1FB5565A002E270E /* mini_avatar_shadow.png in Resources */,
+				72CC16D520EB221A001E9AA7 /* icon_mainphone.png in Resources */,
 				721891C91FB5565A002E270E /* list_divider03.xml in Resources */,
 				721891651FB55659002E270E /* downloadstate.png in Resources */,
 				721892021FB5565A002E270E /* music5.jpg in Resources */,
@@ -4524,6 +4809,7 @@
 				721891181FB55659002E270E /* barback03_right_normal.xml in Resources */,
 				721891681FB55659002E270E /* edittext_color1.xml in Resources */,
 				721891EE1FB5565A002E270E /* mm_title_back_focused.9.png in Resources */,
+				72CC16CD20EA1DB6001E9AA7 /* tab_06_imggroupsetting.png in Resources */,
 				7218928F1FB5565A002E270E /* tab02_normal.png in Resources */,
 				721891F61FB5565A002E270E /* more.png in Resources */,
 				721892E91FB5565A002E270E /* webmanager_ic_downloaded.png in Resources */,
@@ -4698,6 +4984,7 @@
 			files = (
 				722879EA1FCEB48700BC2765 /* ServerModel.m in Sources */,
 				7220C61E2009F65600ECC879 /* PCInforBean.m in Sources */,
+				72678DB320D20F8D0065ECD2 /* LoginMsg.pbobjc.m in Sources */,
 				7266EA2F1FE8001700CFD247 /* IPInforMessageBean.m in Sources */,
 				7242FA11206A31A60069CE69 /* tab02_audiolib_item.m in Sources */,
 				72A95A542019A18600CDE28C /* FileInforFormat.m in Sources */,
@@ -4707,7 +4994,6 @@
 				72287ABE1FCFE83D00BC2765 /* GetDownloadFileInfo.pbobjc.m in Sources */,
 				7225F83E207A1312004C8BB6 /* WebSocket.m in Sources */,
 				72D1E8F120186902004262B1 /* PCFileSysViewController.m in Sources */,
-				72287ABF1FCFE83D00BC2765 /* GetGroupInfoMsg.pbobjc.m in Sources */,
 				72058CAD20563AF200A4DA97 /* RebootDialog.m in Sources */,
 				72D171E3204D7DE50069992A /* Update_ReceiveMsgBean.m in Sources */,
 				723F248220986C8C00A6DE9E /* MyTableView.m in Sources */,
@@ -4719,6 +5005,8 @@
 				72B3ECFB2089B9640090B624 /* fileIndexToImgId.m in Sources */,
 				7266EA2C1FE7F0AB00CFD247 /* IPInforBean.m in Sources */,
 				72EEB52F206B38DD004F30AB /* Tab02FolderListItemDeleteDialog.m in Sources */,
+				72CC16DB20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m in Sources */,
+				72651A5020E6006F00B5DA64 /* LogoutMsg.pbobjc.m in Sources */,
 				721992AD209ADF5300793C32 /* Share_File_Dialog.m in Sources */,
 				7266EA271FE7EEE800CFD247 /* FillingIPInforList.m in Sources */,
 				7225F841207A136F004C8BB6 /* MyHTTPConnection.m in Sources */,
@@ -4726,14 +5014,12 @@
 				7238D5B21FDE34DA00AC2F6C /* RegisterFinish.m in Sources */,
 				720056801FD51BF60019788E /* MyUIApplication.m in Sources */,
 				72287ABB1FCFE83D00BC2765 /* ChatData.pbobjc.m in Sources */,
-				72287AB91FCFE83D00BC2765 /* CreateGroupChatMsg.pbobjc.m in Sources */,
 				7227EC60207B18E500690B5C /* listBottomDialog_app.m in Sources */,
+				72FDF77420B3C20600057084 /* TorrentUtils.m in Sources */,
 				72BB5CC21FD931EA0005BE59 /* CityPickerViewController.m in Sources */,
-				725355C420809F3600FA5B34 /* LoginMsg.pbobjc.m in Sources */,
 				7225F85F207A14F9004C8BB6 /* DDASLLogger.m in Sources */,
 				72287AA61FCFE83D00BC2765 /* ApplicationData.pbobjc.m in Sources */,
 				72E1ABEA206E057B0056DEEF /* tab02_imagelib_item.m in Sources */,
-				72287AA91FCFE83D00BC2765 /* ChangeGroupMsg.pbobjc.m in Sources */,
 				72885E242067F8DB009366C5 /* FileItemForMedia.m in Sources */,
 				72B3ECF72089B67D0090B624 /* tab06_fileitem.m in Sources */,
 				722C473F20524E2400C7E369 /* Process_item.m in Sources */,
@@ -4742,10 +5028,12 @@
 				72287AA21FCFE83D00BC2765 /* AccreditMsg.pbobjc.m in Sources */,
 				720158E820009EB100913961 /* TVAppHelper.m in Sources */,
 				720158B81FFB5DBE00913961 /* Send2SpecificPCThread.m in Sources */,
+				72CC16CB20EA1949001E9AA7 /* GroupChat.m in Sources */,
 				72287AB61FCFE83D00BC2765 /* SendDownloadMsg.pbobjc.m in Sources */,
 				7225F863207A14F9004C8BB6 /* ContextFilterLogFormatter.m in Sources */,
 				7220C62F201071DE00ECC879 /* MediafileHelper.m in Sources */,
 				72287AA01FCFE83D00BC2765 /* DeleteFriendMsg.pbobjc.m in Sources */,
+				728B024320E37CA600655F7C /* PersonalSettingsMsg.pbobjc.m in Sources */,
 				72EEB534206B417C004F30AB /* tab02_listdialog.m in Sources */,
 				723F246E2094707F00A6DE9E /* FileListDialog.m in Sources */,
 				72B3ECFE2089C4CD0090B624 /* dealFriendRequest.m in Sources */,
@@ -4755,6 +5043,7 @@
 				7225F83D207A1312004C8BB6 /* HTTPRedirectResponse.m in Sources */,
 				72648A06204FD6EB003B173B /* computerMonitorViewController.m in Sources */,
 				723F246B2094561E00A6DE9E /* UserInfoListDialog.m in Sources */,
+				728B023D20E36C6300655F7C /* ReceiveDownloadProcessFormat.m in Sources */,
 				722C944D1FFA4AA8009973FE /* NoWifiNoticeView.m in Sources */,
 				72868EE92090219D00FD0C26 /* tab06_downloadrequestitem.m in Sources */,
 				7225F864207A14F9004C8BB6 /* DispatchQueueLogFormatter.m in Sources */,
@@ -4771,6 +5060,7 @@
 				728B7143208867FF00B7C18D /* myFileList.m in Sources */,
 				727F312B2046E9CD000144D6 /* diskContentVC.m in Sources */,
 				72287AA41FCFE83D00BC2765 /* GetUserInfoMsg.pbobjc.m in Sources */,
+				728B023520E32FC700655F7C /* ProgressObj.m in Sources */,
 				720158C61FFC754700913961 /* onHandler.m in Sources */,
 				7219929D2099848A00793C32 /* DownloadFileModel.m in Sources */,
 				720158BF1FFB66DF00913961 /* CommandUtil.m in Sources */,
@@ -4782,35 +5072,42 @@
 				723F246220942DDB00A6DE9E /* HistoryMsg.m in Sources */,
 				72FDF9972053A37600232F4D /* Process_detail_dialog.m in Sources */,
 				72287AC21FCFE83D00BC2765 /* AddFriendMsg.pbobjc.m in Sources */,
+				72CC16D320EA2646001E9AA7 /* GroupChatObj.m in Sources */,
 				72BB5CCB1FD979B70005BE59 /* GDataXMLNode.m in Sources */,
 				7225F861207A14F9004C8BB6 /* DDLog.m in Sources */,
 				72F90BEE1FB956AB0058DC10 /* MainTabbarController.m in Sources */,
 				72DE1005206C8BCF00A48742 /* audioSetViewController.m in Sources */,
 				72E1ABF9206FAE0F0056DEEF /* imageSetContentViewController.m in Sources */,
+				7279CDEA20EA150B00D73438 /* GetGroupInfoMsg.pbobjc.m in Sources */,
 				72287AAC1FCFE83D00BC2765 /* OffLineMsg.pbobjc.m in Sources */,
+				72FDF76C20B3B5BB00057084 /* utorrent_torrent_item.m in Sources */,
 				72DE1009206CBB3D00A48742 /* tab02_audioset_item.m in Sources */,
 				722879E11FCE7E2600BC2765 /* Base.m in Sources */,
+				72FDF77E20B52A8900057084 /* utorrent_file_item.m in Sources */,
 				72287AB81FCFE83D00BC2765 /* ReceiveChatMsg.pbobjc.m in Sources */,
-				72287AB71FCFE83D00BC2765 /* AddFileMsg.pbobjc.m in Sources */,
 				72D1E8F920187D2F004262B1 /* DiskInformat.m in Sources */,
 				7225F85E207A14F9004C8BB6 /* DDAbstractDatabaseLogger.m in Sources */,
 				7220C62B20106FC200ECC879 /* MediaItem.m in Sources */,
 				72B3ECF32089B1560090B624 /* UserData.pbobjc.m in Sources */,
 				72251484208EB5EE00A268AC /* RequestFriendObj.m in Sources */,
 				72A95A482019789B00CDE28C /* prepareDataForFragment.m in Sources */,
+				7279CDE720EA0C6F00D73438 /* groupObj.m in Sources */,
 				72D1E8ED20186855004262B1 /* UIView+Extension.m in Sources */,
+				72FDF77720B512BB00057084 /* UTFileViewController.m in Sources */,
 				72F07ED620557C9500F02C92 /* TVDevicesUIViewController.m in Sources */,
 				72DE100D206CCB4E00A48742 /* audioSetContentViewController.m in Sources */,
 				72287AB51FCFE83D00BC2765 /* GetPersonalInfoMsg.pbobjc.m in Sources */,
 				720158F12000CD1D00913961 /* tvpcAppHelper.m in Sources */,
 				727D11B11FF23F5A00383B40 /* FriendRequestDBManager.m in Sources */,
 				720158B51FFB5CAF00913961 /* IdentityVerify.m in Sources */,
+				72651A5620E8BF7900B5DA64 /* tab06_groupitem.m in Sources */,
 				723F247A209704F500A6DE9E /* DownloadStateFragment.m in Sources */,
 				72058CBE2056816900A4DA97 /* exeContentVC.m in Sources */,
 				72A09FBC1FD65DDA000214B6 /* RegisterUserInfo.m in Sources */,
 				72E1ABE6206DD0180056DEEF /* imageLibViewController.m in Sources */,
 				720158E41FFF518600913961 /* RemoteDownloadActivityViewController.m in Sources */,
 				720158D91FFF469C00913961 /* TVPCNetStateChangeEvent.m in Sources */,
+				725EC20C20A1A41C00E52016 /* MainActivity.m in Sources */,
 				723F3F6520908EBA0036D81E /* MKJChatTableViewCell.m in Sources */,
 				727F31282046E990000144D6 /* downloadVC.m in Sources */,
 				7254E4E4204E3380001711BF /* SettingPwdViewController.m in Sources */,
@@ -4824,13 +5121,16 @@
 				72287AA81FCFE83D00BC2765 /* DownloadData.pbobjc.m in Sources */,
 				72F90BF81FB95D8E0058DC10 /* Fragment2ViewController.m in Sources */,
 				728B7140208859F300B7C18D /* userObj.m in Sources */,
+				728B022C20E0E72400655F7C /* ReceivedDownloadListFormat.m in Sources */,
 				72868EF020904E4900FD0C26 /* ChatObj.m in Sources */,
 				72D1E8E7201864C1004262B1 /* AVLoadingIndicatorView.m in Sources */,
 				723F64F31FF9DC49005A692C /* nowifiView.m in Sources */,
 				72058CB520566AAB00A4DA97 /* RegisterOperatorVC.m in Sources */,
 				727D11AE1FF23F4100383B40 /* ChatDBManager.m in Sources */,
+				725EC21320A4002400E52016 /* TorrentFile.m in Sources */,
 				720158CC1FFCB16600913961 /* MyConnector.m in Sources */,
 				72287AAE1FCFE83D00BC2765 /* SendChatMsg.pbobjc.m in Sources */,
+				72CC16D020EA21FA001E9AA7 /* GroupChatDBManager.m in Sources */,
 				721893331FB571CC002E270E /* LoginViewController.m in Sources */,
 				7225F82E207A1312004C8BB6 /* DDData.m in Sources */,
 				7242FA0A2069EAB80069CE69 /* recentVideosViewController.m in Sources */,
@@ -4843,12 +5143,16 @@
 				720158BC1FFB624B00913961 /* PCCommandItem.m in Sources */,
 				72F90C091FB98EB90058DC10 /* TransitionController.m in Sources */,
 				7227EC63207B634400690B5C /* LocalSetListContainer.m in Sources */,
+				728B023220E0E7C300655F7C /* ReceiveData.m in Sources */,
 				72FDAA722068C6D4003E7A1D /* ReceiveCommandFromTVPlayer.m in Sources */,
 				7254E4F4204ECCED001711BF /* SettingPwdHandler.m in Sources */,
+				725EC21F20A4377B00E52016 /* UrlUtils.m in Sources */,
+				728B023920E35B6900655F7C /* tab06_download_manager_stateitem.m in Sources */,
 				7245BFA82050E61800626852 /* ProcessFormat.m in Sources */,
 				723F24852098817800A6DE9E /* ActionDialog_reName.m in Sources */,
 				72A95A572019A1DD00CDE28C /* FolderInforFormat.m in Sources */,
 				72287AC01FCFE83D00BC2765 /* AgreeAddFriendMsg.pbobjc.m in Sources */,
+				72A0ADFD20E0E53500FD5ED6 /* DownloadBean.m in Sources */,
 				722879E71FCE9D4000BC2765 /* NetworkPacket.m in Sources */,
 				72C39D6C208F16B100FE664D /* dealFileRequest.m in Sources */,
 				720158EB20009FFF00913961 /* TVCommandItem.m in Sources */,
@@ -4864,6 +5168,7 @@
 				72287ABA1FCFE83D00BC2765 /* ChangeFriendMsg.pbobjc.m in Sources */,
 				720158F62001F39A00913961 /* AppItem.m in Sources */,
 				7225F835207A1312004C8BB6 /* MultipartFormDataParser.m in Sources */,
+				728B024020E36C8000655F7C /* DownloadProcess.m in Sources */,
 				72287AAB1FCFE83D00BC2765 /* MiracastData.pbobjc.m in Sources */,
 				7225F83B207A1312004C8BB6 /* HTTPErrorResponse.m in Sources */,
 				72E1ABF2206F86270056DEEF /* tab02_imageset_item.m in Sources */,
@@ -4872,18 +5177,20 @@
 				72772D6C206388E6006DCE79 /* videoLibViewController.m in Sources */,
 				72D1E8F5201877CA004262B1 /* FileSysDiskListCell.m in Sources */,
 				7218932D1FB56E9A002E270E /* LoginNavigationViewController.m in Sources */,
+				7279CDDD20E9C1F400D73438 /* tab06_addgroupitem.m in Sources */,
 				72945D86204BECAD0042E643 /* SettingMainViewController.m in Sources */,
 				72494C9A1FAEB1EA002B1101 /* AppDelegate.m in Sources */,
 				72287AA71FCFE83D00BC2765 /* FileData.pbobjc.m in Sources */,
 				727D11B41FF23F7F00383B40 /* FileRequestDBManager.m in Sources */,
 				727D11AB1FF20DDB00383B40 /* PreferenceUtil.m in Sources */,
+				72678DB420D20F8D0065ECD2 /* AddFileMsg.pbobjc.m in Sources */,
 				72B3ECEE20899EDC0090B624 /* tab06_useritem.m in Sources */,
 				721992B4209AF95500793C32 /* tab04_downloaded_item.m in Sources */,
 				72287A9F1FCFE83D00BC2765 /* GetExeInfoMsg.pbobjc.m in Sources */,
+				72FDF77A20B514E000057084 /* TFile.m in Sources */,
 				7225F860207A14F9004C8BB6 /* DDFileLogger.m in Sources */,
 				72D1E8FC201895D5004262B1 /* ReceivedDiskListFormat.m in Sources */,
 				72E1ABEE206F77000056DEEF /* imageSetViewController.m in Sources */,
-				72287AAF1FCFE83D00BC2765 /* LogoutMsg.pbobjc.m in Sources */,
 				721992A2209994F300793C32 /* downloadTab01Fragment.m in Sources */,
 				7254E4F0204E9039001711BF /* SettingNameHandler.m in Sources */,
 				727D11A51FF1308300383B40 /* StatisticsMsgBean.m in Sources */,
@@ -4893,7 +5200,7 @@
 				72A95A4B2019988C00CDE28C /* PCFileHelper.m in Sources */,
 				7219929620997F9000793C32 /* ReceivedAddPathToHttpMessageFormat.m in Sources */,
 				723F24652094375D00A6DE9E /* MKJChatTableViewCell_History.m in Sources */,
-				72287AB41FCFE83D00BC2765 /* PersonalSettingsMsg.pbobjc.m in Sources */,
+				728B022F20E0E78400655F7C /* ReceiveDataFormat.m in Sources */,
 				72F90BF21FB95D560058DC10 /* Fragment1ViewController.m in Sources */,
 				7254E4EA204E7366001711BF /* MyHandler.m in Sources */,
 				72F90BFB1FB95D9E0058DC10 /* Fragment3ViewController.m in Sources */,
@@ -4912,18 +5219,24 @@
 				721992B0209AE62A00793C32 /* DeleteFileMsg.pbobjc.m in Sources */,
 				72525C8820610FAB0007DB1E /* uninstallTVAppTableViewcell.m in Sources */,
 				721992A5209994FE00793C32 /* downloadTab02Fragment.m in Sources */,
+				725EC20F20A2CB6900E52016 /* DownloadManeger_torrent.m in Sources */,
 				7220C63520148E6A00ECC879 /* Send2SpecificTVThread.m in Sources */,
 				72287AAA1FCFE83D00BC2765 /* RegisterMsg.pbobjc.m in Sources */,
+				7279CDE120E9D0AA00D73438 /* CreateGroupChatMsg.pbobjc.m in Sources */,
 				72A95A5D2019B3A900CDE28C /* FileTypeConst.m in Sources */,
 				720674D72065F0F500DA3E79 /* ContentDataLoadTask.m in Sources */,
 				72868EED20903EFA00FD0C26 /* fileList.m in Sources */,
 				723F245C2092F0E400A6DE9E /* myList.m in Sources */,
 				7225F836207A1312004C8BB6 /* MultipartMessageHeader.m in Sources */,
+				72651A5A20E8CB9B00B5DA64 /* AddGroup.m in Sources */,
 				7242FA0D206A0D570069CE69 /* audioLibViewController.m in Sources */,
 				72FDF99D2053AE5F00232F4D /* Process_close_dialog.m in Sources */,
+				725EC1F520A178AA00E52016 /* StartActivity.m in Sources */,
 				72FDF9A0205426D500232F4D /* computerSettingViewController.m in Sources */,
 				7298BDFD2056BD400018FC8C /* exe_item_cell.m in Sources */,
+				72FDF76820B3B04800057084 /* UTorrentViewController.m in Sources */,
 				725355C1208083FC00FA5B34 /* ActionDialog_launch.m in Sources */,
+				725EC21720A409A800E52016 /* torrentFileItem.m in Sources */,
 				7200567D1FD510560019788E /* SharedflieBean.m in Sources */,
 				72868EE5209013A000FD0C26 /* fileObj.m in Sources */,
 				720158DF1FFF4AAC00913961 /* RequestFormat.m in Sources */,
@@ -4956,6 +5269,7 @@
 				723F245F2092F29100A6DE9E /* sortFIleList.m in Sources */,
 				7230A88A2081BF2D00C93008 /* SendCode.pbobjc.m in Sources */,
 				728B713D2088402C00B7C18D /* searchFriend.m in Sources */,
+				72FDF77120B3BFC400057084 /* Torrent.m in Sources */,
 				72DE1011206CDBF100A48742 /* tab02_audioset_content_item.m in Sources */,
 				727F31252046E961000144D6 /* sharedFileIntentVC.m in Sources */,
 				72FDAA6E20688E56003E7A1D /* tab02_vediolib_item.m in Sources */,
@@ -4963,7 +5277,9 @@
 				72945D89204BF0D70042E643 /* SettingNavigationVC.m in Sources */,
 				72EA1CB12074AB0400EA2C84 /* newAES.m in Sources */,
 				7225F85C207A14F9004C8BB6 /* GCDAsyncSocket.m in Sources */,
+				7279CDE420E9D25600D73438 /* ChangeGroupMsg.pbobjc.m in Sources */,
 				72A09FC71FD7E16A000214B6 /* RegisterPersonalInfo.m in Sources */,
+				72CC16D820EB3C80001E9AA7 /* SettingMainPhoneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,9 +22,10 @@ extern NSString* DBConst_tableItem_peer_id;
 extern NSString* DBConst_tableItem_file_name;
 extern NSString* DBConst_tableItem_file_date;
 extern NSString* DBConst_tableItem_file_size;
-
+extern NSString* DBConst_tableItem_groupId;
 @interface DBConst : NSObject
 + (NSString*)chatTB;
 + (NSString*)friendTB;
 + (NSString*)fileRequestTB;
++ (NSString*)groupchatTB;
 @end

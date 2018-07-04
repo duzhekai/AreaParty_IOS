@@ -29,11 +29,41 @@ CF_EXTERN_C_BEGIN
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - Enum LogoutReq_LogoutType
+
+typedef GPB_ENUM(LogoutReq_LogoutType) {
+  LogoutReq_LogoutType_Mobile = 0,
+  LogoutReq_LogoutType_Pc = 1,
+
+  /** 强制PC用户下线 */
+  LogoutReq_LogoutType_PcForce = 2,
+};
+
+GPBEnumDescriptor *LogoutReq_LogoutType_EnumDescriptor(void);
+
+/**
+ * Checks to see if the given value is defined by the enum or was not known at
+ * the time this source was generated.
+ **/
+BOOL LogoutReq_LogoutType_IsValidValue(int32_t value);
+
 #pragma mark - Enum LogoutRsp_ResultCode
 
 typedef GPB_ENUM(LogoutRsp_ResultCode) {
+  /** 手机 */
   LogoutRsp_ResultCode_Success = 0,
   LogoutRsp_ResultCode_Fail = 1,
+
+  /** PC主动 */
+  LogoutRsp_ResultCode_PcSuccess = 2,
+  LogoutRsp_ResultCode_PcFail = 3,
+
+  /** PC强制下线请求方 */
+  LogoutRsp_ResultCode_PcForceSuccess = 4,
+  LogoutRsp_ResultCode_PcForceFail = 5,
+
+  /** PC被强制下线方 */
+  LogoutRsp_ResultCode_PcForceLogout = 6,
 };
 
 GPBEnumDescriptor *LogoutRsp_ResultCode_EnumDescriptor(void);
@@ -61,7 +91,20 @@ BOOL LogoutRsp_ResultCode_IsValidValue(int32_t value);
 
 #pragma mark - LogoutReq
 
+typedef GPB_ENUM(LogoutReq_FieldNumber) {
+  LogoutReq_FieldNumber_LogoutType = 1,
+  LogoutReq_FieldNumber_UserId = 2,
+};
+
 @interface LogoutReq : GPBMessage
+
+/** 由于手机端已经写死了所以此处为optional */
+@property(nonatomic, readwrite) LogoutReq_LogoutType logoutType;
+
+@property(nonatomic, readwrite) BOOL hasLogoutType;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *userId;
+/** Test to see if @c userId has been set. */
+@property(nonatomic, readwrite) BOOL hasUserId;
 
 @end
 

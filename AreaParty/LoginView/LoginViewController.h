@@ -31,6 +31,7 @@
 #import "onHandler.h"
 #import "LoginSettingViewController.h"
 #import "PreferenceUtil.h"
+#import "GroupData.pbobjc.h"
 @class Base;
 
 extern Base* Login_base;
@@ -38,6 +39,7 @@ extern NSMutableArray<UserItem*> *Login_userFriend;
 extern NSMutableArray<UserItem*> *Login_userNet;
 extern NSMutableArray<UserItem*> *Login_userShare;
 extern NSMutableArray<FileItem*> *Login_files;
+extern NSMutableArray<GroupItem*> *Login_userGroups;
 extern NSString* Login_userId;
 extern NSString* Login_userName;
 extern NSString* Login_userMac;
@@ -51,6 +53,7 @@ extern myChatList* Login_myChats;
 @property (weak, nonatomic) IBOutlet UIButton *Login_btn;
 @property (weak, nonatomic) IBOutlet UIButton *offline;
 @property (strong, nonatomic) UIAlertController *alertController;
+@property (weak, nonatomic) IBOutlet UIImageView *lauch_pic;
 - (IBAction)Press_login_btn:(UIButton *)sender;
 - (IBAction)Press_offline_btn:(id)sender;
 - (IBAction)Press_LoginByVerificationCode_btn:(id)sender;

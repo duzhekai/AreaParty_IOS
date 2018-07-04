@@ -87,6 +87,10 @@ int const OrderConst_deleteShareFileSuccess = 0x614;
 int const OrderConst_shareFileFail = 0x611;
 int const OrderConst_addChatNum = 0x612;
 int const OrderConst_addFileRequest = 0x613;
+int const OrderConst_addGroupRequest = 0x615;
+int const OrderConst_showGroupFiles = 0x616;
+int const OrderConst_updateGroupInfo = 0x617;
+int const OrderConst_deleteGroupInfo = 0x618;
 //downloadFragment
 int const OrderConst_torrentFileStartReq = 0x6100;
 int const OrderConst_torrentFilePauseReq = 0x6101;
@@ -153,6 +157,7 @@ NSString* const OrderConst_addPathToHttp_command = @"AddDirsHTTP";
 
 NSString* const OrderConst_dlnaCastToTV_Command = @"OPEN_HTTP_MEDIA";
 
+NSString* const OrderConst_UTOrrent = @"OPEN_UTORRENT";
 NSString* const OrderConst_sysAction_name = @"SYS";
 NSString* const OrderConst_appAction_name = @"APP";
 NSString* const OrderConst_identityAction_name = @"SECURITY";
@@ -220,6 +225,18 @@ NSString* const OrderConst_GET_AREAPARTY_PATH = @"GETAREAPARTYPATH";
 NSString* const OrderConst_VLCAction_Subtitle_Before_SecondCommand = @"SUBTITLE_BEFORE";
 NSString* const OrderConst_VLCAction_SubtitleDelay_SecondCommand = @"SUBTITLE_DELAY";
 NSString* const OrderConst_CLOSERDP = @"RDP_BACK";
+
+NSString* const OrderConst_GETDOWNLOADSTATE = @"GETDOWNLOADSTATE";
+NSString* const OrderConst_GETDOWNLOADProcess = @"GETPROCESS";
+NSString* const OrderConst_STOPDOWNLOAD = @"STOPDOWNLOAD";
+NSString* const OrderConst_RECOVERDOWNLOAD = @"RECOVERDOWNLOAD";
+NSString* const OrderConst_DELETEDOWNLOAD = @"DELETEDOWNLOAD";
+
+NSString* const OrderConst_BLUETOOTH = @"BLUETOOTH";
+NSString* const OrderConst_openBLUETOOTH = @"OPEN_AND_SCAN_BLUETOOTH";
+NSString* const OrderConst_closeBLUETOOTH = @"CLOSE_BLUETOOTH";
+NSString* const OrderConst_connectBLUETOOTH = @"BOND_OR_CONNECT_BLUETOOTH";
+NSString* const OrderConst_unpairBlueTooth = @"BLUETOOTH_UNPAIR";
 @implementation OrderConst
 
 @end

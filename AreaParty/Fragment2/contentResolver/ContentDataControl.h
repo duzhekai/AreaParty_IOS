@@ -16,4 +16,5 @@
 + (NSMutableDictionary<NSString*, NSMutableArray<FileItemForMedia*>*>*)getmPhotoFolder;
 + (NSMutableDictionary<NSString*, NSMutableArray<FileItemForMedia*>*>*)getmVideoFolder;
 + (NSMutableDictionary<NSString*, NSMutableArray<FileItemForMedia*>*>*)getmMusicFolder;
++ (void) addPCDownloadFileListByType:(File_Sys_Type) type List:(NSMutableArray<FileItemForMedia*>*) fileItemList;
 @end

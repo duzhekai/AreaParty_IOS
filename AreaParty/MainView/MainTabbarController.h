@@ -19,6 +19,7 @@
 @class FriendRequestDBManager;
 @class FileRequestDBManager;
 @class ChatDBManager;
+@class GroupChatDBManager;
 extern MyHandler* MainTabbarController_handlerTab01;
 extern MyHandler* MainTabbarController_handlerTab06;
 extern MyHandler* MainTabbarController_btHandler;
@@ -32,6 +33,7 @@ extern DownloadStateFragment* MainTabbarController_DownloadStateFragment;
 + (FriendRequestDBManager*)getFriendRequestDBManager;
 + (FileRequestDBManager*)getFileRequestDBManager;
 + (ChatDBManager*) getChatDBManager;
++ (GroupChatDBManager*) getGroupChatDBManager;
 + (NSUserDefaults*) getSp;
 @end
 

@@ -62,6 +62,49 @@ static NSMutableDictionary<NSString*, NSMutableArray<FileItemForMedia*>*>* mPhot
         }
     }
 }
++ (void) addPCDownloadFileListByType:(File_Sys_Type) type List:(NSMutableArray<FileItemForMedia*>*) fileItemList {
+    if (fileItemList == nil) {
+        return;
+    }
+    switch (type){
+        case video:{
+            for (FileItemForMedia* f in fileItemList){
+                NSString* path = @"PCDownloadVideos";
+                NSMutableArray<FileItemForMedia*>* fileItems1 = [mVideoFolder objectForKey:path];
+                if (fileItems1 == nil){
+                    fileItems1 =  [[NSMutableArray alloc] init];
+                    [mVideoFolder setObject:fileItems1 forKey:path];
+                }
+                [fileItems1 addObject:f];
+            }
+            break;
+        }
+        case music:{
+            for (FileItemForMedia* f in fileItemList){
+                NSString* path = @"PCDownloadMusics";
+                NSMutableArray<FileItemForMedia*>* fileItems1 = [mMusicFolder objectForKey:path];
+                if (fileItems1 == nil){
+                    fileItems1 =  [[NSMutableArray alloc] init];
+                    [mMusicFolder setObject:fileItems1 forKey:path];
+                }
+                [fileItems1 addObject:f];
+            }
+            break;
+        }
+        case photo:{
+            for (FileItemForMedia* f in fileItemList){
+                NSString* path = @"PCDownloadPhotos";
+                NSMutableArray<FileItemForMedia*>* fileItems1 = [mPhotoFolder objectForKey:path];
+                if (fileItems1 == nil){
+                    fileItems1 =  [[NSMutableArray alloc] init];
+                    [mPhotoFolder setObject:fileItems1 forKey:path];
+                }
+                [fileItems1 addObject:f];
+            }
+            break;
+        }
+    }
+}
 + (NSArray<NSString*>*) getFolder:(File_Sys_Type) fileSystemType{
     switch (fileSystemType){
         case video:return [mVideoFolder allKeys];

@@ -11,8 +11,14 @@
 #import "SettingNameHandler.h"
 #import "SettingPwdHandler.h"
 #import "SettingAddressHandler.h"
+#import "SettingMainPhoneHandler.h"
 #import "AlertRequestViewController.h"
-@implementation Base
+NSDate* aliveDate;
+int _random = 0;
+@implementation Base{
+    int r;
+    NSTimer* timer;
+}
 int const HEAD_INT_SIZE = 4;
 int const Base_FILENUM = 3;
 - (instancetype)initWithHost:(NSString*)host andPort:(int)port
@@ -37,6 +43,27 @@ int const Base_FILENUM = 3;
     }
     return self;
 }
+//- (void) timer{
+//    // TODO Auto-generated method stub
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        timer = [NSTimer timerWithTimeInterval:10 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//            if (r != _random){
+//                [timer invalidate];
+//                return;
+//            }
+//            NSDate* date = [NSDate date];
+//            long a = [date timeIntervalSince1970];
+//            long b = [aliveDate timeIntervalSince1970];
+//            int c = (int)(a - b);
+//            if (c > 21){//25s没有接受到KEEP_ALIVE_SYNC,连接可能断开，尝试重新连接
+//                if ([NetUtil getNetWorkStates] != AFNetworkReachabilityStatusNotReachable ){
+//                    //reLogin();
+//                }
+//                [timer invalidate];
+//            }
+//        }];
+//    });
+//}
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode{
     //    NSStreamEventOpenCompleted = 1UL << 0,//输入输出流打开完成
     //    NSStreamEventHasBytesAvailable = 1UL << 1,//有字节可读
@@ -65,30 +92,29 @@ int const Base_FILENUM = 3;
     }
 }
 -(NSData*) readFromServer:(NSInputStream*) inputstream{
-    Byte sizeByte[12];
-    [inputstream read:sizeByte maxLength:sizeof(sizeByte)];
-    
-    int size = [DataTypeTranslater bytesToInt:sizeByte offset:0];
-    if(size == 0){
-        return [NSData dataWithBytes:sizeByte length:0];
-    }
-    int count = size -12;
-    Byte b[count];
-    int readCount = 0;
     @try{
-    while(readCount < count){
-        readCount += [inputstream read:b+readCount maxLength:count-readCount];
-    }
+        Byte sizeByte[12];
+        [inputstream read:sizeByte maxLength:sizeof(sizeByte)];
+        
+        int size = [DataTypeTranslater bytesToInt:sizeByte offset:0];
+        if(size == 0){
+            return [NSData dataWithBytes:sizeByte length:0];
+        }
+        int count = size -12;
+        Byte b[count];
+        int readCount = 0;
+        while(readCount < count){
+            readCount += [inputstream read:b+readCount maxLength:count-readCount];
+        }
+        Byte all[size];
+        memcpy(all,sizeByte,12);
+        memcpy(all+12,b,count);
+        return [NSData dataWithBytes:all length:size];
     }@catch(NSException* e){NSLog(@"%@",e);}
-    Byte all[size];
-    memcpy(all,sizeByte,12);
-    memcpy(all+12,b,count);
-    return [NSData dataWithBytes:all length:size];
 }
 -(void) writeToServer:(NSOutputStream*) outputstream arrayBytes:(NSData*)bytes{
     const Byte* sendbytes = [bytes bytes];
     [outputstream write:sendbytes maxLength:[bytes length]];
-    
 }
 -(void) close{
     // 关闭输入输出流
@@ -101,17 +127,20 @@ int const Base_FILENUM = 3;
 -(int)getFileNum{
     return Base_FILENUM;
 }
-
 - (void) listen{
     NSLog(@"2321321");
+//    aliveDate = [NSDate date];
+//    [self timer];
     while(_inputStream.streamStatus == NSStreamStatusOpen && _outputStream.streamStatus == NSStreamStatusOpen){
         NSData* byteArray = [self readFromServer:_inputStream];
         const Byte* byteArray_b = [byteArray bytes];
         int size = [DataTypeTranslater bytesToInt:(Byte*)byteArray_b offset:0];
         int type = [DataTypeTranslater bytesToInt:(Byte*)byteArray_b offset:4];
+//        if (r != _random) break;//已经建立新的Base时，结束此线程
         switch(type){
             case ENetworkMessage_KeepAliveSync:
                 NSLog(@"ENetworkMessage_KeepAliveSync");
+//                aliveDate = [NSDate date];
                 [self keepAlive:byteArray andSize:size];
                 break;
             case ENetworkMessage_LoginRsp:
@@ -166,13 +195,125 @@ int const Base_FILENUM = 3;
                 NSLog(@"ENetworkMessage_DeleteFileRsp");
                 [self deleteFile:byteArray andSize:size];
                 break;
+            case ENetworkMessage_CreateGroupChatRsp:
+                NSLog(@"ENetworkMessage_CreateGroupChatRsp");
+                [self createGroupChat:byteArray andSize:size];
+                break;
+            case ENetworkMessage_GetGroupInfoRsp:
+                NSLog(@"ENetworkMessage_GetGroupInfoRsp");
+                [self getGroupInfo:byteArray andSize:size];
+                break;
+            case ENetworkMessage_ChangeGroupRsp:
+                NSLog(@"ENetworkMessage_ChangeGroupRsp");
+                [self changeGroupInfo:byteArray andSize:size];
+                break;
             default:
                 break;
       }
     }
     
 }
+- (void) changeGroupInfo:(NSData*)byteArray andSize:(int) size{
+    @try {
+        int objlength = size - [NetworkPacket getMessageObjectStartIndex];
+        Byte* byteArray_b = (Byte*)[byteArray bytes];
+        Byte objBytes[objlength];
+        for (int i = 0; i < objlength; i++)
+            objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex] + i];
+        ChangeGroupRsp* response = [ChangeGroupRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
+        if(response.resultCode == ChangeGroupRsp_ResultCode_UpdateSuccess){
+            NSMutableDictionary* updateGroupMsg = [[NSMutableDictionary alloc] init];
+            groupObj* group = [[groupObj alloc] init];
+            group.groupId = [NSString stringWithFormat:@"%d",response.groupChatId];
+            group.groupName =  response.newGroupName;
+            group.memberUserId =  response.userIdArray;
+            updateGroupMsg[@"obj"] = group;
+            updateGroupMsg[@"what"] = [NSNumber numberWithInt:OrderConst_updateGroupInfo];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MainTabbarController_handlerTab06 onHandler:updateGroupMsg];
+            });
+        }
+        if(response.resultCode == ChangeGroupRsp_ResultCode_DeleteSuccess){
+            NSMutableDictionary* updateGroupMsg = [[NSMutableDictionary alloc] init];
+            groupObj* group = [[groupObj alloc] init];
+            group.groupId = [NSString stringWithFormat:@"%d",response.groupChatId];
+            updateGroupMsg[@"obj"] = group;
+            updateGroupMsg[@"what"] = [NSNumber numberWithInt:OrderConst_deleteGroupInfo];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MainTabbarController_handlerTab06 onHandler:updateGroupMsg];
+            });
+            /**
+             * 感觉有安全隐患，List遍历中一旦出现多线程修改情况，会产生异常，
+             * 如产生异常请修改，留坑，:>
+             */
+            for(int i = 0; i< Login_userGroups.count;i++){
+                GroupItem* g = Login_userGroups[i];
+                if([g.groupId intValue] == response.groupChatId){
+                    [Login_userGroups removeObject:g];
+                    break;
+                }
+            }
+        }
+    }@catch (NSException* e){
+    }
+}
+- (void) getGroupInfo:(NSData*)byteArray andSize:(int) size{
+    @try {
+        int objlength = size - [NetworkPacket getMessageObjectStartIndex];
+        Byte* byteArray_b = (Byte*)[byteArray bytes];
+        Byte objBytes[objlength];
+        for (int i = 0; i < objlength; i++)
+            objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex] + i];
+        GetGroupInfoRsp* response = [GetGroupInfoRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
+        if([response.where isEqualToString:@"page06FragmentGroup"]){
+            NSMutableDictionary* msg = [[NSMutableDictionary alloc] init];
+            msg[@"what"] = [NSNumber numberWithInt:OrderConst_showGroupFiles];
+            msg[@"obj"] = response;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MainTabbarController_handlerTab06 onHandler:msg];
+            });
+        }
+    }@catch (NSException* e) {
+    }
+}
+- (void) createGroupChat:(NSData*)byteArray andSize:(int) size{
+    @try {
+        int objlength = size - [NetworkPacket getMessageObjectStartIndex];
+        Byte* byteArray_b = (Byte*)[byteArray bytes];
+        Byte objBytes[objlength];
+        for (int i = 0; i < objlength; i++)
+            objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex] + i];
+        CreateGroupChatRsp* response = [CreateGroupChatRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
+        if(response.resultCode == CreateGroupChatRsp_ResultCode_Fail){
 
+        }else{
+            NSString* gid = [NSString stringWithFormat:@"%d",response.groupChatId];
+            NSString* groupName = response.groupName;
+            NSString* createrId = Login_userId;
+            GroupItem* g = [[GroupItem alloc] init];
+            g.createrUserId = createrId;
+            g.groupId = gid;
+            g.groupName = groupName;
+            [Login_userGroups addObject:g];
+            [NSThread detachNewThreadWithBlock:^{
+                if (MainTabbarController_handlerTab06!= nil){
+                    NSMutableDictionary* groupMsg = [[NSMutableDictionary alloc] init];
+                    groupObj* group = [[groupObj alloc] init];
+                    group.groupId = gid;
+                    group.groupName = groupName;
+                    group.groupCreateId = createrId;
+                    groupMsg[@"what"] = [NSNumber numberWithInt:OrderConst_addGroupRequest];
+                    groupMsg[@"obj"] = group;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MainTabbarController_handlerTab06 onHandler:groupMsg];
+                    });
+                }
+            }];
+        }
+        
+    }@catch (NSException* e){
+    }
+}
 - (void)personalSetting:(NSData*)byteArray andSize:(int) size{
     @try{
         int objlength = size - [NetworkPacket getMessageObjectStartIndex];
@@ -188,6 +329,8 @@ int const Base_FILENUM = 3;
                 [[SettingPwdViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1],@"what",nil]];
             } else if (response.resultCode == PersonalSettingsRsp_ResultCode_Oldpasswordwrong) {
                 [[SettingPwdViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:2],@"what",nil]];
+            }else if (response.resultCode == PersonalSettingsRsp_ResultCode_Codewrong){
+                [[SettingPwdViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:4],@"what",nil]];
             }
         }else if(response.changeType == PersonalSettingsRsp_ChangeType_Name) {
             if (response.resultCode == PersonalSettingsRsp_ResultCode_Fail) {
@@ -200,6 +343,15 @@ int const Base_FILENUM = 3;
                 [[SettingAddressViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0],@"what",nil]];
             } else if (response.resultCode == PersonalSettingsRsp_ResultCode_Success) {
                 [[SettingAddressViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1],@"what",nil]];
+            }
+        }
+        else if (response.changeType == PersonalSettingsRsp_ChangeType_Mainmac){
+            if (response.resultCode == PersonalSettingsRsp_ResultCode_Fail){
+               [[SettingMainPhoneViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0],@"what",nil]];
+            } else if (response.resultCode == PersonalSettingsRsp_ResultCode_Success){
+               [[SettingMainPhoneViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:1],@"what",nil]];
+            }else if(response.resultCode == PersonalSettingsRsp_ResultCode_Codewrong){
+               [[SettingMainPhoneViewController getHandler] onHandler:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:2],@"what",nil]];
             }
         }
     }@catch (NSException* e) {
@@ -367,7 +519,21 @@ int const Base_FILENUM = 3;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[fileList getHandler] onHandler:msg];
                 });
-            }else if([response.where isEqualToString:@"download"]){
+            }
+            else if([response.where isEqualToString:@"group"]) {
+                long chatId = response.chatId;
+                long date = response.date;
+                NSMutableArray<NSNumber*>* msgObj = [[NSMutableArray alloc] init];
+                [msgObj addObject:[NSNumber numberWithLong:chatId]];
+                [msgObj addObject:[NSNumber numberWithLong:date]];
+                NSMutableDictionary* msg = [[NSMutableDictionary alloc] init];
+                msg[@"obj"] = msgObj;
+                msg[@"what"] = @0;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[GroupChat getHandler] onHandler:msg];
+                });
+            }
+            else if([response.where isEqualToString:@"download"]){
                 
             }else if([response.where isEqualToString:@"agreeDownload"]){
                 FileRequestDBManager* fileRequestDBManager = [MainTabbarController getFileRequestDBManager];
@@ -663,7 +829,7 @@ int const Base_FILENUM = 3;
                     [outputStream close];
                 }
             }
-            if(response.chatDataArray[0].targetType == ChatItem_TargetType_Individual){
+            if(response.chatDataArray[0].targetType == ChatItem_TargetType_Individual || response.chatDataArray[0].targetType == ChatItem_TargetType_Group ){
                 NSString* chatContent = response.chatDataArray[0].chatBody;
                 NSString* senderId = response.chatDataArray[0].sendUserId;
                 ChatObj* chat = [[ChatObj alloc] init];
@@ -852,9 +1018,11 @@ int const Base_FILENUM = 3;
         
         DeleteFileRsp* response =  [DeleteFileRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
         if(response.resultCode == DeleteFileRsp_ResultCode_Fail){
-//            if (sharedFileIntentActivity.handler != null){
-//                sharedFileIntentActivity.handler.sendEmptyMessage(2);
-//            }
+            if([sharedFileIntentVC getHandler] !=nil){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[sharedFileIntentVC getHandler] onHandler:[NSDictionary dictionaryWithObject:@2 forKey:@"what"]];
+                });
+            }
         }else if(response.resultCode == DeleteFileRsp_ResultCode_Success){
             for (int i = 0; i < [MyUIApplication getmySharedFiles].count; i++){
                 SharedflieBean* file = [MyUIApplication getmySharedFiles][i];
@@ -863,9 +1031,11 @@ int const Base_FILENUM = 3;
                     i--;
                 }
             }
-//            if (sharedFileIntentActivity.handler != null){
-//                sharedFileIntentActivity.handler.sendEmptyMessage(1);
-//            }
+            if([sharedFileIntentVC getHandler] !=nil){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [[sharedFileIntentVC getHandler] onHandler:[NSDictionary dictionaryWithObject:@1 forKey:@"what"]];
+                });
+            }
             NSMutableDictionary* shareFile06 = [[NSMutableDictionary alloc] init];
             shareFile06[@"what"] = [NSNumber numberWithInt:OrderConst_deleteShareFileSuccess];
             dispatch_async(dispatch_get_main_queue(), ^{

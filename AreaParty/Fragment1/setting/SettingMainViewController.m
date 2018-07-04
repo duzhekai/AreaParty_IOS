@@ -40,6 +40,11 @@
     _bottom_view.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
     _bottom_view.layer.shadowRadius = 2;//半径
     _bottom_view.layer.shadowOpacity = 0.25;
+    _logout_view.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _logout_view.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
+    _logout_view.layer.shadowRadius = 2;//半径
+    _logout_view.layer.shadowOpacity = 0.25;
+    
     
     SettingNavigationVC* navigationvc = (SettingNavigationVC*)self.navigationController;
     _outline = navigationvc.outline;
@@ -48,6 +53,25 @@
         [_mnewVersionInforTV setText:@"监测到新版本,点击更新"];
     } else {
         [_mnewVersionInforTV setText:@"已更新到最新版本"];
+    }
+    
+    if(Login_mainMobile){
+        NSArray* arrs = _top_view.constraints;
+        for(NSLayoutConstraint* attr in arrs){
+            if(attr.firstAttribute == NSLayoutAttributeHeight){
+                attr.constant = 180;
+            }
+        }
+        _changMainPhone_Wrap.hidden = YES;
+    }
+    else{
+        NSArray* arrs = _top_view.constraints;
+        for(NSLayoutConstraint* attr in arrs){
+            if(attr.firstAttribute == NSLayoutAttributeHeight){
+                attr.constant = 240;
+            }
+        }
+        _changMainPhone_Wrap.hidden = NO;
     }
     //[[MyUIApplication getInstance] addUiViewController:self];
 }
@@ -117,6 +141,19 @@
         }
         else{
             [Toast ShowToast:@"即将下载最新版本" Animated:YES time:1 context:self.view];
+        }
+    }
+    else if (sender == _logoutLL){
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"autoLogin"];
+        [[MyUIApplication getInstance] sendLogoutMessage];
+        [[MyUIApplication getInstance] closeAll];
+    }
+    else if (sender == _changMainPhone_LL){
+        if(_outline){
+            [Toast ShowToast:@"当前用户未登录, 不能修改地址" Animated:YES time:1 context:self.view];
+        }
+        else{
+            [self performSegueWithIdentifier:@"pushSettingMainPhoneView" sender:nil];
         }
     }
 }

@@ -55,6 +55,7 @@ static GPBFileDescriptor *AddFileMsgRoot_FileDescriptor(void) {
 @dynamic hasUserId, userId;
 @dynamic hasFileURL, fileURL;
 @dynamic hasFilePwd, filePwd;
+@dynamic fileGroupIdArray, fileGroupIdArray_Count;
 
 typedef struct AddFileReq__storage_ {
   uint32_t _has_storage_[1];
@@ -66,6 +67,7 @@ typedef struct AddFileReq__storage_ {
   NSString *userId;
   NSString *fileURL;
   NSString *filePwd;
+  GPBInt32Array *fileGroupIdArray;
 } AddFileReq__storage_;
 
 // This method is threadsafe because it is initially called
@@ -146,6 +148,15 @@ typedef struct AddFileReq__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "fileGroupIdArray",
+        .dataTypeSpecific.className = NULL,
+        .number = AddFileReq_FieldNumber_FileGroupIdArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(AddFileReq__storage_, fileGroupIdArray),
+        .flags = (GPBFieldFlags)(GPBFieldRepeated | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeInt32,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[AddFileReq class]
@@ -157,7 +168,8 @@ typedef struct AddFileReq__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\010\001\006\000\002\010\000\003\010\000\004\010\000\005\010\000\006\006\000\007\005!!\000\010\007\000";
+        "\t\001\006\000\002\010\000\003\010\000\004\010\000\005\010\000\006\006\000\007\005!!\000\010\007\000\t\000fileGroupId"
+        "\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");
@@ -177,10 +189,12 @@ typedef struct AddFileReq__storage_ {
 @dynamic hasFileInfo, fileInfo;
 @dynamic hasFileSize, fileSize;
 @dynamic hasFileDate, fileDate;
+@dynamic hasFileId, fileId;
 
 typedef struct AddFileRsp__storage_ {
   uint32_t _has_storage_[1];
   AddFileRsp_ResultCode resultCode;
+  int32_t fileId;
   NSString *fileName;
   NSString *fileInfo;
   NSString *fileSize;
@@ -238,6 +252,15 @@ typedef struct AddFileRsp__storage_ {
         .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "fileId",
+        .dataTypeSpecific.className = NULL,
+        .number = AddFileRsp_FieldNumber_FileId,
+        .hasIndex = 5,
+        .offset = (uint32_t)offsetof(AddFileRsp__storage_, fileId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeInt32,
+      },
     };
     GPBDescriptor *localDescriptor =
         [GPBDescriptor allocDescriptorForClass:[AddFileRsp class]
@@ -249,7 +272,7 @@ typedef struct AddFileRsp__storage_ {
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
-        "\005\001\n\000\002\010\000\003\010\000\004\010\000\005\010\000";
+        "\006\001\n\000\002\010\000\003\010\000\004\010\000\005\010\000\006\006\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     NSAssert(descriptor == nil, @"Startup recursed!");

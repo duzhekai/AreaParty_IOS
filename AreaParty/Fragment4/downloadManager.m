@@ -28,11 +28,11 @@
     initial_offset_x = _Indicator.frame.origin.x;
     downloadFolderFragment = MainTabbarController_DownloadFolderFragment;
     [downloadFolderFragment viewWillAppear:YES];
-    downloadFolderFragment.view.frame = CGRectMake(0, 0, SCREEN_W, _page_viewer_scrollView.frame.size.height);
+    downloadFolderFragment.view.frame = CGRectMake(0, 0, _page_viewer_scrollView.frame.size.width, _page_viewer_scrollView.frame.size.height);
     
     downloadStateFragment = MainTabbarController_DownloadStateFragment;
     [downloadStateFragment viewWillAppear:YES];
-    downloadStateFragment.view.frame = CGRectMake(SCREEN_W, 0, SCREEN_W, _page_viewer_scrollView.frame.size.height);
+    downloadStateFragment.view.frame = CGRectMake(SCREEN_W, 0, _page_viewer_scrollView.frame.size.width, _page_viewer_scrollView.frame.size.height);
     
     [_page_viewer_scrollView addSubview:downloadFolderFragment.view];
     [_page_viewer_scrollView addSubview:downloadStateFragment.view];
@@ -45,7 +45,6 @@
     // Dispose of any resources that can be recreated.
     
 }
-
 /*
 #pragma mark - Navigation
 
@@ -57,7 +56,11 @@
 */
 
 - (IBAction)Press_return:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if([MyUIApplication getselectedPCOnline]){
+        [downloadFolderFragment onkeyup:self];
+    }
+    else
+        [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(scrollView == _page_viewer_scrollView){

@@ -78,7 +78,7 @@ static NSString * getMD5String(NSString *str) {
 @property (assign, nonatomic) long long totalBytesWritten;
 @property (assign, nonatomic) long long totalBytesExpectedToWrite;
 @property (nonatomic, copy) NSProgress *progress;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSDate *date;
 @property (strong, nonatomic) NSOutputStream *stream;
 
 @property (nonatomic, assign) NSUInteger totalRead;

@@ -23,26 +23,35 @@ NSMutableArray<UserItem*> *Login_userFriend;
 NSMutableArray<UserItem*> *Login_userNet;
 NSMutableArray<UserItem*> *Login_userShare;
 NSMutableArray<FileItem*> *Login_files;
+NSMutableArray<GroupItem*> *Login_userGroups;
 NSString* Login_userId;
+NSString* Login_userPwd;
 NSString* Login_userName;
 NSString* Login_userMac;
 BOOL Login_mainMobile;
+BOOL logining = NO;
+BOOL autoLogin;
 int Login_userHeadIndex;
 myChatList* Login_myChats;
-
+NSString* marshmallowMacAddress = @"02:00:00:00:00:00";
+NSString* REGEX_MOBILE = @"^[1][3,4,5,6,7,8,9][0-9]{9}$";
+LoginViewController* Login_instance;
 @implementation LoginViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     //初始化
     timer =0;
     outline =NO;
+    Login_instance = self;
     Login_userFriend = [[NSMutableArray alloc] init];
     Login_userNet = [[NSMutableArray alloc] init];
     Login_userShare = [[NSMutableArray alloc] init];
+    Login_userGroups = [[NSMutableArray alloc] init];
     Login_files = [[NSMutableArray alloc] init];
     Login_myChats = [[myChatList alloc] init];
     NSLog(@"%@",Login_userFriend);
     // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor colorWithRed:232/255.0f green:240/255.0f blue:240/255.0f alpha:1];
     //设置navigationbar的文字和颜色
     self.navigationItem.title = @"登录";
@@ -76,11 +85,18 @@ myChatList* Login_myChats;
     _Login_btn.layer.cornerRadius = 5;
     //设置导航栏左侧按钮颜色
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    //TCPserver
+    //
+    if([[[[PreferenceUtil alloc] init]readKey:@"isHelpDialogShow_launch"] isEqualToString:@"yes"]||[[[PreferenceUtil alloc] init]readKey:@"isHelpDialogShow_launch"] ==nil){
+        [self presentViewController:[[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_launch"] animated:YES completion:nil];
+        [self showMain];
+    }
     //Userdefault
     defaults = [NSUserDefaults standardUserDefaults];
-    NSString* dftusername = [defaults stringForKey:@"USER_ID"];
-    NSString* dftpwd =[defaults stringForKey:@"USER_PWD"];
+    Login_userId = [defaults stringForKey:@"USER_ID"];
+    [_musernameTF setText:Login_userId];
+    Login_userPwd = [defaults stringForKey:@"USER_PWD"];
+    [_mpasswdTF setText:Login_userPwd];
+    autoLogin = [defaults boolForKey:@"autoLogin"];
     mport = [defaults integerForKey:@"SERVER_PORT"];
     mhost = [defaults stringForKey:@"SERVER_IP"];
     if( mport == nil){
@@ -94,11 +110,21 @@ myChatList* Login_myChats;
     if(mhost == nil){
         [MyUIApplication setAREAPARTY_NET:mhost];
     }
-    [_musernameTF setText:dftusername];
-    [_mpasswdTF setText:dftpwd];
     NSLog(@"%@",mhost);
-    if([[[[PreferenceUtil alloc] init]readKey:@"isHelpDialogShow_launch"] isEqualToString:@"yes"]||[[[PreferenceUtil alloc] init]readKey:@"isHelpDialogShow_launch"] ==nil){
-        [self presentViewController:[[UIStoryboard storyboardWithName:@"Dialogs" bundle:nil] instantiateViewControllerWithIdentifier:@"ActionDialog_launch"] animated:YES completion:nil];
+    Login_userMac = [self getMacAddress];
+    if (autoLogin && (Login_userPwd!=nil) && (Login_userId!=nil) && (Login_userMac!=nil)){//自动登录
+        if ([self isMobileNO:Login_userId]){
+            NSString* mid = [defaults stringForKey:Login_userId];
+            if (mid!=nil){
+                Login_userId = mid;
+            }
+        }
+        [NSThread detachNewThreadSelector:@selector(login) toTarget:self withObject:nil];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self showMain];
+        });
+    }else {
+        [self showMain];
     }
 }
 - (UIAlertController *)alertController{
@@ -141,6 +167,20 @@ myChatList* Login_myChats;
     if (outline == NO) {
         if ([now timeIntervalSince1970] - timer > 3) {
             @try {
+                NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+                Login_userMac = [defaults stringForKey:@"USER_MAC"];
+                Login_userId = _musernameTF.text;
+                Login_userPwd = _mpasswdTF.text;
+                [defaults setObject:Login_userId forKey:@"USER_ID"];
+                [defaults setObject:Login_userPwd forKey:@"USER_PWD"];
+                if([Login_userMac isEqualToString:@""]||Login_userMac==nil ){
+                    Login_userMac = [self getMacAddress];
+                    if (Login_userMac!=nil && ![Login_userMac isEqualToString:marshmallowMacAddress]){
+                        [defaults setObject:Login_userMac forKey:@"USER_MAC"];
+                    }
+                }
+                if(Login_userId.length ==0 || Login_userPwd.length == 0)
+                    [self onHandler:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:0] forKey:@"what"]];
                 [NSThread detachNewThreadSelector:@selector(login) toTarget:self withObject:nil];
             } @catch (NSException* e) {
                 NSLog(@"%@",e);
@@ -244,23 +284,16 @@ myChatList* Login_myChats;
     return [outstring lowercaseString];
 }
 -(void)login{
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    Login_userMac = [defaults stringForKey:@"USER_MAC"];
-    Login_userId = _musernameTF.text;
-    NSString* userPwd = _mpasswdTF.text;
-    [defaults setObject:Login_userId forKey:@"USER_ID"];
-    [defaults setObject:userPwd forKey:@"USER_PWD"];
-    if(Login_userMac == nil){
-        Login_userMac =[self getMacAddress];
-        [defaults setObject:Login_userMac forKey:@"USER_MAC"];
-    }
-    if(Login_userId.length ==0 || userPwd.length == 0)
-        [Toast ShowToast:@"请输入用户名密码" Animated:YES time:2 context:self.view];
     @try{
+        if(logining)return;
+        logining = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            logining = NO;
+        });
         Login_base = [[Base alloc] initWithHost:mhost andPort: (int)mport];
         LoginReq* loginreq = [[LoginReq alloc] init];
         [loginreq setUserId:Login_userId];
-        [loginreq setUserPassword:userPwd];
+        [loginreq setUserPassword:Login_userPwd];
         [loginreq setLoginType:LoginReq_LoginType_Mobile];
         [loginreq setUserMac:Login_userMac];
         [loginreq setMobileInfo:[self getPhoneInfo]];
@@ -355,7 +388,11 @@ myChatList* Login_myChats;
                             objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex]+i];
                         }
                         response = [LoginRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
-                        [self.alertController dismissViewControllerAnimated:YES completion:nil];
+                        @try{
+                            [self.alertController dismissViewControllerAnimated:YES completion:nil];
+                        }@catch(NSException*e){
+                            [self.alertController dismissViewControllerAnimated:YES completion:nil];
+                        }
                         break;
                     }
                 }
@@ -379,7 +416,12 @@ myChatList* Login_myChats;
             [Login_userFriend removeAllObjects];
             [Login_userNet removeAllObjects];
             [Login_userShare removeAllObjects];
+            [Login_userGroups removeAllObjects];
             [Login_base.onlineUserId addObject:Login_userId];
+            GroupItem* ggb = [[GroupItem alloc] init];
+            ggb.groupName = @"全部好友";
+            ggb.groupId = @"0";
+            ggb.createrUserId = Login_userId;
             //用户分类
             NSMutableArray* lu = [response userItemArray];
             if([lu count]!=0){
@@ -390,6 +432,7 @@ myChatList* Login_myChats;
                     }
                     if(u.isFriend){
                         [Login_userFriend addObject:u];
+                        [ggb.memberUserIdArray addObject:u.userId];
                     }
                     if(u.isSpeed&&u.isFriend){
                         [Login_userNet addObject:u];
@@ -401,6 +444,15 @@ myChatList* Login_myChats;
             }
             NSMutableArray* chats = response.chatItemArray;
             [Login_myChats setList:chats];
+            
+            NSArray<GroupItem*>* groups = response.groupItemArray;
+            [Login_userGroups addObject:ggb];
+            if(groups.count !=0) {
+                for(GroupItem* g in groups) {
+                    [Login_userGroups addObject:g];
+                }
+            }
+            
             GetUserInfoReq* userBuilder = [[GetUserInfoReq alloc] init];
             [userBuilder.targetUserIdArray addObject:Login_userId];
             [userBuilder setFileInfo:YES];
@@ -418,16 +470,24 @@ myChatList* Login_myChats;
                 for(int i =0; i < objlength;i++)
                     objBytes[i] = byteArray_b[[NetworkPacket getMessageObjectStartIndex]+i];
                 GetUserInfoRsp* fileresponse = [GetUserInfoRsp parseFromData:[NSData dataWithBytes:objBytes length:objlength] error:nil];
-                Login_userId = fileresponse.userItemArray[0].userId;
+                if (Login_instance != nil){
+                    if ([self isMobileNO:Login_userId]){
+                        NSString* userMobile = Login_userId;
+                        Login_userId = fileresponse.userItemArray[0].userId;
+                        [defaults setObject:Login_userId forKey:userMobile];
+                    }
+                }
+                //电话号码登录
                 Login_userName = fileresponse.userItemArray[0].userName;
                 Login_userHeadIndex = fileresponse.userItemArray[0].headIndex;
                 
                 if(fileresponse.resultCode == GetUserInfoRsp_ResultCode_Success){
                     if([fileresponse.userItemArray[0].userId isEqualToString:Login_userId]){
-                        Login_files = fileresponse.filesArray;
+                        //Login_files = fileresponse.filesArray;
                         NSDateFormatter* formartter = [[NSDateFormatter alloc] init];
                         [formartter setDateFormat:@"yyyy/MM/dd HH:mm"];
-                        for(FileItem* file in Login_files){
+                        for(FileItem* file in fileresponse.filesArray){
+                            [Login_files addObject:file];
                             SharedflieBean* sharedFile = [[SharedflieBean alloc] init];
                             sharedFile.mid = [file.fileId intValue];
                             sharedFile.name =file.fileName;
@@ -446,6 +506,11 @@ myChatList* Login_myChats;
             [[[NSThread alloc] initWithTarget:Login_base selector:@selector(listen) object:nil] start];
             //跳转主界面
             dispatch_async(dispatch_get_main_queue(), ^{
+                if (Login_mainMobile){//主设备自动登录
+                    [defaults setBool:YES forKey:@"autoLogin"];
+                }else {
+                    [defaults setBool:NO forKey:@"autoLogin"];
+                }
                 [self.navigationController performSegueWithIdentifier:@"pushMainView" sender: [NSDictionary dictionaryWithObjectsAndKeys:
                                                                                               [NSNumber numberWithBool:NO],@"outline",
                                                                                               Login_userId,@"userId",
@@ -488,5 +553,16 @@ myChatList* Login_myChats;
         default:
             break;
     }
+}
+- (void) showMain{
+    self.navigationController.navigationBarHidden = NO;
+    _lauch_pic.hidden = YES;
+}
+- (BOOL) isMobileNO:(NSString*) mobiles{
+    NSRange range = [mobiles rangeOfString:@"^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$" options:NSRegularExpressionSearch];
+    if (range.location != NSNotFound) {
+        return YES;
+    }
+    return NO;
 }
 @end

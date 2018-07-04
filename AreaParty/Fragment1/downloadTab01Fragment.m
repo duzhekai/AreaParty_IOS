@@ -71,20 +71,14 @@
     }
     [cell.downloadFileNameTV setText:ListData[indexPath.row].filename];
     [self setImage:cell FileName:ListData[indexPath.row].filename];
-    [cell.downloadSize setText:[NSString stringWithFormat:@"%lld/%lld",ListData[indexPath.row].totalBytesWritten,ListData[indexPath.row].totalBytesExpectedToWrite]];
+    [cell.downloadSize setText:[NSString stringWithFormat:@"%@/%@",[self getSize: ListData[indexPath.row].totalBytesWritten],[self getSize: ListData[indexPath.row].totalBytesExpectedToWrite]]];
     cell.tvProgress.progress = ListData[indexPath.row].progress.fractionCompleted;
     cell.index = indexPath;
     cell.delegate = self;
     //判断状态
     MCDownloadState state = ListData[indexPath.row].state;
     switch (state) {
-//        case MCDownloadStateNone:{
-//            [cell.netSpeed setText:@"停止"];
-//            [cell.stateButton setBackgroundColor:[UIColor colorWithRed:230/255.0 green:87/255.0 blue:87/255.0 alpha:1]];
-//            [cell.stateButton setTitle:@"下载" forState:UIControlStateNormal];
-//            [cell.stateButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            break;
-//        }
+
         case MCDownloadStateSuspened:{
             [cell.netSpeed setText:@"暂停中"];
             [cell.stateButton setBackgroundColor:[UIColor colorWithRed:46/255.0 green:204/255.0 blue:71/255.0 alpha:1]];
@@ -174,5 +168,29 @@
     [[MCDownloadManager defaultInstance] removeWithDownloadReceipt:ListData[i.row]];
     [ListData removeObjectAtIndex:i.row];
     [_recyclerView reloadData];
+}
+- (NSString*) getSize:(long long) size {
+    //如果字节数少于1024，则直接以B为单位，否则先除于1024，后3位因太少无意义
+    if (size < 1024) {
+        return [NSString stringWithFormat:@"%lldB",size];
+    } else {
+        size = size / 1024;
+    }
+    //如果原字节数除于1024之后，少于1024，则可以直接以KB作为单位
+    //因为还没有到达要使用另一个单位的时候
+    //接下去以此类推
+    if (size < 1024) {
+        return [NSString stringWithFormat:@"%lldKB",size];
+    } else {
+        size = size*10 / 1024;
+    }
+    if (size < 10240) {
+        //保留1位小数，
+        return [NSString stringWithFormat:@"%lld.%lldMB",size/10,size%10];
+    } else {
+        //保留2位小数
+        size = size * 10 / 1024;
+        return [NSString stringWithFormat:@"%lld.%lldGB",size/100,size%100];
+    }
 }
 @end

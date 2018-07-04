@@ -575,6 +575,23 @@ static NSString* pass1 = nil;
     }
     return dic;
 }
+- (void) sendLogoutMessage{
+    if (Login_userId!=nil){
+        [NSThread detachNewThreadWithBlock:^{
+            @try {
+                LogoutReq* builder = [[LogoutReq alloc] init];
+                builder.logoutType = LogoutReq_LogoutType_Mobile;
+                builder.userId = Login_userId;
+                NSData* reByteArray = [NetworkPacket packMessage:ENetworkMessage_LogoutReq packetBytes:[builder data]];
+                if (Login_base != nil){
+                    [Login_base writeToServer:Login_base.outputStream arrayBytes:reByteArray];
+                }
+            } @catch (NSException* e) {
+            }
+            
+        }];
+         }
+}
 /**
  * <summary>
  * 获取手机在wifi下的IP

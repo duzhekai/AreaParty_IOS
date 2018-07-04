@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AddToMediaListDialog : UIViewController
-
+- (IBAction)press_video_btn:(id)sender;
+- (IBAction)press_audio_btn:(id)sender;
+- (IBAction)press_pic_btn:(id)sender;
+@property(strong,nonatomic) id delegate;
 @end

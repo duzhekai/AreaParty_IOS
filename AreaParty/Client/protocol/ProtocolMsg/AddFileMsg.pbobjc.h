@@ -70,6 +70,7 @@ typedef GPB_ENUM(AddFileReq_FieldNumber) {
   AddFileReq_FieldNumber_UserId = 6,
   AddFileReq_FieldNumber_FileURL = 7,
   AddFileReq_FieldNumber_FilePwd = 8,
+  AddFileReq_FieldNumber_FileGroupIdArray = 9,
 };
 
 @interface AddFileReq : GPBMessage
@@ -105,6 +106,10 @@ typedef GPB_ENUM(AddFileReq_FieldNumber) {
 /** Test to see if @c filePwd has been set. */
 @property(nonatomic, readwrite) BOOL hasFilePwd;
 
+@property(nonatomic, readwrite, strong, null_resettable) GPBInt32Array *fileGroupIdArray;
+/** The number of items in @c fileGroupIdArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger fileGroupIdArray_Count;
+
 @end
 
 #pragma mark - AddFileRsp
@@ -115,6 +120,7 @@ typedef GPB_ENUM(AddFileRsp_FieldNumber) {
   AddFileRsp_FieldNumber_FileInfo = 3,
   AddFileRsp_FieldNumber_FileSize = 4,
   AddFileRsp_FieldNumber_FileDate = 5,
+  AddFileRsp_FieldNumber_FileId = 6,
 };
 
 @interface AddFileRsp : GPBMessage
@@ -138,6 +144,9 @@ typedef GPB_ENUM(AddFileRsp_FieldNumber) {
 /** Test to see if @c fileDate has been set. */
 @property(nonatomic, readwrite) BOOL hasFileDate;
 
+@property(nonatomic, readwrite) int32_t fileId;
+
+@property(nonatomic, readwrite) BOOL hasFileId;
 @end
 
 NS_ASSUME_NONNULL_END

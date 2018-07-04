@@ -30,7 +30,7 @@
 }
 
 @end
-
+static sharedFileIntentVCHandler* mHandler;
 @implementation sharedFileIntentVC
 
 - (void)viewDidLoad {
@@ -47,6 +47,7 @@
     [formartter setDateFormat:@"yyyy/MM/dd HH:mm"];
     [self initData];
     [self initView];
+    mHandler = [[sharedFileIntentVCHandler alloc] initWithDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -203,6 +204,30 @@
     
     return cell;
 }
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"取消分享" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"删除");
+        SharedflieBean* file = nowList[indexPath.row];
+        [NSThread detachNewThreadWithBlock:^{
+            DeleteFileReq* builder = [[DeleteFileReq alloc] init];
+            builder.fileId = file.mid;
+            builder.fileName = file.name;
+            builder.userId = Login_userId;
+            builder.fileInfo = file.des;
+            builder.fileSize = file.size;
+            @try {
+                NSData* byteArray = [NetworkPacket packMessage:ENetworkMessage_DeleteFileReq packetBytes:[builder data]];
+                [Login_base writeToServer:Login_base.outputStream arrayBytes:byteArray];
+            } @catch (NSException* e) {
+
+            }
+        }];
+    }];
+    action1.backgroundColor = [UIColor redColor];
+    return @[action1];
+
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -258,6 +283,27 @@
         //保留2位小数
         size = size * 10 / 1024;
         return [NSString stringWithFormat:@"%d.%dGB",size/100,size%100];
+    }
+}
++ (sharedFileIntentVCHandler*) getHandler{
+    return mHandler;
+}
+@end
+
+
+@implementation sharedFileIntentVCHandler
+- (instancetype)initWithDelegate:(sharedFileIntentVC*) ctl{
+    if(self = [super init]){
+        self.delegate = ctl;
+    }
+    return self;
+}
+- (void)onHandler:(NSDictionary *)message{
+    if([message[@"what"] intValue] == 1){
+        [_delegate refreshData];
+    }
+    else if([message[@"what"] intValue] == 2){
+        [Toast ShowToast:@"取消分享失败" Animated:YES time:1 context:_delegate.view];
     }
 }
 @end

@@ -12,6 +12,7 @@ NSString* DBConst_tableItem_senderID   = @"sender_id";
 NSString* DBConst_tableItem_receiverID   = @"receiver_id";
 NSString* DBConst_tableItem_msg   = @"msg";
 NSString* DBConst_tableItem_date    = @"date";
+NSString* DBConst_tableItem_groupId    = @"group_id";
 
 NSString* DBConst_tableItem_friend_id = @"friend_id";
 NSString* DBConst_tableItem_friend_name = @"friend_name";
@@ -27,6 +28,9 @@ NSString* DBConst_tableItem_file_size = @"file_size";
 
 + (NSString*)chatTB{
     return Login_userId;
+}
++ (NSString*)groupchatTB{
+    return [NSString stringWithFormat:@"%@group",Login_userId];
 }
 + (NSString*)friendTB{
     return [NSString stringWithFormat:@"%@friend",Login_userId];

@@ -15,6 +15,9 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import <UIKit/UIKit.h>
+
+#define Root_path [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
+
 #define Photo_path [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"photo"]
 #define Video_path [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"video"]
 #define Music_path [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"music"]
@@ -63,6 +66,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self onPreExecute];
     });
+    //扫描电脑下载目录的图片
+    NSMutableArray<FileItemForMedia*>* Downloadphotos = [[NSMutableArray alloc] init];
+    NSArray* tempArray = [fileManager contentsOfDirectoryAtPath:[Root_path stringByAppendingPathComponent:@"PCDownload"] error:nil];
+    for (NSString* fileName in tempArray) {
+        if([FileTypeConst determineFileType:fileName]== FileTypeConst_pic){
+            NSString* filePath = [[Root_path stringByAppendingPathComponent:@"PCDownload"] stringByAppendingPathComponent:fileName];
+            [Downloadphotos addObject:[[FileItemForMedia alloc] initWithmFileId:@"" mFilePath:filePath mFileName:fileName AssertUrl:[NSURL URLWithString:filePath]]];
+        }
+    }
+    [ContentDataControl addPCDownloadFileListByType:photo List:Downloadphotos];
+    //扫描相册
     assetLibrary = [[ALAssetsLibrary alloc]  init];
     [assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -114,7 +128,6 @@
              [alertView show];
          });
      }];
-    
     return;
 }
 // 将原始图片的URL转化为NSData数据,写入沙盒
@@ -149,6 +162,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self onPreExecute];
     });
+    //扫描电脑下载目录的视频
+    NSMutableArray<FileItemForMedia*>* Downloadvideos = [[NSMutableArray alloc] init];
+    NSArray* tempArray = [fileManager contentsOfDirectoryAtPath:[Root_path stringByAppendingPathComponent:@"PCDownload"] error:nil];
+    for (NSString* fileName in tempArray) {
+        if([FileTypeConst determineFileType:fileName]== FileTypeConst_video){
+            NSString* filePath = [@"PCDownload" stringByAppendingPathComponent:fileName];
+            [Downloadvideos addObject:[[FileItemForMedia alloc] initWithmFileId:@"" mFilePath:filePath mFileName:fileName AssertUrl:[NSURL URLWithString:filePath]]];
+        }
+    }
+    [ContentDataControl addPCDownloadFileListByType:video List:Downloadvideos];
+    //扫描电脑相册的视频
     assetLibrary = [[ALAssetsLibrary alloc]  init];
     [assetLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
                                 usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
@@ -239,7 +263,7 @@
         }
     });
 }
-// 获取所有视频
+// 获取所有音乐
 - (void) getAllMusic{
     if(![fileManager fileExistsAtPath:Music_path]){
         [fileManager createDirectoryAtPath:Music_path withIntermediateDirectories:YES attributes:nil error:nil];
@@ -248,6 +272,17 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self onPreExecute];
     });
+    //扫描电脑下载目录的音乐
+    NSMutableArray<FileItemForMedia*>* Downloadmusics = [[NSMutableArray alloc] init];
+    NSArray* tempArray = [fileManager contentsOfDirectoryAtPath:[Root_path stringByAppendingPathComponent:@"PCDownload"] error:nil];
+    for (NSString* fileName in tempArray) {
+        if([FileTypeConst determineFileType:fileName]== FileTypeConst_music){
+            NSString* filePath = [@"PCDownload" stringByAppendingPathComponent:fileName];
+            [Downloadmusics addObject:[[FileItemForMedia alloc] initWithmFileId:@"" mFilePath:filePath mFileName:fileName AssertUrl:[NSURL URLWithString:filePath]]];
+        }
+    }
+    [ContentDataControl addPCDownloadFileListByType:music List:Downloadmusics];
+    //扫描ipod音乐库
     MPMediaQuery * mediaQuery = [[MPMediaQuery alloc] init];
     //读取文件
     MPMediaPropertyPredicate * albumNamePredicate = [MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithInt:MPMediaTypeMusic] forProperty:MPMediaItemPropertyMediaType];
