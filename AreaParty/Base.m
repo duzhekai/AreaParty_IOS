@@ -97,7 +97,7 @@ int const Base_FILENUM = 3;
         [inputstream read:sizeByte maxLength:sizeof(sizeByte)];
         
         int size = [DataTypeTranslater bytesToInt:sizeByte offset:0];
-        if(size == 0){
+        if(size == 0||size>100000){
             return [NSData dataWithBytes:sizeByte length:0];
         }
         int count = size -12;

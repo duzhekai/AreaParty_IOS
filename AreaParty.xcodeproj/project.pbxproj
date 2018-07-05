@@ -918,6 +918,8 @@
 		72CC16D520EB221A001E9AA7 /* icon_mainphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC16D420EB2218001E9AA7 /* icon_mainphone.png */; };
 		72CC16D820EB3C80001E9AA7 /* SettingMainPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16D720EB3C80001E9AA7 /* SettingMainPhoneViewController.m */; };
 		72CC16DB20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16DA20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m */; };
+		72CC16DD20ECC205001E9AA7 /* nas_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 72CC16DC20ECC1FC001E9AA7 /* nas_logo.png */; };
+		72CC16E020EDAD25001E9AA7 /* PCNASFileSysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CC16DF20EDAD25001E9AA7 /* PCNASFileSysViewController.m */; };
 		72D171E3204D7DE50069992A /* Update_ReceiveMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D171E2204D7DE50069992A /* Update_ReceiveMsgBean.m */; };
 		72D171E6204D870E0069992A /* Update_SendMsgBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D171E5204D870E0069992A /* Update_SendMsgBean.m */; };
 		72D1E8E7201864C1004262B1 /* AVLoadingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D1E8E6201864C1004262B1 /* AVLoadingIndicatorView.m */; };
@@ -2166,6 +2168,9 @@
 		72CC16D720EB3C80001E9AA7 /* SettingMainPhoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingMainPhoneViewController.m; sourceTree = "<group>"; };
 		72CC16D920EB3CAC001E9AA7 /* SettingMainPhoneHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingMainPhoneHandler.h; sourceTree = "<group>"; };
 		72CC16DA20EB3CAC001E9AA7 /* SettingMainPhoneHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingMainPhoneHandler.m; sourceTree = "<group>"; };
+		72CC16DC20ECC1FC001E9AA7 /* nas_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nas_logo.png; sourceTree = "<group>"; };
+		72CC16DE20EDAD25001E9AA7 /* PCNASFileSysViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PCNASFileSysViewController.h; sourceTree = "<group>"; };
+		72CC16DF20EDAD25001E9AA7 /* PCNASFileSysViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCNASFileSysViewController.m; sourceTree = "<group>"; };
 		72D171E1204D7DE50069992A /* Update_ReceiveMsgBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Update_ReceiveMsgBean.h; sourceTree = "<group>"; };
 		72D171E2204D7DE50069992A /* Update_ReceiveMsgBean.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Update_ReceiveMsgBean.m; sourceTree = "<group>"; };
 		72D171E4204D870E0069992A /* Update_SendMsgBean.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Update_SendMsgBean.h; sourceTree = "<group>"; };
@@ -2462,6 +2467,7 @@
 		72188EE21FB55657002E270E /* drawable */ = {
 			isa = PBXGroup;
 			children = (
+				72CC16DC20ECC1FC001E9AA7 /* nas_logo.png */,
 				72CC16D420EB2218001E9AA7 /* icon_mainphone.png */,
 				72CC16CC20EA1DB5001E9AA7 /* tab_06_imggroupsetting.png */,
 				72651A4C20E5FC3F00B5DA64 /* logout.png */,
@@ -3932,6 +3938,8 @@
 				72FDF99F205426D500232F4D /* computerSettingViewController.m */,
 				72058CBC2056816900A4DA97 /* exeContentVC.h */,
 				72058CBD2056816900A4DA97 /* exeContentVC.m */,
+				72CC16DE20EDAD25001E9AA7 /* PCNASFileSysViewController.h */,
+				72CC16DF20EDAD25001E9AA7 /* PCNASFileSysViewController.m */,
 			);
 			path = Fragment1;
 			sourceTree = "<group>";
@@ -4797,6 +4805,7 @@
 				721892E11FB5565A002E270E /* webmanager_edittext_color3.xml in Resources */,
 				721992AA2099A25500793C32 /* tab04_downloading_item.xib in Resources */,
 				721892DF1FB5565A002E270E /* webmanager_edittext_color1.xml in Resources */,
+				72CC16DD20ECC205001E9AA7 /* nas_logo.png in Resources */,
 				721892D01FB5565A002E270E /* web1080_logo.png in Resources */,
 				721891281FB55659002E270E /* breakfast_radiobutton_unchecked.png in Resources */,
 				7218928A1FB5565A002E270E /* sym_keyboard_delete.png in Resources */,
@@ -5255,6 +5264,7 @@
 				720158C91FFC7A4F00913961 /* onUIControllerResult.m in Sources */,
 				7225F831207A1312004C8BB6 /* HTTPAuthenticationRequest.m in Sources */,
 				72812E522021EE2900C24659 /* LoadingViewForOC.m in Sources */,
+				72CC16E020EDAD25001E9AA7 /* PCNASFileSysViewController.m in Sources */,
 				72A95A5A2019A30E00CDE28C /* ReceivedFileManagerMessageFormat.m in Sources */,
 				7220C627200DD2BB00ECC879 /* Send2PCThread.m in Sources */,
 				72525C7B2060AC210007DB1E /* Shutdown_Reboot_Dialog.m in Sources */,

@@ -7,20 +7,21 @@
 //
 
 #import "PCFileSysViewController.h"
-
+#import "PCNASFileSysViewController.h"
 @interface PCFileSysViewController ()
 @end
-
+NSMutableArray<DiskInformat*>* PCFileSysViewController_diskDatas;
+NSMutableArray<DiskInformat*>* PCFileSysViewController_diskDatasList;
+NSMutableArray<DiskInformat*>* PCFileSysViewController_diskNetworkDatasList;
 @implementation PCFileSysViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //下载器初始化
-    
-    
-    
-    diskDatas = [[NSMutableArray alloc] init];
+    PCFileSysViewController_diskDatas = [[NSMutableArray alloc] init];
+    PCFileSysViewController_diskDatasList = [[NSMutableArray alloc] init];
+    PCFileSysViewController_diskNetworkDatasList = [[NSMutableArray alloc] init];
     _page04LoadingAVLIV = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
     _page04DiskListActionBarLL.layer.shadowColor = [[UIColor blackColor] CGColor];
     _page04DiskListActionBarLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
@@ -46,13 +47,17 @@
     [_page04SharedFilesRootLL addGestureRecognizer:sharedfileLL_rec];
     UITapGestureRecognizer* localfileLL_rec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclick:)];
     [_page04LocalFolderRootLL addGestureRecognizer:localfileLL_rec];
+    UITapGestureRecognizer* NAS_rec = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onclick:)];
+    [_page04NASRootLL addGestureRecognizer:NAS_rec];
     [self initdata];
     
 }
 - (void) onclick:(UITapGestureRecognizer*)gesture{
     if(gesture.view == _page04DiskListRefreshLL){
         dispatch_async(dispatch_get_main_queue(), ^{
-            diskDatas = [[NSMutableArray alloc] init];
+            PCFileSysViewController_diskDatas = [[NSMutableArray alloc] init];
+            [PCFileSysViewController_diskDatasList removeAllObjects];
+            [PCFileSysViewController_diskNetworkDatasList removeAllObjects];
             [_diskList reloadData];
             [self loadDisks];
             NSLog(@"page04Fragment:刷新磁盘列表");
@@ -83,7 +88,14 @@
     if(gesture.view == _page04SharedFilesRootLL){
         [self presentViewController:[[UIStoryboard storyboardWithName:@"Main2" bundle:nil] instantiateViewControllerWithIdentifier:@"sharedFileIntentVC"] animated:YES completion:nil];
     }
-    
+    if(gesture.view == _page04NASRootLL){
+        if (PCFileSysViewController_diskNetworkDatasList.count>0){
+            PCNASFileSysViewController* vc = [[self storyboard] instantiateViewControllerWithIdentifier:@"PCNASFileSysViewController"];
+            [self presentViewController:vc animated:YES completion:nil];
+        }else {
+            [Toast ShowToast:@"当前无NAS设备，请在电脑上配置NAS连接" Animated:YES time:1 context:self.view];
+        }
+    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -157,7 +169,7 @@
  * </summary>
  */
 - (void)loadDisks{
-    if(diskDatas!= nil && diskDatas.count <= 0 && [MyUIApplication getselectedPCOnline] && [MyUIApplication getselectedPCVerified]) {
+    if(PCFileSysViewController_diskDatas!= nil && PCFileSysViewController_diskDatas.count <= 0 && [MyUIApplication getselectedPCOnline] && [MyUIApplication getselectedPCVerified]) {
         if(!_page04LoadingAVLIV.isshown){
            [_page04LoadingAVLIV showPromptViewOnView:self.view];
         }
@@ -166,7 +178,7 @@
                 ReceivedDiskListFormat* disks = (ReceivedDiskListFormat*)
                 [prepareDataForFragment getDiskActionStateData:OrderConst_diskAction_name command:OrderConst_diskAction_get_command param:@""];
                 if(disks.status == OrderConst_success) {
-                    diskDatas = [NSArray arrayWithArray:disks.data];
+                    PCFileSysViewController_diskDatas = [NSArray arrayWithArray:disks.data];
                     NSDictionary* message = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt: OrderConst_getDiskList_order_successful],@"what", nil];
                     [self onHandler:message];
                 } else {
@@ -197,9 +209,9 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int height = diskDatas.count *60;
+    int height = PCFileSysViewController_diskDatasList.count *60;
     [self setview:_diskList height:height];
-    return diskDatas.count;
+    return PCFileSysViewController_diskDatasList.count;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
@@ -213,7 +225,7 @@
         //这里换成自己定义的cell,并调用类方法加载xib文件
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FileSysDiskList" owner:nil options:nil] firstObject];
     }
-    DiskInformat* fileBeanTemp = diskDatas[indexPath.row];
+    DiskInformat* fileBeanTemp = PCFileSysViewController_diskDatasList[indexPath.row];
     if([fileBeanTemp.driveType isEqualToString:disk_SYS]){
         [cell.typeImage setImage:[UIImage imageNamed:@"frag04_driver_system_icon.png"]];
     }
@@ -233,7 +245,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString* initDisk = diskDatas[indexPath.row].name;
+    NSString* initDisk = PCFileSysViewController_diskDatasList[indexPath.row].name;
     [self performSegueWithIdentifier:@"pushdiskcontentvc" sender:initDisk];
 }
 - (void)onHandler:(NSDictionary *)message{
@@ -246,13 +258,16 @@
             _page04SharedFilesRootLL.hidden = NO;
         }
         [_page04LoadingAVLIV removeView];
+        _page04NASRootLL.hidden = NO;
+        [PCFileSysViewController handleDatas];
         [_diskList reloadData];
 
         });
     }
     else if ([[message objectForKey:@"what"] intValue] == OrderConst_getDiskList_order_fail){
         dispatch_async(dispatch_get_main_queue(), ^{
-        diskDatas = [[NSMutableArray alloc] init];
+            [PCFileSysViewController_diskNetworkDatasList removeAllObjects];
+            PCFileSysViewController_diskDatas = [[NSMutableArray alloc] init];
         // 如果用户未登录
         if([Login_userId isEqualToString:@""]) {
             _page04SharedFilesRootLL.hidden = YES;
@@ -275,6 +290,18 @@
 }
 - (IBAction)press_backbutton:(id)sender {
     [self returnToParentFolder];
+}
++ (void) handleDatas {
+    [PCFileSysViewController_diskNetworkDatasList removeAllObjects];
+    [PCFileSysViewController_diskDatasList removeAllObjects];
+    for (int i = 0; i<PCFileSysViewController_diskDatas.count; i++){
+        DiskInformat* fileBeanTemp = PCFileSysViewController_diskDatas[i];
+        if ([fileBeanTemp.driveType isEqualToString:@"Network"]){
+            [PCFileSysViewController_diskNetworkDatasList addObject:fileBeanTemp];
+        }else {
+            [PCFileSysViewController_diskDatasList addObject:fileBeanTemp];
+        }
+    }
 }
 /**
  * <summary>

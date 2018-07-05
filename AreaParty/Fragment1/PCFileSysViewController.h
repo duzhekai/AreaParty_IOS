@@ -20,8 +20,11 @@
 #import "diskContentVC.h"
 #import "downloadTab01Fragment.h"
 #import "downloadTab02Fragment.h"
+extern NSMutableArray<DiskInformat*>* PCFileSysViewController_diskDatas;
+extern NSMutableArray<DiskInformat*>* PCFileSysViewController_diskDatasList;
+extern NSMutableArray<DiskInformat*>* PCFileSysViewController_diskNetworkDatasList;
+
 @interface PCFileSysViewController : UIViewController<onHandler,UITableViewDelegate,UITableViewDataSource>{
-    NSMutableArray<DiskInformat*>* diskDatas;
     NSString* disk_SYS;
     NSString* disk_Fixed;
     NSString* disk_Removable;
@@ -31,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UIView *page04CutBarLL;
 @property (weak, nonatomic) IBOutlet UIView *page04CopyBarLL;
 @property (weak, nonatomic) IBOutlet UIView *page04CopyCancelLL;
+@property (weak, nonatomic) IBOutlet UIView *page04NASRootLL;
 - (IBAction)press_backbutton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll_view;
 @property (weak, nonatomic) IBOutlet UITableView *diskList;
@@ -40,4 +44,5 @@
 @property (weak, nonatomic) IBOutlet UIView *page04DiskListRefreshLL;
 @property (weak, nonatomic) IBOutlet UIView *page04DiskListActionBarLL;
 @property (strong,nonatomic) AVLoadingIndicatorView* page04LoadingAVLIV;// 上方加载动画的控件
++ (void) handleDatas;
 @end

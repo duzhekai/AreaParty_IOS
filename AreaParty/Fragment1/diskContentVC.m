@@ -33,27 +33,33 @@ static PCFileHelper* pCFileHelper;
     _page04DiskContentActionBar01LL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
     _page04DiskContentActionBar01LL.layer.shadowRadius = 2;//半径
     _page04DiskContentActionBar01LL.layer.shadowOpacity = 0.25;
+    
     _page04DiskContentActionBar02LL.layer.shadowColor = [[UIColor blackColor] CGColor];
     _page04DiskContentActionBar02LL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
     _page04DiskContentActionBar02LL.layer.shadowRadius = 2;//半径
     _page04DiskContentActionBar02LL.layer.shadowOpacity = 0.25;
+    
     _page04DiskContentBar01MoreRootLL.layer.shadowColor = [[UIColor blackColor] CGColor];
     _page04DiskContentBar01MoreRootLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
     _page04DiskContentBar01MoreRootLL.layer.shadowRadius = 2;//半径
     _page04DiskContentBar01MoreRootLL.layer.shadowOpacity = 0.25;
+    
     _page04DiskContentBar02MoreRootLL.layer.shadowColor = [[UIColor blackColor] CGColor];
     _page04DiskContentBar02MoreRootLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
     _page04DiskContentBar02MoreRootLL.layer.shadowRadius = 2;//半径
     _page04DiskContentBar02MoreRootLL.layer.shadowOpacity = 0.25;
+    
     _LoadingDialog = [[AVLoadingIndicatorView alloc] initWithFrame:self.view.frame];
-    _bar02CutLL.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _bar02CutLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
-    _bar02CutLL.layer.shadowRadius = 2;//半径
-    _bar02CutLL.layer.shadowOpacity = 0.25;
-    _bar02CopyLL.layer.shadowColor = [[UIColor blackColor] CGColor];
-    _bar02CopyLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
-    _bar02CopyLL.layer.shadowRadius = 2;//半径
-    _bar02CopyLL.layer.shadowOpacity = 0.25;
+    _page04DiskContentCopyBarLL.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _page04DiskContentCopyBarLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
+    _page04DiskContentCopyBarLL.layer.shadowRadius = 2;//半径
+    _page04DiskContentCopyBarLL.layer.shadowOpacity = 0.25;
+    _page04DiskContentCutBarLL.layer.shadowColor = [[UIColor blackColor] CGColor];
+    _page04DiskContentCutBarLL.layer.shadowOffset = CGSizeMake(0,0);//偏移距离
+    _page04DiskContentCutBarLL.layer.shadowRadius = 2;//半径
+    _page04DiskContentCutBarLL.layer.shadowOpacity = 0.25;
+    
+    
     
     NSString* initTitle = [_diskName stringByAppendingString:@":>"];
     [_page04DiskContentCurrentPathTV setText:initTitle];
@@ -179,6 +185,30 @@ static PCFileHelper* pCFileHelper;
 - (void)deleteFileAndFolderDialog{
      [self presentViewController:_delete_folder_dialog animated:YES completion:nil];
 }
+//-(void)longPressToDo:(UILongPressGestureRecognizer *)gesture
+//{
+//    if(gesture.state == UIGestureRecognizerStateBegan)
+//    {
+//        CGPoint point = [gesture locationInView:_page04DiskContentLV];
+//        NSIndexPath * indexPath = [_page04DiskContentLV indexPathForRowAtPoint:point];
+//        if(indexPath == nil) return ;
+//        //add your code here
+//        if(!_isCheckBoxIn) {
+//            if([PCFileHelper isInitial]) {
+//                _page04DiskContentActionBar01LL.hidden = YES;
+//                _page04DiskContentActionBar02LL.hidden = NO;
+//                NSMutableArray<fileBean*>* datas = [PCFileHelper getDatas];
+//                for(fileBean* data in datas) {
+//                    data.isShow = YES;
+//                    data.isChecked = NO;
+//                }
+//                [PCFileHelper getDatas][indexPath.row].isChecked = YES;
+//                _isCheckBoxIn = YES;
+//                [_page04DiskContentLV reloadData];
+//            }
+//        }
+//    }
+//}
 -(void)longPressToDo:(UILongPressGestureRecognizer *)gesture
 {
     if(gesture.state == UIGestureRecognizerStateBegan)
@@ -197,6 +227,23 @@ static PCFileHelper* pCFileHelper;
                     data.isChecked = NO;
                 }
                 [PCFileHelper getDatas][indexPath.row].isChecked = YES;
+                if([PCFileHelper getDatas].count ==1){
+                    [_bar02IconSelectAllIV setImage:[UIImage imageNamed:@"selectedall_pressed.png"]];
+                    [_bar02TxSelectAllTV setText:@"取消全选"];
+                }
+                else{
+                    [_bar02IconSelectAllIV setImage:[UIImage imageNamed:@"selectedall_normal.png"]];
+                    [_bar02TxSelectAllTV setText:@"全选"];
+                }
+                _bar02CopyLL.userInteractionEnabled = YES;
+                _bar02CutLL.userInteractionEnabled = YES;
+                _bar02DeleteLL.userInteractionEnabled = YES;
+                [_bar02IconCopyIV setImage:[UIImage imageNamed:@"copy_normal.png"]];
+                [_bar02IconCutIV setImage:[UIImage imageNamed:@"cut_normal.png"]];
+                [_bar02IconDeleteIV setImage:[UIImage imageNamed:@"delete_normal.png"]];
+                [_bar02TxCopyTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
+                [_bar02TxCutTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
+                [_bar02TxDeleteTV setTextColor:[UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1]];
                 _isCheckBoxIn = YES;
                 [_page04DiskContentLV reloadData];
             }
